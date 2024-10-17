@@ -1,5 +1,5 @@
 <template>
-  <div>Главная страница</div>
+  <div>Турниры</div>
 </template>
 
 <script>

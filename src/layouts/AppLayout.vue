@@ -19,7 +19,12 @@
                     flat
                     size="14px"
                     :label="buttons.name"
-                    @click="pushToPage"
+                    @click="pushToPage(buttons.link)"
+                    :class="
+                      currentPath === buttons.link
+                        ? 'activePage'
+                        : 'unactivePage'
+                    "
                   />
                 </section>
               </div>
@@ -36,7 +41,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 const headerButtonsArray = ref([
   {
@@ -45,6 +51,7 @@ const headerButtonsArray = ref([
   },
   {
     name: "Турниры",
+    link: "/tournaments",
   },
   {
     name: "Регламент",
@@ -63,9 +70,33 @@ const headerButtonsArray = ref([
   },
 ]);
 
-const pushToPage = () => {
-  console.log("Clicked");
+const router = useRouter();
+const routePath = useRoute();
+const currentPath = ref(routePath.path);
+
+onBeforeMount(() => {
+  saveCurrentPath();
+});
+
+const saveCurrentPath = () => {
+  watch(
+    () => routePath.path,
+    (newPath) => {
+      currentPath.value = newPath;
+    }
+  );
+};
+
+const pushToPage = (route) => {
+  router.push(route).then(() => {
+    currentPath.value = router.currentRoute.value.path;
+    console.log("Новый маршрут:", currentPath.value);
+  });
 };
 </script>
 
-<style></style>
+<style scoped>
+.activePage {
+  text-decoration: underline;
+}
+</style>
