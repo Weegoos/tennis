@@ -7,13 +7,22 @@
             <div class="col-2">
               <q-btn flat round dense icon="assignment_ind" size="24px" />
             </div>
-            <div class="col-8" style="border: solid red 1px">
-              <q-btn
-                no-caps
-                flat
-                label="Главная страница"
-                @click="pushToPage"
-              />
+            <div class="col-8">
+              <div class="row q-mt-sm" style="justify-content: center">
+                <section
+                  v-for="(buttons, index) in headerButtonsArray"
+                  :key="index"
+                  class="text-white row"
+                >
+                  <q-btn
+                    no-caps
+                    flat
+                    size="14px"
+                    :label="buttons.name"
+                    @click="pushToPage"
+                  />
+                </section>
+              </div>
             </div>
             <div class="col">Batyr</div>
           </div>
@@ -26,6 +35,37 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const headerButtonsArray = ref([
+  {
+    name: "Главная страница",
+    link: "/",
+  },
+  {
+    name: "Турниры",
+  },
+  {
+    name: "Регламент",
+  },
+  {
+    name: "Рейтинг",
+  },
+  {
+    name: "Медиатека",
+  },
+  {
+    name: "Новости",
+  },
+  {
+    name: "О нас",
+  },
+]);
+
+const pushToPage = () => {
+  console.log("Clicked");
+};
+</script>
 
 <style></style>
