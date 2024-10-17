@@ -90,10 +90,15 @@ const saveCurrentPath = () => {
 };
 
 const pushToPage = (route) => {
-  router.push(route).then(() => {
-    currentPath.value = router.currentRoute.value.path;
-    console.log("Новый маршрут:", currentPath.value);
-  });
+  try {
+    router.push(route).then(() => {
+      currentPath.value = router.currentRoute.value.path;
+    });
+  } catch (error) {
+    throw new Error(
+      `Произошла ошибка: ${error}, в компоненте AppLayout функция pushToPage`
+    );
+  }
 };
 </script>
 
