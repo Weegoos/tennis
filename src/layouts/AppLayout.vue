@@ -55,9 +55,11 @@ const headerButtonsArray = ref([
   },
   {
     name: "Регламент",
+    link: "/regulations",
   },
   {
     name: "Рейтинг",
+    link: "/ratings",
   },
   {
     name: "Медиатека",
@@ -98,5 +100,9 @@ const pushToPage = (route) => {
 <style scoped>
 .activePage {
   text-decoration: underline;
+}
+
+.unactivePage {
+  text-decoration: none;
 }
 </style>
