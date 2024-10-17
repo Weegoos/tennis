@@ -91,7 +91,7 @@ const saveCurrentPath = () => {
 
 const pushToPage = (route) => {
   try {
-    router.push(route).then(() => {
+    routersss.push(route).then(() => {
       currentPath.value = router.currentRoute.value.path;
     });
   } catch (error) {
