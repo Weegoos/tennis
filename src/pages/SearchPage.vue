@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-dialog v-model="isSearch" persistent>
+    <q-dialog v-model="isOpenSearch" persistent>
       <q-card style="width: 700px; max-width: 80vw">
         <q-card-section>
           <span class="text-body1">Поиск</span>
@@ -38,11 +38,25 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const isSearch = ref(true);
 const text = ref("");
 const $q = useQuasar();
+
+const props = defineProps({
+  isSearch: {
+    type: Boolean,
+    required: true,
+  },
+});
+const isOpenSearch = ref(props.isSearch);
+
+watch(
+  () => props.isSearch,
+  (newVal) => {
+    isOpenSearch.value = newVal;
+  }
+);
 
 const searchContent = () => {};
 </script>

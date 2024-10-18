@@ -31,7 +31,7 @@
             </div>
             <div class="col">
               <div class="row q-gutter-md">
-                <q-btn icon="search" @click="search" size="14px" fab />
+                <q-btn icon="search" @click="openSearch" size="14px" fab />
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
               </div>
             </div>
@@ -41,7 +41,7 @@
       <q-page-container>
         <q-page>
           <router-view />
-          <SearchPage />
+          <SearchPage :isSearch="isSearch" />
         </q-page>
       </q-page-container>
     </q-layout>
@@ -113,7 +113,10 @@ const pushToPage = (route) => {
   }
 };
 
-const search = () => {};
+const isSearch = ref(false);
+const openSearch = () => {
+  isSearch.value = true;
+};
 const pushToProfile = () => {};
 </script>
 
