@@ -63,6 +63,7 @@ const headerButtonsArray = ref([
   },
   {
     name: "Медиатека",
+    link: "/media-library",
   },
   {
     name: "Новости",

@@ -15,6 +15,10 @@ const routes = [
     path: "/ratings",
     component: () => import("pages/RatingsPage.vue"),
   },
+  {
+    path: "/media-library",
+    component: () => import("pages/MediaLibraryPage.vue"),
+  },
 
   // Always leave this as last one,
   // but you can also remove it
