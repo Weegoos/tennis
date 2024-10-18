@@ -41,7 +41,10 @@
       <q-page-container>
         <q-page>
           <router-view />
-          <SearchPage :isSearch="isSearch" />
+          <SearchPage
+            :isSearch="isSearch"
+            @closeSearchDialog="closeSearchDialog"
+          />
         </q-page>
       </q-page-container>
     </q-layout>
@@ -117,6 +120,11 @@ const isSearch = ref(false);
 const openSearch = () => {
   isSearch.value = true;
 };
+
+const closeSearchDialog = () => {
+  isSearch.value = false;
+};
+
 const pushToProfile = () => {};
 </script>
 

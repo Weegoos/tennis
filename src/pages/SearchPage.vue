@@ -29,7 +29,12 @@
           </q-input>
         </q-card-section>
         <q-card-actions vertical align="right">
-          <q-btn flat no-caps label="Закрыть" />
+          <q-btn
+            color="negative"
+            no-caps
+            @click="closeSearch"
+            label="Закрыть"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -57,6 +62,11 @@ watch(
     isOpenSearch.value = newVal;
   }
 );
+
+const emit = defineEmits(["closeSearchDialog"]);
+const closeSearch = () => {
+  emit("closeSearchDialog");
+};
 
 const searchContent = () => {};
 </script>
