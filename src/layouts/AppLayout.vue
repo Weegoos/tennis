@@ -39,7 +39,10 @@
         </q-toolbar>
       </q-header>
       <q-page-container>
-        <q-page> <router-view /></q-page>
+        <q-page>
+          <router-view />
+          <SearchPage />
+        </q-page>
       </q-page-container>
     </q-layout>
   </div>
@@ -109,6 +112,9 @@ const pushToPage = (route) => {
     );
   }
 };
+
+const search = () => {};
+const pushToProfile = () => {};
 </script>
 
 <style scoped>
