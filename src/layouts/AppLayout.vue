@@ -29,7 +29,12 @@
                 </section>
               </div>
             </div>
-            <div class="col">Batyr</div>
+            <div class="col">
+              <div class="row q-gutter-sm">
+                <q-btn icon="search" @click="search" size="14px" fab />
+                <q-btn icon="person" @click="pushToProfile" size="14px" fab />
+              </div>
+            </div>
           </div>
         </q-toolbar>
       </q-header>
