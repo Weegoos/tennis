@@ -125,15 +125,13 @@ const closeSearchDialog = () => {
   isSearch.value = false;
 };
 
-const pushToProfile = () => {};
+const pushToProfile = () => {
+  router.push("/profile");
+};
 </script>
 
 <style scoped>
 .activePage {
   text-decoration: underline;
-}
-
-.unactivePage {
-  text-decoration: none;
 }
 </style>
