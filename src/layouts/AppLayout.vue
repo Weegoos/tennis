@@ -67,6 +67,7 @@ const headerButtonsArray = ref([
   },
   {
     name: "Новости",
+    link: "/news",
   },
   {
     name: "О нас",
