@@ -15,6 +15,7 @@
         <q-tab name="all" label="Все" />
         <q-tab name="interview" label="Интервью" />
         <q-tab name="championship" label="Чемпиоанты" />
+        <q-tab name="analysis" label="Анализ" />
       </q-tabs>
 
       <q-separator />
@@ -40,7 +41,6 @@
                 </caption>
               </q-img>
             </div>
-            <div class="col"></div>
           </div>
         </q-tab-panel>
 
@@ -53,6 +53,9 @@
           <div class="text-h6"></div>
           Новости о Чемпиоанте будет отображаться здесь
         </q-tab-panel>
+        <q-tab-pane name="analysis">
+          Новости об анализе будет отображаться здесь
+        </q-tab-pane>
       </q-tab-panels>
     </div>
   </div>
