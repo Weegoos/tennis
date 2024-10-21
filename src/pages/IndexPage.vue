@@ -15,8 +15,6 @@
       height="700px"
       class="full-width"
     >
-      >
-
       <q-carousel-slide
         v-for="(carousel, index) in slideInformation"
         :key="index"
@@ -28,13 +26,10 @@
           :ratio="16 / 9"
           spinner-color="primary"
           spinner-size="82px"
-        />
+        >
+        </q-img>
       </q-carousel-slide>
     </q-carousel>
-
-    <div class="q-mt-md text-center">
-      <p>Текущий слайд: {{ slide }}</p>
-    </div>
   </div>
 </template>
 
@@ -53,7 +48,7 @@ const slideInformation = ref([
   },
   {
     name: "advertisement",
-    img: "https://plus.unsplash.com/premium_photo-1671586882133-cfeb42e6feba?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://plus.unsplash.com/premium_photo-1707403688610-4da1c7e47cd2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ]);
 
