@@ -1,1 +1,8 @@
 // app global css in SCSS form
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
