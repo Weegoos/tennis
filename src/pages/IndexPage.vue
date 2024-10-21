@@ -12,7 +12,7 @@
       navigation-icon="radio_button_unchecked"
       navigation
       arrows
-      height="700px"
+      :height="$q.screen.width < 800 ? '300px' : '700px'"
       class="full-width"
     >
       <q-carousel-slide
@@ -30,7 +30,7 @@
         </q-img>
       </q-carousel-slide>
     </q-carousel>
-    <section class="q-mt-lg q-pa-xl q-mx-xl">
+    <section :class="$q.screen.width > 800 ? 'q-mt-lg q-pa-xl q-mx-xl' : ''">
       <TournamentPage />
     </section>
   </div>
