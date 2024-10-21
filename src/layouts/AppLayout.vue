@@ -7,7 +7,7 @@
             <div class="col-2">
               <q-btn flat round dense icon="assignment_ind" size="24px" />
             </div>
-            <div class="col-8">
+            <div class="col-8" v-show="isDesktop">
               <div class="row q-mt-sm" style="justify-content: center">
                 <section
                   v-for="(buttons, index) in headerButtonsArray"
@@ -29,8 +29,11 @@
                 </section>
               </div>
             </div>
-            <div class="col">
-              <div class="row q-gutter-md">
+            <div class="col" :align="$q.screen.width > 800 ? 'center' : ''">
+              <div
+                class="row"
+                :class="$q.screen.width > 800 ? 'q-gutter-md' : ''"
+              >
                 <q-btn icon="search" @click="openSearch" size="14px" fab />
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
               </div>
@@ -52,7 +55,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref, watch } from "vue";
+import { onBeforeMount, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
 
@@ -128,6 +131,22 @@ const closeSearchDialog = () => {
 const pushToProfile = () => {
   router.push("/profile");
 };
+
+const width = ref(window.innerWidth);
+const isDesktop = ref("");
+const updateWidth = () => {
+  width.value = window.innerWidth;
+  isDesktop.value = width.value > 800;
+};
+
+updateWidth();
+onMounted(() => {
+  window.addEventListener("resize", updateWidth);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateWidth);
+});
 </script>
 
 <style scoped>
