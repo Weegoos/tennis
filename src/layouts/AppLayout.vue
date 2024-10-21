@@ -74,10 +74,18 @@
       <q-page-container>
         <q-page>
           <router-view />
+
           <SearchPage
             :isSearch="isSearch"
             @closeSearchDialog="closeSearchDialog"
           />
+          <q-page-scroller
+            position="bottom-right"
+            :scroll-offset="150"
+            :offset="[18, 18]"
+          >
+            <q-btn icon="keyboard_arrow_up" color="black" />
+          </q-page-scroller>
         </q-page>
       </q-page-container>
     </q-layout>
