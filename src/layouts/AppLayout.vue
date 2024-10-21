@@ -29,7 +29,7 @@
                 </section>
               </div>
             </div>
-            <div class="col" :align="$q.screen.width > 800 ? 'center' : ''">
+            <div class="col" :align="$q.screen.width > 800 ? 'center' : 'left'">
               <div
                 class="row"
                 :class="$q.screen.width > 800 ? 'q-gutter-md' : ''"
@@ -38,7 +38,7 @@
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
               </div>
             </div>
-            <div class="col" align="right">
+            <div class="col" align="right" v-if="$q.screen.width < 800">
               <q-btn
                 flat
                 icon="menu"
@@ -51,6 +51,7 @@
         </q-toolbar>
       </q-header>
       <q-drawer
+        v-if="$q.screen.width < 800"
         side="right"
         v-model="drawer"
         bordered
