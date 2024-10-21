@@ -38,9 +38,37 @@
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
               </div>
             </div>
+            <div class="col" align="right">
+              <q-btn
+                flat
+                icon="menu"
+                class="q-mt-sm"
+                size="14px"
+                @click="drawer = !drawer"
+              />
+            </div>
           </div>
         </q-toolbar>
       </q-header>
+      <q-drawer
+        side="right"
+        v-model="drawer"
+        bordered
+        :width="200"
+        :breakpoint="500"
+        content-class="bg-grey-3"
+      >
+        <q-list bordered>
+          <q-item
+            clickable
+            v-ripple
+            v-for="(buttons, index) in headerButtonsArray"
+            :key="index"
+          >
+            <q-item-section>{{ buttons.name }}</q-item-section>
+          </q-item>
+        </q-list>
+      </q-drawer>
       <q-page-container>
         <q-page>
           <router-view />
@@ -93,6 +121,7 @@ const headerButtonsArray = ref([
 const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
+const drawer = ref(true);
 
 onBeforeMount(() => {
   saveCurrentPath();
