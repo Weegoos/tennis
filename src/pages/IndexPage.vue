@@ -30,11 +30,15 @@
         </q-img>
       </q-carousel-slide>
     </q-carousel>
+    <section class="q-mt-lg q-pa-xl q-mx-xl">
+      <TournamentPage />
+    </section>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import TournamentPage from "../components/IndexPage/TournamentsInformation/TournamentPage.vue";
 
 const slide = ref("tennis");
 const slides = ["tennis", "advertisement"];
@@ -70,7 +74,7 @@ onBeforeUnmount(() => {
 .full-width {
   width: 100vw; /* Полная ширина экрана */
   max-width: none; /* Убираем ограничение по максимальной ширине */
-  margin: 0; /* Убираем отступы */
-  padding: 0; /* Убираем внутренние отступы */
+  margin: 0;
+  padding: 0;
 }
 </style>
