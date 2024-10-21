@@ -22,17 +22,17 @@
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="all">
           <div class="text-h6"></div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Все новости будут отображаться здесь
         </q-tab-panel>
 
         <q-tab-panel name="interview">
           <div class="text-h6"></div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Интервью будет отображаться здесь
         </q-tab-panel>
 
         <q-tab-panel name="championship">
           <div class="text-h6"></div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Новости о Чемпиоанте будет отображаться здесь
         </q-tab-panel>
       </q-tab-panels>
     </div>
