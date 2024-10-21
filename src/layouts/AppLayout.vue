@@ -65,6 +65,7 @@
             v-ripple
             v-for="(buttons, index) in headerButtonsArray"
             :key="index"
+            @click="navigationBar(buttons.link)"
           >
             <q-item-section>{{ buttons.name }}</q-item-section>
           </q-item>
@@ -147,6 +148,10 @@ const pushToPage = (route) => {
       `Произошла ошибка: ${error}, в компоненте AppLayout функция pushToPage`
     );
   }
+};
+
+const navigationBar = (route) => {
+  router.push(route);
 };
 
 const isSearch = ref(false);
