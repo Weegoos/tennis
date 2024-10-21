@@ -6,19 +6,25 @@
       transition-next="jump-left"
       swipeable
       animated
-      control-color="black"
+      control-color="white"
       prev-icon="arrow_left"
       next-icon="arrow_right"
       navigation-icon="radio_button_unchecked"
       navigation
       arrows
-      height="500px"
+      height="700px"
       class="full-width"
     >
       >
-      <q-carousel-slide name="style" class="column full-width">
+
+      <q-carousel-slide
+        v-for="(carousel, index) in slideInformation"
+        :key="index"
+        :name="carousel.name"
+        class="column full-width"
+      >
         <q-img
-          src="https://plus.unsplash.com/premium_photo-1708119178787-a9ec69bcd563?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          :src="carousel.img"
           :ratio="16 / 9"
           spinner-color="primary"
           spinner-size="82px"
@@ -35,22 +41,33 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-const slide = ref("style");
-const slides = ["style"];
+const slide = ref("tennis");
+const slides = ["tennis", "advertisement"];
 let slideIndex = 0;
 let intervalId;
 
+const slideInformation = ref([
+  {
+    name: "tennis",
+    img: "https://plus.unsplash.com/premium_photo-1708119178787-a9ec69bcd563?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    name: "advertisement",
+    img: "https://plus.unsplash.com/premium_photo-1671586882133-cfeb42e6feba?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+]);
+
 const nextSlide = () => {
-  slideIndex = (slideIndex + 1) % slides.length; // Увеличиваем индекс слайда, если последний, возвращаем на первый
+  slideIndex = (slideIndex + 1) % slides.length;
   slide.value = slides[slideIndex];
 };
 
 onMounted(() => {
-  intervalId = setInterval(nextSlide, 5000); // Переключаем слайды каждые 5 секунд
+  intervalId = setInterval(nextSlide, 5000);
 });
 
 onBeforeUnmount(() => {
-  clearInterval(intervalId); // Очищаем интервал перед размонтированием компонента
+  clearInterval(intervalId);
 });
 </script>
 
