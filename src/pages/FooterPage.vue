@@ -6,7 +6,7 @@
         v-for="(button, index) in footerButton"
         :key="index"
       >
-        <q-btn flat :label="button.name" @click="onClick" />
+        <q-btn flat :label="button.name" @click="pushToPage(button.link)" />
       </section>
     </div>
     <div class="q-mt-lg">
@@ -39,17 +39,21 @@
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 const footerButton = ref([
   {
     name: "Новости",
+    link: "/news",
   },
   {
     name: "Контакты",
   },
   {
     name: "О нас",
+    link: "/about",
   },
   {
     name: "Пользовательское соглашение",
@@ -59,8 +63,19 @@ const footerButton = ref([
   },
   {
     name: "Регламент турнира",
+    link: "/regulations",
   },
 ]);
+
+const router = useRouter();
+const $q = useQuasar();
+const pushToPage = (route) => {
+  try {
+    router.push(route);
+  } catch (error) {
+    throw new Error("Ссылки для этой кнопки не существует. Footer Page");
+  }
+};
 </script>
 
 <style></style>
