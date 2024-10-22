@@ -1,6 +1,6 @@
 <template>
   <div class="full-width text-white q-pa-md">
-    <div class="row text-center">
+    <div class="row text-center" style="justify-content: center">
       <section
         class="text-center"
         v-for="(button, index) in footerButton"
@@ -20,7 +20,19 @@ const footerButton = ref([
     name: "Новости",
   },
   {
-    name: "Новости",
+    name: "Контакты",
+  },
+  {
+    name: "О нас",
+  },
+  {
+    name: "Пользовательское соглашение",
+  },
+  {
+    name: "Политика конфиденциальности",
+  },
+  {
+    name: "Регламент турнира",
   },
 ]);
 </script>
