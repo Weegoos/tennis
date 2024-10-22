@@ -18,14 +18,20 @@
         class="q-mt-md"
       />
     </div>
-    <div class="row q-gutter-md q-mt-sm">
-      <div class="col" align="center">
+    <div class="row q-gutter-md q-mt-md">
+      <div class="col" style="margin-top: 35px" align="center">
         <p class="text-body1 text-grey-8">
           Copyright (c) 2023 AMATURE TOURNAMENT
         </p>
       </div>
-      <div class="col"></div>
-      <div class="col text-body1 text-grey-8" align="center">
+      <div class="col" align="center">
+        <q-btn icon="telegram" flat round size="25px" @click="onClick" />
+      </div>
+      <div
+        class="col text-body1 text-grey-8"
+        align="center"
+        style="margin-top: 35px"
+      >
         ООО «AMATURE TOURNAMENT»
       </div>
     </div>
