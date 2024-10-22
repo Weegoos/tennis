@@ -18,7 +18,10 @@
         class="q-mt-md"
       />
     </div>
-    <div class="row q-gutter-md q-mt-md">
+    <div
+      class="q-gutter-md q-mt-md"
+      :class="$q.screen.width > 800 ? 'row' : 'col'"
+    >
       <div class="col" style="margin-top: 35px" align="center">
         <p class="text-body1 text-grey-8">
           Copyright (c) 2023 AMATURE TOURNAMENT
@@ -73,7 +76,7 @@ const pushToPage = (route) => {
   try {
     router.push(route);
   } catch (error) {
-    throw new Error("Ссылки для этой кнопки не существует. Footer Page");
+    throw new Error("Ссылки для этой кнопки не существует. FooterPage.vue");
   }
 };
 </script>
