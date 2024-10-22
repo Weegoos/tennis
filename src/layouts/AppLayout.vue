@@ -93,7 +93,12 @@
           </q-page-scroller>
         </q-page>
       </q-page-container>
-      <q-footer style="background-color: #24293e" reveal elevated>
+      <q-footer
+        style="background-color: #24293e"
+        reveal
+        elevated
+        class="q-pa-sm"
+      >
         <FooterPage />
       </q-footer>
     </q-layout>
