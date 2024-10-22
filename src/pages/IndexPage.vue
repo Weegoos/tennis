@@ -12,7 +12,7 @@
       navigation-icon="radio_button_unchecked"
       navigation
       arrows
-      :height="$q.screen.width < 800 ? '300px' : '700px'"
+      :height="$q.screen.width < mobileWidth ? '300px' : '700px'"
       class="full-width"
     >
       <q-carousel-slide
@@ -30,7 +30,9 @@
         </q-img>
       </q-carousel-slide>
     </q-carousel>
-    <section :class="$q.screen.width > 800 ? 'q-mt-lg q-pa-xl q-mx-xl' : ''">
+    <section
+      :class="$q.screen.width > mobileWidth ? 'q-mt-lg q-pa-xl q-mx-xl' : ''"
+    >
       <TournamentPage />
     </section>
   </div>
@@ -39,7 +41,9 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentsInformation/TournamentPage.vue";
-
+import { getCurrentInstance } from "vue";
+const { proxy } = getCurrentInstance();
+const mobileWidth = proxy.$mobileWidth;
 const slide = ref("tennis");
 const slides = ["tennis", "advertisement"];
 let slideIndex = 0;
