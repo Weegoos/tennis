@@ -34,16 +34,19 @@
                 </section>
               </div>
             </div>
-            <div class="col" :align="$q.screen.width > 800 ? 'center' : 'left'">
+            <div
+              class="col"
+              :align="$q.screen.width > mobileWidth ? 'center' : 'left'"
+            >
               <div
                 class="row"
-                :class="$q.screen.width > 800 ? 'q-gutter-md' : ''"
+                :class="$q.screen.width > mobileWidth ? 'q-gutter-md' : ''"
               >
                 <q-btn icon="search" @click="openSearch" size="14px" fab />
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
               </div>
             </div>
-            <div class="col" align="right" v-if="$q.screen.width < 800">
+            <div class="col" align="right" v-if="$q.screen.width < mobileWidth">
               <q-btn
                 flat
                 icon="menu"
@@ -56,7 +59,7 @@
         </q-toolbar>
       </q-header>
       <q-drawer
-        v-if="$q.screen.width < 800"
+        v-if="$q.screen.width < mobileWidth"
         side="right"
         v-model="drawer"
         bordered
@@ -110,6 +113,9 @@ import { onBeforeMount, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
 import FooterPage from "src/pages/FooterPage.vue";
+import { getCurrentInstance } from "vue";
+const { proxy } = getCurrentInstance();
+const mobileWidth = proxy.$mobileWidth;
 
 const headerButtonsArray = ref([
   {
@@ -193,7 +199,7 @@ const width = ref(window.innerWidth);
 const isDesktop = ref("");
 const updateWidth = () => {
   width.value = window.innerWidth;
-  isDesktop.value = width.value > 800;
+  isDesktop.value = width.value > mobileWidth;
 };
 
 updateWidth();

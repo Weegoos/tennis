@@ -10,7 +10,9 @@
           flat
           :label="button.name"
           @click="pushToPage(button.link)"
-          :class="$q.screen.width > 800 ? 'desktopVersion' : 'mobileVersion'"
+          :class="
+            $q.screen.width > mobileWidth ? 'desktopVersion' : 'mobileVersion'
+          "
         />
       </section>
     </div>
@@ -25,7 +27,7 @@
     </div>
     <div
       class="q-gutter-md q-mt-md"
-      :class="$q.screen.width > 800 ? 'row' : 'col mobileVersion'"
+      :class="$q.screen.width > mobileWidth ? 'row' : 'col mobileVersion'"
     >
       <div class="col" style="margin-top: 35px" align="center">
         <p class="text-body1 text-grey-8">
@@ -53,7 +55,6 @@ import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
-console.log(mobileWidth);
 
 const footerButton = ref([
   {
