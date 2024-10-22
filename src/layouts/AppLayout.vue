@@ -1,6 +1,11 @@
 <template>
   <div>
-    <q-layout view="hHr LpR lFf" container style="height: 100vh">
+    <q-layout
+      view="hHr LpR lFf"
+      container
+      style="height: 100vh"
+      class="bg-transparent"
+    >
       <q-header reveal elevated style="height: 70px; background-color: #0b76d5">
         <q-toolbar class="bg-transparent text-white q-mt-sm">
           <div class="row q-gutter-md" style="width: 100%">
@@ -88,6 +93,9 @@
           </q-page-scroller>
         </q-page>
       </q-page-container>
+      <q-footer style="background-color: #24293e" reveal elevated>
+        <FooterPage />
+      </q-footer>
     </q-layout>
   </div>
 </template>
@@ -96,6 +104,7 @@
 import { onBeforeMount, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
+import FooterPage from "src/pages/FooterPage.vue";
 
 const headerButtonsArray = ref([
   {
