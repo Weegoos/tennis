@@ -97,7 +97,7 @@
         style="background-color: #24293e"
         reveal
         elevated
-        class="q-pa-sm"
+        class="q-pa-md"
       >
         <FooterPage />
       </q-footer>
