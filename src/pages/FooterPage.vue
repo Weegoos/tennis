@@ -6,7 +6,12 @@
         v-for="(button, index) in footerButton"
         :key="index"
       >
-        <q-btn flat :label="button.name" @click="pushToPage(button.link)" />
+        <q-btn
+          flat
+          :label="button.name"
+          @click="pushToPage(button.link)"
+          :class="$q.screen.width > 800 ? 'desktopVersion' : 'mobileVersion'"
+        />
       </section>
     </div>
     <div class="q-mt-lg">
@@ -20,7 +25,7 @@
     </div>
     <div
       class="q-gutter-md q-mt-md"
-      :class="$q.screen.width > 800 ? 'row' : 'col'"
+      :class="$q.screen.width > 800 ? 'row' : 'col mobileVersion'"
     >
       <div class="col" style="margin-top: 35px" align="center">
         <p class="text-body1 text-grey-8">
@@ -81,4 +86,8 @@ const pushToPage = (route) => {
 };
 </script>
 
-<style></style>
+<style scoped>
+.mobileVersion {
+  font-size: 12px;
+}
+</style>
