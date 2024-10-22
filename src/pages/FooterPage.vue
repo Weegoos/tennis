@@ -50,6 +50,10 @@
 import { useQuasar } from "quasar";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { getCurrentInstance } from "vue";
+const { proxy } = getCurrentInstance();
+const mobileWidth = proxy.$mobileWidth;
+console.log(mobileWidth);
 
 const footerButton = ref([
   {
