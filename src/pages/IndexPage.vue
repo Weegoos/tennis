@@ -36,6 +36,9 @@
       <TournamentPage />
       <LeadersPage />
     </section>
+    <section>
+      <AchievementsPage />
+    </section>
   </div>
 </template>
 
@@ -43,6 +46,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
 import LeadersPage from "../components/IndexPage/LeadersPage.vue";
+import AchievementsPage from "./AchievementsPage.vue";
 
 import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
