@@ -17,59 +17,22 @@
           vertical
           transition-prev="jump-up"
           transition-next="jump-up"
+          v-for="(item, index) in userStats"
+          :key="index"
         >
-          <q-tab-panel name="mails">
-            <div class="text-h4 q-mb-md">Mails</div>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-          </q-tab-panel>
-
-          <q-tab-panel name="alarms">
-            <div class="text-h4 q-mb-md">Alarms</div>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-          </q-tab-panel>
-
-          <q-tab-panel name="movies">
-            <div class="text-h4 q-mb-md">Movies</div>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
+          <q-tab-panel :name="item.name">
+            <p class="text-h4 text-bold">{{ item.userName }}</p>
+            <p class="text-primary text-bold text-h6">Статистика</p>
+            <q-list bordered separator>
+              <q-item clickable v-ripple>
+                <q-item-section class="">
+                  <div class="row text-body1 q-mt-md">
+                    <div class="col">Single line item</div>
+                    <div class="col">789</div>
+                  </div>
+                </q-item-section>
+              </q-item>
+            </q-list>
           </q-tab-panel>
         </q-tab-panels>
       </template>
@@ -82,6 +45,13 @@ import { ref } from "vue";
 
 const tab = ref("mails");
 const splitterModel = ref(20);
+
+const userStats = ref([
+  {
+    name: "mails",
+    userName: "Ашим Батыр",
+  },
+]);
 </script>
 
 <style></style>
