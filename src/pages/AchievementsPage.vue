@@ -1,7 +1,7 @@
 <template>
   <div style="background-color: #24293e" class="text-white q-pa-xl">
     <p class="text-center text-h3 text-bold">Наши достижения</p>
-    <div class="row q-gutter-md">
+    <div class="row q-gutter-xl">
       <div
         class="col q-pa-md"
         v-for="(item, index) in achievements"
