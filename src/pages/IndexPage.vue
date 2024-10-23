@@ -34,13 +34,16 @@
       :class="$q.screen.width > mobileWidth ? 'q-mt-lg q-pa-xl q-mx-xl' : ''"
     >
       <TournamentPage />
+      <LeadersPage />
     </section>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import TournamentPage from "../components/IndexPage/TournamentsInformation/TournamentPage.vue";
+import TournamentPage from "../components/IndexPage/TournamentPage.vue";
+import LeadersPage from "../components/IndexPage/LeadersPage.vue";
+
 import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
