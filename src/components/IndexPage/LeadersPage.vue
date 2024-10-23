@@ -28,6 +28,10 @@
                 <q-item-section> Общее количество очков </q-item-section>
                 <q-item-section side> {{ item.points }}</q-item-section>
               </q-item>
+              <q-item clickable v-ripple class="text-body1">
+                <q-item-section> Коэффициент успешности </q-item-section>
+                <q-item-section side> {{ item.successRate }}</q-item-section>
+              </q-item>
             </q-list>
           </q-tab-panel>
         </q-tab-panels>
@@ -47,6 +51,7 @@ const userStats = ref([
     name: "mails",
     userName: "Ашим Батыр",
     points: 888,
+    successRate: 50,
   },
 ]);
 </script>
