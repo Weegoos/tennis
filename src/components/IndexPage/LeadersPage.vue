@@ -45,6 +45,14 @@
         </q-tab-panels>
       </template>
     </q-splitter>
+    <div class="col" align="center">
+      <q-btn
+        color="primary"
+        class="text-body1 q-pa-sm"
+        label="Показать всех"
+        @click="onClick"
+      />
+    </div>
   </div>
 </template>
 
