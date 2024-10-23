@@ -8,7 +8,8 @@
         :key="index"
         style="background-color: #1f2535"
       >
-        <p>{{ item.stats }}</p>
+        <p class="text-bold text-h5">{{ item.stats }}</p>
+        <p class="text-body1">{{ item.name }}</p>
       </div>
     </div>
   </div>
