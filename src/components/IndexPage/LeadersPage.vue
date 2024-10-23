@@ -3,9 +3,9 @@
     <q-splitter v-model="splitterModel" style="height: 250px">
       <template v-slot:before>
         <q-tabs v-model="tab" vertical class="text-teal">
-          <q-tab name="mails" icon="mail" label="Mails" />
-          <q-tab name="alarms" icon="alarm" label="Alarms" />
-          <q-tab name="movies" icon="movie" label="Movies" />
+          <q-tab name="mails" label="Ашим Батыр" />
+          <q-tab name="alarms" label="Абиев Арыстанбек" />
+          <q-tab name="movies" label="Акжантай" />
         </q-tabs>
       </template>
 
