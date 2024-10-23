@@ -76,8 +76,8 @@ onBeforeUnmount(() => {
 
 <style>
 .full-width {
-  width: 100vw; /* Полная ширина экрана */
-  max-width: none; /* Убираем ограничение по максимальной ширине */
+  width: 100vw;
+  max-width: none;
   margin: 0;
   padding: 0;
 }
