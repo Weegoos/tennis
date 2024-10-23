@@ -51,17 +51,33 @@
 <script setup>
 import { ref } from "vue";
 
-const tab = ref("mails");
+const tab = ref("batyr");
 const splitterModel = ref(20);
 
 const userStats = ref([
   {
-    name: "mails",
+    name: "batyr",
     userName: "Ашим Батыр",
     points: 888,
     successRate: 50,
     tournaments: 20,
     victories: 10,
+  },
+  {
+    name: "arystanbek",
+    userName: "Арыстанбек Абиев",
+    points: 250,
+    successRate: 10,
+    tournaments: 30,
+    victories: 10,
+  },
+  {
+    name: "akzhan",
+    userName: "Акжакнтай",
+    points: 550,
+    successRate: 40,
+    tournaments: 100,
+    victories: 40,
   },
 ]);
 </script>
