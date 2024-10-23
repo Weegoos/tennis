@@ -23,14 +23,10 @@
           <q-tab-panel :name="item.name">
             <p class="text-h4 text-bold">{{ item.userName }}</p>
             <p class="text-primary text-bold text-h6">Статистика</p>
-            <q-list bordered separator>
-              <q-item clickable v-ripple>
-                <q-item-section class="">
-                  <div class="row text-body1 q-mt-md">
-                    <div class="col">Single line item</div>
-                    <div class="col">789</div>
-                  </div>
-                </q-item-section>
+            <q-list bordered>
+              <q-item clickable v-ripple class="text-body1">
+                <q-item-section> Общее количество очков </q-item-section>
+                <q-item-section side> {{ item.points }}</q-item-section>
               </q-item>
             </q-list>
           </q-tab-panel>
@@ -50,6 +46,7 @@ const userStats = ref([
   {
     name: "mails",
     userName: "Ашим Батыр",
+    points: 888,
   },
 ]);
 </script>
