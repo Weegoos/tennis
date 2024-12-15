@@ -4,6 +4,10 @@ const routes = [
     component: () => import("pages/IndexPage.vue"),
   },
   {
+    path: "/registration",
+    component: () => import("pages/RegistrationPage.vue"),
+  },
+  {
     path: "/tournaments",
     component: () => import("pages/TournamentsPage.vue"),
   },
