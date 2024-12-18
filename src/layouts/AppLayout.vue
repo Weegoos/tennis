@@ -6,7 +6,12 @@
       style="height: 100vh"
       class="bg-transparent"
     >
-      <q-header reveal elevated style="height: 70px; background-color: #0b76d5">
+      <q-header
+        reveal
+        elevated
+        style="height: 70px; background-color: #0b76d5"
+        v-if="!isAuthPage"
+      >
         <q-toolbar class="bg-transparent text-white q-mt-sm">
           <div class="row q-gutter-md" style="width: 100%">
             <div class="col-2">
@@ -97,6 +102,7 @@
         </q-page>
       </q-page-container>
       <q-footer
+        v-if="!isAuthPage"
         style="background-color: #24293e"
         reveal
         elevated
@@ -109,13 +115,25 @@
 </template>
 
 <script setup>
-import { onBeforeMount, onMounted, onUnmounted, ref, watch } from "vue";
+import {
+  computed,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
 import FooterPage from "src/pages/FooterPage.vue";
 import { getCurrentInstance } from "vue";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
+const route = useRoute();
+
+const isAuthPage = computed(() => {
+  return route.path === "/registration";
+});
 
 const headerButtonsArray = ref([
   {
