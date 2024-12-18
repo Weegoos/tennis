@@ -141,7 +141,7 @@
 
 <script setup>
 import axios from "axios";
-import { QSpinnerGears, useQuasar } from "quasar";
+import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
@@ -152,6 +152,9 @@ const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
+const cookie = Cookies.has("accessToken");
+console.log(cookie);
+
 // slide
 const slide = ref("style");
 const slides = ["style", "tv", "layers", "map"];
@@ -196,11 +199,13 @@ const registration = async () => {
       withCredentials: true,
     });
 
-    // $q.loading.hide();
+    $q.loading.hide();
     notifyStore.nofifySuccess($q, "Регистрация прошла успешно!");
     console.log("Response:", response.data);
+    Cookies.set("accessToken", response.data.accessToken);
+    Cookies.set("refreshToken", response.data.refreshToken);
   } catch (error) {
-    // $q.loading.hide();
+    $q.loading.hide();
     console.error("Registration error:", error);
     notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
   }
