@@ -6,14 +6,14 @@
   >
     <!-- Левая половина с видео -->
     <div style="flex: 1; position: relative; overflow: hidden">
-      <!-- <video
-        src="../assets/video/background.mp4"
+      <video
+        src="../assets/background.mp4"
         autoplay
         muted
         loop
         playsinline
         style="width: 100%; height: 100%; object-fit: cover"
-      ></video> -->
+      ></video>
       <!-- Надпись -->
       <div class="carouselClass">
         <q-carousel
