@@ -146,11 +146,16 @@ import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 
+// global variable
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
 // slide
 const slide = ref("style");
 const slides = ["style", "tv", "layers", "map"];
 let slideIndex = 0;
 let interval = null;
+
+console.log(serverURL);
 
 onMounted(() => {
   interval = setInterval(() => {
@@ -162,6 +167,17 @@ onMounted(() => {
 onBeforeMount(() => {
   clearInterval(interval);
 });
+
+// function
+const name = ref("");
+const secondName = ref("");
+const email = ref("");
+const password = ref("");
+
+const registration = async () => {
+  try {
+  } catch (error) {}
+};
 </script>
 
 <style scoped>
