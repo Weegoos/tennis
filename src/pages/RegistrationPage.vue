@@ -145,10 +145,13 @@ import { QSpinnerGears, useQuasar } from "quasar";
 import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
+import { useNotifyStore } from "src/stores/notify-store";
 
 // global variable
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const $q = useQuasar();
+const notifyStore = useNotifyStore();
 // slide
 const slide = ref("style");
 const slides = ["style", "tv", "layers", "map"];
@@ -175,8 +178,24 @@ const email = ref("");
 const password = ref("");
 
 const registration = async () => {
+  notifyStore.loading($q, "Подождите...", QSpinnerGears);
   try {
-  } catch (error) {}
+    // Отправка запроса
+    const response = await axios.post(`${serverURL}auth/signup`, {
+      name: name.value,
+      secondName: secondName.value,
+      email: email.value,
+      password: password.value,
+    });
+
+    // Успешное уведомление
+    notifyStore.nofifySuccess($q, "Регистрация прошла успешно!");
+    console.log("Response:", response.data);
+  } catch (error) {
+    // Ошибка регистрации
+    console.error("Registration error:", error);
+    notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
+  }
 };
 </script>
 

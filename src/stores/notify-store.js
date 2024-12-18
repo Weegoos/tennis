@@ -19,6 +19,11 @@ export const useNotifyStore = defineStore("notify", {
       });
     },
     loading($q, message, spinner) {
+      if (!$q || !$q.loading) {
+        console.error("Quasar instance ($q) is not provided!");
+        return;
+      }
+
       $q.loading.show({
         spinner: spinner,
         message: message,
