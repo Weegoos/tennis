@@ -5,20 +5,27 @@
 </template>
 
 <script setup>
-import { onErrorCaptured } from "vue";
+import { onErrorCaptured, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import AppLayout from "./layouts/AppLayout.vue";
+import { useNotifyStore } from "./stores/notify-store";
+import { useJavaScriptFunction } from "./router/javascript-store";
+
+const notifyStore = useNotifyStore();
+const javascriptStore = useJavaScriptFunction();
 defineOptions({
   name: "App",
 });
 
 const $q = useQuasar();
+
+onMounted(() => {
+  javascriptStore.redirect();
+});
+console.log(7777);
+
 onErrorCaptured((err, instance, info) => {
   console.log();
-  $q.notify({
-    message: `${err}: ${info}`,
-    color: "negative",
-    icon: "error",
-  });
+  notifyStore.notifyError($q, `${err}, ${info}`);
 });
 </script>
