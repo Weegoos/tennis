@@ -153,6 +153,7 @@ const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
 const cookie = Cookies.has("accessToken");
+const router = useRouter();
 console.log(cookie);
 
 // slide
@@ -209,6 +210,10 @@ const registration = async () => {
     console.error("Registration error:", error);
     notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
   }
+};
+
+const pushToAuthorization = () => {
+  router.push("/authorization");
 };
 </script>
 

@@ -8,6 +8,10 @@ const routes = [
     component: () => import("pages/RegistrationPage.vue"),
   },
   {
+    path: "/authorization",
+    component: () => import("pages/AuthPage.vue"),
+  },
+  {
     path: "/tournaments",
     component: () => import("pages/TournamentsPage.vue"),
   },

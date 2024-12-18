@@ -19,9 +19,9 @@ defineOptions({
 
 const $q = useQuasar();
 
-onMounted(() => {
-  javascriptStore.redirect();
-});
+// onMounted(() => {
+//   javascriptStore.redirect();
+// });
 console.log(7777);
 
 onErrorCaptured((err, instance, info) => {

@@ -132,7 +132,7 @@ const mobileWidth = proxy.$mobileWidth;
 const route = useRoute();
 
 const isAuthPage = computed(() => {
-  return route.path === "/registration";
+  return route.path === "/registration" || route.path === "/authorization";
 });
 
 const headerButtonsArray = ref([
