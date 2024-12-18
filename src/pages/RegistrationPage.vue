@@ -118,34 +118,7 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-section>
-          <div class="row q-gutter-sm">
-            <div class="col">
-              <q-select
-                v-model="department"
-                :options="departmentList"
-                label="Введите департамент"
-              />
-            </div>
-            <div class="col">
-              <q-input
-                v-model="iin"
-                type="text"
-                label="Введите ИИН"
-                mask="############"
-                hint="Маска : ############"
-              />
-            </div>
-          </div>
-        </q-card-section>
-        <q-card-section>
-          <q-select
-            v-model="region"
-            :options="regionList"
-            v-show="isRegionVisible"
-            label="Введите регион"
-          />
-        </q-card-section>
+
         <q-card-actions vertical>
           <q-btn
             color="positive"
@@ -178,6 +151,17 @@ const slide = ref("style");
 const slides = ["style", "tv", "layers", "map"];
 let slideIndex = 0;
 let interval = null;
+
+onMounted(() => {
+  interval = setInterval(() => {
+    slideIndex = (slideIndex + 1) % slides.length;
+    slide.value = slides[slideIndex];
+  }, 5500);
+});
+
+onBeforeMount(() => {
+  clearInterval(interval);
+});
 </script>
 
 <style scoped>
