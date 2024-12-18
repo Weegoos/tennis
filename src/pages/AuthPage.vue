@@ -53,7 +53,12 @@
         </q-card-section>
 
         <q-card-actions vertical>
-          <q-btn color="positive" no-caps label="Войти" @click="registration" />
+          <q-btn
+            color="positive"
+            no-caps
+            label="Войти"
+            @click="authorization"
+          />
           <q-btn
             color="primary"
             no-caps
@@ -70,7 +75,7 @@
 <script setup>
 import axios from "axios";
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import { onBeforeMount, onMounted, ref, watch } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 import { useNotifyStore } from "src/stores/notify-store";
@@ -91,7 +96,7 @@ const isPwd = ref(true);
 const email = ref("");
 const password = ref("");
 
-const registration = async () => {
+const authorization = async () => {
   notifyStore.loading($q, "Подождите...", QSpinnerGears);
   try {
     const data = {
@@ -112,7 +117,7 @@ const registration = async () => {
     Cookies.set("refreshToken", response.data.refreshToken);
   } catch (error) {
     $q.loading.hide();
-    console.error("Registration error:", error);
+    console.error("Authorization error:", error);
     notifyStore.notifyError($q, "Ошибка при авторизации. Попробуйте снова.");
   }
 };

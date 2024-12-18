@@ -201,7 +201,7 @@ const registration = async () => {
     });
 
     $q.loading.hide();
-    notifyStore.nofifySuccess($q, "Регистрация прошла успешно!");
+    notifyStore.nofifySuccess($q, "Сообщение отправлено в почту!");
     console.log("Response:", response.data);
     Cookies.set("accessToken", response.data.accessToken);
     Cookies.set("refreshToken", response.data.refreshToken);
