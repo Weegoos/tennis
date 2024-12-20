@@ -9,7 +9,7 @@ import { onErrorCaptured, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import AppLayout from "./layouts/AppLayout.vue";
 import { useNotifyStore } from "./stores/notify-store";
-import { useJavaScriptFunction } from "./router/javascript-store";
+import { useJavaScriptFunction } from "./stores/javascript-store";
 
 const notifyStore = useNotifyStore();
 const javascriptStore = useJavaScriptFunction();

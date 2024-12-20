@@ -115,6 +115,7 @@ const authorization = async () => {
     console.log("Response:", response.data);
     Cookies.set("accessToken", response.data.accessToken);
     Cookies.set("refreshToken", response.data.refreshToken);
+    router.push("/");
   } catch (error) {
     $q.loading.hide();
     console.error("Authorization error:", error);

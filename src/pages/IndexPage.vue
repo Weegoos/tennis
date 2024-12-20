@@ -49,8 +49,10 @@ import LeadersPage from "../components/IndexPage/LeadersPage.vue";
 import AchievementsPage from "./AchievementsPage.vue";
 
 import { getCurrentInstance } from "vue";
+import { useJavaScriptFunction } from "src/stores/javascript-store";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
+const javascriptStore = useJavaScriptFunction();
 const slide = ref("tennis");
 const slides = ["tennis", "advertisement"];
 let slideIndex = 0;
@@ -74,6 +76,7 @@ const nextSlide = () => {
 
 onMounted(() => {
   intervalId = setInterval(nextSlide, 5000);
+  javascriptStore.redirect();
 });
 
 onBeforeUnmount(() => {
