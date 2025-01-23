@@ -101,7 +101,7 @@
           </q-page-scroller>
         </q-page>
       </q-page-container>
-      <q-footer
+      <!-- <q-footer
         v-if="!isAuthPage"
         style="background-color: #24293e"
         reveal
@@ -109,7 +109,7 @@
         class="q-pa-md"
       >
         <FooterPage />
-      </q-footer>
+      </q-footer> -->
     </q-layout>
   </div>
 </template>
