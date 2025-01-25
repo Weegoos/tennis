@@ -2,7 +2,13 @@
   <div>
     <section class="card">
       <p class="text-h5 text-bold">Find a partner</p>
-      <div class="filter row q-gutter-sm">
+      <q-btn
+        color="green-4"
+        no-caps
+        label="Place a request"
+        @click="placeRequest"
+      />
+      <div class="filter row q-gutter-sm q-mt-sm">
         <div class="col">
           <q-select
             v-model="city"
@@ -56,10 +62,12 @@
         <div class="text-subtitle">City: {{ items.city }}</div>
       </q-card-section>
     </q-card>
+    <FindPartnerRequest />
   </div>
 </template>
 
 <script setup>
+import FindPartnerRequest from "src/components/FindPartner/FindPartnerRequest.vue";
 import { ref } from "vue";
 
 const city = ref("Astana");
@@ -117,6 +125,11 @@ const forms = ref([
       "A seasoned tennis player known for his strategic gameplay and endurance.",
   },
 ]);
+
+const openRequestPage = ref(false);
+const placeRequest = () => {
+  openRequestPage.value = true;
+};
 </script>
 
 <style scoped>
