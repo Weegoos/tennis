@@ -35,10 +35,10 @@
         >
           <q-tab-panel name="info">
             <div class="row q-gutter-lg">
-              <div class="col-4">
+              <div class="col-3">
                 <q-img
-                  src="../../assets/background.jpg"
-                  :ratio="16 / 9"
+                  src="../../assets/coaches/coaches1.jpg"
+                  :ratio="10 / 8"
                   spinner-color="primary"
                   spinner-size="82px"
                 />
