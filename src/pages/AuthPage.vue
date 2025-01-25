@@ -79,6 +79,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 import { useNotifyStore } from "src/stores/notify-store";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -88,6 +89,7 @@ const notifyStore = useNotifyStore();
 const cookie = Cookies.has("accessToken");
 const router = useRouter();
 console.log(cookie);
+const apiStore = useApiStore();
 
 // variables
 const isPwd = ref(true);
@@ -111,7 +113,7 @@ const authorization = async () => {
     });
 
     $q.loading.hide();
-    notifyStore.nofifySuccess($q, "Авторизация прошла успешно!");
+    notifyStore.nofifySuccess($q, `Авторизация прошла успешно!`);
     console.log("Response:", response.data);
     Cookies.set("accessToken", response.data.accessToken);
     Cookies.set("refreshToken", response.data.refreshToken);
