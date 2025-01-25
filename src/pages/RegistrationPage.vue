@@ -29,35 +29,17 @@
           height="300px"
           class="transparent-carousel text-white shadow-1 rounded-borders"
         >
-          <q-carousel-slide name="style" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">Пароль</p>
-            <div class="q-mt-md text-center">
-              Пароль должен состоять из 6 символов с специальными символами
-            </div>
-          </q-carousel-slide>
           <q-carousel-slide name="tv" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">Почта</p>
+            <p class="text-h5 text-bold">Mail</p>
             <div class="q-mt-md text-center">
-              В почте обязательно должен присутствовать специальный символ "@".
-              Убедитесь, что вы ввели правильный и рабочий адрес электронной
-              почты
+              The special character "@" must be present in the mail. Make sure
+              that you have entered the correct and working email address.
             </div>
           </q-carousel-slide>
-          <q-carousel-slide name="layers" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">
-              Индивидуальный идентификационный номер (ИИН)
-            </p>
+          <q-carousel-slide name="style" class="column no-wrap flex-center">
+            <p class="text-h5 text-bold">Password</p>
             <div class="q-mt-md text-center">
-              Убедитесь, что вы ввели правильный индивидуальный
-              идентификационный номер (ИИН). После ввода изменить ИИН будет
-              невозможно
-            </div>
-          </q-carousel-slide>
-          <q-carousel-slide name="map" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">Департамент и регион</p>
-            <div class="q-mt-md text-center">
-              Убедитесь, что вы ввели правильный департамент и также выбрали
-              правильный регион
+              The password must consist of 6 characters with special characters.
             </div>
           </q-carousel-slide>
         </q-carousel>
@@ -68,7 +50,7 @@
     <div class="content">
       <q-card class="my-card" style="width: 90%">
         <q-card-section align="center">
-          <p class="text-h5">Регистрация</p>
+          <p class="text-h4 text-bold">Registration</p>
         </q-card-section>
         <q-card-section>
           <div class="row q-gutter-sm">
@@ -76,16 +58,16 @@
               <q-input
                 v-model="name"
                 type="text"
-                label="Введите имя"
-                hint="Например: Айсултан"
+                label="Enter a name"
+                hint="For example: Aisultan"
               />
             </div>
             <div class="col">
               <q-input
                 v-model="secondName"
                 type="text"
-                label="Введите фамилию"
-                hint="Например: Хаббасов"
+                label="Enter your last name"
+                hint="For example: Khabbasov"
               />
             </div>
           </div>
@@ -96,16 +78,16 @@
               <q-input
                 v-model="email"
                 type="email"
-                label="Введите почту"
-                hint="Например: example@gmail.com"
+                label="Enter your email address"
+                hint="For example: example@gmail.com"
               />
             </div>
             <div class="col">
               <q-input
                 v-model="password"
                 :type="isPwd ? 'password' : 'text'"
-                hint="Не менее 6 символов"
-                label="Введите пароль"
+                hint="At least 8 characters"
+                label="Enter the password"
               >
                 <template v-slot:append>
                   <q-icon
@@ -123,14 +105,14 @@
           <q-btn
             color="positive"
             no-caps
-            label="Зарегистрироваться"
+            label="Register"
             @click="registration"
           />
           <q-btn
             color="primary"
             no-caps
             flat
-            label="Есть аккаунт? Войти"
+            label="Do you have an account? Enter"
             @click="pushToAuthorization"
           />
         </q-card-actions>
@@ -158,7 +140,7 @@ console.log(cookie);
 
 // slide
 const slide = ref("style");
-const slides = ["style", "tv", "layers", "map"];
+const slides = ["style", "tv"];
 let slideIndex = 0;
 let interval = null;
 
