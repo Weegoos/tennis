@@ -42,7 +42,7 @@
             label="Close"
             color="negative"
             no-caps
-            @closeFindPartnerRequestPage="closeFindPartnerRequestPage"
+            @click="closeFindPartnerRequestPage"
           />
           <q-btn label="Post" no-caps color="positive" />
         </q-card-actions>

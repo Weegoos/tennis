@@ -62,7 +62,10 @@
         <div class="text-subtitle">City: {{ items.city }}</div>
       </q-card-section>
     </q-card>
-    <FindPartnerRequest :openRequestPage="openRequestPage" />
+    <FindPartnerRequest
+      :openRequestPage="openRequestPage"
+      @closeFindPartnerRequestPage="closeFindPartnerRequestPage"
+    />
   </div>
 </template>
 
@@ -129,6 +132,10 @@ const forms = ref([
 const openRequestPage = ref(false);
 const placeRequest = () => {
   openRequestPage.value = true;
+};
+
+const closeFindPartnerRequestPage = () => {
+  openRequestPage.value = false;
 };
 </script>
 
