@@ -62,7 +62,7 @@
         <div class="text-subtitle">City: {{ items.city }}</div>
       </q-card-section>
     </q-card>
-    <FindPartnerRequest />
+    <FindPartnerRequest :openRequestPage="openRequestPage" />
   </div>
 </template>
 
