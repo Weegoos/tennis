@@ -2,15 +2,23 @@
   <div>
     <q-dialog v-model="editPage" persistent>
       <q-card>
-        <q-card-section class="row items-center">
-          <q-avatar icon="signal_wifi_off" color="primary" text-color="white" />
-          <span class="q-ml-sm"
-            >You are currently not connected to any network.</span
-          >
+        <q-card-section class="items-center" style="width: 300px">
+          <p class="text-h5 text-bold text-center">Editing</p>
+          <q-input v-model="gender" type="text" label="Gender" />
+          <q-input v-model="firstName" type="text" label="First name" />
+          <q-input v-model="lastName" type="text" label="Last name" />
+          <q-input v-model="phone" type="text" label="Phone" />
+          <q-input v-model="rating" type="text" label="Rating" />
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Cancel" color="primary" v-close-popup />
-          <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
+          <q-btn
+            no-caps
+            flat
+            label="Close"
+            color="negative"
+            @click="closeOpenPage"
+          />
+          <q-btn color="positive" no-caps label="Update" @click="onClick" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -18,9 +26,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const editPage = ref(true);
+const props = defineProps({
+  openEditPage: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const editPage = ref(props.openEditPage);
+watch(
+  () => props.openEditPage,
+  (newVal) => {
+    editPage.value = newVal;
+  }
+);
+
+const emit = defineEmits(["closeOpenPage"]);
+const closeOpenPage = () => {
+  emit("closeOpenPage");
+};
 </script>
 
 <style></style>

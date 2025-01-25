@@ -128,12 +128,17 @@
         </q-tab-panels>
       </template>
     </q-splitter>
+    <EditGeneralInfo
+      :openEditPage="openEditPage"
+      @closeOpenPage="closeOpenPage"
+    />
   </div>
 </template>
 
 <script setup>
 import { useApiStore } from "src/stores/api-store";
 import { onMounted, ref } from "vue";
+import EditGeneralInfo from "./EditGeneralInfo.vue";
 
 // general variables
 const apiStore = useApiStore();
@@ -160,6 +165,15 @@ onMounted(async () => {
 
   // phone.value = user.
 });
+
+const openEditPage = ref(false);
+const editInformation = () => {
+  openEditPage.value = true;
+};
+
+const closeOpenPage = () => {
+  openEditPage.value = false;
+};
 </script>
 
 <style></style>
