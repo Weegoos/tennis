@@ -38,6 +38,7 @@
         </section>
       </q-card-section>
     </q-card>
+    <AddFormComponent :openForm="openForm" @closeForm="closeForm" />
   </div>
 </template>
 
@@ -48,6 +49,7 @@ import coaches2 from "src/assets/coaches/coaches2.jpg";
 import coaches3 from "src/assets/coaches/coaches3.jpg";
 import coaches4 from "src/assets/coaches/coaches4.jpg";
 import coaches5 from "src/assets/coaches/coaches5.jpg";
+import AddFormComponent from "src/components/Coaches/AddFormComponent.vue";
 
 const coaches = ref([
   {
@@ -92,8 +94,13 @@ const coaches = ref([
   },
 ]);
 
+const openForm = ref(false);
 const addForm = () => {
-  console.log("Batyr");
+  openForm.value = true;
+};
+
+const closeForm = () => {
+  openForm.value = false;
 };
 </script>
 

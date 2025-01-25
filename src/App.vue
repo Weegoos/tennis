@@ -22,7 +22,6 @@ const $q = useQuasar();
 // onMounted(() => {
 //   javascriptStore.redirect();
 // });
-console.log(7777);
 
 onErrorCaptured((err, instance, info) => {
   console.log();
