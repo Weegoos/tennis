@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #24293e" class="text-white q-pa-xl">
-    <p class="text-center text-h3 text-bold">Наши достижения</p>
+    <p class="text-center text-h3 text-bold">Our achievements</p>
     <div class="row q-gutter-xl">
       <div
         class="col q-pa-md"
@@ -20,19 +20,19 @@ import { ref } from "vue";
 
 const achievements = ref([
   {
-    name: "Проведенные турниры",
+    name: "Tournaments held",
     stats: 48,
   },
   {
-    name: "Использованные мячи",
+    name: "Used balls",
     stats: 1510,
   },
   {
-    name: "Количество игроков",
+    name: "Number of players",
     stats: 222,
   },
   {
-    name: "Подписчиков",
+    name: "Subscribers",
     stats: 333,
   },
 ]);
