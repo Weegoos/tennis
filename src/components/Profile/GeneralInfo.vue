@@ -34,18 +34,56 @@
           transition-next="jump-up"
         >
           <q-tab-panel name="info">
-            <div class="row q-gutter-sm">
-              <div class="col">
+            <div class="row q-gutter-lg">
+              <div class="col-4">
                 <q-img
                   src="../../assets/background.jpg"
                   :ratio="16 / 9"
                   spinner-color="primary"
                   spinner-size="82px"
                 />
+                <q-btn
+                  class="q-mt-sm"
+                  no-caps
+                  label="Edit Information"
+                  @click="editInformation"
+                />
               </div>
               <div class="col">
                 <div class="text-h4 q-mb-md">General information</div>
-                <p><span>ФИО</span><span>Ашим Батыр Асетұлы</span></p>
+                <p>
+                  <span class="q-mr-md text-bold">Full name</span
+                  ><span
+                    >{{ secondName || "Not found" }}
+                    {{ firstName || "Not found" }}</span
+                  >
+                </p>
+                <p>
+                  <span class="q-mr-md text-bold">Date of birth</span
+                  ><span>13.07.2005</span>
+                </p>
+                <p>
+                  <span class="q-mr-md text-bold">Gender</span
+                  ><span :class="[gender === null ? 'text-red' : 'text-black']">
+                    {{ gender || "Not found" }}
+                  </span>
+                </p>
+                <p>
+                  <span class="q-mr-md text-bold">Phone number</span
+                  ><span :class="[phone === null ? 'text-red' : 'text-black']">
+                    {{ phone || "Not found" }}
+                  </span>
+                </p>
+                <p>
+                  <span class="q-mr-md text-bold">Mail</span
+                  ><span>{{ email }}</span>
+                </p>
+                <p>
+                  <span class="q-mr-md text-bold">Rating</span
+                  ><span :class="[rating === null ? 'text-red' : 'text-black']">
+                    {{ rating || "Not found" }}
+                  </span>
+                </p>
               </div>
             </div>
           </q-tab-panel>
@@ -94,9 +132,34 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useApiStore } from "src/stores/api-store";
+import { onMounted, ref } from "vue";
+
+// general variables
+const apiStore = useApiStore();
 
 const tab = ref("info");
+
+const firstName = ref("");
+const secondName = ref("");
+const phone = ref("");
+const email = ref("");
+const gender = ref("");
+const rating = ref("");
+
+onMounted(async () => {
+  await apiStore.getUserProfile();
+  const user = apiStore.userData;
+  email.value = user.email;
+  firstName.value = user.userInfo.firstName;
+  secondName.value = user.userInfo.lastName;
+  gender.value = user.userInfo.gender;
+  phone.value = user.userInfo.phone;
+  rating.value = user.userInfo.rating;
+  console.log(user.userInfo);
+
+  // phone.value = user.
+});
 </script>
 
 <style></style>

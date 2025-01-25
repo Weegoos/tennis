@@ -22,7 +22,6 @@ const email = ref("");
 
 onMounted(async () => {
   await apiStore.getUserProfile();
-  console.log(apiStore.userData);
 });
 </script>
 
