@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-xl">
-    <q-splitter v-model="splitterModel" style="height: 250px">
+    <q-splitter v-model="splitterModel">
       <template v-slot:before>
         <q-tabs v-model="tab" vertical class="text-teal">
           <q-tab
@@ -13,7 +13,7 @@
             name="tournaments"
             icon="ion-trophy"
             no-caps
-            label="My Tournaments"
+            label="My tournaments"
           />
           <q-tab
             name="reservations"
@@ -34,23 +34,24 @@
           transition-next="jump-up"
         >
           <q-tab-panel name="info">
-            <div class="text-h4 q-mb-md">Mails</div>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-              praesentium cumque magnam odio iure quidem, quod illum numquam
-              possimus obcaecati commodi minima assumenda consectetur culpa fuga
-              nulla ullam. In, libero.
-            </p>
+            <div class="row q-gutter-sm">
+              <div class="col">
+                <q-img
+                  src="../../assets/background.jpg"
+                  :ratio="16 / 9"
+                  spinner-color="primary"
+                  spinner-size="82px"
+                />
+              </div>
+              <div class="col">
+                <div class="text-h4 q-mb-md">General information</div>
+                <p><span>ФИО</span><span>Ашим Батыр Асетұлы</span></p>
+              </div>
+            </div>
           </q-tab-panel>
 
           <q-tab-panel name="tournaments">
-            <div class="text-h4 q-mb-md">Alarms</div>
+            <div class="text-h4 q-mb-md">My tournaments</div>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
               praesentium cumque magnam odio iure quidem, quod illum numquam
@@ -66,7 +67,7 @@
           </q-tab-panel>
 
           <q-tab-panel name="reservations">
-            <div class="text-h4 q-mb-md">Movies</div>
+            <div class="text-h4 q-mb-md">My reservations</div>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
               praesentium cumque magnam odio iure quidem, quod illum numquam

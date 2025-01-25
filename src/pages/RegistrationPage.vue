@@ -171,9 +171,10 @@ const registration = async () => {
   try {
     const data = {
       email: email.value,
-      name: name.value,
-      secondName: secondName.value,
+      firstName: name.value,
+      lastName: secondName.value,
       password: password.value,
+      role: "USER",
     };
     const response = await axios.post(`${serverURL}auth/signup`, data, {
       headers: {
