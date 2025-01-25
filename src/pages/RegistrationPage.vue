@@ -197,6 +197,12 @@ const registration = async () => {
 const pushToAuthorization = () => {
   router.push("/authorization");
 };
+
+const handleKey = (e) => {
+  if (e.key === "Enter") {
+    registration();
+  }
+};
 </script>
 
 <style scoped>

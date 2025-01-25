@@ -20,7 +20,7 @@
     <div class="content">
       <q-card class="my-card" style="width: 90%">
         <q-card-section align="center">
-          <p class="text-h5">Авторизация</p>
+          <p class="text-h4 text-bold">Authorization</p>
         </q-card-section>
 
         <q-card-section>
@@ -29,16 +29,16 @@
               <q-input
                 v-model="email"
                 type="email"
-                label="Введите почту"
-                hint="Например: example@gmail.com"
+                label="Enter your email address"
+                hint="For example: example@gmail.com"
               />
             </div>
             <div class="col">
               <q-input
                 v-model="password"
                 :type="isPwd ? 'password' : 'text'"
-                hint="Не менее 6 символов"
-                label="Введите пароль"
+                hint="At least 8 characters"
+                label="Enter the password"
               >
                 <template v-slot:append>
                   <q-icon
@@ -56,14 +56,14 @@
           <q-btn
             color="positive"
             no-caps
-            label="Войти"
+            label="Enter"
             @click="authorization"
           />
           <q-btn
             color="primary"
             no-caps
             flat
-            label="Нету аккаунта?"
+            label="Don't have an account?"
             @click="pushToRegistration"
           />
         </q-card-actions>
@@ -125,6 +125,12 @@ const authorization = async () => {
 
 const pushToRegistration = () => {
   router.push("/registration");
+};
+
+const handleKey = (e) => {
+  if (e.key === "Enter") {
+    authorization();
+  }
 };
 </script>
 
