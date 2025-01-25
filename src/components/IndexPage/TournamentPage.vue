@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="">
-      <p class="text-h4 text-bold">Новости</p>
+      <p class="text-h4 text-bold">News</p>
 
       <q-tabs
         v-model="tab"
@@ -12,10 +12,10 @@
         align="justify"
         narrow-indicator
       >
-        <q-tab name="all" label="Все" />
-        <q-tab name="interview" label="Интервью" />
-        <q-tab name="championship" label="Чемпиоанты" />
-        <q-tab name="analysis" label="Анализ" />
+        <q-tab name="all" label="All" />
+        <q-tab name="interview" label="Interview" />
+        <q-tab name="championship" label="Championships" />
+        <q-tab name="analysis" label="Analysis" />
       </q-tabs>
 
       <q-separator />
@@ -33,10 +33,10 @@
               >
                 <caption class="absolute-bottom-left text-white q-pa-sm">
                   <span class="bg-primary q-pa-sm date relative-position"
-                    >14 июля</span
+                    >July 14th</span
                   >
                   <div class="text-bold text-h6">
-                    SILK ROAD OPEN 12-13-14 СЕНТЯБРЯ 2024 года
+                    SILK ROAD OPEN SEPTEMBER 12-13-14, 2024
                   </div>
                 </caption>
               </q-img>
@@ -46,15 +46,15 @@
 
         <q-tab-panel name="interview">
           <div class="text-h6"></div>
-          Интервью будет отображаться здесь
+          The interview will be displayed here
         </q-tab-panel>
 
         <q-tab-panel name="championship">
           <div class="text-h6"></div>
-          Новости о Чемпиоанте будет отображаться здесь
+          The news about the Championship will be displayed here
         </q-tab-panel>
         <q-tab-pane name="analysis">
-          Новости об анализе будет отображаться здесь
+          The news about the analysis will be displayed here
         </q-tab-pane>
       </q-tab-panels>
     </div>
