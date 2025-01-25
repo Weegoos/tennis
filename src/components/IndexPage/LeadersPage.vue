@@ -3,9 +3,9 @@
     <q-splitter v-model="splitterModel" style="height: 250px">
       <template v-slot:before>
         <q-tabs v-model="tab" vertical class="text-teal">
-          <q-tab name="batyr" label="Ашим Батыр" />
-          <q-tab name="arystanbek" label="Абиев Арыстанбек" />
-          <q-tab name="akzhan" label="Акжантай" />
+          <q-tab name="batyr" label="Ashim Batyr" />
+          <q-tab name="arystanbek" label="Abiyev Arystanbek" />
+          <q-tab name="akzhan" label="Omir Akzhan" />
         </q-tabs>
       </template>
 
@@ -22,22 +22,22 @@
         >
           <q-tab-panel :name="item.name">
             <p class="text-h4 text-bold">{{ item.userName }}</p>
-            <p class="text-primary text-bold text-h6">Статистика</p>
+            <p class="text-primary text-bold text-h6">Statistics</p>
             <q-list bordered separator>
               <q-item clickable v-ripple class="text-body1">
-                <q-item-section> Общее количество очков </q-item-section>
+                <q-item-section> Total number of points </q-item-section>
                 <q-item-section side> {{ item.points }}</q-item-section>
               </q-item>
               <q-item clickable v-ripple class="text-body1">
-                <q-item-section> Коэффициент успешности </q-item-section>
+                <q-item-section>Success rate </q-item-section>
                 <q-item-section side> {{ item.successRate }}</q-item-section>
               </q-item>
               <q-item clickable v-ripple class="text-body1">
-                <q-item-section> Турниры </q-item-section>
+                <q-item-section> Tournaments </q-item-section>
                 <q-item-section side> {{ item.tournaments }}</q-item-section>
               </q-item>
               <q-item clickable v-ripple class="text-body1">
-                <q-item-section> Победы </q-item-section>
+                <q-item-section> Victories </q-item-section>
                 <q-item-section side> {{ item.victories }}</q-item-section>
               </q-item>
             </q-list>
@@ -49,7 +49,7 @@
       <q-btn
         color="primary"
         class="text-body1 q-pa-sm"
-        label="Показать всех"
+        label="Show all"
         @click="onClick"
       />
     </div>
@@ -65,7 +65,7 @@ const splitterModel = ref(20);
 const userStats = ref([
   {
     name: "batyr",
-    userName: "Ашим Батыр",
+    userName: "Ashim Batyr",
     points: 888,
     successRate: 50,
     tournaments: 20,
@@ -73,7 +73,7 @@ const userStats = ref([
   },
   {
     name: "arystanbek",
-    userName: "Арыстанбек Абиев",
+    userName: "Arystanbek Abiyev",
     points: 250,
     successRate: 10,
     tournaments: 30,
@@ -81,7 +81,7 @@ const userStats = ref([
   },
   {
     name: "akzhan",
-    userName: "Акжакнтай",
+    userName: "Omir Akzhan",
     points: 550,
     successRate: 40,
     tournaments: 100,
