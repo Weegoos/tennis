@@ -1,16 +1,10 @@
 <template>
   <div>
-    <q-card
-      class="my-card"
-      style="
-        margin-right: 200px;
-        margin-left: 200px;
-        margin-top: 50px;
-        margin-bottom: 50px;
-      "
-      v-for="(items, index) in coaches"
-      :key="index"
-    >
+    <div class="card">
+      <p class="text-h4 text-bold">Coaches</p>
+      <q-btn color="primary" label="Add a form" @click="addForm" />
+    </div>
+    <q-card class="card" v-for="(items, index) in coaches" :key="index">
       <q-card-section class="row q-gutter-md">
         <div class="col-2">
           <q-img
@@ -50,10 +44,10 @@
 <script setup>
 import { ref } from "vue";
 import coaches1 from "src/assets/coaches/coaches1.jpg";
-import coaches2 from "src/assets/coaches/coaches1.jpg";
-import coaches3 from "src/assets/coaches/coaches1.jpg";
-import coaches4 from "src/assets/coaches/coaches1.jpg";
-import coaches5 from "src/assets/coaches/coaches1.jpg";
+import coaches2 from "src/assets/coaches/coaches2.jpg";
+import coaches3 from "src/assets/coaches/coaches3.jpg";
+import coaches4 from "src/assets/coaches/coaches4.jpg";
+import coaches5 from "src/assets/coaches/coaches5.jpg";
 
 const coaches = ref([
   {
@@ -62,7 +56,7 @@ const coaches = ref([
     number: "87751216510",
     city: "Astana",
     language: "Russian, Kazakh, English",
-    img: coaches1, // Замените на соответствующую переменную или путь к изображению
+    img: coaches1,
   },
   {
     name: "Aidar Nurmagambetov",
@@ -70,7 +64,7 @@ const coaches = ref([
     number: "87751216511",
     city: "Almaty",
     language: "Kazakh, Russian",
-    img: coaches2, // Замените на соответствующую переменную или путь к изображению
+    img: coaches2,
   },
   {
     name: "Olga Petrova",
@@ -78,7 +72,7 @@ const coaches = ref([
     number: "87751216512",
     city: "Shymkent",
     language: "Russian, English, French",
-    img: coaches3, // Замените на соответствующую переменную или путь к изображению
+    img: coaches3,
   },
   {
     name: "Sultan Bekmuratov",
@@ -86,7 +80,7 @@ const coaches = ref([
     number: "87751216513",
     city: "Aktau",
     language: "Kazakh, Russian",
-    img: coaches4, // Замените на соответствующую переменную или путь к изображению
+    img: coaches4,
   },
   {
     name: "Nina Ivankova",
@@ -94,9 +88,20 @@ const coaches = ref([
     number: "87751216514",
     city: "Karaganda",
     language: "Russian, English",
-    img: coaches5, // Замените на соответствующую переменную или путь к изображению
+    img: coaches5,
   },
 ]);
+
+const addForm = () => {
+  console.log("Batyr");
+};
 </script>
 
-<style></style>
+<style scoped>
+.card {
+  margin-right: 200px;
+  margin-left: 200px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+</style>
