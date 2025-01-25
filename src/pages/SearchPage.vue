@@ -3,13 +3,13 @@
     <q-dialog v-model="isOpenSearch" persistent>
       <q-card style="width: 700px; max-width: 80vw">
         <q-card-section>
-          <span class="text-body1">Поиск</span>
+          <span class="text-body1">Search</span>
         </q-card-section>
         <q-card-section>
           <q-input
             standout
             v-model="text"
-            label="Начните печатать здесь..."
+            label="Start typing here..."
             input-class="text-left"
             class="searchClass"
           >
@@ -29,12 +29,7 @@
           </q-input>
         </q-card-section>
         <q-card-actions vertical align="right">
-          <q-btn
-            color="negative"
-            no-caps
-            @click="closeSearch"
-            label="Закрыть"
-          />
+          <q-btn color="negative" no-caps @click="closeSearch" label="Close" />
         </q-card-actions>
       </q-card>
     </q-dialog>
