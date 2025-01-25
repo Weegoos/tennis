@@ -170,6 +170,10 @@ const headerButtonsArray = ref([
     name: "About us",
     link: "/about",
   },
+  {
+    name: "Find a partner",
+    link: "/find-partner",
+  },
 ]);
 
 const router = useRouter();
