@@ -18,7 +18,12 @@
             color="negative"
             @click="closeOpenPage"
           />
-          <q-btn color="positive" no-caps label="Update" @click="onClick" />
+          <q-btn
+            color="positive"
+            no-caps
+            label="Update"
+            @click="updateInformation"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -26,6 +31,8 @@
 </template>
 
 <script setup>
+import axios from "axios";
+import { Cookies } from "quasar";
 import { ref, watch } from "vue";
 
 const props = defineProps({
@@ -46,6 +53,42 @@ watch(
 const emit = defineEmits(["closeOpenPage"]);
 const closeOpenPage = () => {
   emit("closeOpenPage");
+};
+
+const gender = ref("");
+const firstName = ref("");
+const lastName = ref("");
+const phone = ref("");
+const rating = ref("");
+
+const updateInformation = async () => {
+  console.log("Updating information...");
+
+  const params = {};
+
+  if (gender.value) params.gender = gender.value;
+  if (firstName.value) params.firstName = firstName.value;
+  if (lastName.value) params.lastName = lastName.value;
+  if (phone.value) params.phone = phone.value;
+  if (rating.value !== 0) params.rating = rating.value;
+
+  try {
+    const response = await axios.put(
+      "http://localhost:8000/api/v1/user/update",
+      params,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("accessToken")}`,
+        },
+        withCredentials: true,
+      }
+    );
+
+    console.log("Update successful:", response.data);
+  } catch (error) {
+    console.error("Error updating information:", error.response?.data || error);
+  }
 };
 </script>
 
