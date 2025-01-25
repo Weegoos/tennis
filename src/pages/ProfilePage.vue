@@ -1,15 +1,7 @@
 <template>
   <div>
-    <section class="fixed-center">
-      <q-card class="my-card">
-        <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
-        </q-card-section>
-        <q-card-section>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        </q-card-section>
-      </q-card>
+    <section>
+      <GeneralInfo />
     </section>
   </div>
 </template>
@@ -18,6 +10,7 @@
 import { useNotifyStore } from "src/stores/notify-store";
 import { onMounted, ref } from "vue";
 import { useApiStore } from "src/stores/api-store";
+import GeneralInfo from "src/components/Profile/GeneralInfo.vue";
 
 const notifyStore = useNotifyStore();
 const apiStore = useApiStore();
