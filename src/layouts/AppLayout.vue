@@ -137,31 +137,35 @@ const isAuthPage = computed(() => {
 
 const headerButtonsArray = ref([
   {
-    name: "Главная страница",
+    name: "Main page",
     link: "/",
   },
   {
-    name: "Турниры",
+    name: "Tournaments",
     link: "/tournaments",
   },
   {
-    name: "Регламент",
+    name: "Regulations",
     link: "/regulations",
   },
   {
-    name: "Рейтинг",
+    name: "Rating",
     link: "/ratings",
   },
   {
-    name: "Медиатека",
+    name: "Coaches",
+    link: "/coaches",
+  },
+  {
+    name: "Media Library",
     link: "/media-library",
   },
   {
-    name: "Новости",
+    name: "News",
     link: "/news",
   },
   {
-    name: "О нас",
+    name: "About us",
     link: "/about",
   },
 ]);
