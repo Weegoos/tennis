@@ -49,7 +49,6 @@
               >
                 <q-btn icon="search" @click="openSearch" size="14px" fab />
                 <q-btn icon="person" @click="pushToProfile" size="14px" fab />
-                <q-btn icon="logout" @click="logout" size="14px" fab />
               </div>
             </div>
             <div class="col" align="right" v-if="$q.screen.width < mobileWidth">
@@ -221,12 +220,6 @@ const closeSearchDialog = () => {
 
 const pushToProfile = () => {
   router.push("/profile");
-};
-
-const logout = () => {
-  Cookies.remove("accessToken");
-  Cookies.remove("refreshToken");
-  window.location.reload();
 };
 
 const width = ref(window.innerWidth);

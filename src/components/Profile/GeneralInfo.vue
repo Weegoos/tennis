@@ -42,12 +42,24 @@
                   spinner-color="primary"
                   spinner-size="82px"
                 />
-                <q-btn
-                  class="q-mt-sm"
-                  no-caps
-                  label="Edit Information"
-                  @click="editInformation"
-                />
+
+                <div class="col" align="center">
+                  <q-btn
+                    class="q-mt-sm"
+                    no-caps
+                    label="Edit Information"
+                    @click="editInformation"
+                    color="orange-4"
+                  />
+                  <br />
+                  <q-btn
+                    class="q-mt-sm"
+                    no-caps
+                    label="Logout"
+                    @click="logout"
+                    color="red-4"
+                  />
+                </div>
               </div>
               <div class="col">
                 <div class="text-h4 q-mb-md">General information</div>
@@ -139,6 +151,7 @@
 import { useApiStore } from "src/stores/api-store";
 import { onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
+import { Cookies } from "quasar";
 
 // general variables
 const apiStore = useApiStore();
@@ -173,6 +186,12 @@ const editInformation = () => {
 
 const closeOpenPage = () => {
   openEditPage.value = false;
+};
+
+const logout = () => {
+  Cookies.remove("accessToken");
+  Cookies.remove("refreshToken");
+  window.location.reload();
 };
 </script>
 

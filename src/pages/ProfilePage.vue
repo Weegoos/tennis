@@ -7,21 +7,14 @@
 </template>
 
 <script setup>
-import { useNotifyStore } from "src/stores/notify-store";
 import { onMounted, ref } from "vue";
-import { useApiStore } from "src/stores/api-store";
 import GeneralInfo from "src/components/Profile/GeneralInfo.vue";
+import { useJavaScriptFunction } from "src/stores/javascript-store";
 
-const notifyStore = useNotifyStore();
-const apiStore = useApiStore();
+const javascriptStore = useJavaScriptFunction();
 
-const firstName = ref("");
-const secondName = ref("");
-const phone = ref("");
-const email = ref("");
-
-onMounted(async () => {
-  await apiStore.getUserProfile();
+onMounted(() => {
+  javascriptStore.redirect();
 });
 </script>
 
