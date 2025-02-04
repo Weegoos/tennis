@@ -18,9 +18,13 @@
               <q-btn flat round dense icon="assignment_ind" size="24px" />
             </div>
             <div class="col-8" v-show="isDesktop">
-              <div class="row q-mt-sm" style="justify-content: center">
+              <div
+                class="row q-mt-sm"
+                style="justify-content: center"
+                v-if="userRole === 'USER'"
+              >
                 <section
-                  v-for="(buttons, index) in headerButtonsArray"
+                  v-for="(buttons, index) in headerButtonsArrayForUser"
                   :key="index"
                   class="text-white row"
                 >
@@ -128,15 +132,26 @@ import SearchPage from "../pages/SearchPage.vue";
 import FooterPage from "src/pages/FooterPage.vue";
 import { getCurrentInstance } from "vue";
 import { Cookies } from "quasar";
+import { useApiStore } from "src/stores/api-store";
+
+// global variables
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
 const route = useRoute();
+const apiStore = useApiStore();
 
 const isAuthPage = computed(() => {
   return route.path === "/registration" || route.path === "/authorization";
 });
 
-const headerButtonsArray = ref([
+const userRole = ref("");
+const defineRole = async () => {
+  await apiStore.getUserProfile();
+  userRole.value = apiStore.userData.role;
+  console.log(userRole.value);
+};
+
+const headerButtonsArrayForUser = ref([
   {
     name: "Main page",
     link: "/",
@@ -175,6 +190,12 @@ const headerButtonsArray = ref([
   },
 ]);
 
+const headerButtonsArrayForAdmin = ref([
+  {
+    name: "",
+  },
+]);
+
 const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
@@ -182,6 +203,7 @@ const drawer = ref(true);
 
 onBeforeMount(() => {
   saveCurrentPath();
+  defineRole();
 });
 
 const saveCurrentPath = () => {

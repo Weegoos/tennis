@@ -29,6 +29,8 @@ export const useApiStore = defineStore("api", {
           $q,
           "Данные о пользователе успешно загружены"
         );
+
+        // console.log(response.data);
       } catch (error) {
         notifyStore.notifyError(
           $q,
