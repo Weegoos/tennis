@@ -33,7 +33,11 @@
 <script setup>
 import axios from "axios";
 import { Cookies } from "quasar";
-import { ref, watch } from "vue";
+import { getCurrentInstance, ref, watch } from "vue";
+
+// global variables
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
 
 const props = defineProps({
   openEditPage: {
@@ -73,17 +77,13 @@ const updateInformation = async () => {
   if (rating.value !== 0) params.rating = rating.value;
 
   try {
-    const response = await axios.put(
-      "http://localhost:8000/api/v1/user/update",
-      params,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await axios.put(`${serverURL}user/update`, params, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+      withCredentials: true,
+    });
 
     console.log("Update successful:", response.data);
   } catch (error) {
