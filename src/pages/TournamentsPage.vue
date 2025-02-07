@@ -13,15 +13,21 @@
           </section>
           <section class="col">
             <q-card-section>
-              <div class="text-h6">Snapdragon Mobile Challenge Finals</div>
+              <div class="text-h4 text-capitalize text-bold">
+                {{ tournament.description }}
+              </div>
               <div class="text-subtitle1">{{ tournament.categories[0] }}</div>
-              <div class="text-subtitle2">{{ tournament.description }}</div>
             </q-card-section>
             <q-card-section>
               <div>{{ tournament.location }}, {{ tournament.city }}</div>
             </q-card-section>
             <q-card-actions align="right">
-              <q-btn color="green-4" class="q-pa-md button" label="Explore" />
+              <q-btn
+                color="green-4"
+                class="q-pa-md button"
+                label="Explore"
+                @click="exploreTournaments(tournament)"
+              />
             </q-card-actions>
           </section>
         </div>
@@ -66,6 +72,10 @@ const getTournaments = async () => {
 };
 
 getTournaments();
+
+const exploreTournaments = (item) => {
+  console.log(item);
+};
 </script>
 
 <style scoped>
