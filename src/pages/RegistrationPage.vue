@@ -68,6 +68,7 @@
             <div class="col">
               <q-input
                 v-model="secondName"
+                data-testid="secondNameInput"
                 type="text"
                 label="Enter your last name"
                 hint="For example: Khabbasov"
@@ -80,6 +81,7 @@
             <div class="col">
               <q-input
                 v-model="email"
+                data-testid="emailInput"
                 type="email"
                 label="Enter your email address"
                 hint="For example: example@gmail.com"
@@ -88,6 +90,7 @@
             <div class="col">
               <q-input
                 v-model="password"
+                data-testid="passwordInput"
                 :type="isPwd ? 'password' : 'text'"
                 hint="At least 8 characters"
                 label="Enter the password"
@@ -110,6 +113,7 @@
             no-caps
             label="Register"
             @click="registration"
+            data-testid="registrationButton"
           />
           <q-btn
             color="primary"
@@ -185,16 +189,15 @@ const registration = async () => {
       },
       withCredentials: true,
     });
-
-    $q.loading.hide();
     notifyStore.nofifySuccess($q, "Сообщение отправлено в почту!");
     console.log("Response:", response.data);
     Cookies.set("accessToken", response.data.accessToken);
     Cookies.set("refreshToken", response.data.refreshToken);
   } catch (error) {
-    $q.loading.hide();
     console.error("Registration error:", error);
     notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
+  } finally {
+    $q.loading.hide();
   }
 };
 
