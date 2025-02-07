@@ -50,12 +50,15 @@
     <div class="content">
       <q-card class="my-card" style="width: 90%">
         <q-card-section align="center">
-          <p class="text-h4 text-bold">Registration</p>
+          <p class="text-h4 text-bold" data-testid="registrationContent">
+            Registration
+          </p>
         </q-card-section>
         <q-card-section>
           <div class="row q-gutter-sm">
             <div class="col">
               <q-input
+                data-testid="nameInput"
                 v-model="name"
                 type="text"
                 label="Enter a name"

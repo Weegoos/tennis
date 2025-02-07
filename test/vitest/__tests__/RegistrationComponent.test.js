@@ -4,7 +4,7 @@ import { createPinia } from "pinia";
 import { Quasar } from "quasar";
 import RegistrationPage from "src/pages/RegistrationPage.vue";
 import { useNotifyStore } from "src/stores/notify-store";
-import { describe, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { computed } from "vue";
 
 installQuasarPlugin();
@@ -24,5 +24,13 @@ describe("Tests for Registration Page", () => {
       plugins: [Quasar, pinia],
     },
   });
-  it("should check the content", () => {});
+  it("should check the content", async () => {
+    const registrationText = wrapper.find(
+      '[data-testid="registrationContent"]'
+    );
+    expect(registrationText.exists()).toBe(true);
+    expect(registrationText).not.toBe(null);
+  });
+
+  it.concurrent("should check the name input", async () => {});
 });
