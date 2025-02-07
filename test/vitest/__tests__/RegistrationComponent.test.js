@@ -26,11 +26,11 @@ vi.mock("src/stores/notify-store", () => ({
 }));
 
 vi.mock("quasar", async () => {
-  const actual = await vi.importActual("quasar"); // Импортируем реальные модули
+  const actual = await vi.importActual("quasar");
   return {
-    ...actual, // Сохраняем оригинальные методы
+    ...actual,
     Cookies: {
-      get: vi.fn(() => "mocked_cookie_value"), // Мокаем Cookies
+      get: vi.fn(() => "mocked_cookie_value"),
       set: vi.fn(),
       remove: vi.fn(),
       has: vi.fn(),
@@ -110,7 +110,6 @@ describe("Tests for Registration Page", () => {
 
   it("should successfully register a user", async () => {
     const notifyStore = useNotifyStore();
-    // Мокаем ответ API
     axios.post.mockResolvedValue({
       data: {
         accessToken: "mockAccessToken",
@@ -118,7 +117,6 @@ describe("Tests for Registration Page", () => {
       },
     });
 
-    // Устанавливаем тестовые данные
     const email = { value: "example@gmail.com" };
     const name = { value: "Aisultan" };
     const secondName = { value: "Khabbasov" };
