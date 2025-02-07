@@ -20,7 +20,9 @@
     <div class="content">
       <q-card class="my-card" style="width: 90%">
         <q-card-section align="center">
-          <p class="text-h4 text-bold">Authorization</p>
+          <p class="text-h4 text-bold" data-testid="authorizationContent">
+            Authorization
+          </p>
         </q-card-section>
 
         <q-card-section>
@@ -28,6 +30,7 @@
             <div class="col">
               <q-input
                 v-model="email"
+                data-testid="emailInput"
                 type="email"
                 label="Enter your email address"
                 hint="For example: example@gmail.com"
@@ -36,6 +39,7 @@
             <div class="col">
               <q-input
                 v-model="password"
+                data-testid="passwordInput"
                 :type="isPwd ? 'password' : 'text'"
                 hint="At least 8 characters"
                 label="Enter the password"
@@ -57,6 +61,7 @@
             color="positive"
             no-caps
             label="Enter"
+            data-testid="authorizationButton"
             @click="authorization"
           />
           <q-btn
