@@ -1,5 +1,24 @@
 <template>
   <div>
+    <q-card class="my-card q-ma-md row q-gutter-sm">
+      <div class="col q-pa-md">
+        <q-img
+          src="https://cdn.quasar.dev/img/mountains.jpg"
+          :ratio="16 / 9"
+          spinner-color="primary"
+          spinner-size="82px"
+        />
+      </div>
+      <div class="col">
+        <q-card-section>
+          <div class="text-h6">Main Event</div>
+          <div class="text-subtitle2">Tennis</div>
+        </q-card-section>
+        <q-card-section>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+        </q-card-section>
+      </div>
+    </q-card>
     <section v-for="(tournament, id) in tournaments" :key="id" class="q-ma-md">
       <q-card class="my-card">
         <div class="row">
@@ -40,7 +59,7 @@
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 
 // global variables
 const notifyStore = useNotifyStore();
@@ -71,7 +90,9 @@ const getTournaments = async () => {
   }
 };
 
-getTournaments();
+onMounted(() => {
+  getTournaments();
+});
 
 const exploreTournaments = (item) => {
   console.log(item);

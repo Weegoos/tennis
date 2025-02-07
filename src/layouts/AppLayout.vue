@@ -18,13 +18,9 @@
               <q-btn flat round dense icon="assignment_ind" size="24px" />
             </div>
             <div class="col-8" v-show="isDesktop">
-              <div
-                class="row q-mt-sm"
-                style="justify-content: center"
-                v-if="userRole === 'USER'"
-              >
+              <div class="row q-mt-sm" style="justify-content: center">
                 <section
-                  v-for="(buttons, index) in headerButtonsArrayForUser"
+                  v-for="(buttons, index) in isUser"
                   :key="index"
                   class="text-white row"
                 >
@@ -145,11 +141,7 @@ const isAuthPage = computed(() => {
 });
 
 const userRole = ref("");
-const defineRole = async () => {
-  await apiStore.getUserProfile();
-  userRole.value = apiStore.userData.role;
-  console.log(userRole.value);
-};
+const isUser = ref("");
 
 const headerButtonsArrayForUser = ref([
   {
@@ -209,7 +201,16 @@ const routePath = useRoute();
 const currentPath = ref(routePath.path);
 const drawer = ref(true);
 
-onBeforeMount(() => {
+const defineRole = async () => {
+  await apiStore.getUserProfile();
+  userRole.value = apiStore.userData.role;
+  if (userRole.value === "USER") {
+    isUser.value = headerButtonsArrayForUser.value;
+  }
+  console.log(userRole.value);
+};
+
+onMounted(() => {
   saveCurrentPath();
   defineRole();
 });
