@@ -12,6 +12,7 @@
     <UserDetailedInformation
       :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
       :userInfo="userInfo"
+      @closeUserDetailedInformation="closeUserDetailedInformation"
     />
   </div>
   <div v-else data-testid="noData">
@@ -94,11 +95,15 @@ onMounted(() => {
   getAllUsers();
 });
 
-const isOpenUserDetailedInformation = ref(true);
+const isOpenUserDetailedInformation = ref(false);
 const userInfo = ref("");
 const viewDetailedInformation = (evt, row, index) => {
   isOpenUserDetailedInformation.value = true;
   userInfo.value = row;
+};
+
+const closeUserDetailedInformation = () => {
+  isOpenUserDetailedInformation.value = false;
 };
 </script>
 
