@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" data-testid="rowsID" v-if="rows && rows.length">
     <q-table
       data-testid="userTable"
       flat
@@ -9,6 +9,9 @@
       row-key="id"
       @row-click="viewDetailedInformation"
     />
+  </div>
+  <div v-else data-testid="noData">
+    <p>No data</p>
   </div>
 </template>
 
