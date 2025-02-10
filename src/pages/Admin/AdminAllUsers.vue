@@ -9,6 +9,10 @@
       row-key="id"
       @row-click="viewDetailedInformation"
     />
+    <UserDetailedInformation
+      :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
+      :userInfo="userInfo"
+    />
   </div>
   <div v-else data-testid="noData">
     <p>No data</p>
@@ -18,6 +22,7 @@
 <script setup>
 import axios from "axios";
 import { Cookies } from "quasar";
+import UserDetailedInformation from "src/components/Admin/UserDetailedInformation.vue";
 import { getCurrentInstance, onMounted, ref } from "vue";
 
 // global variables
@@ -89,7 +94,12 @@ onMounted(() => {
   getAllUsers();
 });
 
-const viewDetailedInformation = () => {};
+const isOpenUserDetailedInformation = ref(true);
+const userInfo = ref("");
+const viewDetailedInformation = (evt, row, index) => {
+  isOpenUserDetailedInformation.value = true;
+  userInfo.value = row;
+};
 </script>
 
 <style></style>

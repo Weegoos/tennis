@@ -26,6 +26,29 @@ let data = [
 ];
 
 describe("Tests for AdminAllUsers", async () => {
+  const serverURL = "http://localhost:8000/api/v1/";
+  const rows = ref([]);
+
+  const getAllUsers = async () => {
+    try {
+      const response = await axios.get(`${serverURL}user/all`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${Cookies.get("accessToken")}`,
+        },
+        withCredentials: true,
+      });
+
+      rows.value = response.data.map((user, index) => ({
+        ...user,
+        id: index + 1,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const wrapper = mount(AdminAllUsers, {
     global: {
       plugins: [Quasar],
