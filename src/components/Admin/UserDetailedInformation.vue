@@ -2,13 +2,13 @@
   <div>
     <q-dialog v-model="isUserDetailedInformation" persistent>
       <q-card>
-        <q-card-section class="row items-center">
+        <q-card-section class="row items-center" v-if="props.userInfo">
           <q-list>
             <q-expansion-item
               popup
               caption="Full name, email, phone number"
               icon="filter_1"
-              label="Персональные данные"
+              label="Personal data"
             >
               <q-separator />
               <q-card>
