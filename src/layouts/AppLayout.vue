@@ -187,6 +187,10 @@ const headerButtonsArrayForAdmin = ref([
     name: "Users",
     link: "/all-users",
   },
+  {
+    name: "Coaches",
+    link: "/all-coaches",
+  },
 ]);
 
 const headerButtonsArrayForHR = ref([
@@ -206,6 +210,8 @@ const defineRole = async () => {
   userRole.value = apiStore.userData.role;
   if (userRole.value === "USER") {
     isUser.value = headerButtonsArrayForUser.value;
+  } else if (userRole.value === "ADMIN") {
+    isUser.value = headerButtonsArrayForAdmin.value;
   }
   console.log(userRole.value);
 };
