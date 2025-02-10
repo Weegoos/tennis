@@ -2,7 +2,7 @@
   <div>
     <q-dialog v-model="isUserDetailedInformation" persistent>
       <q-card>
-        <q-card-section class="row items-center" v-if="props.userInfo">
+        <q-card-section v-if="props.userInfo" class="row items-center">
           <q-list>
             <q-expansion-item
               popup
@@ -43,6 +43,7 @@
             </q-expansion-item>
           </q-list>
         </q-card-section>
+        <q-card-section v-else> No data </q-card-section>
         <q-card-actions class="q-pr-lg" align="right">
           <q-btn
             no-caps
@@ -62,7 +63,6 @@ import { ref, watch } from "vue";
 const props = defineProps({
   isOpenUserDetailedInformation: {
     type: Boolean,
-    required: true,
   },
   userInfo: {
     type: Object,
