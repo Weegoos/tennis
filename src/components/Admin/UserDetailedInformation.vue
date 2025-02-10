@@ -4,71 +4,46 @@
       <q-card>
         <q-card-section class="row items-center">
           <q-list>
-            <q-expansion-item popup icon="filter_1" label="Персональные данные">
-              <q-separator />
-              <q-card>
-                <q-card-section>
-                  <span class="infoHeadline">ФИО</span>
-                  <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.secondName }}
-                    {{ props.conclusionDetailedInformation.name }}
-                  </p>
-                  <span class="infoHeadline">ИИН</span>
-                  <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.iin }}
-                  </p>
-                  <span class="infoHeadline">Электронная почта</span>
-                  <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.email }}
-                  </p>
-                  <span class="infoHeadline">Дата регистрации</span>
-                  <p class="infoStyle">
-                    {{ formattedRegistrationDate }}
-                  </p>
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
             <q-expansion-item
               popup
-              icon="filter_2"
-              label="Работа"
-              caption="Информация о месте работы"
+              caption="Full name, email, phone number"
+              icon="filter_1"
+              label="Персональные данные"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span class="infoHeadline">Департамент</span>
+                  <span class="infoHeadline">Full name</span>
                   <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.department.name }}
+                    {{ props.userInfo.userInfo.firstName || "Not specified" }}
+                    {{ props.userInfo.userInfo.lastName || "Not specified" }}
                   </p>
-                  <span class="infoHeadline">Регион</span>
+                  <span class="infoHeadline">Gender</span>
                   <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.department.region }}
+                    {{ props.userInfo.userInfo.gender || "Not specified" }}
                   </p>
-                  <span class="infoHeadline">Должность</span>
+                  <span class="infoHeadline">Email</span>
                   <p class="infoStyle">
-                    {{ props.conclusionDetailedInformation.jobTitle.name }}
+                    {{ props.userInfo.email || "Not Specified" }}
                   </p>
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-            <q-expansion-item popup icon="filter_3" label="Заключении">
-              <q-separator />
-              <q-card>
-                <q-card-section>
-                  <span class="infoHeadline">Заключении</span>
+                  <span class="infoHeadline">Phone Number</span>
                   <p class="infoStyle">
-                    {{
-                      props.conclusionDetailedInformation.conclusions ||
-                      "Не указано"
-                    }}
+                    {{ props.userInfo.userInfo.phone || "Not specified" }}
                   </p>
+                  <span class="infoHeadline">Rating</span>
+                  <p class="infoStyle">
+                    {{ props.userInfo.userInfo.rating || "Not specified" }}
+                  </p>
+                  <!-- <span class="infoHeadline">Дата регистрации</span>
+                  <p class="infoStyle">
+                    {{ formattedRegistrationDate }}
+                  </p> -->
                 </q-card-section>
               </q-card>
             </q-expansion-item>
           </q-list>
         </q-card-section>
-        <q-card-actions align="right">
+        <q-card-actions class="q-pr-lg" align="right">
           <q-btn
             no-caps
             label="Close"
