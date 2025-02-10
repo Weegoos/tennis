@@ -1,6 +1,7 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      data-testid="userTable"
       flat
       bordered
       :rows="rows"
@@ -14,7 +15,7 @@
 <script setup>
 import axios from "axios";
 import { Cookies } from "quasar";
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -81,7 +82,11 @@ const getAllUsers = async () => {
   }
 };
 
-getAllUsers();
+onMounted(() => {
+  getAllUsers();
+});
+
+const viewDetailedInformation = () => {};
 </script>
 
 <style></style>
