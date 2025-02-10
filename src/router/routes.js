@@ -47,6 +47,15 @@ const routes = [
     path: "/find-partner",
     component: () => import("pages/FindPartnerPage.vue"),
   },
+  {
+    path: "/admin",
+    children: [
+      {
+        path: "users",
+        component: () => import("pages/Admin/AdminAllUsers.vue"),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

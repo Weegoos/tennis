@@ -185,7 +185,7 @@ const headerButtonsArrayForUser = ref([
 const headerButtonsArrayForAdmin = ref([
   {
     name: "Users",
-    link: "/all-users",
+    link: "/admin/users",
   },
   {
     name: "Coaches",
