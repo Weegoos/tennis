@@ -189,7 +189,7 @@ const headerButtonsArrayForAdmin = ref([
   },
   {
     name: "Coaches",
-    link: "/all-coaches",
+    link: "/admin/coaches",
   },
 ]);
 

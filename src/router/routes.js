@@ -56,6 +56,15 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/admin",
+    children: [
+      {
+        path: "coaches",
+        component: () => import("pages/Admin/AdminAllCoaches.vue"),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it
