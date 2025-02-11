@@ -9,10 +9,10 @@
       row-key="id"
       @row-click="viewDetailedInformation"
     />
-    <UserDetailedInformation
-      :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
-      :userInfo="userInfo"
-      @closeUserDetailedInformation="closeUserDetailedInformation"
+    <CoachesDetailedInformation
+      :isOpenCoachesDetailedInformation="isOpenCoachesDetailedInformation"
+      :coachesInfo="coachesInfo"
+      @closeCoacheDetailedInformation="closeCoacheDetailedInformation"
     />
   </div>
   <div v-else data-testid="noData">
@@ -25,6 +25,7 @@ import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
+import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -106,6 +107,17 @@ const getEnabledCoaches = async () => {
 onMounted(() => {
   getEnabledCoaches();
 });
+
+const isOpenCoachesDetailedInformation = ref(false);
+const coachesInfo = ref("");
+const viewDetailedInformation = (evt, row, index) => {
+  isOpenCoachesDetailedInformation.value = true;
+  coachesInfo.value = row;
+};
+
+const closeCoacheDetailedInformation = () => {
+  isOpenCoachesDetailedInformation.value = false;
+};
 </script>
 
 <style></style>
