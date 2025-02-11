@@ -2,7 +2,11 @@
   <div>
     <q-dialog v-model="isUserDetailedInformation" persistent>
       <q-card>
-        <q-card-section v-if="props.userInfo" class="row items-center">
+        <q-card-section
+          data-testid="dialogID"
+          v-if="props.userInfo"
+          class="row items-center"
+        >
           <q-list>
             <q-expansion-item
               popup
@@ -13,7 +17,9 @@
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span class="infoHeadline">Full name</span>
+                  <span data-testid="fullName" class="infoHeadline"
+                    >Full name</span
+                  >
                   <p class="infoStyle">
                     {{ props.userInfo.userInfo.firstName || "Not specified" }}
                     {{ props.userInfo.userInfo.lastName || "Not specified" }}
