@@ -1,5 +1,6 @@
 <template>
   <div>
+    <q-btn color="plus" icon="check" label="OK" @click="onClick" />
     <q-card class="my-card q-ma-md row q-gutter-sm">
       <div class="col q-pa-md">
         <q-img
@@ -31,11 +32,14 @@
             />
           </section>
           <section class="col">
-            <q-card-section>
-              <div class="text-h4 text-capitalize text-bold">
-                {{ tournament.description }}
+            <q-card-section class="row">
+              <div class="text-h4 text-capitalize text-bold col">
+                <p>{{ tournament.description }}</p>
+                <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
               </div>
-              <div class="text-subtitle1">{{ tournament.categories[0] }}</div>
+              <div class="col" align="right" v-if="userRole">
+                <q-btn flat icon="edit" @click="onClick" />
+              </div>
             </q-card-section>
             <q-card-section>
               <div>{{ tournament.location }}, {{ tournament.city }}</div>

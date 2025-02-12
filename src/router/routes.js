@@ -54,11 +54,6 @@ const routes = [
         path: "users",
         component: () => import("pages/Admin/AdminAllUsers.vue"),
       },
-    ],
-  },
-  {
-    path: "/admin",
-    children: [
       {
         path: "coaches",
         component: () => import("pages/Admin/AdminAllCoaches.vue"),

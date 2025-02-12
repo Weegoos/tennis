@@ -30,11 +30,11 @@
                   </p>
                   <span class="infoHeadline">Phone Number</span>
                   <p class="infoStyle">
-                    <!-- {{ props.userInfo.userInfo.phone || "Not specified" }} -->
+                    {{ props.coachesInfo.user.phone || "Not specified" }}
                   </p>
                   <span class="infoHeadline">Rating</span>
                   <p class="infoStyle">
-                    <!-- {{ props.userInfo.userInfo.rating || "Not specified" }} -->
+                    {{ props.coachesInfo.user.rating || "Not specified" }}
                   </p>
                 </q-card-section>
               </q-card>

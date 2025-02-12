@@ -195,8 +195,40 @@ const headerButtonsArrayForAdmin = ref([
 
 const headerButtonsArrayForHR = ref([
   {
-    name: "Users",
-    link: "/all-users",
+    name: "Main page",
+    link: "/",
+  },
+  {
+    name: "Tournaments",
+    link: "/tournaments",
+  },
+  {
+    name: "Regulations",
+    link: "/regulations",
+  },
+  {
+    name: "Rating",
+    link: "/ratings",
+  },
+  {
+    name: "Coaches",
+    link: "/coaches",
+  },
+  {
+    name: "Media Library",
+    link: "/media-library",
+  },
+  {
+    name: "News",
+    link: "/news",
+  },
+  {
+    name: "About us",
+    link: "/about",
+  },
+  {
+    name: "Find a partner",
+    link: "/find-partner",
   },
 ]);
 
@@ -212,6 +244,8 @@ const defineRole = async () => {
     isUser.value = headerButtonsArrayForUser.value;
   } else if (userRole.value === "ADMIN") {
     isUser.value = headerButtonsArrayForAdmin.value;
+  } else if (userRole.value === "HR") {
+    isUser.value = headerButtonsArrayForHR.value;
   }
   console.log(userRole.value);
 };
