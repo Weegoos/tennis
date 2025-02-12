@@ -25,11 +25,6 @@ export const useApiStore = defineStore("api", {
           }
         );
         this.userData = response.data;
-        notifyStore.nofifySuccess(
-          $q,
-          "Данные о пользователе успешно загружены"
-        );
-
         // console.log(response.data);
       } catch (error) {
         notifyStore.notifyError(

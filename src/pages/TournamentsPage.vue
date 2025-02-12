@@ -52,12 +52,14 @@ import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const tournaments = ref("");
 const getTournaments = async () => {
@@ -83,10 +85,14 @@ const getTournaments = async () => {
 };
 
 const userRole = ref("");
-const defineUserRole = async () => {};
+const defineUserRole = async () => {
+  userRole.value = apiStore.userData.role;
+  console.log(userRole.value);
+};
 
 onMounted(() => {
   getTournaments();
+  defineUserRole();
 });
 
 const exploreTournaments = (item) => {
