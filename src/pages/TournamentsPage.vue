@@ -27,6 +27,7 @@
               </div>
               <div class="col" align="right" v-if="userRole === 'HR'">
                 <q-btn flat icon="edit" @click="onClick" />
+                <q-btn flat icon="delete" color="red-4" @click="onClick" />
               </div>
             </q-card-section>
             <q-card-section>
@@ -34,7 +35,7 @@
             </q-card-section>
             <q-card-actions align="right">
               <q-btn
-                color="green-4"
+                color="black"
                 class="q-pa-md button"
                 label="Explore"
                 @click="exploreTournaments(tournament)"
