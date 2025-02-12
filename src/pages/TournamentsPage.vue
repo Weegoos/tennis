@@ -1,25 +1,13 @@
 <template>
   <div>
-    <q-btn color="plus" icon="check" label="OK" @click="onClick" />
-    <q-card class="my-card q-ma-md row q-gutter-sm">
-      <div class="col q-pa-md">
-        <q-img
-          src="https://cdn.quasar.dev/img/mountains.jpg"
-          :ratio="16 / 9"
-          spinner-color="primary"
-          spinner-size="82px"
-        />
-      </div>
-      <div class="col">
-        <q-card-section>
-          <div class="text-h6">Main Event</div>
-          <div class="text-subtitle2">Tennis</div>
-        </q-card-section>
-        <q-card-section>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        </q-card-section>
-      </div>
-    </q-card>
+    <section class="col" align="right">
+      <q-btn
+        color="green-4"
+        icon="add"
+        class="q-mr-md q-mt-md"
+        @click="onClick"
+      />
+    </section>
     <section v-for="(tournament, id) in tournaments" :key="id" class="q-ma-md">
       <q-card class="my-card">
         <div class="row">
@@ -37,7 +25,7 @@
                 <p>{{ tournament.description }}</p>
                 <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
               </div>
-              <div class="col" align="right" v-if="userRole">
+              <div class="col" align="right" v-if="userRole === 'HR'">
                 <q-btn flat icon="edit" @click="onClick" />
               </div>
             </q-card-section>
@@ -93,6 +81,9 @@ const getTournaments = async () => {
     $q.loading.hide();
   }
 };
+
+const userRole = ref("");
+const defineUserRole = async () => {};
 
 onMounted(() => {
   getTournaments();
