@@ -26,7 +26,7 @@
                 <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
               </div>
               <div class="col" align="right" v-if="userRole === 'HR'">
-                <q-btn flat icon="edit" @click="onClick" />
+                <q-btn flat icon="edit" @click="editTournament(tournament)" />
                 <q-btn flat icon="delete" color="red-4" @click="onClick" />
               </div>
             </q-card-section>
@@ -44,6 +44,7 @@
           </section>
         </div>
       </q-card>
+      <EditTournamentsPage />
     </section>
   </div>
 </template>
@@ -54,6 +55,7 @@ import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import { useApiStore } from "src/stores/api-store";
+import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.vue";
 
 // global variables
 const notifyStore = useNotifyStore();
@@ -96,9 +98,14 @@ onMounted(() => {
   defineUserRole();
 });
 
+// click button function
 const exploreTournaments = (item) => {
   console.log(item);
 };
+
+const editTournament = async (tournament) => {
+  console.log(tournament);
+}
 </script>
 
 <style scoped>
