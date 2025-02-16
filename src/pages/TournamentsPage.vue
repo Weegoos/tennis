@@ -5,7 +5,8 @@
         color="green-4"
         icon="add"
         class="q-mr-md q-mt-md"
-        @click="onClick"
+        @click="addTournament"
+        v-if="userRole === humanResources"
       />
     </section>
     <section v-for="(tournament, id) in tournaments" :key="id" class="q-ma-md">
@@ -25,9 +26,9 @@
                 <p>{{ tournament.description }}</p>
                 <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
               </div>
-              <div class="col" align="right" v-if="userRole === 'HR'">
+              <div class="col" align="right" v-if="userRole === humanResources">
                 <q-btn flat icon="edit" @click="editTournament(tournament)" />
-                <q-btn flat icon="delete" color="red-4" @click="onClick" />
+                <q-btn flat icon="delete" color="red-4" @click="deleteTournament(tournament.id)" />
               </div>
             </q-card-section>
             <q-card-section>
@@ -61,6 +62,7 @@ import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.v
 const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const humanResources = proxy.$humanResources
 const $q = useQuasar();
 const apiStore = useApiStore();
 
@@ -90,7 +92,6 @@ const getTournaments = async () => {
 const userRole = ref("");
 const defineUserRole = async () => {
   userRole.value = apiStore.userData.role;
-  console.log(userRole.value);
 };
 
 onMounted(() => {
@@ -99,6 +100,9 @@ onMounted(() => {
 });
 
 // click button function
+const addTournament = () => {
+}
+
 const exploreTournaments = (item) => {
   console.log(item);
 };
@@ -106,6 +110,31 @@ const exploreTournaments = (item) => {
 const editTournament = async (tournament) => {
   console.log(tournament);
 }
+
+const deleteTournament = async (tournamentId) => {
+  try {
+    const response = await axios.delete(`${serverURL}/tournament/${tournamentId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("access_token")}`,
+      },
+    });
+
+    console.log("Турнир успешно удален:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка при удалении турнира:", error);
+
+    if (error.response) {
+      console.error("Статус:", error.response.status);
+      console.error("Ответ сервера:", error.response.data);
+    }
+
+    throw error;
+  }
+};
+
 </script>
 
 <style scoped>

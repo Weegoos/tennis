@@ -18,7 +18,7 @@
 <script setup>
 import { ref } from "vue";
 
-const isEditTournament = ref(true)
+const isEditTournament = ref(false)
 </script>
 
 <style>
