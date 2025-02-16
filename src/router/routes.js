@@ -65,11 +65,8 @@ const routes = [
     children: [
       {
         path: "createTournament",
-        component: () => import("pages/Admin/AdminAllUsers.vue"),
-      },
-      {
-        path: "coaches",
-        component: () => import("pages/Admin/AdminAllCoaches.vue"),
+        component: () =>
+          import("components/Tournaments/AddTournamentsPage.vue"),
       },
     ],
   },

@@ -9,49 +9,62 @@
         v-if="userRole === humanResources"
       />
     </section>
-  <div v-if="tournaments.length && tournaments">
-    <section v-for="(tournament, id) in tournaments" :key="id" class="q-ma-md">
-      <q-card class="my-card">
-        <div class="row">
-          <section class="col-2">
-            <q-img
-              src="https://cdn.quasar.dev/img/mountains.jpg"
-              :ratio="16 / 12"
-              spinner-color="primary"
-              spinner-size="82px"
-            />
-          </section>
-          <section class="col">
-            <q-card-section class="row">
-              <div class="text-h4 text-capitalize text-bold col">
-                <p>{{ tournament.description }}</p>
-                <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
-              </div>
-              <div class="col" align="right" v-if="userRole === humanResources">
-                <q-btn flat icon="edit" @click="editTournament(tournament)" />
-                <q-btn flat icon="delete" color="red-4" @click="deleteTournament(tournament.id)" />
-              </div>
-            </q-card-section>
-            <q-card-section>
-              <div>{{ tournament.location }}, {{ tournament.city }}</div>
-            </q-card-section>
-            <q-card-actions align="right">
-              <q-btn
-                color="black"
-                class="q-pa-md button"
-                label="Explore"
-                @click="exploreTournaments(tournament)"
+    <div v-if="tournaments.length && tournaments">
+      <section
+        v-for="(tournament, id) in tournaments"
+        :key="id"
+        class="q-ma-md"
+      >
+        <q-card class="my-card">
+          <div class="row">
+            <section class="col-2">
+              <q-img
+                src="https://cdn.quasar.dev/img/mountains.jpg"
+                :ratio="16 / 12"
+                spinner-color="primary"
+                spinner-size="82px"
               />
-            </q-card-actions>
-          </section>
-        </div>
-      </q-card>
-      <EditTournamentsPage />
-    </section>
-</div>
-<div v-else class="text-center q-mt-md">
-  <p class="text-h6 text-bold">There are no more tournaments...</p>
-</div>
+            </section>
+            <section class="col">
+              <q-card-section class="row">
+                <div class="text-h4 text-capitalize text-bold col">
+                  <p>{{ tournament.description }}</p>
+                  <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
+                </div>
+                <div
+                  class="col"
+                  align="right"
+                  v-if="userRole === humanResources"
+                >
+                  <q-btn flat icon="edit" @click="editTournament(tournament)" />
+                  <q-btn
+                    flat
+                    icon="delete"
+                    color="red-4"
+                    @click="deleteTournament(tournament.id)"
+                  />
+                </div>
+              </q-card-section>
+              <q-card-section>
+                <div>{{ tournament.location }}, {{ tournament.city }}</div>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn
+                  color="black"
+                  class="q-pa-md button"
+                  label="Explore"
+                  @click="exploreTournaments(tournament)"
+                />
+              </q-card-actions>
+            </section>
+          </div>
+        </q-card>
+        <EditTournamentsPage />
+      </section>
+    </div>
+    <div v-else class="text-center q-mt-md">
+      <p class="text-h6 text-bold">There are no more tournaments...</p>
+    </div>
   </div>
 </template>
 
@@ -67,7 +80,8 @@ import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.v
 const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
-const humanResources = proxy.$humanResources
+const humanResources = proxy.$humanResources;
+const clientURL = proxy.$clientURL;
 const $q = useQuasar();
 const apiStore = useApiStore();
 
@@ -106,8 +120,8 @@ onMounted(() => {
 
 // click button function
 const openAddTournamentPage = () => {
-  wind
-}
+  window.open(`${clientURL}hr/createTournament`, "blank");
+};
 
 const exploreTournaments = (item) => {
   console.log(item);
@@ -115,17 +129,20 @@ const exploreTournaments = (item) => {
 
 const editTournament = async (tournament) => {
   console.log(tournament);
-}
+};
 
 const deleteTournament = async (tournamentId) => {
   try {
-    const response = await axios.delete(`${serverURL}/tournament/${tournamentId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("access_token")}`,
-      },
-    });
+    const response = await axios.delete(
+      `${serverURL}/tournament/${tournamentId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${Cookies.get("access_token")}`,
+        },
+      }
+    );
 
     console.log("Турнир успешно удален:", response.data);
     return response.data;
@@ -140,7 +157,6 @@ const deleteTournament = async (tournamentId) => {
     throw error;
   }
 };
-
 </script>
 
 <style scoped>
