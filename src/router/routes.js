@@ -60,6 +60,19 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/hr",
+    children: [
+      {
+        path: "createTournament",
+        component: () => import("pages/Admin/AdminAllUsers.vue"),
+      },
+      {
+        path: "coaches",
+        component: () => import("pages/Admin/AdminAllCoaches.vue"),
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

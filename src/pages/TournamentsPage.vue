@@ -5,10 +5,11 @@
         color="green-4"
         icon="add"
         class="q-mr-md q-mt-md"
-        @click="addTournament"
+        @click="openAddTournamentPage"
         v-if="userRole === humanResources"
       />
     </section>
+  <div v-if="tournaments.length && tournaments">
     <section v-for="(tournament, id) in tournaments" :key="id" class="q-ma-md">
       <q-card class="my-card">
         <div class="row">
@@ -47,6 +48,10 @@
       </q-card>
       <EditTournamentsPage />
     </section>
+</div>
+<div v-else class="text-center q-mt-md">
+  <p class="text-h6 text-bold">There are no more tournaments...</p>
+</div>
   </div>
 </template>
 
@@ -100,7 +105,8 @@ onMounted(() => {
 });
 
 // click button function
-const addTournament = () => {
+const openAddTournamentPage = () => {
+  wind
 }
 
 const exploreTournaments = (item) => {
