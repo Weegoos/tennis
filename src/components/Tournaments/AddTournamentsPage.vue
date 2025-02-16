@@ -105,14 +105,21 @@
         </div>
       </q-card-section>
       <q-card-actions  align="right">
-        <q-btn no-caps color="green-4" label="Create" />
+        <q-btn no-caps color="green-4" label="Create" @click="createEvent"/>
       </q-card-actions>
     </q-card>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useQuasar } from "quasar";
+import axios from "axios";
+import { getCurrentInstance, ref } from "vue";
+
+// global variables
+const $q = useQuasar()
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
 
 const startDate = ref("");
 const endDate = ref("");
@@ -120,8 +127,43 @@ const time = ref("");
 const category = ref('')
 const location = ref('')
 const city = ref('')
+const cost = ref('')
 
 const categoryOptions = ref(['Single'])
+
+const createEvent = async () => {
+  try {
+    const payload = {
+      description: "string",
+      startDate: "2025-02-16",
+      endDate: "2025-02-16",
+      startTime: "14:30",
+      category: "SINGLES_MALE",
+      maxParticipants: 0,
+      location: "string",
+      city: "string",
+      minLevel: 0,
+      maxLevel: 0,
+      cost: 0
+    }
+
+    const response = await axios.post(`${serverURL}tournament`, payload)
+
+    $q.notify({
+      type: "positive",
+      message: "Событие успешно создано!"
+    })
+
+    console.log("Ответ сервера:", response.data)
+  } catch (error) {
+    console.error("Ошибка при создании события:", error)
+
+    $q.notify({
+      type: "negative",
+      message: "Ошибка при создании события"
+    })
+  }
+}
 </script>
 
 <style></style>

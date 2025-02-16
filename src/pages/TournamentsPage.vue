@@ -29,7 +29,7 @@
               <q-card-section class="row">
                 <div class="text-h4 text-capitalize text-bold col">
                   <p>{{ tournament.description }}</p>
-                  <p class="text-subtitle1">{{ tournament.categories[0] }}</p>
+                  <p class="text-subtitle1">{{ tournament.categories }}</p>
                 </div>
                 <div
                   class="col"
@@ -132,18 +132,20 @@ const editTournament = async (tournament) => {
 };
 
 const deleteTournament = async (tournamentId) => {
+  console.log(tournamentId);
+
   try {
     const response = await axios.delete(
-      `${serverURL}/tournament/${tournamentId}`,
+      `${serverURL}tournament/${tournamentId}`,
       {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("access_token")}`,
+          Authorization: `Bearer ${Cookies.get("accessToken")}`,
         },
       }
     );
-
+    window.location.reload()
     console.log("Турнир успешно удален:", response.data);
     return response.data;
   } catch (error) {
