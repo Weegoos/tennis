@@ -40,13 +40,18 @@
                 :ratio="16 / 12"
                 spinner-color="primary"
                 spinner-size="82px"
+                class="full-height"
               />
             </section>
             <section class="col">
               <q-card-section class="row">
-                <div class="text-h4 text-capitalize text-bold col">
-                  <p>{{ tournament.description }}</p>
+                <div class="text-capitalize col">
+                  <p class="text-weight-thin text-body1">International</p>
+                  <p class="text-h4">{{ tournament.description }}</p>
                   <p class="text-subtitle1">{{ tournament.categories }}</p>
+                  <p class="">
+                    From {{ tournament.startDate }} To {{ tournament.endDate }}
+                  </p>
                 </div>
                 <div
                   class="col"
@@ -146,6 +151,7 @@ const openAddTournamentPage = () => {
 
 const exploreTournaments = (item) => {
   console.log(item);
+  window.open(`${clientURL}hr/${item.id}`, "_blank");
 };
 
 const openEditTournamentComponent = ref(false);
