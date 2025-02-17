@@ -9,8 +9,13 @@
           >
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Cancel" color="primary" v-close-popup />
-          <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
+          <q-btn
+            flat
+            label="Close"
+            color="red-4"
+            @click="closeEditTournament"
+          />
+          <q-btn flat label="Edit" color="green-4" @click="editTournament" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -18,9 +23,33 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const isEditTournament = ref(false);
+const props = defineProps({
+  openEditTournamentComponent: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const isEditTournament = ref(props.openEditTournamentComponent);
+
+watch(
+  () => props.openEditTournamentComponent,
+  (newVal) => {
+    isEditTournament.value = newVal;
+  }
+);
+
+const emit = defineEmits(["closeEditTournament"]);
+const closeEditTournament = () => {
+  emit("closeEditTournament");
+};
+
+const editTournament = async () => {
+  try {
+  } catch (error) {}
+};
 </script>
 
 <style></style>

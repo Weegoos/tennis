@@ -59,7 +59,10 @@
             </section>
           </div>
         </q-card>
-        <EditTournamentsPage />
+        <EditTournamentsPage
+          :openEditTournamentComponent="openEditTournamentComponent"
+          @closeEditTournament="closeEditTournament"
+        />
       </section>
     </div>
     <div v-else class="text-center q-mt-md">
@@ -127,8 +130,14 @@ const exploreTournaments = (item) => {
   console.log(item);
 };
 
+const openEditTournamentComponent = ref(false);
 const editTournament = async (tournament) => {
-  console.log(tournament);
+  console.log(tournament.id);
+  openEditTournamentComponent.value = true;
+};
+
+const closeEditTournament = () => {
+  openEditTournamentComponent.value = false;
 };
 
 const deleteTournament = async (tournamentId) => {

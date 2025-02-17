@@ -113,7 +113,12 @@
         </div>
         <div class="row q-gutter-sm q-mt-sm">
           <div class="col">
-            <q-input v-model="description" type="text" label="Description" autogrow/>
+            <q-input
+              v-model="description"
+              type="text"
+              label="Description"
+              autogrow
+            />
           </div>
         </div>
       </q-card-section>
@@ -141,29 +146,28 @@ const category = ref("");
 const location = ref("");
 const city = ref("");
 const cost = ref("");
-const description = ref('')
-const maxParticipants = ref('')
-const minLevel = ref('')
-const maxLevel = ref('')
+const description = ref("");
+const maxParticipants = ref("");
+const minLevel = ref("");
+const maxLevel = ref("");
 
 const categoryOptions = ref(["SINGLES_FEMALE"]);
 
 const createEvent = async () => {
   try {
     const payload = {
-        description: description.value,
-        startDate: startDate.value,
-        endDate: endDate.value,
-        startTime: time.value,
-        category: category.value,
-        maxParticipants: Number(maxParticipants.value) || 0,
-        location: location.value,
-        city: city.value,
-        minLevel: Number(minLevel.value) || 0,
-        maxLevel: Number(maxLevel.value) || 0,
-        cost: Number(cost.value) || 0,
-};
-
+      description: description.value,
+      startDate: startDate.value,
+      endDate: endDate.value,
+      startTime: time.value,
+      category: category.value,
+      maxParticipants: Number(maxParticipants.value) || 0,
+      location: location.value,
+      city: city.value,
+      minLevel: Number(minLevel.value) || 0,
+      maxLevel: Number(maxLevel.value) || 0,
+      cost: Number(cost.value) || 0,
+    };
 
     const response = await axios.post(
       `http://localhost:8000/api/v1/tournament`,
