@@ -1,5 +1,6 @@
 <template>
   <div>
+    <section class="bg-grey-4 text-center q-pa-md">News!</section>
     <q-layout
       view="hHr LpR lFf"
       container
@@ -9,24 +10,25 @@
       <q-header
         reveal
         elevated
-        style="height: 70px; background-color: #0b76d5"
+        style="height: 70px; background-color: white"
         v-if="!isAuthPage"
       >
-        <q-toolbar class="bg-transparent text-white q-mt-sm">
+        <q-toolbar class="bg-transparent text-black q-mt-sm">
           <div class="row q-gutter-md" style="width: 100%">
             <div class="col-2">
-              <q-btn flat round dense icon="assignment_ind" size="24px" />
+              <q-btn flat no-caps round dense label="tennis.kz" size="24px" />
             </div>
             <div class="col-8" v-show="isDesktop">
               <div class="row q-mt-sm" style="justify-content: center">
                 <section
                   v-for="(buttons, index) in isUser"
                   :key="index"
-                  class="text-white row"
+                  class="text-black row"
                 >
                   <q-btn
                     no-caps
                     flat
+                    color="black"
                     size="14px"
                     :label="buttons.name"
                     @click="pushToPage(buttons.link)"

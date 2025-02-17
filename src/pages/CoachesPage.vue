@@ -15,26 +15,31 @@
           />
         </div>
         <section class="col">
-          <div class="text-h4 text-bold">{{ items.user.firstName || 'Not specified'}}  {{  items.user.lastName || 'Not specified'}}</div>
-          <div class="text-subtitle1">{{ items.description || 'Not specified' }}</div>
+          <div class="text-h4 text-bold">
+            {{ items.user.firstName || "Not specified" }}
+            {{ items.user.lastName || "Not specified" }}
+          </div>
+          <div class="text-subtitle1">
+            {{ items.description || "Not specified" }}
+          </div>
           <section class="row">
             <div class="col">
               <div class="q-mt-lg">
                 <p class="text-body1">
                   <span class="text-bold">Gender: </span
-                  ><span>{{ items.gender || 'Not specified' }}</span>
+                  ><span>{{ items.gender || "Not specified" }}</span>
                 </p>
                 <p class="text-body1">
                   <span class="text-bold">Phone number: </span
-                  ><span>{{ items.user.phone || 'Not specified' }}</span>
+                  ><span>{{ items.user.phone || "Not specified" }}</span>
                 </p>
                 <p class="text-body1">
                   <span class="text-bold">Service: </span
-                  ><span>{{ items.service || 'Not specified' }}</span>
+                  ><span>{{ items.service || "Not specified" }}</span>
                 </p>
                 <p class="text-body1">
                   <span class="text-bold">Experience: </span
-                  ><span>{{ items.experience || 'Not specified' }}</span>
+                  ><span>{{ items.experience || "Not specified" }}</span>
                 </p>
               </div>
             </div>
@@ -42,7 +47,7 @@
               <div class="q-mt-lg">
                 <p class="text-body1">
                   <span class="text-bold">Rating: </span
-                  ><span>{{ items.user.rating || 'Not specified'}}</span>
+                  ><span>{{ items.user.rating || "Not specified" }}</span>
                 </p>
                 <p class="text-body1">
                   <span class="text-bold">City: </span
@@ -74,10 +79,10 @@ import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import axios from "axios";
 
 // global variables
-const notifyStore = useNotifyStore()
+const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
-const $q = useQuasar()
+const $q = useQuasar();
 
 const openForm = ref(false);
 const addForm = () => {
@@ -88,7 +93,7 @@ const closeForm = () => {
   openForm.value = false;
 };
 
-const coaches = ref('')
+const coaches = ref("");
 const getAllCoaches = async () => {
   notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
   try {
@@ -112,8 +117,8 @@ const getAllCoaches = async () => {
 };
 
 onMounted(() => {
-  getAllCoaches()
-})
+  getAllCoaches();
+});
 </script>
 
 <style scoped>

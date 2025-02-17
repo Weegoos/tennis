@@ -1,13 +1,30 @@
 <template>
   <div>
-    <section class="col" align="right">
-      <q-btn
-        color="green-4"
-        icon="add"
-        class="q-mr-md q-mt-md"
-        @click="openAddTournamentPage"
-        v-if="userRole === humanResources"
-      />
+    <section
+      class="text-uppercase text-center q-mt-lg text-h1 text-weight-thin"
+    >
+      <p>CREATORS</p>
+      <p>HUB</p>
+    </section>
+    <section class="text-center q-mt-lg text-h6 text-weight-thin">
+      <span>This community is awesome</span>
+      <p>Proud of all of them</p>
+    </section>
+    <section class="row">
+      <div class="col q-px-lg">
+        <p class="text-weight-thin text-body1 q-pt-md">
+          <span class="text-bold">1679</span> professionals waiting.
+        </p>
+      </div>
+      <div class="col" align="right">
+        <q-btn
+          color="black"
+          icon="add"
+          class="q-mr-md q-mt-md"
+          @click="openAddTournamentPage"
+          v-if="userRole === humanResources"
+        />
+      </div>
     </section>
     <div v-if="tournaments.length && tournaments">
       <section
