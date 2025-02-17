@@ -169,17 +169,13 @@ const createEvent = async () => {
       cost: Number(cost.value) || 0,
     };
 
-    const response = await axios.post(
-      `${serverURL}tournament`,
-      payload,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-      }
-    );
+    const response = await axios.post(`${serverURL}tournament`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    });
 
     $q.notify({
       type: "positive",

@@ -5,27 +5,22 @@
         <p class="text-h5 text-bold text-center q-mt-md">Coach's profile</p>
         <q-card-section class="row q-gutter-md">
           <section class="col">
-            <q-input v-model="text" type="text" label="First Name" />
-            <q-input v-model="text" type="text" label="Last Name" />
-            <q-input v-model="text" type="text" label="About me" />
+            <q-input v-model="city" type="text" label="City" />
+            <q-input v-model="language" type="text" label="Language" />
+            <q-input v-model="cost" type="number" label="Cost" />
           </section>
           <section class="col">
-            <q-input
-              v-model="text"
-              type="text"
-              label="Length of service (how many years)"
-            />
-            <q-input
-              v-model="text"
-              type="text"
-              label="The city where the coach conducts training"
-            />
-            <q-input v-model="text" type="text" label="Telephone Number" />
+            <q-input v-model="service" type="text" label="Service" />
+            <q-input v-model="description" type="text" label="Description" />
+            <q-input v-model="experience" type="number" label="Experience" />
           </section>
+        </q-card-section>
+        <q-card-section>
+          <q-input v-model="stadium" type="text" label="Stadium" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Close" color="negative" @click="closeForm" />
-          <q-btn flat label="Send a request" color="positive" v-close-popup />
+          <q-btn flat label="Send" color="positive" @click="createCoaches" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -33,7 +28,14 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { Cookies, useQuasar } from "quasar";
+import axios from "axios";
+import { getCurrentInstance, ref, watch } from "vue";
+
+// global variables
+const $q = useQuasar();
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
 
 const props = defineProps({
   openForm: {
@@ -54,6 +56,50 @@ watch(
 const emit = defineEmits(["closeForm"]);
 const closeForm = () => {
   emit("closeForm");
+};
+
+const city = ref("");
+const language = ref("");
+const cost = ref("");
+const service = ref("");
+const description = ref("");
+const experience = ref("");
+const stadium = ref("");
+
+const createCoaches = async () => {
+  try {
+    const payload = {
+      city: city.value,
+      language: language.value,
+      cost: Number(cost.value) || 0,
+      service: service.value,
+      description: description.value,
+      experience: Number(experience.value) || 0,
+      stadium: stadium.value,
+    };
+
+    const response = await axios.post(`${serverURL}coach`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    });
+
+    $q.notify({
+      type: "positive",
+      message: "Тренер успешно зарегестрирован!",
+    });
+
+    console.log("Ответ сервера:", response.data);
+  } catch (error) {
+    console.error("Ошибка:", error.response?.data);
+
+    $q.notify({
+      type: "negative",
+      message: "Ошибка при создании тренера",
+    });
+  }
 };
 </script>
 

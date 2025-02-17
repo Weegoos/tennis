@@ -132,10 +132,10 @@ const exploreTournaments = (item) => {
 };
 
 const openEditTournamentComponent = ref(false);
-const tournamentID = ref('')
+const tournamentID = ref("");
 const editTournament = async (tournament) => {
   console.log(tournament.id);
-  tournamentID.value = tournament.id
+  tournamentID.value = tournament.id;
   openEditTournamentComponent.value = true;
 };
 
