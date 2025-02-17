@@ -62,6 +62,7 @@
         <EditTournamentsPage
           :openEditTournamentComponent="openEditTournamentComponent"
           @closeEditTournament="closeEditTournament"
+          :tournamentID="tournamentID"
         />
       </section>
     </div>
@@ -131,8 +132,10 @@ const exploreTournaments = (item) => {
 };
 
 const openEditTournamentComponent = ref(false);
+const tournamentID = ref('')
 const editTournament = async (tournament) => {
   console.log(tournament.id);
+  tournamentID.value = tournament.id
   openEditTournamentComponent.value = true;
 };
 
@@ -141,8 +144,6 @@ const closeEditTournament = () => {
 };
 
 const deleteTournament = async (tournamentId) => {
-  console.log(tournamentId);
-
   try {
     const response = await axios.delete(
       `${serverURL}tournament/${tournamentId}`,

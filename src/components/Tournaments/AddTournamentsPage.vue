@@ -170,7 +170,7 @@ const createEvent = async () => {
     };
 
     const response = await axios.post(
-      `http://localhost:8000/api/v1/tournament`,
+      `${serverURL}tournament`,
       payload,
       {
         headers: {
