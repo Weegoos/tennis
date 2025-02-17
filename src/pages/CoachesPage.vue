@@ -15,22 +15,46 @@
           />
         </div>
         <section class="col">
-          <div class="text-h4 text-bold">{{ items.name }}</div>
-          <div class="text-subtitle1">{{ items.description }}</div>
+          <div class="text-h4 text-bold">{{ items.user.firstName || 'Not specified'}}  {{  items.user.lastName || 'Not specified'}}</div>
+          <div class="text-subtitle1">{{ items.description || 'Not specified' }}</div>
           <section class="row">
             <div class="col">
               <div class="q-mt-lg">
                 <p class="text-body1">
+                  <span class="text-bold">Gender: </span
+                  ><span>{{ items.gender || 'Not specified' }}</span>
+                </p>
+                <p class="text-body1">
                   <span class="text-bold">Phone number: </span
-                  ><span>{{ items.number }}</span>
+                  ><span>{{ items.user.phone || 'Not specified' }}</span>
+                </p>
+                <p class="text-body1">
+                  <span class="text-bold">Service: </span
+                  ><span>{{ items.service || 'Not specified' }}</span>
+                </p>
+                <p class="text-body1">
+                  <span class="text-bold">Experience: </span
+                  ><span>{{ items.experience || 'Not specified' }}</span>
                 </p>
               </div>
             </div>
             <div class="col">
               <div class="q-mt-lg">
                 <p class="text-body1">
+                  <span class="text-bold">Rating: </span
+                  ><span>{{ items.user.rating || 'Not specified'}}</span>
+                </p>
+                <p class="text-body1">
                   <span class="text-bold">City: </span
                   ><span>{{ items.city }}</span>
+                </p>
+                <p class="text-body1">
+                  <span class="text-bold">Language: </span
+                  ><span>{{ items.language }}</span>
+                </p>
+                <p class="text-body1">
+                  <span class="text-bold">Stadium: </span
+                  ><span>{{ items.stadium }}</span>
                 </p>
               </div>
             </div>
@@ -43,8 +67,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 import AddFormComponent from "src/components/Coaches/AddFormComponent.vue";
+import { useNotifyStore } from "src/stores/notify-store";
+import { Cookies, QSpinnerGears, useQuasar } from "quasar";
+import axios from "axios";
+
+// global variables
+const notifyStore = useNotifyStore()
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const $q = useQuasar()
 
 const openForm = ref(false);
 const addForm = () => {
@@ -54,6 +87,33 @@ const addForm = () => {
 const closeForm = () => {
   openForm.value = false;
 };
+
+const coaches = ref('')
+const getAllCoaches = async () => {
+  notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
+  try {
+    const response = await axios.get(`${serverURL}coach/all`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+      withCredentials: true,
+    });
+
+    console.log(response.data);
+    const allCoaches = response.data.map((tournaments) => tournaments);
+    coaches.value = allCoaches;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    $q.loading.hide();
+  }
+};
+
+onMounted(() => {
+  getAllCoaches()
+})
 </script>
 
 <style scoped>
