@@ -252,7 +252,7 @@ const defineRole = async () => {
 
 onMounted(() => {
   saveCurrentPath();
-  if(Cookies.has('accessToken')){
+  if (Cookies.has("accessToken")) {
     defineRole();
   }
 });

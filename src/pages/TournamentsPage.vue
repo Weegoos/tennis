@@ -145,7 +145,7 @@ const deleteTournament = async (tournamentId) => {
         },
       }
     );
-    window.location.reload()
+    window.location.reload();
     console.log("Турнир успешно удален:", response.data);
     return response.data;
   } catch (error) {
