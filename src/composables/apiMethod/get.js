@@ -2,9 +2,9 @@ import axios from "axios";
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import { useNotifyStore } from "src/stores/notify-store";
 
-const notifyStore = useNotifyStore()
+const notifyStore = useNotifyStore();
 
-export async function getMethod (url, variableRef, $q) {
+export async function getMethod(url, variableRef, $q) {
   notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
   try {
     const response = await axios.get(`http://localhost:8000/api/v1/${url}`, {
@@ -20,7 +20,7 @@ export async function getMethod (url, variableRef, $q) {
     variableRef.value = response.data;
   } catch (error) {
     console.error(error.message);
-    notifyStore.notifyError($q, error.message)
+    notifyStore.notifyError($q, error.message);
   } finally {
     $q.loading.hide();
   }

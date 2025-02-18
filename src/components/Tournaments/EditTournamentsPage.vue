@@ -1,7 +1,8 @@
 <template>
   <div>
-    <q-dialog v-model="isEditTournament" persistent>
+    <q-dialog v-model="isEditTournament" persistent full-width>
       <q-card>
+        <p class="text-center text-width-thin text-h4 q-mt-md">Edit</p>
         <q-card-section>
           <div class="row q-gutter-sm">
             <div class="col">
@@ -140,7 +141,8 @@
 <script setup>
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
-import { getCurrentInstance, ref, watch } from "vue";
+import { getCurrentInstance, ref, watch, watchEffect } from "vue";
+import { putMethod } from "src/composables/apiMethod/put";
 
 // global variables
 const $q = useQuasar();
@@ -185,49 +187,38 @@ const closeEditTournament = () => {
   emit("closeEditTournament");
 };
 
+const payload = ref({
+  description: "",
+  startDate: "",
+  endDate: "",
+  startTime: "",
+  category: "",
+  maxParticipants: "",
+  location: "",
+  city: "",
+  minLevel: "",
+  maxLevel: "",
+  cost: "",
+});
+
+watchEffect(() => {
+  payload.value = {
+    description: description.value,
+    startDate: startDate.value,
+    endDate: endDate.value,
+    startTime: time.value,
+    category: category.value,
+    maxParticipants: maxParticipants.value,
+    location: location.value,
+    city: city.value,
+    minLevel: minLevel.value,
+    maxLevel: maxLevel.value,
+    cost: cost.value,
+  };
+});
+
 const updateEvent = async () => {
-  try {
-    const payload = {
-      description: description.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
-      startTime: time.value,
-      category: category.value,
-      maxParticipants: maxParticipants.value,
-      location: location.value,
-      city: city.value,
-      minLevel: minLevel.value,
-      maxLevel: maxLevel.value,
-      cost: cost.value,
-    };
-
-    const response = await axios.put(
-      `${serverURL}tournament/${props.tournamentID}`,
-      payload,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-      }
-    );
-
-    $q.notify({
-      type: "positive",
-      message: "Событие успешно обновлено!",
-    });
-
-    console.log("Ответ сервера:", response.data);
-  } catch (error) {
-    console.error("Ошибка при обновлении события:", error);
-    console.error("Детали ошибки:", error.response?.data);
-
-    $q.notify({
-      type: "negative",
-      message: `Ошибка: ${error.response?.data?.error || "Неизвестная ошибка"}`,
-    });
-  }
+  putMethod("tournament", props.tournamentID, payload, $q);
 };
 </script>
 

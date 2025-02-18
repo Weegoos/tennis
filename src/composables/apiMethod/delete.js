@@ -2,7 +2,7 @@ import axios from "axios";
 import { Cookies } from "quasar";
 import { getCurrentInstance } from "vue";
 
-export async function deleteMethod (url, id) {
+export async function deleteMethod(url, id) {
   try {
     const response = await axios.delete(
       `http://localhost:8000/api/v1/${url}/${id}`,

@@ -84,7 +84,7 @@
         <EditTournamentsPage
           :openEditTournamentComponent="openEditTournamentComponent"
           @closeEditTournament="closeEditTournament"
-          :tournamentID="tournamentID"
+          :tournamentID="Number(tournamentID)"
         />
       </section>
     </div>
@@ -96,13 +96,14 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 import { useApiStore } from "src/stores/api-store";
 import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
+const { proxy } = getCurrentInstance();
 const humanResources = proxy.$humanResources;
 const clientURL = proxy.$clientURL;
 const $q = useQuasar();
@@ -110,7 +111,7 @@ const apiStore = useApiStore();
 
 const tournaments = ref("");
 const getTournaments = async () => {
-  getMethod('tournament', tournaments, $q)
+  getMethod("tournament", tournaments, $q);
 };
 
 const userRole = ref("");
@@ -146,7 +147,7 @@ const closeEditTournament = () => {
 };
 
 const deleteTournament = async (tournamentId) => {
-  deleteMethod('tournament', tournamentId, 'Успешно удален')
+  deleteMethod("tournament", tournamentId, "Успешно удален");
 };
 </script>
 

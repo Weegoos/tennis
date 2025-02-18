@@ -68,7 +68,12 @@
         </section>
         <div class="col" align="right">
           <q-btn flat color="black" icon="edit" @click="editCoaches" />
-          <q-btn flat color="red-4" icon="delete" @click="deleteCoaches(items.id)" />
+          <q-btn
+            flat
+            color="red-4"
+            icon="delete"
+            @click="deleteCoaches(items.id)"
+          />
         </div>
       </q-card-section>
     </q-card>
@@ -127,8 +132,8 @@ onMounted(() => {
 });
 
 const deleteCoaches = async (id) => {
-  deleteMethod('coach', id, 'Успешно удален')
-}
+  deleteMethod("coach", id, "Успешно удален");
+};
 </script>
 
 <style scoped>
