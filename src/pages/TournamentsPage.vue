@@ -95,17 +95,14 @@
 </template>
 
 <script setup>
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import axios from "axios";
-import { useNotifyStore } from "src/stores/notify-store";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { useQuasar } from "quasar";
+import { onMounted, ref } from "vue";
 import { useApiStore } from "src/stores/api-store";
 import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.vue";
+import { deleteMethod } from "src/composables/apiMethod/delete";
+import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
-const notifyStore = useNotifyStore();
-const { proxy } = getCurrentInstance();
-const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
 const clientURL = proxy.$clientURL;
 const $q = useQuasar();
@@ -113,25 +110,7 @@ const apiStore = useApiStore();
 
 const tournaments = ref("");
 const getTournaments = async () => {
-  notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
-  try {
-    const response = await axios.get(`${serverURL}tournament`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-      withCredentials: true,
-    });
-
-    console.log(response.data);
-    const allTournaments = response.data.map((tournaments) => tournaments);
-    tournaments.value = allTournaments;
-  } catch (error) {
-    console.error(error);
-  } finally {
-    $q.loading.hide();
-  }
+  getMethod('tournament', tournaments, $q)
 };
 
 const userRole = ref("");
@@ -167,30 +146,7 @@ const closeEditTournament = () => {
 };
 
 const deleteTournament = async (tournamentId) => {
-  try {
-    const response = await axios.delete(
-      `${serverURL}tournament/${tournamentId}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-      }
-    );
-    window.location.reload();
-    console.log("Турнир успешно удален:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Ошибка при удалении турнира:", error);
-
-    if (error.response) {
-      console.error("Статус:", error.response.status);
-      console.error("Ответ сервера:", error.response.data);
-    }
-
-    throw error;
-  }
+  deleteMethod('tournament', tournamentId, 'Успешно удален')
 };
 </script>
 
