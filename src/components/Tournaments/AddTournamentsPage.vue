@@ -2,26 +2,24 @@
   <div class="q-pa-sm">
     <q-card class="my-card q-mb-md">
       <div class="row">
-            <section class="col-2">
-              <q-img
-                src="https://cdn.quasar.dev/img/mountains.jpg"
-                :ratio="16 / 12"
-                spinner-color="primary"
-                spinner-size="82px"
-                class="full-height"
-              />
-            </section>
-            <section class="col">
-              <q-card-section class="row">
-                <div class="text-capitalize col">
-                  <p class="text-weight-thin text-body1">International</p>
-                  <p class="text-h4">{{ description }}</p>
-                  <p class="text-subtitle1">{{ category }}</p>
-                  <p class="">
-                    From {{ startDate }} To {{ endDate }}
-                  </p>
-                </div>
-                <!-- <div
+        <section class="col-2">
+          <q-img
+            src="https://cdn.quasar.dev/img/mountains.jpg"
+            :ratio="16 / 12"
+            spinner-color="primary"
+            spinner-size="82px"
+            class="full-height"
+          />
+        </section>
+        <section class="col">
+          <q-card-section class="row">
+            <div class="text-capitalize col">
+              <p class="text-weight-thin text-body1">International</p>
+              <p class="text-h4">{{ description }}</p>
+              <p class="text-subtitle1">{{ category }}</p>
+              <p class="">From {{ startDate }} To {{ endDate }}</p>
+            </div>
+            <!-- <div
                   class="col"
                   align="right"
                   v-if="userRole === humanResources"
@@ -34,20 +32,20 @@
                     @click="deleteTournament(tournament.id)"
                   />
                 </div> -->
-              </q-card-section>
-              <q-card-section>
-                <div>{{ location }}, {{ city }}</div>
-              </q-card-section>
-              <q-card-actions align="right">
-                <q-btn
-                  color="black"
-                  class="q-pa-md button"
-                  label="Explore"
-                  @click="exploreTournaments(tournament)"
-                />
-              </q-card-actions>
-            </section>
-          </div>
+          </q-card-section>
+          <q-card-section>
+            <div>{{ location }}, {{ city }}</div>
+          </q-card-section>
+          <q-card-actions align="right">
+            <q-btn
+              color="black"
+              class="q-pa-md button"
+              label="Explore"
+              @click="exploreTournaments(tournament)"
+            />
+          </q-card-actions>
+        </section>
+      </div>
     </q-card>
     <q-card class="create">
       <q-card-section>
@@ -172,7 +170,13 @@
         </div>
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn no-caps color="green" class="button" label="Create" @click="createEvent" />
+        <q-btn
+          no-caps
+          color="green"
+          class="button"
+          label="Create"
+          @click="createEvent"
+        />
       </q-card-actions>
     </q-card>
   </div>

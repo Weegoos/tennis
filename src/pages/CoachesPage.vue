@@ -12,6 +12,7 @@
             :ratio="10 / 9"
             spinner-color="primary"
             spinner-size="82px"
+            class="full-height"
           />
         </div>
         <section class="col">
@@ -65,6 +66,10 @@
             </div>
           </section>
         </section>
+        <div class="col" align="right">
+          <q-btn flat color="black" icon="edit" @click="editCoaches" />
+          <q-btn flat color="red-4" icon="delete" @click="deleteCoaches(items.id)" />
+        </div>
       </q-card-section>
     </q-card>
     <AddFormComponent :openForm="openForm" @closeForm="closeForm" />
@@ -77,6 +82,7 @@ import AddFormComponent from "src/components/Coaches/AddFormComponent.vue";
 import { useNotifyStore } from "src/stores/notify-store";
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import axios from "axios";
+import { deleteMethod } from "src/composables/apiMethod/delete";
 
 // global variables
 const notifyStore = useNotifyStore();
@@ -119,6 +125,10 @@ const getAllCoaches = async () => {
 onMounted(() => {
   getAllCoaches();
 });
+
+const deleteCoaches = async (id) => {
+  deleteMethod('coach', id, 'Успешно удален')
+}
 </script>
 
 <style scoped>

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <section  v-if="!isAuthPage" class="bg-grey-4 text-center q-pa-md">News!</section>
+    <section v-if="!isAuthPage" class="bg-grey-4 text-center q-pa-md">
+      News!
+    </section>
     <q-layout
       view="hHr LpR lFf"
       container
