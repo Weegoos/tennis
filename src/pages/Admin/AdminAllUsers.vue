@@ -11,7 +11,7 @@
     />
     <UserDetailedInformation
       :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
-      :userInfo="userInfo"
+      :userInfo="Object(userInfo)"
       @closeUserDetailedInformation="closeUserDetailedInformation"
     />
   </div>

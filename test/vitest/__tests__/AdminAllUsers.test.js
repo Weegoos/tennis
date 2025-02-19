@@ -1,10 +1,8 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 import { Quasar } from "quasar";
-import axios from "src/boot/axios";
 import AdminAllUsers from "src/pages/Admin/AdminAllUsers.vue";
 import { describe, expect, it, vi } from "vitest";
-import { ref } from "vue";
 
 installQuasarPlugin();
 vi.mock("axios");
@@ -14,7 +12,7 @@ let data = [
     id: 1,
     email: "batyr.ashim05@mail.ru",
     userInfo: {
-      gender: null,
+      gender: 'FEMALE',
       firstName: "Batyr",
       lastName: "Ashim",
       phone: null,
@@ -26,28 +24,6 @@ let data = [
 ];
 
 describe("Tests for AdminAllUsers", async () => {
-  const serverURL = "http://localhost:8000/api/v1/";
-  const rows = ref([]);
-
-  const getAllUsers = async () => {
-    try {
-      const response = await axios.get(`${serverURL}user/all`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-        withCredentials: true,
-      });
-
-      rows.value = response.data.map((user, index) => ({
-        ...user,
-        id: index + 1,
-      }));
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const wrapper = mount(AdminAllUsers, {
     global: {
@@ -55,6 +31,7 @@ describe("Tests for AdminAllUsers", async () => {
     },
   });
   it("should check the rowsID redrawing", async () => {
+    expect(data).toBeTypeOf('object')
     wrapper.vm.rows = data;
     await wrapper.vm.$nextTick();
     await flushPromises();

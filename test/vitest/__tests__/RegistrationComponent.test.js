@@ -30,7 +30,7 @@ vi.mock("quasar", async () => {
   return {
     ...actual,
     Cookies: {
-      get: vi.fn(() => "mocked_cookie_value"),
+      get: vi.fn(() => ""),
       set: vi.fn(),
       remove: vi.fn(),
       has: vi.fn(),
