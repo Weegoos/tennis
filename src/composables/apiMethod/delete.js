@@ -2,18 +2,15 @@ import axios from "axios";
 import { Cookies } from "quasar";
 import { getCurrentInstance } from "vue";
 
-export async function deleteMethod(serverURL ,url, id) {
+export async function deleteMethod(serverURL, url, id) {
   try {
-    const response = await axios.delete(
-      `${serverURL}${url}/${id}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-      }
-    );
+    const response = await axios.delete(`${serverURL}${url}/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    });
     window.location.reload();
     console.log(`${successMsg}`, response.data);
     return response.data;

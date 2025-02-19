@@ -105,14 +105,14 @@ import { getMethod } from "src/composables/apiMethod/get";
 // global variables
 const { proxy } = getCurrentInstance();
 const humanResources = proxy.$humanResources;
-const serverURL = proxy.$serverURL
+const serverURL = proxy.$serverURL;
 const clientURL = proxy.$clientURL;
 const $q = useQuasar();
 const apiStore = useApiStore();
 
 const tournaments = ref("");
 const getTournaments = async () => {
-  getMethod(serverURL,"tournament", tournaments, $q);
+  getMethod(serverURL, "tournament", tournaments, $q);
 };
 
 const userRole = ref("");

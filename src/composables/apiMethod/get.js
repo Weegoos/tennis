@@ -1,10 +1,9 @@
 import axios from "axios";
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
+import { Cookies, QSpinnerGears } from "quasar";
 import { useNotifyStore } from "src/stores/notify-store";
 
-const notifyStore = useNotifyStore();
-
-export async function getMethod(serverURL ,url, variableRef, $q) {
+export async function getMethod(serverURL, url, variableRef, $q) {
+  const notifyStore = useNotifyStore();
   notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
   try {
     const response = await axios.get(`${serverURL}${url}`, {

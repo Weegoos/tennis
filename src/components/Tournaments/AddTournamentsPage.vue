@@ -143,7 +143,12 @@
             <q-input v-model="location" type="text" label="Location" />
           </div>
           <div class="col">
-            <q-input v-model="city" type="text" label="City" />
+            <q-input v-model="city" type="text" label="City" list="city" />
+            <datalist id="city">
+              <section v-for="(cities, id) in cities" :key="id">
+                <option :value="cities"></option>
+              </section>
+            </datalist>
           </div>
         </div>
 
@@ -185,13 +190,15 @@
 <script setup>
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
-import { getCurrentInstance, ref, watchEffect } from "vue";
+import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const apiStore = useApiStore();
 
 const startDate = ref("");
 const endDate = ref("");
@@ -206,6 +213,8 @@ const minLevel = ref("");
 const maxLevel = ref("");
 
 const categoryOptions = ref(["SINGLES_FEMALE"]);
+
+const cities = ref([]);
 
 const payload = ref({
   description: "",
@@ -237,6 +246,18 @@ watchEffect(() => {
   };
 });
 
+// assigning values
+const getCity = async () => {
+  await apiStore.getCity(serverURL);
+  console.log(apiStore.city.value);
+  cities.value = apiStore.city.value
+};
+
+onMounted(() => {
+  getCity();
+});
+
+// button
 const createEvent = async () => {
   postMethod(serverURL, "tournament", payload, $q);
 };

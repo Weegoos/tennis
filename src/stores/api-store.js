@@ -2,10 +2,13 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import { useNotifyStore } from "./notify-store";
+import { getMethod } from "src/composables/apiMethod/get";
+import { ref } from "vue";
 
 export const useApiStore = defineStore("api", {
   state: () => ({
     userData: null,
+    city: ref([]),
   }),
   actions: {
     async getUserProfile() {
@@ -29,12 +32,18 @@ export const useApiStore = defineStore("api", {
       } catch (error) {
         notifyStore.notifyError(
           $q,
-          `Ошибка передачи данные о пользователе: ${error}`
+          `Ошибка передачи данных о пользователе: ${error}`
         );
         console.error(error);
       } finally {
         $q.loading.hide();
       }
+    },
+
+    async getCity(serverURL) {
+      const $q = useQuasar();
+      const notifyStore = useNotifyStore();
+      await getMethod(serverURL, "enum/city", this.city, $q); // Передаём ref
     },
   },
 });
