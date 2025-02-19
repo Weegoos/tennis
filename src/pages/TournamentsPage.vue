@@ -27,11 +27,12 @@
         />
       </div>
     </section>
-    <div v-if="tournaments.totalElements != 0">
+    <div data-testid="tournamentsID" v-if="tournaments.totalElements != 0">
       <section
         v-for="(tournament, id) in tournaments.content"
         :key="id"
         class="q-ma-md"
+        data-testid="tournamentContent"
       >
         <q-card class="my-card">
           <div class="row">
@@ -49,14 +50,16 @@
                 <div class="text-capitalize col">
                   <p class="text-weight-thin text-body1">International</p>
                   <p class="text-h4">{{ tournament.description }}</p>
-                  <p class="text-subtitle1">{{ tournament.categories }}</p>
+                  <p class="text-subtitle1">{{ tournament.category }}</p>
                   <p class="">
                     From {{ tournament.startDate }} To {{ tournament.endDate }}
                   </p>
+                  <p>{{ tournament.location }}, {{ tournament.city }}</p>
                 </div>
                 <div
                   class="col"
                   align="right"
+                  data-testid="userRole"
                   v-if="userRole === humanResources"
                 >
                   <q-btn flat icon="edit" @click="editTournament(tournament)" />
@@ -68,10 +71,7 @@
                   />
                 </div>
               </q-card-section>
-              <q-card-section>
-                <div>{{ tournament.location }}, {{ tournament.city }}</div>
-              </q-card-section>
-              <q-card-actions align="right">
+              <q-card-actions align="right" data-testid="exploreTournaments">
                 <q-btn
                   color="black"
                   class="q-pa-md button"
@@ -96,7 +96,7 @@
         @update:model-value="pagination"
       />
     </div>
-    <div v-else class="text-center q-mt-md">
+    <div data-testid="noInfo"  v-else class="text-center q-mt-md">
       <p class="text-h6 text-bold">There are no more tournaments...</p>
     </div>
   </div>

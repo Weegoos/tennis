@@ -1,13 +1,14 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
-import { mount } from "@vue/test-utils";
+import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
 import { Quasar } from "quasar";
 import TournamentsPage from "src/pages/TournamentsPage.vue";
 import { describe, expect, it, vi } from "vitest";
+import { nextTick } from "vue";
 
 installQuasarPlugin();
 
-const data = {
+let data = {
   content: [
     {
       id: 7,
@@ -94,10 +95,54 @@ describe("Tests for TournamentsPage", () => {
       plugins: [Quasar, pinia],
     },
   });
-  it("", () => {
+  it("should check the openAddTournamentsButton data-testid redrawing", () => {
     const openAddTournamentsButton = wrapper.find(
       '[data-testid="openAddTournamentsButton"]'
     );
     expect(openAddTournamentsButton.exists()).toBe(true);
+  });
+
+  it("should check the tournamentsID data-testid redrawing", () => {
+    expect(data).not.toBeNull();
+    expect(data.totalElements).not.toBeNull();
+    const tournamentsID = wrapper.find('[data-testid="tournamentsID"]');
+    expect(tournamentsID.exists()).toBe(true);
+  });
+
+  it("should check the tournamentContent data-testid redrawing", async () => {
+    wrapper.vm.tournaments = data;
+
+    await nextTick();
+    await flushPromises();
+    expect(wrapper.find('[data-testid="tournamentContent"]').exists()).toBe(
+      true
+    );
+    expect(data.content[0].description).not.toBeNull
+    expect(data.content[0].category).not.toBeNull
+    expect(data.content[0].startDate).not.toBeNull
+    expect(data.content[0].endDate).not.toBeNull
+    expect(data.content[0].location).not.toBeNull
+    expect(data.content[0].city).not.toBeNull
+  });
+
+  it('should check the userRole data-testid redrawing', async () => {
+    wrapper.vm.userRole = wrapper.vm.humanResources;
+    await nextTick();
+    await flushPromises();
+    const userRoleElement = wrapper.find('[data-testid="userRole"]');
+    expect(userRoleElement.exists()).toBe(true);
+  })
+
+  it('should check the exploreTournaments data-testid redrawing', async () => {
+    const exploreTournaments = wrapper.find('[data-testid="exploreTournaments"]');
+    expect(exploreTournaments.exists()).toBe(true);
+  });
+
+  it("should check the noInfo data-testid redrawing", async () => {
+    wrapper.vm.tournaments = { totalElements: 0, content: [] };
+    await nextTick();
+    await flushPromises();
+    const noInfo = wrapper.find('[data-testid="noInfo"]');
+    expect(noInfo.exists()).toBe(true);
   });
 });
