@@ -112,7 +112,13 @@ const apiStore = useApiStore();
 
 const tournaments = ref("");
 const getTournaments = async () => {
-  getMethod(serverURL, "tournament", tournaments, $q);
+  getMethod(
+    serverURL,
+    "tournament",
+    tournaments,
+    $q,
+    "Ошибка при получении турниров"
+  );
 };
 
 const userRole = ref("");

@@ -188,8 +188,7 @@
 </template>
 
 <script setup>
-import { Cookies, useQuasar } from "quasar";
-import axios from "axios";
+import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
@@ -212,7 +211,7 @@ const maxParticipants = ref("");
 const minLevel = ref("");
 const maxLevel = ref("");
 
-const categoryOptions = ref(["SINGLES_FEMALE"]);
+const categoryOptions = ref([]);
 
 const cities = ref([]);
 
@@ -247,14 +246,18 @@ watchEffect(() => {
 });
 
 // assigning values
-const getCity = async () => {
-  await apiStore.getCity(serverURL);
-  console.log(apiStore.city.value);
-  cities.value = apiStore.city.value
+const getList = async () => {
+  // city
+  await apiStore.getCity(serverURL, $q);
+  cities.value = apiStore.city.value;
+  // category
+  await apiStore.getCategory(serverURL, $q);
+  categoryOptions.value = apiStore.category.value;
+  console.log(apiStore.category.value);
 };
 
 onMounted(() => {
-  getCity();
+  getList();
 });
 
 // button

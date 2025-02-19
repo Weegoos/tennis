@@ -7,8 +7,9 @@ import { ref } from "vue";
 
 export const useApiStore = defineStore("api", {
   state: () => ({
-    userData: null,
+    userData: ref([]),
     city: ref([]),
+    category: ref([]),
   }),
   actions: {
     async getUserProfile() {
@@ -40,10 +41,24 @@ export const useApiStore = defineStore("api", {
       }
     },
 
-    async getCity(serverURL) {
-      const $q = useQuasar();
-      const notifyStore = useNotifyStore();
-      await getMethod(serverURL, "enum/city", this.city, $q); // Передаём ref
+    async getCity(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/city",
+        this.city,
+        $q,
+        "Ошибка при получении списка городов"
+      );
+    },
+
+    async getCategory(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/category",
+        this.category,
+        $q,
+        "Ошибка при получении списка городов"
+      );
     },
   },
 });

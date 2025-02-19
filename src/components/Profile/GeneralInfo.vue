@@ -149,12 +149,14 @@
 
 <script setup>
 import { useApiStore } from "src/stores/api-store";
-import { onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
 import { Cookies } from "quasar";
 
 // general variables
 const apiStore = useApiStore();
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
 
 const tab = ref("info");
 
@@ -166,7 +168,7 @@ const gender = ref("");
 const rating = ref("");
 
 onMounted(async () => {
-  await apiStore.getUserProfile();
+  await apiStore.getUserProfile(serverURL);
   const user = apiStore.userData;
   email.value = user.email;
   firstName.value = user.userInfo.firstName;
@@ -175,8 +177,6 @@ onMounted(async () => {
   phone.value = user.userInfo.phone;
   rating.value = user.userInfo.rating;
   console.log(user.userInfo);
-
-  // phone.value = user.
 });
 
 const openEditPage = ref(false);
