@@ -12,7 +12,7 @@ let data = [
     id: 1,
     email: "batyr.ashim05@mail.ru",
     userInfo: {
-      gender: 'FEMALE',
+      gender: "FEMALE",
       firstName: "Batyr",
       lastName: "Ashim",
       phone: null,
@@ -24,14 +24,13 @@ let data = [
 ];
 
 describe("Tests for AdminAllUsers", async () => {
-
   const wrapper = mount(AdminAllUsers, {
     global: {
       plugins: [Quasar],
     },
   });
   it("should check the rowsID redrawing", async () => {
-    expect(data).toBeTypeOf('object')
+    expect(data).toBeTypeOf("object");
     wrapper.vm.rows = data;
     await wrapper.vm.$nextTick();
     await flushPromises();

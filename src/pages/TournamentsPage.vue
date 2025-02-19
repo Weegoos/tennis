@@ -23,6 +23,7 @@
           class="q-mr-md q-mt-md"
           @click="openAddTournamentPage"
           v-if="userRole === humanResources"
+          data-testid="openAddTournamentsButton"
         />
       </div>
     </section>
@@ -86,10 +87,14 @@
           @closeEditTournament="closeEditTournament"
           :tournamentID="Number(tournamentID)"
         />
-
       </section>
-      <q-pagination class="justify-center" v-model="current" :min="0" :max="maxPage" @update:model-value="pagination"/>
-
+      <q-pagination
+        class="justify-center"
+        v-model="current"
+        :min="0"
+        :max="maxPage"
+        @update:model-value="pagination"
+      />
     </div>
     <div v-else class="text-center q-mt-md">
       <p class="text-h6 text-bold">There are no more tournaments...</p>
@@ -114,7 +119,7 @@ const $q = useQuasar();
 const apiStore = useApiStore();
 
 const tournaments = ref("");
-const maxPage = ref('')
+const maxPage = ref("");
 const getTournaments = async (page) => {
   getMethod(
     serverURL,
@@ -125,10 +130,13 @@ const getTournaments = async (page) => {
   );
 };
 
-watch(() => tournaments.value, (newVal) => {
-  console.log(newVal.totalElements);
-  maxPage.value = newVal.totalPages - 1
-})
+watch(
+  () => tournaments.value,
+  (newVal) => {
+    console.log(newVal.totalElements);
+    maxPage.value = newVal.totalPages - 1;
+  }
+);
 
 const userRole = ref("");
 const defineUserRole = async () => {
