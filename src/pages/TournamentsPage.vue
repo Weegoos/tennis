@@ -26,9 +26,9 @@
         />
       </div>
     </section>
-    <div v-if="tournaments.length && tournaments">
+    <div v-if="tournaments.totalElements != 0">
       <section
-        v-for="(tournament, id) in tournaments"
+        v-for="(tournament, id) in tournaments.content"
         :key="id"
         class="q-ma-md"
       >
@@ -86,7 +86,10 @@
           @closeEditTournament="closeEditTournament"
           :tournamentID="Number(tournamentID)"
         />
+
       </section>
+      <q-pagination class="justify-center" v-model="current" :min="0" :max="maxPage" @update:model-value="pagination"/>
+
     </div>
     <div v-else class="text-center q-mt-md">
       <p class="text-h6 text-bold">There are no more tournaments...</p>
@@ -96,7 +99,7 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { useApiStore } from "src/stores/api-store";
 import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
@@ -111,15 +114,21 @@ const $q = useQuasar();
 const apiStore = useApiStore();
 
 const tournaments = ref("");
-const getTournaments = async () => {
+const maxPage = ref('')
+const getTournaments = async (page) => {
   getMethod(
     serverURL,
-    "tournament",
+    `tournament/page?page=${page}`,
     tournaments,
     $q,
     "Ошибка при получении турниров"
   );
 };
+
+watch(() => tournaments.value, (newVal) => {
+  console.log(newVal.totalElements);
+  maxPage.value = newVal.totalPages - 1
+})
 
 const userRole = ref("");
 const defineUserRole = async () => {
@@ -127,13 +136,20 @@ const defineUserRole = async () => {
 };
 
 onMounted(() => {
-  getTournaments();
+  getTournaments(0);
   defineUserRole();
 });
 
 // click button function
 const openAddTournamentPage = () => {
   window.open(`${clientURL}hr/createTournament`, "blank");
+};
+
+const current = ref(0);
+const pagination = (page) => {
+  console.log("Текущая страница:", page);
+  current.value = page;
+  getTournaments(current.value);
 };
 
 const exploreTournaments = (item) => {
