@@ -185,7 +185,8 @@
 <script setup>
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, ref, watchEffect } from "vue";
+import { postMethod } from "src/composables/apiMethod/post";
 
 // global variables
 const $q = useQuasar();
@@ -206,44 +207,39 @@ const maxLevel = ref("");
 
 const categoryOptions = ref(["SINGLES_FEMALE"]);
 
+const payload = ref({
+  description: "",
+  startDate: "",
+  endDate: "",
+  startTime: "",
+  category: "",
+  maxParticipants: "",
+  location: "",
+  city: "",
+  minLevel: "",
+  maxLevel: "",
+  cost: "",
+});
+
+watchEffect(() => {
+  payload.value = {
+    description: description.value,
+    startDate: startDate.value,
+    endDate: endDate.value,
+    startTime: time.value,
+    category: category.value,
+    maxParticipants: maxParticipants.value,
+    location: location.value,
+    city: city.value,
+    minLevel: minLevel.value,
+    maxLevel: maxLevel.value,
+    cost: cost.value,
+  };
+});
+
+
 const createEvent = async () => {
-  try {
-    const payload = {
-      description: description.value,
-      startDate: startDate.value,
-      endDate: endDate.value,
-      startTime: time.value,
-      category: category.value,
-      maxParticipants: Number(maxParticipants.value) || 0,
-      location: location.value,
-      city: city.value,
-      minLevel: Number(minLevel.value) || 0,
-      maxLevel: Number(maxLevel.value) || 0,
-      cost: Number(cost.value) || 0,
-    };
-
-    const response = await axios.post(`${serverURL}tournament`, payload, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-    });
-
-    $q.notify({
-      type: "positive",
-      message: "Событие успешно создано!",
-    });
-
-    console.log("Ответ сервера:", response.data);
-  } catch (error) {
-    console.error("Ошибка:", error.response?.data);
-
-    $q.notify({
-      type: "negative",
-      message: "Ошибка при создании события",
-    });
-  }
+  postMethod('tournament', payload, serverURL, $q)
 };
 </script>
 

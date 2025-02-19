@@ -1,7 +1,10 @@
-import { Cookies } from "quasar";
+import { Cookies, QSpinnerGears } from "quasar";
 import axios from "axios";
+import { useNotifyStore } from "src/stores/notify-store";
 
-export async function putMethod(url, id, variableRef, $q) {
+const notifyStore = useNotifyStore()
+export async function putMethod(url, id, variableRef, $q, successMessage, errorMessage) {
+  notifyStore.loading($q, 'Подождите, идет обновление', QSpinnerGears)
   try {
     const response = await axios.put(
       `http://localhost:8000/api/v1/${url}/${id}`,
@@ -15,10 +18,6 @@ export async function putMethod(url, id, variableRef, $q) {
       }
     );
 
-    $q.notify({
-      type: "positive",
-      message: "Событие успешно обновлено!",
-    });
 
     console.log("Ответ сервера:", response.data);
   } catch (error) {
@@ -29,5 +28,8 @@ export async function putMethod(url, id, variableRef, $q) {
       type: "negative",
       message: `Ошибка: ${error.response?.data?.error || "Неизвестная ошибка"}`,
     });
+  }
+  finally{
+    $q.loading.hide()
   }
 }
