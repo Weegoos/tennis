@@ -239,7 +239,7 @@ watchEffect(() => {
 
 
 const createEvent = async () => {
-  postMethod('tournament', payload, serverURL, $q)
+  postMethod(serverURL, 'tournament', payload, $q)
 };
 </script>
 

@@ -1,7 +1,11 @@
 import axios from "axios";
-import { Cookies } from "quasar";
+import { Cookies, QSpinnerGears } from "quasar";
+import { useNotifyStore } from "src/stores/notify-store";
 
-export async function postMethod (url, variableRef, serverURL, $q) {
+const notifyStore = useNotifyStore()
+
+export async function postMethod (serverURL, url, variableRef, $q) {
+  notifyStore.loading($q, 'Подождите, идет создание...', QSpinnerGears)
   try {
     const response = await axios.post(`${serverURL}${url}`, variableRef.value, {
       headers: {
@@ -11,7 +15,11 @@ export async function postMethod (url, variableRef, serverURL, $q) {
       },
     });
     // console.log("Ответ сервера:", response.data);
+    notifyStore.nofifySuccess($q, 'Успешно создан')
   } catch (error) {
     console.error("Ошибка:", error.response?.data);
+    notifyStore.notifyError($q, `${error.response?.data.error}`)
+  }finally{
+    $q.loading.hide()
   }
 }
