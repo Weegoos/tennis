@@ -132,7 +132,7 @@ onMounted(() => {
 });
 
 const deleteCoaches = async (id) => {
-  deleteMethod("coach", id, "Успешно удален");
+  deleteMethod(serverURL, "coach", id, "Успешно удален");
 };
 </script>
 

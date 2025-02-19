@@ -218,7 +218,15 @@ watchEffect(() => {
 });
 
 const updateEvent = async () => {
-  putMethod("tournament", props.tournamentID, payload, $q);
+  putMethod(
+    serverURL,
+    "tournament",
+    props.tournamentID,
+    payload,
+    $q,
+    "Турнир успешно изменен",
+    "Ошибка при создании турнира"
+  );
 };
 </script>
 

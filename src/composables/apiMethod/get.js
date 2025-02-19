@@ -4,10 +4,10 @@ import { useNotifyStore } from "src/stores/notify-store";
 
 const notifyStore = useNotifyStore();
 
-export async function getMethod(url, variableRef, $q) {
+export async function getMethod(serverURL ,url, variableRef, $q) {
   notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
   try {
-    const response = await axios.get(`http://localhost:8000/api/v1/${url}`, {
+    const response = await axios.get(`${serverURL}${url}`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
