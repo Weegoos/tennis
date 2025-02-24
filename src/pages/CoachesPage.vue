@@ -4,7 +4,12 @@
       <p class="text-h4 text-bold">Coaches</p>
       <q-btn color="primary" label="Add a form" @click="addForm" />
     </div>
-    <q-card class="card" v-for="(items, index) in coaches" :key="index">
+    <q-card
+      data-testid="coachesID"
+      class="card"
+      v-for="(items, index) in coaches"
+      :key="index"
+    >
       <q-card-section class="row q-gutter-md">
         <div class="col-2">
           <q-img
@@ -66,7 +71,7 @@
             </div>
           </section>
         </section>
-        <div class="col" align="right">
+        <div class="col" align="right" data-testid="buttonSection">
           <q-btn flat color="black" icon="edit" @click="editCoaches" />
           <q-btn
             flat
@@ -134,6 +139,8 @@ onMounted(() => {
 const deleteCoaches = async (id) => {
   deleteMethod(serverURL, "coach", id, "Успешно удален");
 };
+
+const editCoaches = async () => {};
 </script>
 
 <style scoped>

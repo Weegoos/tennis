@@ -1,14 +1,14 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
-import { Cookies, Quasar, useQuasar } from "quasar";
+import { Quasar, useQuasar } from "quasar";
 import AuthPage from "src/pages/AuthPage.vue";
-import { useNotifyStore } from "src/stores/notify-store";
 import { describe, expect, it, vi } from "vitest";
-import { useRouter } from "vue-router";
 
 installQuasarPlugin();
 const $q = useQuasar();
+
+vi.mock("axios");
 vi.mock("vue-router", () => ({
   useRouter: vi.fn(),
 }));
