@@ -1,3 +1,4 @@
+// not finished
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
@@ -75,5 +76,17 @@ describe("Tests for AdminAllCoaches", () => {
     await flushPromises();
     const rowsID = wrapper.findComponent('[data-testid="rowsID"]');
     expect(rowsID.exists()).toBe(true);
+  });
+
+  it("should check the case when data is null", async () => {
+    wrapper.vm.rows = [];
+    await wrapper.vm.$nextTick();
+    await flushPromises();
+
+    const rowsID = wrapper.find('[data-testid="rowsID"]');
+    expect(rowsID.exists()).toBe(false);
+
+    const noData = wrapper.find('[data-testid="noData"]');
+    expect(noData.exists()).toBe(true);
   });
 });

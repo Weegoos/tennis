@@ -11,7 +11,7 @@
     />
     <CoachesDetailedInformation
       :isOpenCoachesDetailedInformation="isOpenCoachesDetailedInformation"
-      :coachesInfo="coachesInfo"
+      :coachesInfo="Object(coachesInfo)"
       @closeCoacheDetailedInformation="closeCoacheDetailedInformation"
     />
   </div>
