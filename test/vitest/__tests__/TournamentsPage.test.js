@@ -117,24 +117,26 @@ describe("Tests for TournamentsPage", () => {
     expect(wrapper.find('[data-testid="tournamentContent"]').exists()).toBe(
       true
     );
-    expect(data.content[0].description).not.toBeNull
-    expect(data.content[0].category).not.toBeNull
-    expect(data.content[0].startDate).not.toBeNull
-    expect(data.content[0].endDate).not.toBeNull
-    expect(data.content[0].location).not.toBeNull
-    expect(data.content[0].city).not.toBeNull
+    expect(data.content[0].description).not.toBeNull;
+    expect(data.content[0].category).not.toBeNull;
+    expect(data.content[0].startDate).not.toBeNull;
+    expect(data.content[0].endDate).not.toBeNull;
+    expect(data.content[0].location).not.toBeNull;
+    expect(data.content[0].city).not.toBeNull;
   });
 
-  it('should check the userRole data-testid redrawing', async () => {
+  it("should check the userRole data-testid redrawing", async () => {
     wrapper.vm.userRole = wrapper.vm.humanResources;
     await nextTick();
     await flushPromises();
     const userRoleElement = wrapper.find('[data-testid="userRole"]');
     expect(userRoleElement.exists()).toBe(true);
-  })
+  });
 
-  it('should check the exploreTournaments data-testid redrawing', async () => {
-    const exploreTournaments = wrapper.find('[data-testid="exploreTournaments"]');
+  it("should check the exploreTournaments data-testid redrawing", async () => {
+    const exploreTournaments = wrapper.find(
+      '[data-testid="exploreTournaments"]'
+    );
     expect(exploreTournaments.exists()).toBe(true);
   });
 
