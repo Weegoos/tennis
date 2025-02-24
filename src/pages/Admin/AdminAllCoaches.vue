@@ -26,6 +26,7 @@ import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
+import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -73,35 +74,18 @@ const columns = [
 
 const rows = ref([]);
 const getEnabledCoaches = async () => {
-  notifyStore.loading(
+  getMethod(
+    serverURL,
+    "coach?enabled=false",
+    rows,
     $q,
-    "Подождите данные о тренерах грузится...",
-    QSpinnerGears
-  );
-  try {
-    const response = await axios.get(`${serverURL}coach?enabled=false`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-    });
-
-    console.log(response.data);
-    notifyStore.nofifySuccess($q, "Данные о тренере успешно загружены");
-    rows.value = response.data.map((user, index) => ({
+    "Ошибка при получении данных о тренерах"
+  ).then(() => {
+    rows.value = rows.value.map((user, index) => ({
       ...user,
       id: index + 1,
     }));
-  } catch (error) {
-    console.log(error);
-    notifyStore.notifyError(
-      $q,
-      `Ошибка при получении данных о тренере: ${error}`
-    );
-  } finally {
-    $q.loading.hide();
-  }
+  });
 };
 
 onMounted(() => {

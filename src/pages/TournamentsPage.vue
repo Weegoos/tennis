@@ -96,7 +96,7 @@
         @update:model-value="pagination"
       />
     </div>
-    <div data-testid="noInfo"  v-else class="text-center q-mt-md">
+    <div data-testid="noInfo" v-else class="text-center q-mt-md">
       <p class="text-h6 text-bold">There are no more tournaments...</p>
     </div>
   </div>
