@@ -7,6 +7,29 @@ import { describe, it, vi } from "vitest";
 
 installQuasarPlugin();
 
+const data = [
+  {
+    id: 1,
+    user: {
+      gender: null,
+      firstName: "Batyr",
+      lastName: "Ashim",
+      phone: null,
+      rating: null,
+      age: null,
+    },
+    enabled: false,
+    city: "ASTANA",
+    language: "string",
+    cost: 0,
+    service: "string",
+    description: "string",
+    experience: 0,
+    stadium: "string",
+    createdAt: [2025, 2, 19, 6, 22, 43, 880642000],
+  },
+];
+
 vi.mock("quasar", async () => {
   const actual = await vi.importActual("quasar");
   return {
@@ -44,5 +67,5 @@ describe("Tests for AdminAllCoaches", () => {
       plugins: [pinia, Quasar],
     },
   });
-  it("", () => {});
+  it("should test the rowsID data-testid redrawing", () => {});
 });

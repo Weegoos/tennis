@@ -21,8 +21,7 @@
 </template>
 
 <script setup>
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import axios from "axios";
+import { useQuasar } from "quasar";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
