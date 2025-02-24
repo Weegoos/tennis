@@ -1,9 +1,9 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
-import { mount } from "@vue/test-utils";
+import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
 import { Quasar } from "quasar";
 import AdminAllCoaches from "src/pages/Admin/AdminAllCoaches.vue";
-import { describe, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 installQuasarPlugin();
 
@@ -67,5 +67,13 @@ describe("Tests for AdminAllCoaches", () => {
       plugins: [pinia, Quasar],
     },
   });
-  it("should test the rowsID data-testid redrawing", () => {});
+  it("should test the rowsID data-testid redrawing", async () => {
+    expect(data).not.toBeNull();
+    expect(data.length).toBeGreaterThan(0);
+    wrapper.vm.rows = data;
+    await wrapper.vm.$nextTick();
+    await flushPromises();
+    const rowsID = wrapper.findComponent('[data-testid="rowsID"]');
+    expect(rowsID.exists()).toBe(true);
+  });
 });

@@ -22,7 +22,6 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
@@ -30,7 +29,6 @@ import { getMethod } from "src/composables/apiMethod/get";
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
-const notifyStore = useNotifyStore();
 const $q = useQuasar();
 
 const columns = [
@@ -92,7 +90,7 @@ onMounted(() => {
 });
 
 const isOpenCoachesDetailedInformation = ref(false);
-const coachesInfo = ref("");
+const coachesInfo = ref([]);
 const viewDetailedInformation = (evt, row, index) => {
   isOpenCoachesDetailedInformation.value = true;
   coachesInfo.value = row;
