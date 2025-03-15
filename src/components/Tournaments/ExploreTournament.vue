@@ -10,7 +10,7 @@
       <q-table
         flat
         bordered
-        title="Additional information"
+        title="Additional informations"
         :rows="rows"
         :columns="columns"
         row-key="name"
@@ -19,7 +19,6 @@
       />
     </div>
     <div class="q-pa-md">
-      {{ cleanParticipants }}
       <q-table
         flat
         bordered
@@ -31,20 +30,52 @@
         hide-bottom
       />
     </div>
+    <div class="q-pa-md">
+      <q-btn
+        color="green-4"
+        no-caps
+        label="Register to the tournament"
+        @click="registerToTournament"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import { useNotifyStore } from "src/stores/notify-store";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 import { getMethod } from "src/composables/apiMethod/get";
+import { postMethod } from "src/composables/apiMethod/post";
+import axios from "axios";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const apiStore = useApiStore();
+
+const infoAboutRegisteredUser = ref("");
+const registerToTournament = async () => {
+  const url = window.location.hash;
+  const match = url.match(/\/hr\/(\d+)/);
+  const id = Number(match[1]);
+  console.log(id);
+  const apiStore = useApiStore();
+
+  await apiStore.getUserProfile();
+  console.log(apiStore.userData.id);
+  console.log(typeof apiStore.userData.id);
+
+  const tournamentRegistration = {
+    tournamentId: Number(id),
+    userId: apiStore.userData.id,
+    partnerId: undefined,
+  };
+  await postMethod(serverURL, "registration", tournamentRegistration, $q);
+};
 
 const columns = [
   {
@@ -230,8 +261,8 @@ const getInformationAboutPaarticipants = async (id) => {
       ? participants.value
       : [];
 
-  participantsRows.value = Array.isArray(cleanParticipants)
-    ? cleanParticipants
+  participantsRows.value = Array.isArray(participants.value)
+    ? participants.value.flat()
     : [];
 
   console.log("Processed participantsRows:", participantsRows.value);
@@ -242,4 +273,24 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style scoped>
+.tournament-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  position: relative;
+}
+
+.match {
+  text-align: center;
+}
+
+.tournament-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+</style>

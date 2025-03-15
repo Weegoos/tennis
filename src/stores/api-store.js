@@ -13,9 +13,9 @@ export const useApiStore = defineStore("api", {
   }),
   actions: {
     async getUserProfile() {
-      const $q = useQuasar();
       const notifyStore = useNotifyStore();
-      notifyStore.loading($q, "Данные загружаются...", QSpinnerGears);
+      const $q = useQuasar();
+      // notifyStore.loading($q, "Данные загружаются...", QSpinnerGears);
       try {
         const response = await axios.get(
           "http://localhost:8000/api/v1/user/authenticated",
@@ -31,13 +31,13 @@ export const useApiStore = defineStore("api", {
         this.userData = response.data;
         // console.log(response.data);
       } catch (error) {
-        notifyStore.notifyError(
-          $q,
-          `Ошибка передачи данных о пользователе: ${error}`
-        );
+        // notifyStore.notifyError(
+        //   $q,
+        //   `Ошибка передачи данных о пользователе: ${error}`
+        // );
         console.error(error);
       } finally {
-        $q.loading.hide();
+        // $q.loading.hide();
       }
     },
 
