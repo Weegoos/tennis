@@ -157,7 +157,6 @@ const $q = useQuasar();
 const notifyStore = useNotifyStore();
 const cookie = Cookies.has("accessToken");
 const router = useRouter();
-console.log(cookie);
 
 // slide
 const slide = ref("style");
@@ -167,8 +166,6 @@ let interval = null;
 
 // variables
 const isPwd = ref(true);
-
-console.log(serverURL);
 
 onMounted(() => {
   interval = setInterval(() => {
@@ -204,7 +201,6 @@ const registration = async () => {
       withCredentials: true,
     });
     notifyStore.nofifySuccess($q, "Сообщение отправлено в почту!");
-    console.log("Response:", response.data);
     Cookies.set("accessToken", response.data.accessToken);
     Cookies.set("refreshToken", response.data.refreshToken);
   } catch (error) {

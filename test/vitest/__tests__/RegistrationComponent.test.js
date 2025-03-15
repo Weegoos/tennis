@@ -1,12 +1,11 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia } from "pinia";
-import { Cookies, Quasar, useQuasar } from "quasar";
+import { Quasar, useQuasar } from "quasar";
 import RegistrationPage from "src/pages/RegistrationPage.vue";
 import { useNotifyStore } from "src/stores/notify-store";
 import { describe, expect, it, vi } from "vitest";
 import axios from "axios";
-import { useRouter } from "vue-router";
 
 installQuasarPlugin();
 const $q = useQuasar();
@@ -36,6 +35,7 @@ vi.mock("quasar", async () => {
       has: vi.fn(),
     },
     useQuasar: vi.fn(() => ({
+      screen: { width: 800 },
       loading: {
         show: vi.fn(),
         hide: vi.fn(),
@@ -106,6 +106,11 @@ describe("Tests for Registration Page", () => {
     );
     expect(registrationButton.exists()).toBe(true);
     registrationButton.trigger("click");
+    expect(axios.post).toHaveBeenCalledWith(
+      wrapper.vm.$serverURL + "auth/signup",
+      expect.any(Object),
+      expect.any(Object)
+    );
   });
 
   it("should successfully register a user", async () => {
