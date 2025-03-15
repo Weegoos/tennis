@@ -168,7 +168,7 @@ const gender = ref("");
 const rating = ref("");
 
 onMounted(async () => {
-  await apiStore.getUserProfile(serverURL);
+  await apiStore.getUserProfile();
   const user = apiStore.userData;
   email.value = user.email;
   firstName.value = user.userInfo.firstName;

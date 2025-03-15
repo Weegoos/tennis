@@ -5,7 +5,7 @@
         <p class="text-h5 text-bold text-center q-mt-md">Create Coache</p>
         <q-card-section class="row q-gutter-md">
           <section class="col">
-            <q-input v-model="city" type="text" label="City" />
+            <q-select v-model="city" :options="cityOptions" label="City" />
             <q-input v-model="language" type="text" label="Language" />
             <q-input v-model="cost" type="number" label="Cost" />
           </section>
@@ -35,13 +35,15 @@
 <script setup>
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
-import { getCurrentInstance, ref, watch } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const apiStore = useApiStore();
 
 const props = defineProps({
   openForm: {
@@ -71,6 +73,7 @@ const service = ref("");
 const description = ref("");
 const experience = ref("");
 const stadium = ref("");
+const cityOptions = ref([]);
 
 const createCoaches = async () => {
   const payload = {
@@ -84,6 +87,15 @@ const createCoaches = async () => {
   };
   postMethod(serverURL, "coach", payload, $q, "Тренер успешно зареган");
 };
+
+const getCityList = async () => {
+  await apiStore.getCity(serverURL, $q);
+  cityOptions.value = apiStore.city.value;
+};
+
+onMounted(() => {
+  getCityList();
+});
 </script>
 
 <style></style>
