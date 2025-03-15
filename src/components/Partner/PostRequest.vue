@@ -94,6 +94,7 @@ const postRequest = async () => {
 };
 
 const getCity = async () => {
+  await apiStore.getCity(serverURL, $q);
   cityOptions.value = apiStore.city.value;
 };
 

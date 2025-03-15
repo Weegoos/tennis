@@ -61,17 +61,25 @@
                 </div>
               </section>
             </section>
-            <div class="col" align="right" data-testid="buttonSection">
+            <div
+              v-if="(userInfo.role = humanResources)"
+              class="col"
+              align="right"
+              data-testid="buttonSection"
+            >
               <q-btn flat color="black" icon="edit" @click="editCoaches" />
               <q-btn
                 flat
                 color="red-4"
                 icon="delete"
-                @click="deleteCoaches(items.id)"
+                @click="deletePartner(items.id)"
               />
             </div>
           </q-card-section>
         </q-card>
+      </section>
+      <section v-else class="text-center text-h5 text-bold">
+        There is no announcement about the coaches
       </section>
     </section>
     <PostRequest
@@ -91,12 +99,16 @@
 <script setup>
 import { useQuasar } from "quasar";
 import PostRequest from "src/components/Partner/PostRequest.vue";
+import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
+import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const humanResources = proxy.$humanResources;
+const apiStore = useApiStore();
 const $q = useQuasar();
 
 const openPostRequestWindow = ref(false);
@@ -120,6 +132,17 @@ const getPartner = async (page) => {
   );
 };
 
+const deletePartner = async (id) => {
+  await deleteMethod(serverURL, "partner", id);
+};
+
+const userInfo = ref([]);
+const getInformationAboutUser = async () => {
+  await apiStore.getUserProfile();
+  userInfo.value = apiStore.userData;
+  console.log(userInfo.value);
+};
+
 watch(
   () => partner.value,
   (newVal) => {
@@ -129,6 +152,7 @@ watch(
 
 onMounted(() => {
   getPartner(0);
+  getInformationAboutUser();
 });
 
 const current = ref(0);
