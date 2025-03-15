@@ -122,7 +122,6 @@ const getAllCoaches = async () => {
       withCredentials: true,
     });
 
-    console.log(response.data);
     const allCoaches = response.data.map((tournaments) => tournaments);
     coaches.value = allCoaches;
   } catch (error) {

@@ -84,8 +84,6 @@ const getAllUsers = async () => {
       ...user,
       id: index + 1,
     }));
-
-    console.log(rows.value[0].userInfo.firstName);
   } catch (error) {
     console.error(error);
   }

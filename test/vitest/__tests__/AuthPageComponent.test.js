@@ -24,6 +24,7 @@ vi.mock("quasar", async () => {
       has: vi.fn(),
     },
     useQuasar: vi.fn(() => ({
+      screen: { width: 800 },
       loading: {
         show: vi.fn(),
         hide: vi.fn(),

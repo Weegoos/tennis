@@ -24,6 +24,8 @@ vi.mock("src/stores/notify-store", () => ({
   })),
 }));
 
+const data = {};
+
 vi.mock("quasar", async () => {
   const actual = await vi.importActual("quasar");
   return {

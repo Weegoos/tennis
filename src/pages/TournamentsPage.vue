@@ -133,7 +133,6 @@ const getTournaments = async (page) => {
 watch(
   () => tournaments.value,
   (newVal) => {
-    console.log(newVal.totalElements);
     maxPage.value = newVal.totalPages - 1;
   }
 );
