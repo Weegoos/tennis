@@ -51,10 +51,6 @@
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span data-testid="" class="infoHeadline">Status</span>
-                  <p class="infoStyle">
-                    {{ status }}
-                  </p>
                   <span data-testid="" class="infoHeadline">Experience</span>
                   <p class="infoStyle">
                     {{ props.coacheInformation.experience || "Not specified" }}
@@ -120,19 +116,6 @@ watch(
     isOpenDetailedWindowAboutCoache.value = newVal;
   }
 );
-
-const status = ref("");
-watch(
-  () => props.coacheInformation.enabled,
-  (newVal) => {
-    if (newVal == false) {
-      status.value = "Not busy";
-    } else {
-      status.value = "Busy";
-    }
-  }
-);
-
 const emit = defineEmits(["closeWindow"]);
 const closeWindow = () => {
   emit("closeWindow");

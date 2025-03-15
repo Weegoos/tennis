@@ -118,6 +118,7 @@ const coacheInformation = ref("");
 const viewDetailedInformationAboutCoache = (info) => {
   openDetailedWindow.value = true;
   coacheInformation.value = info;
+  console.log(userInfo);
 };
 
 const closeWindow = () => {
