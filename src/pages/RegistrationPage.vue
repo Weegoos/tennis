@@ -5,7 +5,10 @@
     @keydown="handleKey"
   >
     <!-- Левая половина с видео -->
-    <div style="flex: 1; position: relative; overflow: hidden">
+    <div
+      style="flex: 1; position: relative; overflow: hidden"
+      v-if="$q.screen.width > mobileWidth"
+    >
       <video
         src="../assets/background.mp4"
         autoplay
@@ -50,12 +53,19 @@
     <div class="content">
       <q-card class="my-card" style="width: 90%">
         <q-card-section align="center">
-          <p class="text-h4 text-bold" data-testid="registrationContent">
+          <p
+            class="text-bold"
+            :class="$q.screen.width > mobileWidth ? 'text-h4' : 'text-h6'"
+            data-testid="registrationContent"
+          >
             Registration
           </p>
         </q-card-section>
         <q-card-section>
-          <div class="row q-gutter-sm">
+          <div
+            class="q-gutter-sm"
+            :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
+          >
             <div class="col">
               <q-input
                 data-testid="nameInput"
@@ -77,7 +87,10 @@
           </div>
         </q-card-section>
         <q-card-section>
-          <div class="row q-gutter-sm">
+          <div
+            class="q-gutter-sm"
+            :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
+          >
             <div class="col">
               <q-input
                 v-model="email"
@@ -139,6 +152,7 @@ import { useNotifyStore } from "src/stores/notify-store";
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
 const cookie = Cookies.has("accessToken");
