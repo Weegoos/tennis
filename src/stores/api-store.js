@@ -29,7 +29,7 @@ export const useApiStore = defineStore("api", {
           }
         );
         this.userData = response.data;
-        // console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         // notifyStore.notifyError(
         //   $q,
