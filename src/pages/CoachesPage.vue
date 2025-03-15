@@ -60,7 +60,12 @@
               </div>
             </section>
           </section>
-          <div class="col" align="right" data-testid="buttonSection">
+          <div
+            class="col"
+            v-if="userInfo.role == humanResources"
+            align="right"
+            data-testid="buttonSection"
+          >
             <q-btn flat color="black" icon="edit" @click="editCoaches" />
             <q-btn
               flat
@@ -98,11 +103,14 @@ import { useQuasar } from "quasar";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import DetailedInformation from "src/components/Coaches/DetailedInformation.vue";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const humanResources = proxy.$humanResources;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const openForm = ref(false);
 const addForm = () => {
@@ -137,6 +145,12 @@ const getAllCoaches = async (page) => {
   );
 };
 
+const userInfo = ref([]);
+const getUserInformation = async () => {
+  await apiStore.getUserProfile();
+  userInfo.value = apiStore.userData;
+};
+
 watch(
   () => coaches.value,
   (newVal) => {
@@ -146,6 +160,7 @@ watch(
 
 onMounted(() => {
   getAllCoaches(0);
+  getUserInformation();
 });
 
 const current = ref(0);
