@@ -5,7 +5,10 @@
     @keydown="handleKey"
   >
     <!-- Левая половина с видео -->
-    <div style="flex: 1; position: relative; overflow: hidden">
+    <div
+      style="flex: 1; position: relative; overflow: hidden"
+      v-if="$q.screen.width > mobileWidth"
+    >
       <video
         src="../assets/background.mp4"
         autoplay
@@ -18,15 +21,22 @@
 
     <!-- Правая половина с текстом -->
     <div class="content">
-      <q-card class="my-card" style="width: 90%">
+      <q-card class="my-card" style="width: 100%">
         <q-card-section align="center">
-          <p class="text-h4 text-bold" data-testid="authorizationContent">
+          <p
+            class="text-bold"
+            :class="$q.screen.width > mobileWidth ? 'text-h4' : 'text-h6'"
+            data-testid="authorizationContent"
+          >
             Authorization
           </p>
         </q-card-section>
 
         <q-card-section>
-          <div class="row q-gutter-sm">
+          <div
+            class="q-gutter-sm"
+            :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
+          >
             <div class="col">
               <q-input
                 v-model="email"
@@ -89,6 +99,7 @@ import { useApiStore } from "src/stores/api-store";
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
 const cookie = Cookies.has("accessToken");
