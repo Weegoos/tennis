@@ -4,7 +4,7 @@ import { useNotifyStore } from "src/stores/notify-store";
 
 const notifyStore = useNotifyStore();
 
-export async function postMethod(serverURL, url, variableRef, $q) {
+export async function postMethod(serverURL, url, variableRef, $q, successMsg) {
   notifyStore.loading($q, "Подождите, идет создание...", QSpinnerGears);
   try {
     const response = await axios.post(`${serverURL}${url}`, variableRef, {
@@ -15,7 +15,7 @@ export async function postMethod(serverURL, url, variableRef, $q) {
       },
     });
     console.log("Ответ сервера:", response.data);
-    notifyStore.nofifySuccess($q, "Успешно создан");
+    notifyStore.nofifySuccess($q, successMsg);
   } catch (error) {
     console.error("Ошибка:", error.response?.data);
     notifyStore.notifyError($q, `${error.response?.data.error}`);

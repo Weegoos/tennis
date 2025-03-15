@@ -17,6 +17,7 @@ export async function getMethod(serverURL, url, variableRef, $q, errorMessage) {
 
     // console.log(response.data);
     variableRef.value = response.data;
+    return response.data;
   } catch (error) {
     console.error(error.message);
     notifyStore.notifyError($q, `${errorMessage}: ${error.message}`);

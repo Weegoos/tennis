@@ -2,7 +2,7 @@
   <div>
     <q-dialog v-model="form" persistent>
       <q-card style="width: 800px">
-        <p class="text-h5 text-bold text-center q-mt-md">Coach's profile</p>
+        <p class="text-h5 text-bold text-center q-mt-md">Create Coache</p>
         <q-card-section class="row q-gutter-md">
           <section class="col">
             <q-input v-model="city" type="text" label="City" />
@@ -11,7 +11,12 @@
           </section>
           <section class="col">
             <q-input v-model="service" type="text" label="Service" />
-            <q-input v-model="description" type="text" label="Description" />
+            <q-input
+              v-model="description"
+              type="text"
+              autogrow
+              label="Description"
+            />
             <q-input v-model="experience" type="number" label="Experience" />
           </section>
         </q-card-section>
@@ -31,6 +36,7 @@
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
 import { getCurrentInstance, ref, watch } from "vue";
+import { postMethod } from "src/composables/apiMethod/post";
 
 // global variables
 const $q = useQuasar();
@@ -67,39 +73,16 @@ const experience = ref("");
 const stadium = ref("");
 
 const createCoaches = async () => {
-  try {
-    const payload = {
-      city: city.value,
-      language: language.value,
-      cost: Number(cost.value) || 0,
-      service: service.value,
-      description: description.value,
-      experience: Number(experience.value) || 0,
-      stadium: stadium.value,
-    };
-
-    const response = await axios.post(`${serverURL}coach`, payload, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-    });
-
-    $q.notify({
-      type: "positive",
-      message: "Тренер успешно зарегестрирован!",
-    });
-
-    console.log("Ответ сервера:", response.data);
-  } catch (error) {
-    console.error("Ошибка:", error.response?.data);
-
-    $q.notify({
-      type: "negative",
-      message: "Ошибка при создании тренера",
-    });
-  }
+  const payload = {
+    city: city.value,
+    language: language.value,
+    cost: Number(cost.value) || 0,
+    service: service.value,
+    description: description.value,
+    experience: Number(experience.value) || 0,
+    stadium: stadium.value,
+  };
+  postMethod(serverURL, "coach", payload, $q, "Тренер успешно зареган");
 };
 </script>
 
