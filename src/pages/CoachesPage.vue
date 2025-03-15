@@ -10,7 +10,11 @@
         class="card"
         v-for="(items, index) in coaches.content"
         :key="index"
+        @click="viewDetailedInformationAboutCoache"
       >
+        <q-tooltip>
+          Click here to view detailed information about the coach</q-tooltip
+        >
         <q-card-section class="row q-gutter-md">
           <div class="col-2">
             <q-img
