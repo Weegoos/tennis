@@ -10,7 +10,7 @@
         class="card"
         v-for="(items, index) in coaches.content"
         :key="index"
-        @click="viewDetailedInformationAboutCoache"
+        @click="viewDetailedInformationAboutCoache(items)"
       >
         <q-tooltip>
           Click here to view detailed information about the coach</q-tooltip
@@ -37,14 +37,6 @@
               <div class="col">
                 <div class="q-mt-lg">
                   <p class="text-body1">
-                    <span class="text-bold">Gender: </span
-                    ><span>{{ items.user.gender || "Not specified" }}</span>
-                  </p>
-                  <p class="text-body1">
-                    <span class="text-bold">Phone number: </span
-                    ><span>{{ items.user.phone || "Not specified" }}</span>
-                  </p>
-                  <p class="text-body1">
                     <span class="text-bold">Service: </span
                     ><span>{{ items.service || "Not specified" }}</span>
                   </p>
@@ -63,14 +55,6 @@
                   <p class="text-body1">
                     <span class="text-bold">City: </span
                     ><span>{{ items.city }}</span>
-                  </p>
-                  <p class="text-body1">
-                    <span class="text-bold">Language: </span
-                    ><span>{{ items.language }}</span>
-                  </p>
-                  <p class="text-body1">
-                    <span class="text-bold">Stadium: </span
-                    ><span>{{ items.stadium }}</span>
                   </p>
                 </div>
               </div>
@@ -92,6 +76,11 @@
       There is no announcement about the coaches
     </section>
     <AddFormComponent :openForm="openForm" @closeForm="closeForm" />
+    <DetailedInformation
+      :openDetailedWindow="openDetailedWindow"
+      @closeWindow="closeWindow"
+      :coacheInformation="coacheInformation"
+    />
     <q-pagination
       class="justify-center"
       v-model="current"
@@ -105,11 +94,10 @@
 <script setup>
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import AddFormComponent from "src/components/Coaches/AddFormComponent.vue";
-import { useNotifyStore } from "src/stores/notify-store";
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import axios from "axios";
+import { useQuasar } from "quasar";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
+import DetailedInformation from "src/components/Coaches/DetailedInformation.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -123,6 +111,17 @@ const addForm = () => {
 
 const closeForm = () => {
   openForm.value = false;
+};
+
+const openDetailedWindow = ref(false);
+const coacheInformation = ref("");
+const viewDetailedInformationAboutCoache = (info) => {
+  openDetailedWindow.value = true;
+  coacheInformation.value = info;
+};
+
+const closeWindow = () => {
+  openDetailedWindow.value = false;
 };
 
 const coaches = ref("");
