@@ -70,7 +70,8 @@ const routes = [
       },
       {
         path: ":id",
-        component: () => import("components/Tournaments/ExploreTournament.vue"),
+        component: () =>
+          import("src/components/Tournaments/ExploreTournament.vue"),
       },
     ],
   },

@@ -35,8 +35,17 @@
         color="green-4"
         no-caps
         label="Register to the tournament"
+        :disable="isRelatedUserToTournament"
         @click="registerToTournament"
-      />
+      >
+        <q-tooltip
+          transition-show="scale"
+          transition-hide="scale"
+          v-if="isRelatedUserToTournament"
+        >
+          {{ messageToUser }}
+        </q-tooltip>
+      </q-btn>
     </div>
   </div>
 </template>
@@ -47,27 +56,21 @@ import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 import { getMethod } from "src/composables/apiMethod/get";
 import { postMethod } from "src/composables/apiMethod/post";
-import axios from "axios";
 import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
-const notifyStore = useNotifyStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const apiStore = useApiStore();
 
-const infoAboutRegisteredUser = ref("");
 const registerToTournament = async () => {
   const url = window.location.hash;
   const match = url.match(/\/hr\/(\d+)/);
   const id = Number(match[1]);
   console.log(id);
-  const apiStore = useApiStore();
 
   await apiStore.getUserProfile();
-  console.log(apiStore.userData.id);
-  console.log(typeof apiStore.userData.id);
 
   const tournamentRegistration = {
     tournamentId: Number(id),
@@ -168,7 +171,7 @@ const getTournamentsByID = async (id) => {
     $q,
     "Ошибка при получении турнира"
   );
-
+  checkTheUserInfoAndTournamentInfo(tournament.value);
   rows.value =
     tournament.value && typeof tournament.value === "object"
       ? [
@@ -266,6 +269,28 @@ const getInformationAboutPaarticipants = async (id) => {
     : [];
 
   console.log("Processed participantsRows:", participantsRows.value);
+};
+
+const isRelatedUserToTournament = ref(false);
+const messageToUser = ref("");
+const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
+  console.log(tournamentInfo);
+  await apiStore.getUserProfile();
+  console.log(apiStore.userData.userInfo.rating);
+  if (tournamentInfo.category === apiStore.userData.userInfo.gender) {
+    isRelatedUserToTournament.value = true;
+    messageToUser.value =
+      "Your gender and the required gender in the tournament do not match";
+  }
+
+  if (
+    tournamentInfo.minLevel > apiStore.userData.userInfo.rating ||
+    tournamentInfo.maxLevel < apiStore.userData.userInfo.rating
+  ) {
+    isRelatedUserToTournament.value = true;
+    messageToUser.value =
+      "Your level does not match the required level in the tournament";
+  }
 };
 
 onMounted(() => {
