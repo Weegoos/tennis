@@ -140,7 +140,7 @@ const getAllCoaches = async (page) => {
 watch(
   () => coaches.value,
   (newVal) => {
-    maxPage.value = newVal.totalPages;
+    maxPage.value = newVal.totalPages - 1;
   }
 );
 
