@@ -15,12 +15,25 @@
         </q-card-section>
       </q-card>
     </section>
-    <PostRequest />
+    <PostRequest
+      :openPostRequestWindow="openPostRequestWindow"
+      @closePostRequestWindow="closePostRequestWindow"
+    />
   </div>
 </template>
 
 <script setup>
 import PostRequest from "src/components/Partner/PostRequest.vue";
+import { ref } from "vue";
+
+const openPostRequestWindow = ref(false);
+const sendRequest = () => {
+  openPostRequestWindow.value = true;
+};
+
+const closePostRequestWindow = () => {
+  openPostRequestWindow.value = false;
+};
 </script>
 
 <style scoped>
