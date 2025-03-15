@@ -55,6 +55,9 @@
                     From {{ tournament.startDate }} To {{ tournament.endDate }}
                   </p>
                   <p>{{ tournament.location }}, {{ tournament.city }}</p>
+                  <p class="text-bold">
+                    Participants: 10/{{ tournament.maxParticipants }}
+                  </p>
                 </div>
                 <div
                   class="col"

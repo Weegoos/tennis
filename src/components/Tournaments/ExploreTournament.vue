@@ -18,14 +18,27 @@
         hide-bottom
       />
     </div>
+    <div class="q-pa-md">
+      {{ cleanParticipants }}
+      <q-table
+        flat
+        bordered
+        title="Participant(s)"
+        :rows="participantsRows"
+        :columns="participantsColumns"
+        row-key="participant"
+        :separator="separator"
+        hide-bottom
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import axios from "axios";
 import { useNotifyStore } from "src/stores/notify-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
+import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
 const $q = useQuasar();
@@ -109,6 +122,7 @@ const defineId = () => {
     const id = match[1];
     console.log(id);
     getTournamentsByID(id);
+    getInformationAboutPaarticipants(id);
   } else {
     console.log("Не найден id");
   }
@@ -116,40 +130,111 @@ const defineId = () => {
 
 const tournament = ref("");
 const getTournamentsByID = async (id) => {
-  notifyStore.loading($q, "Подождите, данные загружаются...", QSpinnerGears);
-  try {
-    const response = await axios.get(`${serverURL}tournament/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-      withCredentials: true,
-    });
+  await getMethod(
+    serverURL,
+    `tournament/${id}`,
+    tournament,
+    $q,
+    "Ошибка при получении турнира"
+  );
 
-    console.log(response.data);
-    tournament.value = response.data;
-    rows.value = [
-      {
-        id: response.data.id,
-        startTime: response.data.startTime,
-        description: response.data.description,
-        location: response.data.location,
-        city: response.data.city,
-        startDate: response.data.startDate,
-        endDate: response.data.endDate,
-        minLevel: response.data.minLevel,
-        maxLevel: response.data.maxLevel,
-        maxParticipants: response.data.maxParticipants,
-        cost: response.data.cost,
-        category: response.data.category,
-      },
-    ];
-  } catch (error) {
-    console.error(error);
-  } finally {
-    $q.loading.hide();
-  }
+  rows.value =
+    tournament.value && typeof tournament.value === "object"
+      ? [
+          {
+            id: tournament.value.id,
+            startTime: tournament.value.startTime,
+            description: tournament.value.description,
+            location: tournament.value.location,
+            city: tournament.value.city,
+            startDate: tournament.value.startDate,
+            endDate: tournament.value.endDate,
+            minLevel: tournament.value.minLevel,
+            maxLevel: tournament.value.maxLevel,
+            maxParticipants: tournament.value.maxParticipants,
+            cost: tournament.value.cost,
+            category: tournament.value.category,
+          },
+        ]
+      : [];
+};
+
+const participantsColumns = [
+  {
+    name: "id",
+    label: "№",
+    align: "left",
+    field: "id",
+    sortable: true,
+  },
+  {
+    name: "email",
+    label: "Email",
+    align: "left",
+    field: "email",
+    sortable: true,
+  },
+  {
+    name: "firstName",
+    label: "First Name",
+    align: "left",
+    field: (user) => user.userInfo.firstName,
+    sortable: true,
+  },
+  {
+    name: "lastName",
+    label: "Last Name",
+    align: "left",
+    field: (user) => user.userInfo.lastName,
+    sortable: true,
+  },
+  {
+    name: "phone",
+    label: "Phone",
+    align: "left",
+    field: (user) => user.userInfo.phone,
+    sortable: true,
+  },
+  {
+    name: "gender",
+    label: "Gender",
+    align: "left",
+    field: (user) => user.userInfo.gender,
+    sortable: true,
+  },
+  {
+    name: "createdAt",
+    label: "Created At",
+    align: "left",
+    field: "createdAt",
+    sortable: true,
+  },
+];
+const participants = ref([]);
+const participantsRows = ref([]);
+const getInformationAboutPaarticipants = async (id) => {
+  await getMethod(
+    serverURL,
+    `tournament/${id}/participants`,
+    participants,
+    $q,
+    "Ошибка при получении информации о участниках"
+  );
+
+  console.log("API Response:", participants.value); // Посмотреть, что реально приходит
+
+  const cleanParticipants =
+    Array.isArray(participants.value) && Array.isArray(participants.value[0])
+      ? participants.value[0]
+      : Array.isArray(participants.value)
+      ? participants.value
+      : [];
+
+  participantsRows.value = Array.isArray(cleanParticipants)
+    ? cleanParticipants
+    : [];
+
+  console.log("Processed participantsRows:", participantsRows.value);
 };
 
 onMounted(() => {
