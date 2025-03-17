@@ -98,7 +98,18 @@
               <q-input v-model="location" type="text" label="Location" />
             </div>
             <div class="col">
-              <q-input v-model="city" type="text" label="City" />
+              <q-input
+                v-model="city"
+                type="text"
+                label="City"
+                list="cityList"
+              />
+
+              <datalist id="cityList">
+                <section v-for="(city, id) in cityOptions" :key="id">
+                  <option :value="city"></option>
+                </section>
+              </datalist>
             </div>
           </div>
 
@@ -139,10 +150,10 @@
 </template>
 
 <script setup>
-import { Cookies, useQuasar } from "quasar";
-import axios from "axios";
-import { getCurrentInstance, ref, watch, watchEffect } from "vue";
+import { useQuasar } from "quasar";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { putMethod } from "src/composables/apiMethod/put";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
@@ -158,6 +169,7 @@ const props = defineProps({
     required: true,
   },
 });
+const apiStore = useApiStore();
 
 const startDate = ref("");
 const endDate = ref("");
@@ -171,7 +183,16 @@ const maxParticipants = ref("");
 const minLevel = ref("");
 const maxLevel = ref("");
 
-const categoryOptions = ref(["SINGLES_FEMALE"]);
+const categoryOptions = ref([]);
+const cityOptions = ref([]);
+
+const setList = async () => {
+  await apiStore.getCity(serverURL, $q);
+  cityOptions.value = apiStore.city.value;
+
+  await apiStore.getCategory(serverURL, $q);
+  categoryOptions.value = apiStore.category.value;
+};
 
 const isEditTournament = ref(props.openEditTournamentComponent);
 
@@ -187,22 +208,8 @@ const closeEditTournament = () => {
   emit("closeEditTournament");
 };
 
-const payload = ref({
-  description: "",
-  startDate: "",
-  endDate: "",
-  startTime: "",
-  category: "",
-  maxParticipants: "",
-  location: "",
-  city: "",
-  minLevel: "",
-  maxLevel: "",
-  cost: "",
-});
-
-watchEffect(() => {
-  payload.value = {
+const updateEvent = async () => {
+  const payload = {
     description: description.value,
     startDate: startDate.value,
     endDate: endDate.value,
@@ -215,9 +222,7 @@ watchEffect(() => {
     maxLevel: maxLevel.value,
     cost: cost.value,
   };
-});
 
-const updateEvent = async () => {
   putMethod(
     serverURL,
     "tournament",
@@ -228,6 +233,10 @@ const updateEvent = async () => {
     "Ошибка при создании турнира"
   );
 };
+
+onMounted(() => {
+  setList();
+});
 </script>
 
 <style></style>

@@ -34,7 +34,6 @@
 
 <script setup>
 import { Cookies, useQuasar } from "quasar";
-import axios from "axios";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
