@@ -105,7 +105,10 @@
       @closeEditPartnerInformationPage="closeEditPartnerInformationPage"
       :partnerId="partnerId"
     />
-    <DetailedInformation :openDetailedWindow="openDetailedWindow" />
+    <DetailedInformation
+      :openDetailedWindow="openDetailedWindow"
+      :fullInformationAboutPartner="fullInformationAboutPartner"
+    />
   </div>
 </template>
 
@@ -181,6 +184,7 @@ const openDetailedWindow = ref(false);
 const fullInformationAboutPartner = ref("");
 const viewDetailedInformationAboutCoache = (partnerInfo) => {
   openDetailedWindow.value = true;
+  fullInformationAboutPartner.value = partnerInfo;
 };
 
 const openEditPartnerInformationWindow = ref(false);

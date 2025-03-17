@@ -21,23 +21,33 @@
                   >
                   <p class="infoStyle">
                     {{
-                      props.coacheInformation.user.firstName || "Not specified"
+                      props.fullInformationAboutPartner.firstName ||
+                      "Not specified"
                     }}
                     {{
-                      props.coacheInformation.user.lastName || "Not specified"
+                      props.fullInformationAboutPartner.lastName ||
+                      "Not specified"
                     }}
                   </p>
-                  <span class="infoHeadline">Gender</span>
-                  <p class="infoStyle">
-                    {{ props.coacheInformation.user.gender || "Not specified" }}
-                  </p>
+
                   <span class="infoHeadline">Phone Number</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.user.phone || "Not specified" }}
+                    {{
+                      props.fullInformationAboutPartner.phone || "Not specified"
+                    }}
                   </p>
                   <span class="infoHeadline">Rating</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.user.rating || "Not specified" }}
+                    {{
+                      props.fullInformationAboutPartner.rating ||
+                      "Not specified"
+                    }}
+                  </p>
+                  <span class="infoHeadline">City</span>
+                  <p class="infoStyle">
+                    {{
+                      props.fullInformationAboutPartner.city || "Not specified"
+                    }}
                   </p>
                 </q-card-section>
               </q-card>
@@ -51,29 +61,45 @@
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span data-testid="" class="infoHeadline">Experience</span>
-                  <p class="infoStyle">
-                    {{ props.coacheInformation.experience || "Not specified" }}
-                  </p>
-                  <span class="infoHeadline">Cost</span>
-                  <p class="infoStyle">
-                    {{ props.coacheInformation.cost || "Not specified" }}
-                  </p>
-                  <span class="infoHeadline">Service</span>
-                  <p class="infoStyle">
-                    {{ props.coacheInformation.service || "Not specified" }}
-                  </p>
-                  <span class="infoHeadline">Language</span>
-                  <p class="infoStyle">
-                    {{ props.coacheInformation.language || "Not specified" }}
-                  </p>
                   <span class="infoHeadline">Description</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.description || "Not specified" }}
+                    {{
+                      props.fullInformationAboutPartner.description ||
+                      "Not specified"
+                    }}
                   </p>
                   <span class="infoHeadline">Stadium</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.stadium || "Not specified" }}
+                    {{
+                      props.fullInformationAboutPartner.stadium ||
+                      "Not specified"
+                    }}
+                  </p>
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+            <q-expansion-item
+              popup
+              caption="Created, updated time"
+              icon="filter_3"
+              label="Time"
+            >
+              <q-separator />
+              <q-card>
+                <q-card-section>
+                  <span class="infoHeadline">Created At</span>
+                  <p class="infoStyle">
+                    {{
+                      props.fullInformationAboutPartner.createdAt ||
+                      "Not specified"
+                    }}
+                  </p>
+                  <span class="infoHeadline">Updated At</span>
+                  <p class="infoStyle">
+                    {{
+                      props.fullInformationAboutPartner.updatedAt ||
+                      "Not specified"
+                    }}
                   </p>
                 </q-card-section>
               </q-card>
@@ -101,6 +127,9 @@ const props = defineProps({
   openDetailedWindow: {
     type: Boolean,
     required: true,
+  },
+  fullInformationAboutPartner: {
+    type: Object,
   },
 });
 
