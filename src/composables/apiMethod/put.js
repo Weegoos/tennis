@@ -10,7 +10,8 @@ export async function putMethod(
   variableRef,
   $q,
   successMessage,
-  errorMessage
+  errorMessage,
+  params = {}
 ) {
   notifyStore.loading($q, "Подождите, идет обновление", QSpinnerGears);
   try {
@@ -23,6 +24,7 @@ export async function putMethod(
           Accept: "application/json",
           Authorization: `Bearer ${Cookies.get("accessToken")}`,
         },
+        params,
         withCredentials: true,
       }
     );

@@ -4,7 +4,7 @@
       <q-card>
         <q-card-section class="row q-gutter-md">
           <q-input v-model="language" type="text" label="Language" />
-          <q-input v-model="cose" type="text" label="Cost" />
+          <q-input v-model="city" type="text" label="City" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn
@@ -54,15 +54,25 @@ const closeEditCoachInformationWindow = () => {
 };
 // http://localhost:8000/api/v1/coach/1?city=ASTANA&language=English
 const coacheInfo = ref("");
+
+const city = ref("");
+const language = ref("");
+
 const updateCoachInfo = async () => {
+  const params = {};
+  if (city.value) params.city = city.value;
+  if (language.value) params.language = language.value;
+  console.log(params);
+
   putMethod(
     serverURL,
     `coach`,
-    `${props.coachID}?city=ALMATY&language=English`,
+    `${props.coachID}`,
     coacheInfo.value,
     $q,
     "Успешно обновлено",
-    "Ошибка:"
+    "Ошибка:",
+    params
   );
 };
 </script>
