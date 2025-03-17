@@ -68,7 +68,12 @@
             align="right"
             data-testid="buttonSection"
           >
-            <q-btn flat color="black" icon="edit" @click="editCoaches" />
+            <q-btn
+              flat
+              color="black"
+              icon="edit"
+              @click="editCoachInformation"
+            />
             <q-btn
               flat
               color="red-4"
@@ -95,7 +100,10 @@
       :max="maxPage"
       @update:model-value="pagination"
     />
-    <EditCoachInformation />
+    <EditCoachInformation
+      :openCoachEditWindow="openCoachEditWindow"
+      @closeEditCoachInformationWindow="closeEditCoachInformationWindow"
+    />
   </div>
 </template>
 
@@ -178,7 +186,14 @@ const deleteCoaches = async (id) => {
   deleteMethod(serverURL, "coach", id, "Успешно удален");
 };
 
-const editCoaches = async () => {};
+const openCoachEditWindow = ref(false);
+const editCoachInformation = async () => {
+  openCoachEditWindow.value = true;
+};
+
+const closeEditCoachInformationWindow = () => {
+  openCoachEditWindow.value = false;
+};
 </script>
 
 <style scoped>

@@ -9,8 +9,13 @@
           >
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Cancel" color="primary" v-close-popup />
-          <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
+          <q-btn
+            flat
+            label="Close"
+            color="red-4"
+            @click="closeEditCoachInformationWindow"
+          />
+          <!-- <q-btn flat label="Turn on Wifi" color="primary" v-close-popup /> -->
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -18,9 +23,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const isOpenEditCoachInformationWindow = ref(true);
+const props = defineProps({
+  openCoachEditWindow: {
+    type: Boolean,
+    required: true,
+  },
+});
+const isOpenEditCoachInformationWindow = ref(props.openCoachEditWindow);
+
+watch(
+  () => props.openCoachEditWindow,
+  (newVal) => {
+    isOpenEditCoachInformationWindow.value = newVal;
+  }
+);
+
+const emit = defineEmits(["closeEditCoachInformationWindow"]);
+const closeEditCoachInformationWindow = () => {
+  emit("closeEditCoachInformationWindow");
+};
 </script>
 
 <style></style>
