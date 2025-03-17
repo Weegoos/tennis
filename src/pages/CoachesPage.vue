@@ -10,7 +10,6 @@
         class="card"
         v-for="(items, index) in coaches.content"
         :key="index"
-        @click="viewDetailedInformationAboutCoache(items)"
       >
         <q-tooltip>
           Click here to view detailed information about the coach</q-tooltip
@@ -25,7 +24,10 @@
               class="full-height"
             />
           </div>
-          <section class="col">
+          <section
+            class="col-8"
+            @click="viewDetailedInformationAboutCoache(items)"
+          >
             <div class="text-h4 text-bold">
               {{ items.user.firstName || "Not specified" }}
               {{ items.user.lastName || "Not specified" }}
@@ -93,6 +95,7 @@
       :max="maxPage"
       @update:model-value="pagination"
     />
+    <EditCoachInformation />
   </div>
 </template>
 
@@ -104,6 +107,7 @@ import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import DetailedInformation from "src/components/Coaches/DetailedInformation.vue";
 import { useApiStore } from "src/stores/api-store";
+import EditCoachInformation from "src/components/Coaches/EditCoachInformation.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
