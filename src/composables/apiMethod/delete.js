@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Cookies } from "quasar";
-import { getCurrentInstance } from "vue";
 
 export async function deleteMethod(serverURL, url, id) {
   try {

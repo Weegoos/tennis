@@ -23,12 +23,13 @@ export async function putMethod(
           Accept: "application/json",
           Authorization: `Bearer ${Cookies.get("accessToken")}`,
         },
+        withCredentials: true,
       }
     );
 
     console.log("Ответ сервера:", response.data);
     notifyStore.nofifySuccess($q, successMessage);
-    window.location.reload();
+    // window.location.reload();
   } catch (error) {
     console.error("Ошибка при обновлении события:", error);
     console.error("Детали ошибки:", error.response?.data);

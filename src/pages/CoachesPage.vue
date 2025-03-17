@@ -72,7 +72,7 @@
               flat
               color="black"
               icon="edit"
-              @click="editCoachInformation"
+              @click="editCoachInformation(items.id)"
             />
             <q-btn
               flat
@@ -102,6 +102,7 @@
     />
     <EditCoachInformation
       :openCoachEditWindow="openCoachEditWindow"
+      :coachID="coachID"
       @closeEditCoachInformationWindow="closeEditCoachInformationWindow"
     />
   </div>
@@ -187,8 +188,11 @@ const deleteCoaches = async (id) => {
 };
 
 const openCoachEditWindow = ref(false);
-const editCoachInformation = async () => {
+const coachID = ref("");
+const editCoachInformation = async (id) => {
   openCoachEditWindow.value = true;
+  coachID.value = id;
+  console.log(typeof coachID.value);
 };
 
 const closeEditCoachInformationWindow = () => {
