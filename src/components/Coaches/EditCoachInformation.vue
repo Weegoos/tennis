@@ -2,10 +2,22 @@
   <div>
     <q-dialog v-model="isOpenEditCoachInformationWindow" persistent>
       <q-card>
-        <q-card-section class="row q-gutter-md">
-          <q-input v-model="language" type="text" label="Language" />
-          <q-input v-model="city" type="text" label="City" />
+        <q-card-section class="">
+          <section class="row q-gutter-md">
+            <div class="col">
+              <q-input v-model="language" type="text" label="Language" />
+              <q-input v-model="city" type="text" label="City" />
+              <q-input v-model="service" type="text" label="Service" />
+            </div>
+            <div class="col">
+              <q-input v-model="cost" type="number" label="Cost" />
+              <q-input v-model="stadium" type="text" label="Stadium" />
+              <q-input v-model="experience" type="text" label="Experience" />
+            </div>
+          </section>
+          <q-input v-model="description" type="text" label="Description" />
         </q-card-section>
+
         <q-card-actions align="right">
           <q-btn
             flat
@@ -57,11 +69,22 @@ const coacheInfo = ref("");
 
 const city = ref("");
 const language = ref("");
+const cost = ref("");
+const service = ref("");
+const description = ref("");
+const experience = ref("");
+const stadium = ref("");
 
 const updateCoachInfo = async () => {
   const params = {};
   if (city.value) params.city = city.value;
   if (language.value) params.language = language.value;
+  if (cost.value) params.cost = cost.value;
+  if (service.value) params.service = service.value;
+  if (description.value) params.description = description.value;
+  if (experience.value) params.experience = experience.value;
+  if (stadium.value) params.stadium = stadium.value;
+
   console.log(params);
 
   putMethod(
