@@ -105,11 +105,13 @@
       @closeEditPartnerInformationPage="closeEditPartnerInformationPage"
       :partnerId="partnerId"
     />
+    <DetailedInformation :openDetailedWindow="openDetailedWindow" />
   </div>
 </template>
 
 <script setup>
 import { useQuasar } from "quasar";
+import DetailedInformation from "src/components/FindPartner/DetailedInformation.vue";
 import EditPartnerInformation from "src/components/FindPartner/EditPartnerInformation.vue";
 import PostRequest from "src/components/Partner/PostRequest.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
@@ -175,8 +177,10 @@ const pagination = (page) => {
   getPartner(current.value);
 };
 
-const viewDetailedInformationAboutCoache = () => {
-  console.log("detail");
+const openDetailedWindow = ref(false);
+const fullInformationAboutPartner = ref("");
+const viewDetailedInformationAboutCoache = (partnerInfo) => {
+  openDetailedWindow.value = true;
 };
 
 const openEditPartnerInformationWindow = ref(false);
