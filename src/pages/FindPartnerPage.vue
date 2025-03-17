@@ -11,7 +11,6 @@
           class="card"
           v-for="(items, index) in partner.content"
           :key="index"
-          @click="viewDetailedInformationAboutCoache(items)"
         >
           <q-tooltip>
             Click here to view detailed information about the coach</q-tooltip
@@ -26,7 +25,10 @@
                 class="full-height"
               />
             </div>
-            <section class="col">
+            <section
+              class="col-8"
+              @click="viewDetailedInformationAboutCoache(items)"
+            >
               <div class="text-h4 text-bold">
                 {{ items.firstName || "Not specified" }}
                 {{ items.lastName || "Not specified" }}
@@ -93,11 +95,15 @@
       :max="maxPage"
       @update:model-value="pagination"
     />
+    <EditPartnerInformation
+      :openEditPartnerInformationWindow="openEditPartnerInformationWindow"
+    />
   </div>
 </template>
 
 <script setup>
 import { useQuasar } from "quasar";
+import EditPartnerInformation from "src/components/FindPartner/EditPartnerInformation.vue";
 import PostRequest from "src/components/Partner/PostRequest.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
@@ -160,6 +166,15 @@ const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
   getPartner(current.value);
+};
+
+const viewDetailedInformationAboutCoache = () => {
+  console.log("detail");
+};
+
+const openEditPartnerInformationWindow = ref(false);
+const editCoaches = () => {
+  openEditPartnerInformationWindow.value = true;
 };
 </script>
 
