@@ -87,7 +87,7 @@ const updateCoachInfo = async () => {
 
   console.log(params);
 
-  putMethod(
+  await putMethod(
     serverURL,
     `coach`,
     `${props.coachID}`,

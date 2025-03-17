@@ -69,7 +69,12 @@
               align="right"
               data-testid="buttonSection"
             >
-              <q-btn flat color="black" icon="edit" @click="editCoaches" />
+              <q-btn
+                flat
+                color="black"
+                icon="edit"
+                @click="editCoaches(items.id)"
+              />
               <q-btn
                 flat
                 color="red-4"
@@ -97,6 +102,8 @@
     />
     <EditPartnerInformation
       :openEditPartnerInformationWindow="openEditPartnerInformationWindow"
+      @closeEditPartnerInformationPage="closeEditPartnerInformationPage"
+      :partnerId="partnerId"
     />
   </div>
 </template>
@@ -173,8 +180,14 @@ const viewDetailedInformationAboutCoache = () => {
 };
 
 const openEditPartnerInformationWindow = ref(false);
-const editCoaches = () => {
+const partnerId = ref("");
+const editCoaches = (id) => {
   openEditPartnerInformationWindow.value = true;
+  partnerId.value = id;
+};
+
+const closeEditPartnerInformationPage = () => {
+  openEditPartnerInformationWindow.value = false;
 };
 </script>
 
