@@ -55,7 +55,7 @@
               </q-input>
             </div>
             <div class="col">
-              <q-input v-model="time" type="text" label="Start time">
+              <q-input v-model="startTime" type="text" label="Start time">
                 <template v-slot:append>
                   <q-icon name="access_time" class="cursor-pointer">
                     <q-popup-proxy
@@ -63,7 +63,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-time v-model="time" mask="HH:mm" format24h>
+                      <q-time v-model="startTime" mask="HH:mm" format24h>
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -154,6 +154,7 @@ import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
+import { patchMethod } from "src/composables/apiMethod/patch";
 
 // global variables
 const $q = useQuasar();
@@ -173,7 +174,7 @@ const apiStore = useApiStore();
 
 const startDate = ref("");
 const endDate = ref("");
-const time = ref("");
+const startTime = ref("");
 const category = ref("");
 const location = ref("");
 const city = ref("");
@@ -208,29 +209,30 @@ const closeEditTournament = () => {
   emit("closeEditTournament");
 };
 
+const updateEventInfo = ref("");
 const updateEvent = async () => {
-  const payload = {
-    description: description.value,
-    startDate: startDate.value,
-    endDate: endDate.value,
-    startTime: time.value,
-    category: category.value,
-    maxParticipants: maxParticipants.value,
-    location: location.value,
-    city: city.value,
-    minLevel: minLevel.value,
-    maxLevel: maxLevel.value,
-    cost: cost.value,
-  };
+  const params = {};
+  if (description.value) params.description = description.value;
+  if (startDate.value) params.startDate = startDate.value;
+  if (endDate.value) params.endDate = endDate.value;
+  if (startTime.value) params.startTime = startTime.value;
+  if (category.value) params.category = category.value;
+  if (maxParticipants.value) params.maxParticipants = maxParticipants.value;
+  if (location.value) params.location = location.value;
+  if (city.value) params.city = city.value;
+  if (minLevel.value) params.minLevel = minLevel.value;
+  if (maxLevel.value) params.maxLevel = maxLevel.value;
+  if (cost.value) params.cost = cost.value;
 
-  putMethod(
+  patchMethod(
     serverURL,
     "tournament",
     props.tournamentID,
-    payload,
+    updateEventInfo.value,
     $q,
     "Турнир успешно изменен",
-    "Ошибка при создании турнира"
+    "Ошибка при создании турнира",
+    params
   );
 };
 

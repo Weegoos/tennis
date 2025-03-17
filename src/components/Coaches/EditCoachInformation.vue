@@ -91,7 +91,7 @@ const updateCoachInfo = async () => {
     serverURL,
     `coach`,
     `${props.coachID}`,
-    coacheInfo.value,
+    coacheInfo,
     $q,
     "Успешно обновлено",
     "Ошибка:",
