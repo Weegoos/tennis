@@ -214,37 +214,6 @@ const maxLevel = ref("");
 const categoryOptions = ref([]);
 
 const cities = ref([]);
-
-const payload = ref({
-  description: "",
-  startDate: "",
-  endDate: "",
-  startTime: "",
-  category: "",
-  maxParticipants: "",
-  location: "",
-  city: "",
-  minLevel: "",
-  maxLevel: "",
-  cost: "",
-});
-
-watchEffect(() => {
-  payload.value = {
-    description: description.value,
-    startDate: startDate.value,
-    endDate: endDate.value,
-    startTime: time.value,
-    category: category.value,
-    maxParticipants: maxParticipants.value,
-    location: location.value,
-    city: city.value,
-    minLevel: minLevel.value,
-    maxLevel: maxLevel.value,
-    cost: cost.value,
-  };
-});
-
 // assigning values
 const getList = async () => {
   // city
@@ -262,6 +231,19 @@ onMounted(() => {
 
 // button
 const createEvent = async () => {
+  const payload = {
+    description: description.value,
+    startDate: startDate.value,
+    endDate: endDate.value,
+    startTime: time.value,
+    category: category.value,
+    maxParticipants: maxParticipants.value,
+    location: location.value,
+    city: city.value,
+    minLevel: minLevel.value,
+    maxLevel: maxLevel.value,
+    cost: cost.value,
+  };
   postMethod(serverURL, "tournament", payload, $q, "Турнир успешно создан");
 };
 </script>
