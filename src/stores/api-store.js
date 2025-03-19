@@ -10,6 +10,7 @@ export const useApiStore = defineStore("api", {
     userData: ref([]),
     city: ref([]),
     category: ref([]),
+    numberOfCoach: ref(0),
   }),
   actions: {
     async getUserProfile() {
@@ -60,5 +61,10 @@ export const useApiStore = defineStore("api", {
         "Ошибка при получении списка городов"
       );
     },
+
+    async setNumber(value) {
+      this.numberOfCoach = value;
+    },
   },
+  persist: true,
 });

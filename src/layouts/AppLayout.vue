@@ -39,7 +39,16 @@
                         ? 'activePage'
                         : 'unactivePage'
                     "
-                  />
+                  >
+                    <q-badge
+                      v-if="userRole === adminRole"
+                      color="green-4"
+                      floating
+                      transparent
+                    >
+                      {{ buttons.messageNumber }}
+                    </q-badge>
+                  </q-btn>
                 </section>
               </div>
             </div>
@@ -119,14 +128,7 @@
 </template>
 
 <script setup>
-import {
-  computed,
-  onBeforeMount,
-  onMounted,
-  onUnmounted,
-  ref,
-  watch,
-} from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
 import FooterPage from "src/pages/FooterPage.vue";
@@ -137,6 +139,7 @@ import { useApiStore } from "src/stores/api-store";
 // global variables
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
+const adminRole = proxy.$adminRole;
 const route = useRoute();
 const apiStore = useApiStore();
 
@@ -186,14 +189,16 @@ const headerButtonsArrayForUser = ref([
   },
 ]);
 
-const headerButtonsArrayForAdmin = ref([
+const headerButtonsArrayForAdmin = computed(() => [
   {
     name: "Users",
     link: "/admin/users",
+    messageNumber: 45,
   },
   {
     name: "Coaches",
     link: "/admin/coaches",
+    messageNumber: localStorage.getItem("numberCoach"), // Теперь обновляется динамически
   },
 ]);
 

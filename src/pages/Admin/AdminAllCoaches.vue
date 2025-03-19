@@ -35,6 +35,7 @@ import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -42,6 +43,7 @@ const serverURL = proxy.$serverURL;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const statusForAdmin = proxy.$statusForAdmin;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const columns = [
   {
@@ -101,6 +103,20 @@ const getEnabledCoaches = async (page) => {
   });
 };
 
+const enabledCoachesLength = ref(0);
+const getEnabledCoachesLength = async () => {
+  await getMethod(
+    serverURL,
+    "coach?enabled=false",
+    enabledCoachesLength,
+    $q,
+    "Ошибка при получении количество тренеров в админ странице:"
+  );
+  console.log(enabledCoachesLength.value.length);
+  await apiStore.setNumber(enabledCoachesLength.value.length);
+  localStorage.setItem("numberCoach", enabledCoachesLength.value.length);
+};
+
 const current = ref(1);
 const pagination = (page) => {
   console.log("Текущая страница:", page);
@@ -110,6 +126,7 @@ const pagination = (page) => {
 
 onMounted(() => {
   getEnabledCoaches(1);
+  getEnabledCoachesLength();
 });
 
 const isOpenCoachesDetailedInformation = ref(false);
