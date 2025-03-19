@@ -6,6 +6,8 @@ export default ({ app }) => {
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "HR";
   const maxNumberOfRequestPerPage = 10;
+  const statusForUser = true;
+  const statusForAdmin = false;
 
   app.config.globalProperties.$mobileWidth = mobileWidth;
   app.config.globalProperties.$serverURL = serverURL;
@@ -13,4 +15,6 @@ export default ({ app }) => {
   app.config.globalProperties.$clientURL = clientURL;
   app.config.globalProperties.$maxNumberOfRequestPerPage =
     maxNumberOfRequestPerPage;
+  app.config.globalProperties.$statusForAdmin = statusForAdmin;
+  app.config.globalProperties.$statusForUser = statusForUser;
 };

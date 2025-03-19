@@ -66,7 +66,7 @@ const closeForm = () => {
 };
 
 const city = ref("");
-const language = ref("");
+const language = ref([]);
 const cost = ref("");
 const service = ref("");
 const description = ref("");
@@ -77,7 +77,7 @@ const cityOptions = ref([]);
 const createCoaches = async () => {
   const payload = {
     city: city.value,
-    language: language.value,
+    language: Array.isArray(language.value) ? language.value : [language.value],
     cost: Number(cost.value) || 0,
     service: service.value,
     description: description.value,

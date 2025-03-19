@@ -57,7 +57,7 @@ const columns = [
     name: "language",
     label: "Language",
     align: "left",
-    field: "language",
+    field: (coaches) => `${coaches.languages}`,
     sortable: true,
   },
   {

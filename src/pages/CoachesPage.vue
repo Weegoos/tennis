@@ -4,11 +4,11 @@
       <p class="text-h4 text-bold">Coaches</p>
       <q-btn color="primary" label="Add a form" @click="addForm" />
     </div>
-    <section v-if="coaches.content > []">
+    <section v-if="coaches.data > []">
       <q-card
         data-testid="coachesID"
         class="card"
-        v-for="(items, index) in coaches.content"
+        v-for="(items, index) in coaches.data"
         :key="index"
       >
         <q-tooltip>
@@ -96,7 +96,7 @@
     <q-pagination
       class="justify-center"
       v-model="current"
-      :min="0"
+      :min="1"
       :max="maxPage"
       @update:model-value="pagination"
     />
@@ -122,6 +122,8 @@ import EditCoachInformation from "src/components/Coaches/EditCoachInformation.vu
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const statusForUser = proxy.$statusForUser;
 const $q = useQuasar();
 const apiStore = useApiStore();
 
@@ -151,7 +153,7 @@ const maxPage = ref("");
 const getAllCoaches = async (page) => {
   await getMethod(
     serverURL,
-    `coach/page?page=${page}`,
+    `coach/page?page=${page}&size=${maxNumberOfRequestPerPage}&enabled=${statusForUser}`,
     coaches,
     $q,
     "Ошибка при получении тренеров:"
@@ -172,11 +174,11 @@ watch(
 );
 
 onMounted(() => {
-  getAllCoaches(0);
+  getAllCoaches(1);
   getUserInformation();
 });
 
-const current = ref(0);
+const current = ref(1);
 const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
