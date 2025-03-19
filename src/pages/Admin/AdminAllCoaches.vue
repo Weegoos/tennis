@@ -46,7 +46,7 @@ const $q = useQuasar();
 const columns = [
   {
     name: "id",
-    label: "№",
+    label: "Id",
     align: "left",
     field: `id`,
     sortable: true,
@@ -97,7 +97,6 @@ const getEnabledCoaches = async (page) => {
     );
     rows.value = rows.value.data.map((coach, index) => ({
       ...coach,
-      id: index + 1,
     }));
   });
 };
@@ -118,6 +117,7 @@ const coachesInfo = ref([]);
 const viewDetailedInformation = (evt, row, index) => {
   isOpenCoachesDetailedInformation.value = true;
   coachesInfo.value = row;
+  console.log(coachesInfo.value);
 };
 
 const closeCoacheDetailedInformation = () => {

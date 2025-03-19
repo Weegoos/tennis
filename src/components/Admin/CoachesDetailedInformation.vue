@@ -49,6 +49,12 @@
             color="red-4"
             @click="closeCoacheDetailedInformation"
           />
+          <q-btn
+            no-caps
+            color="green-4"
+            label="Approve"
+            @click="approveCoach"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -56,7 +62,14 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { useQuasar } from "quasar";
+import { patchMethod } from "src/composables/apiMethod/patch";
+import { getCurrentInstance, ref, watch } from "vue";
+
+// global variables
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const $q = useQuasar();
 
 const props = defineProps({
   isOpenCoachesDetailedInformation: {
@@ -81,6 +94,21 @@ watch(
 const emit = defineEmits(["closeCoacheDetailedInformation"]);
 const closeCoacheDetailedInformation = () => {
   emit("closeCoacheDetailedInformation");
+};
+
+const approvedCoach = ref("");
+const approveCoach = async () => {
+  await patchMethod(
+    serverURL,
+    `coach/enable`,
+    props.coachesInfo.id,
+    approvedCoach.value,
+    $q,
+    "Success",
+    "Error",
+    null
+  );
+  console.log(props.coachesInfo.id);
 };
 </script>
 
