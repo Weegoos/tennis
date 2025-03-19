@@ -8,7 +8,10 @@
       :columns="columns"
       row-key="id"
       @row-click="viewDetailedInformation"
+      loading="true"
+      hide-bottom
     />
+
     <CoachesDetailedInformation
       :isOpenCoachesDetailedInformation="isOpenCoachesDetailedInformation"
       :coachesInfo="Object(coachesInfo)"
@@ -18,17 +21,26 @@
   <div v-else data-testid="noData">
     <p>No data</p>
   </div>
+  <q-pagination
+    class="justify-center"
+    v-model="current"
+    :min="1"
+    :max="maxPage"
+    @update:model-value="pagination"
+  />
 </template>
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const statusForAdmin = proxy.$statusForAdmin;
 const $q = useQuasar();
 
 const columns = [
@@ -36,7 +48,7 @@ const columns = [
     name: "id",
     label: "№",
     align: "left",
-    field: "id",
+    field: `id`,
     sortable: true,
   },
   {
@@ -70,23 +82,35 @@ const columns = [
 ];
 
 const rows = ref([]);
-const getEnabledCoaches = async () => {
-  getMethod(
+const maxPage = ref("");
+
+const getEnabledCoaches = async (page) => {
+  await getMethod(
     serverURL,
-    "coach?enabled=false",
+    `coach/page?page=${page}&size=${maxNumberOfRequestPerPage}&enabled=${statusForAdmin}`,
     rows,
     $q,
     "Ошибка при получении данных о тренерах"
   ).then(() => {
-    rows.value = rows.value.map((user, index) => ({
-      ...user,
+    maxPage.value = Math.ceil(
+      rows.value.totalCount / maxNumberOfRequestPerPage
+    );
+    rows.value = rows.value.data.map((coach, index) => ({
+      ...coach,
       id: index + 1,
     }));
   });
 };
 
+const current = ref(1);
+const pagination = (page) => {
+  console.log("Текущая страница:", page);
+  current.value = page;
+  getEnabledCoaches(current.value);
+};
+
 onMounted(() => {
-  getEnabledCoaches();
+  getEnabledCoaches(1);
 });
 
 const isOpenCoachesDetailedInformation = ref(false);
