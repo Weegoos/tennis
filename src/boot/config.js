@@ -5,9 +5,12 @@ export default ({ app }) => {
   const serverURL = "http://localhost:8000/api/v1/";
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "HR";
+  const maxNumberOfRequestPerPage = 10;
 
   app.config.globalProperties.$mobileWidth = mobileWidth;
   app.config.globalProperties.$serverURL = serverURL;
   app.config.globalProperties.$humanResources = humanResources;
   app.config.globalProperties.$clientURL = clientURL;
+  app.config.globalProperties.$maxNumberOfRequestPerPage =
+    maxNumberOfRequestPerPage;
 };

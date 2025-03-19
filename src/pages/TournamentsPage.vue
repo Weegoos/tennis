@@ -27,9 +27,9 @@
         />
       </div>
     </section>
-    <div data-testid="tournamentsID" v-if="tournaments.totalElements != 0">
+    <div data-testid="tournamentsID" v-if="tournaments.data != 0">
       <section
-        v-for="(tournament, id) in tournaments.content"
+        v-for="(tournament, id) in tournaments.data"
         :key="id"
         class="q-ma-md"
         data-testid="tournamentContent"
@@ -91,17 +91,17 @@
           :tournamentID="Number(tournamentID)"
         />
       </section>
-      <q-pagination
-        class="justify-center"
-        v-model="current"
-        :min="0"
-        :max="maxPage"
-        @update:model-value="pagination"
-      />
     </div>
     <div data-testid="noInfo" v-else class="text-center q-mt-md">
       <p class="text-h6 text-bold">There are no more tournaments...</p>
     </div>
+    <q-pagination
+      class="justify-center"
+      v-model="current"
+      :min="1"
+      :max="maxPage"
+      @update:model-value="pagination"
+    />
   </div>
 </template>
 
@@ -118,6 +118,7 @@ const { proxy } = getCurrentInstance();
 const humanResources = proxy.$humanResources;
 const serverURL = proxy.$serverURL;
 const clientURL = proxy.$clientURL;
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
 const apiStore = useApiStore();
 
@@ -126,7 +127,7 @@ const maxPage = ref("");
 const getTournaments = async (page) => {
   getMethod(
     serverURL,
-    `tournament/page?page=${page}`,
+    `tournament/page?page=${page}&size=${maxNumberOfRequestPerPage}`,
     tournaments,
     $q,
     "Ошибка при получении турниров"
@@ -136,31 +137,34 @@ const getTournaments = async (page) => {
 watch(
   () => tournaments.value,
   (newVal) => {
-    maxPage.value = newVal.totalPages - 1;
+    if (newVal && newVal.totalCount) {
+      maxPage.value = Math.ceil(newVal.totalCount / maxNumberOfRequestPerPage);
+    } else {
+      maxPage.value = 1;
+    }
   }
 );
-
 const userRole = ref("");
 const defineUserRole = async () => {
   userRole.value = apiStore.userData.role;
 };
-
-onMounted(() => {
-  getTournaments(0);
-  defineUserRole();
-});
 
 // click button function
 const openAddTournamentPage = () => {
   window.open(`${clientURL}hr/createTournament`, "blank");
 };
 
-const current = ref(0);
+const current = ref(1);
 const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
   getTournaments(current.value);
 };
+
+onMounted(() => {
+  getTournaments(current.value);
+  defineUserRole();
+});
 
 const exploreTournaments = (item) => {
   console.log(item);
