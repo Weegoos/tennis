@@ -13,7 +13,7 @@
         reveal
         elevated
         style="background-color: white"
-        v-if="!isAuthPage && !$q.screen.width > mobileWidth"
+        v-if="!isAuthPage && !$q.screen.width < mobileWidth"
       >
         <q-toolbar class="bg-white text-black">
           <q-btn flat round dense icon="menu" @click="drawer = !drawer" />
@@ -68,6 +68,7 @@
         <q-toolbar
           class="text-white justify-center"
           style="background-color: #30222e"
+          v-if="$q.screen.width <= mobileWidth"
         >
           <div v-for="(button, index) in isUser" :key="index">
             <q-btn
@@ -76,7 +77,13 @@
               round
               dense
               :icon="button.icon"
-              class="q-mr-md"
+              class="q-mr-md q-pa-md"
+              rounded
+              :class="
+                fullPath === button.link
+                  ? 'round bg-white text-black'
+                  : 'text-white'
+              "
               @click="$router.push(button.link)"
             />
           </div>
@@ -100,10 +107,18 @@ const mobileWidth = proxy.$mobileWidth;
 const adminRole = proxy.$adminRole;
 const route = useRoute();
 const apiStore = useApiStore();
+const fullPath = ref(route.fullPath);
 
 const isAuthPage = computed(() => {
   return route.path === "/registration" || route.path === "/authorization";
 });
+
+watch(
+  () => route.fullPath,
+  (newPath) => {
+    fullPath.value = newPath;
+  }
+);
 
 const userRole = ref("");
 const isUser = ref("");

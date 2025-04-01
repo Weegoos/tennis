@@ -34,7 +34,6 @@
       :class="$q.screen.width > mobileWidth ? 'q-mt-lg q-pa-xl q-mx-xl' : ''"
     >
       <TournamentPage />
-      <LeadersPage />
     </section>
     <section>
       <!-- <AchievementsPage /> -->
@@ -45,7 +44,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
-import LeadersPage from "../components/IndexPage/LeadersPage.vue";
 import AchievementsPage from "./AchievementsPage.vue";
 
 import { getCurrentInstance } from "vue";
