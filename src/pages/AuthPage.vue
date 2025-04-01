@@ -102,9 +102,7 @@ const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
-const cookie = Cookies.has("accessToken");
 const router = useRouter();
-const apiStore = useApiStore();
 
 // variables
 const isPwd = ref(true);
@@ -129,9 +127,21 @@ const authorization = async () => {
 
     $q.loading.hide();
     notifyStore.nofifySuccess($q, `Авторизация прошла успешно!`);
-    Cookies.set("accessToken", response.data.accessToken);
-    Cookies.set("refreshToken", response.data.refreshToken);
-    router.push("/");
+
+    Cookies.set("accessToken", response.data.accessToken, {
+      path: "/",
+      domain: "localhost",
+    });
+    Cookies.set("refreshToken", response.data.refreshToken, {
+      path: "/",
+      domain: "localhost",
+    });
+
+    console.log("Токен после установки:", Cookies.get("accessToken"));
+
+    setTimeout(() => {
+      router.push("/");
+    }, 50);
   } catch (error) {
     $q.loading.hide();
     notifyStore.notifyError($q, "Ошибка при авторизации. Попробуйте снова.");

@@ -13,10 +13,17 @@
         reveal
         elevated
         style="background-color: white"
-        v-if="!isAuthPage && !$q.screen.width < mobileWidth"
+        v-if="!isAuthPage && $q.screen.width > mobileWidth"
       >
         <q-toolbar class="bg-white text-black">
-          <q-btn flat round dense icon="menu" @click="drawer = !drawer" />
+          <q-btn
+            v-if="$q.screen.width > mobileWidth"
+            flat
+            round
+            dense
+            icon="menu"
+            @click="drawer = !drawer"
+          />
           <q-toolbar-title> tennis.kz </q-toolbar-title>
         </q-toolbar>
         <q-drawer
@@ -45,11 +52,6 @@
       <q-page-container>
         <q-page>
           <router-view />
-
-          <SearchPage
-            :isSearch="isSearch"
-            @closeSearchDialog="closeSearchDialog"
-          />
           <q-page-scroller
             position="bottom-right"
             :scroll-offset="150"
@@ -94,20 +96,29 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import {
+  computed,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
-import SearchPage from "../pages/SearchPage.vue";
 import { getCurrentInstance } from "vue";
-import { Cookies } from "quasar";
+import { Cookies, useQuasar } from "quasar";
 import { useApiStore } from "src/stores/api-store";
+import { getMethod } from "src/composables/apiMethod/get";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
 const adminRole = proxy.$adminRole;
+const serverURL = proxy.$serverURL;
 const route = useRoute();
 const apiStore = useApiStore();
 const fullPath = ref(route.fullPath);
+const $q = useQuasar();
 
 const isAuthPage = computed(() => {
   return route.path === "/registration" || route.path === "/authorization";
@@ -120,8 +131,8 @@ watch(
   }
 );
 
-const userRole = ref("");
-const isUser = ref("");
+const userRole = ref(null);
+const isUser = ref(null);
 
 const headerButtonsArrayForUser = ref([
   {
@@ -190,20 +201,25 @@ const currentPath = ref(routePath.path);
 const drawer = ref(true);
 
 const defineRole = async () => {
-  await apiStore.getUserProfile();
-  userRole.value = apiStore.userData.role;
-  if (userRole.value === "USER" || userRole.value === "HR") {
-    isUser.value = headerButtonsArrayForUser.value;
-  } else if (userRole.value === "ADMIN") {
-    isUser.value = headerButtonsArrayForAdmin.value;
+  try {
+    await getMethod(serverURL, "user/authenticated", userRole, $q, "Error: ");
+    console.log("Роль пользователя:", userRole.value);
+
+    if (userRole.value.role === "USER" || userRole.value.role === "HR") {
+      isUser.value = headerButtonsArrayForUser.value;
+    } else if (userRole.value.role === "ADMIN") {
+      isUser.value = headerButtonsArrayForAdmin.value;
+    }
+  } catch (error) {
+    console.error("Ошибка при получении роли:", error);
   }
-  console.log(userRole.value);
 };
 
-onMounted(() => {
+onBeforeMount(async () => {
   saveCurrentPath();
   if (Cookies.has("accessToken")) {
-    defineRole();
+    userRole.value = "loading";
+    await defineRole();
   }
 });
 
@@ -216,33 +232,8 @@ const saveCurrentPath = () => {
   );
 };
 
-const pushToPage = (route) => {
-  try {
-    router.push(route).then(() => {
-      currentPath.value = router.currentRoute.value.path;
-    });
-  } catch (error) {
-    throw new Error(
-      `Произошла ошибка: ${error}, в компоненте AppLayout функция pushToPage`
-    );
-  }
-};
-
 const navigationBar = (route) => {
   router.push(route);
-};
-
-const isSearch = ref(false);
-const openSearch = () => {
-  isSearch.value = true;
-};
-
-const closeSearchDialog = () => {
-  isSearch.value = false;
-};
-
-const pushToProfile = () => {
-  router.push("/profile");
 };
 
 const width = ref(window.innerWidth);
