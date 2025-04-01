@@ -1,21 +1,30 @@
 <template>
   <div>
-    <div class="card">
-      <p class="text-h4 text-bold">Find a partner</p>
+    <div :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'">
+      <p
+        class="text-bold"
+        :class="$q.screen.width < mobileWidth ? 'text-h6' : 'text-h4'"
+      >
+        Find a partner
+      </p>
       <q-btn color="primary" label="Place a request" @click="sendRequest" />
     </div>
     <section>
-      <section v-if="partner.content > []">
+      {{ partner.content }}
+      <section v-if="partner.data">
         <q-card
           data-testid="coachesID"
-          class="card"
-          v-for="(items, index) in partner.content"
+          :class="$q.screen.width < mobileWidth ? 'q-ma-md' : 'card'"
+          v-for="(items, index) in partner.data"
           :key="index"
         >
           <q-tooltip>
             Click here to view detailed information about the coach</q-tooltip
           >
-          <q-card-section class="row q-gutter-md">
+          <q-card-section
+            class="q-gutter-md"
+            :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+          >
             <div class="col-2">
               <q-img
                 src="src/assets/coaches/coaches1.jpg"
@@ -96,7 +105,7 @@
     <q-pagination
       class="justify-center"
       v-model="current"
-      :min="0"
+      :min="1"
       :max="maxPage"
       @update:model-value="pagination"
     />
@@ -108,6 +117,7 @@
     <DetailedInformation
       :openDetailedWindow="openDetailedWindow"
       :fullInformationAboutPartner="fullInformationAboutPartner"
+      @closeWindow="closeWindow"
     />
   </div>
 </template>
@@ -126,6 +136,7 @@ import { getCurrentInstance, onMounted, ref, watch } from "vue";
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
+const mobileWidth = proxy.$mobileWidth;
 const apiStore = useApiStore();
 const $q = useQuasar();
 
@@ -141,13 +152,18 @@ const closePostRequestWindow = () => {
 const partner = ref("");
 const maxPage = ref("");
 const getPartner = async (page) => {
-  await getMethod(
-    serverURL,
-    `partner/page?page=${page}`,
-    partner,
-    $q,
-    "Ошибка при получении партнеров:"
-  );
+  try {
+    await getMethod(
+      serverURL,
+      `partner/page?page=${page}&size=10&enabled=false`,
+      partner,
+      $q,
+      "Ошибка при получении партнеров:"
+    );
+    console.log(partner.value);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const deletePartner = async (id) => {
@@ -158,18 +174,17 @@ const userInfo = ref([]);
 const getInformationAboutUser = async () => {
   await apiStore.getUserProfile();
   userInfo.value = apiStore.userData;
-  console.log(userInfo.value);
 };
 
 watch(
   () => partner.value,
   (newVal) => {
-    maxPage.value = newVal.totalPages - 1;
+    maxPage.value = newVal.totalPages;
   }
 );
 
 onMounted(() => {
-  getPartner(0);
+  getPartner(1);
   getInformationAboutUser();
 });
 
@@ -185,6 +200,10 @@ const fullInformationAboutPartner = ref("");
 const viewDetailedInformationAboutCoache = (partnerInfo) => {
   openDetailedWindow.value = true;
   fullInformationAboutPartner.value = partnerInfo;
+};
+
+const closeWindow = () => {
+  openDetailedWindow.value = false;
 };
 
 const openEditPartnerInformationWindow = ref(false);
