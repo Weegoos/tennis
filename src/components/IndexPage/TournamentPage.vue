@@ -32,9 +32,9 @@
                 spinner-size="82px"
               >
                 <caption class="absolute-bottom-left text-white q-pa-sm">
-                  <span class="bg-primary q-pa-sm date relative-position"
-                    >July 14th</span
-                  >
+                  <span class="bg-primary q-pa-sm date relative-position">
+                    July 14th
+                  </span>
                   <div class="text-bold text-h6">
                     SILK ROAD OPEN SEPTEMBER 12-13-14, 2024
                   </div>
@@ -53,9 +53,10 @@
           <div class="text-h6"></div>
           The news about the Championship will be displayed here
         </q-tab-panel>
-        <q-tab-pane name="analysis">
+
+        <q-tab-panel name="analysis">
           The news about the analysis will be displayed here
-        </q-tab-pane>
+        </q-tab-panel>
       </q-tab-panels>
     </div>
   </div>

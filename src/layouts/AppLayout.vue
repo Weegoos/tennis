@@ -12,91 +12,36 @@
       <q-header
         reveal
         elevated
-        style="height: 70px; background-color: white"
-        v-if="!isAuthPage"
+        style="background-color: white"
+        v-if="!isAuthPage && !$q.screen.width > mobileWidth"
       >
-        <q-toolbar class="bg-transparent text-black q-mt-sm">
-          <div class="row q-gutter-md" style="width: 100%">
-            <div class="col-2">
-              <q-btn flat no-caps round dense label="tennis.kz" size="24px" />
-            </div>
-            <div class="col-8" v-show="isDesktop">
-              <div class="row q-mt-sm" style="justify-content: center">
-                <section
-                  v-for="(buttons, index) in isUser"
-                  :key="index"
-                  class="text-black row"
-                >
-                  <q-btn
-                    no-caps
-                    flat
-                    color="black"
-                    size="14px"
-                    :label="buttons.name"
-                    @click="pushToPage(buttons.link)"
-                    :class="
-                      currentPath === buttons.link
-                        ? 'activePage'
-                        : 'unactivePage'
-                    "
-                  >
-                    <q-badge
-                      v-if="userRole === adminRole"
-                      color="green-4"
-                      floating
-                      transparent
-                    >
-                      {{ buttons.messageNumber }}
-                    </q-badge>
-                  </q-btn>
-                </section>
-              </div>
-            </div>
-            <div
-              class="col"
-              :align="$q.screen.width > mobileWidth ? 'center' : 'left'"
-            >
-              <div
-                class="row"
-                :class="$q.screen.width > mobileWidth ? 'q-gutter-md' : ''"
-              >
-                <q-btn icon="search" @click="openSearch" size="14px" fab />
-                <q-btn icon="person" @click="pushToProfile" size="14px" fab />
-              </div>
-            </div>
-            <div class="col" align="right" v-if="$q.screen.width < mobileWidth">
-              <q-btn
-                flat
-                icon="menu"
-                class="q-mt-sm"
-                size="14px"
-                @click="drawer = !drawer"
-              />
-            </div>
-          </div>
+        <q-toolbar class="bg-white text-black">
+          <q-btn flat round dense icon="menu" @click="drawer = !drawer" />
+          <q-toolbar-title> tennis.kz </q-toolbar-title>
         </q-toolbar>
+        <q-drawer
+          v-if="$q.screen.width > mobileWidth"
+          side="left"
+          v-model="drawer"
+          bordered
+          :width="220"
+          :breakpoint="500"
+          content-class="bg-grey-3"
+        >
+          <q-list bordered>
+            <q-item
+              clickable
+              v-ripple
+              class="text-black"
+              v-for="(buttons, index) in isUser"
+              :key="index"
+              @click="navigationBar(buttons.link)"
+            >
+              <q-item-section>{{ buttons.name }}</q-item-section>
+            </q-item>
+          </q-list>
+        </q-drawer>
       </q-header>
-      <q-drawer
-        v-if="$q.screen.width < mobileWidth"
-        side="right"
-        v-model="drawer"
-        bordered
-        :width="200"
-        :breakpoint="500"
-        content-class="bg-grey-3"
-      >
-        <q-list bordered>
-          <q-item
-            clickable
-            v-ripple
-            v-for="(buttons, index) in headerButtonsArray"
-            :key="index"
-            @click="navigationBar(buttons.link)"
-          >
-            <q-item-section>{{ buttons.name }}</q-item-section>
-          </q-item>
-        </q-list>
-      </q-drawer>
       <q-page-container>
         <q-page>
           <router-view />
@@ -114,15 +59,29 @@
           </q-page-scroller>
         </q-page>
       </q-page-container>
-      <!-- <q-footer
-        v-if="!isAuthPage"
-        style="background-color: #24293e"
+      <q-footer
         reveal
         elevated
-        class="q-pa-md"
+        style="background-color: #30222e"
+        align="center"
       >
-        <FooterPage />
-      </q-footer> -->
+        <q-toolbar
+          class="text-white justify-center"
+          style="background-color: #30222e"
+        >
+          <div v-for="(button, index) in isUser" :key="index">
+            <q-btn
+              v-if="button.icon"
+              flat
+              round
+              dense
+              :icon="button.icon"
+              class="q-mr-md"
+              @click="$router.push(button.link)"
+            />
+          </div>
+        </q-toolbar>
+      </q-footer>
     </q-layout>
   </div>
 </template>
@@ -131,7 +90,6 @@
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SearchPage from "../pages/SearchPage.vue";
-import FooterPage from "src/pages/FooterPage.vue";
 import { getCurrentInstance } from "vue";
 import { Cookies } from "quasar";
 import { useApiStore } from "src/stores/api-store";
@@ -154,10 +112,12 @@ const headerButtonsArrayForUser = ref([
   {
     name: "Main page",
     link: "/",
+    icon: "mdi-home",
   },
   {
     name: "Tournaments",
     link: "/tournaments",
+    icon: "mdi-trophy",
   },
   {
     name: "Regulations",
@@ -170,6 +130,7 @@ const headerButtonsArrayForUser = ref([
   {
     name: "Coaches",
     link: "/coaches",
+    icon: "mdi-account-group",
   },
   {
     name: "Media Library",
@@ -186,6 +147,12 @@ const headerButtonsArrayForUser = ref([
   {
     name: "Find a partner",
     link: "/find-partner",
+    icon: "mdi-account-search",
+  },
+  {
+    name: "Profile",
+    link: "/profile",
+    icon: "mdi-account",
   },
 ]);
 
@@ -202,45 +169,6 @@ const headerButtonsArrayForAdmin = computed(() => [
   },
 ]);
 
-const headerButtonsArrayForHR = ref([
-  {
-    name: "Main page",
-    link: "/",
-  },
-  {
-    name: "Tournaments",
-    link: "/tournaments",
-  },
-  {
-    name: "Regulations",
-    link: "/regulations",
-  },
-  {
-    name: "Rating",
-    link: "/ratings",
-  },
-  {
-    name: "Coaches",
-    link: "/coaches",
-  },
-  {
-    name: "Media Library",
-    link: "/media-library",
-  },
-  {
-    name: "News",
-    link: "/news",
-  },
-  {
-    name: "About us",
-    link: "/about",
-  },
-  {
-    name: "Find a partner",
-    link: "/find-partner",
-  },
-]);
-
 const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
@@ -249,12 +177,10 @@ const drawer = ref(true);
 const defineRole = async () => {
   await apiStore.getUserProfile();
   userRole.value = apiStore.userData.role;
-  if (userRole.value === "USER") {
+  if (userRole.value === "USER" || userRole.value === "HR") {
     isUser.value = headerButtonsArrayForUser.value;
   } else if (userRole.value === "ADMIN") {
     isUser.value = headerButtonsArrayForAdmin.value;
-  } else if (userRole.value === "HR") {
-    isUser.value = headerButtonsArrayForHR.value;
   }
   console.log(userRole.value);
 };
@@ -324,5 +250,10 @@ onUnmounted(() => {
 <style scoped>
 .activePage {
   text-decoration: underline;
+}
+
+.mobileNavigation {
+  position: relative;
+  left: 45px;
 }
 </style>

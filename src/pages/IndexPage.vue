@@ -37,7 +37,7 @@
       <LeadersPage />
     </section>
     <section>
-      <AchievementsPage />
+      <!-- <AchievementsPage /> -->
     </section>
   </div>
 </template>

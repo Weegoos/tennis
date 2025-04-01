@@ -50,7 +50,7 @@
         color="primary"
         class="text-body1 q-pa-sm"
         label="Show all"
-        @click="onClick"
+        @click="showAll"
       />
     </div>
   </div>
@@ -88,6 +88,8 @@ const userStats = ref([
     victories: 40,
   },
 ]);
+
+const showAll = () => {};
 </script>
 
 <style></style>
