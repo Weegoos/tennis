@@ -1,7 +1,8 @@
 <template>
   <div>
     <section
-      class="text-uppercase text-center q-mt-lg text-h1 text-weight-thin"
+      class="text-uppercase text-center q-mt-lg text-weight-thin"
+      :class="$q.screen.width < mobileWidth ? 'text-h5' : 'text-h1'"
     >
       <p>CREATORS</p>
       <p>HUB</p>
@@ -16,16 +17,14 @@
           <span class="text-bold">1679</span> professionals waiting.
         </p>
       </div>
-      <div class="col" align="right">
-        <q-btn
-          color="black"
-          icon="add"
-          class="q-mr-md q-mt-md"
-          @click="openAddTournamentPage"
-          v-if="userRole === humanResources"
-          data-testid="openAddTournamentsButton"
-        />
-      </div>
+      <q-btn
+        color="black"
+        icon="add"
+        class="q-mr-md q-mt-md"
+        @click="openAddTournamentPage"
+        v-if="userRole === humanResources"
+        data-testid="openAddTournamentsButton"
+      />
     </section>
     <div data-testid="tournamentsID" v-if="tournaments.data != 0">
       <section
@@ -35,7 +34,7 @@
         data-testid="tournamentContent"
       >
         <q-card class="my-card">
-          <div class="row">
+          <div class="" :class="$q.screen.width < mobileWidth ? 'col' : 'row'">
             <section class="col-2">
               <q-img
                 src="https://cdn.quasar.dev/img/mountains.jpg"
@@ -46,7 +45,9 @@
               />
             </section>
             <section class="col">
-              <q-card-section class="row">
+              <q-card-section
+                :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+              >
                 <div class="text-capitalize col">
                   <p class="text-weight-thin text-body1">International</p>
                   <p class="text-h4">{{ tournament.description }}</p>
@@ -119,6 +120,7 @@ const humanResources = proxy.$humanResources;
 const serverURL = proxy.$serverURL;
 const clientURL = proxy.$clientURL;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const apiStore = useApiStore();
 
@@ -146,6 +148,7 @@ watch(
 );
 const userRole = ref("");
 const defineUserRole = async () => {
+  await apiStore.getUserProfile();
   userRole.value = apiStore.userData.role;
 };
 
