@@ -8,7 +8,7 @@
           <q-input v-model="firstName" type="text" label="First name" />
           <q-input v-model="lastName" type="text" label="Last name" />
           <q-input v-model="phone" type="text" label="Phone" />
-          <q-input v-model="rating" type="text" label="Rating" />
+          <q-input v-model="rating" type="number" label="Rating" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn
@@ -32,12 +32,14 @@
 
 <script setup>
 import axios from "axios";
-import { Cookies } from "quasar";
+import { Cookies, useQuasar } from "quasar";
+import { putMethod } from "src/composables/apiMethod/put";
 import { getCurrentInstance, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const $q = useQuasar();
 
 const props = defineProps({
   openEditPage: {
@@ -74,18 +76,19 @@ const updateInformation = async () => {
   if (firstName.value) params.firstName = firstName.value;
   if (lastName.value) params.lastName = lastName.value;
   if (phone.value) params.phone = phone.value;
-  if (rating.value !== 0) params.rating = rating.value;
+  if (rating.value) params.rating = rating.value;
 
   try {
-    const response = await axios.put(`${serverURL}user/update`, params, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Cookies.get("accessToken")}`,
-      },
-      withCredentials: true,
-    });
-
-    console.log("Update successful:", response.data);
+    putMethod(
+      serverURL,
+      "user",
+      "update?",
+      "",
+      $q,
+      "Профиль успешно обновлен",
+      "Error: ",
+      params
+    );
   } catch (error) {
     console.error("Error updating information:", error.response?.data || error);
   }
