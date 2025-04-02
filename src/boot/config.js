@@ -1,7 +1,7 @@
 // src/boot/config.js
 export default ({ app }) => {
   // Объявляем глобальные переменные
-  const mobileWidth = 800;
+  const mobileWidth = 1050;
   const serverURL = "http://localhost:8000/api/v1/";
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "HR";

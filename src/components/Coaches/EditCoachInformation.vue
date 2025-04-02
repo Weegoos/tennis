@@ -12,7 +12,7 @@
             <div class="col">
               <q-input v-model="cost" type="number" label="Cost" />
               <q-input v-model="stadium" type="text" label="Stadium" />
-              <q-input v-model="experience" type="text" label="Experience" />
+              <q-input v-model="experience" type="number" label="Experience" />
             </div>
           </section>
           <q-input v-model="description" type="text" label="Description" />

@@ -94,7 +94,12 @@
     <DetailedInformation
       :openDetailedWindow="openDetailedWindow"
       @closeWindow="closeWindow"
-      :coacheInformation="coacheInformation"
+      :coacheInformation="Object(coacheInformation)"
+    />
+    <EditCoachInformation
+      :openCoachEditWindow="openCoachEditWindow"
+      :coachID="Number(coachID)"
+      @closeEditCoachInformationWindow="closeEditCoachInformationWindow"
     />
     <q-pagination
       class="justify-center"
@@ -102,11 +107,6 @@
       :min="1"
       :max="maxPage"
       @update:model-value="pagination"
-    />
-    <EditCoachInformation
-      :openCoachEditWindow="openCoachEditWindow"
-      :coachID="coachID"
-      @closeEditCoachInformationWindow="closeEditCoachInformationWindow"
     />
   </div>
 </template>
@@ -162,6 +162,7 @@ const getAllCoaches = async (page) => {
     $q,
     "Ошибка при получении тренеров:"
   );
+  console.log(coaches.value);
 };
 
 const userInfo = ref([]);
@@ -173,7 +174,11 @@ const getUserInformation = async () => {
 watch(
   () => coaches.value,
   (newVal) => {
-    maxPage.value = newVal.totalPages - 1;
+    if (newVal && newVal.totalCount) {
+      maxPage.value = Math.ceil(newVal.totalCount / maxNumberOfRequestPerPage);
+    } else {
+      maxPage.value = 1;
+    }
   }
 );
 

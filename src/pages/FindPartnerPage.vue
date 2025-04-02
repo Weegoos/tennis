@@ -10,11 +10,10 @@
       <q-btn color="primary" label="Place a request" @click="sendRequest" />
     </div>
     <section>
-      {{ partner.content }}
-      <section v-if="partner.data">
+      <section v-if="partner.data > []">
         <q-card
           data-testid="coachesID"
-          :class="$q.screen.width < mobileWidth ? 'q-ma-md' : 'card'"
+          :class="$q.screen.width < mobileWidth ? 'q-ma-md q-py-sm' : 'card'"
           v-for="(items, index) in partner.data"
           :key="index"
         >
@@ -138,6 +137,8 @@ const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
 const mobileWidth = proxy.$mobileWidth;
 const apiStore = useApiStore();
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const statusForUser = proxy.$statusForUser;
 const $q = useQuasar();
 
 const openPostRequestWindow = ref(false);
@@ -155,7 +156,7 @@ const getPartner = async (page) => {
   try {
     await getMethod(
       serverURL,
-      `partner/page?page=${page}&size=10&enabled=false`,
+      `partner/page?page=${page}&size=${maxNumberOfRequestPerPage}&enabled=${statusForUser}`,
       partner,
       $q,
       "Ошибка при получении партнеров:"
@@ -179,7 +180,11 @@ const getInformationAboutUser = async () => {
 watch(
   () => partner.value,
   (newVal) => {
-    maxPage.value = newVal.totalPages;
+    if (newVal && newVal.totalCount) {
+      maxPage.value = Math.ceil(newVal.totalCount / maxNumberOfRequestPerPage);
+    } else {
+      maxPage.value = 1;
+    }
   }
 );
 
@@ -188,7 +193,7 @@ onMounted(() => {
   getInformationAboutUser();
 });
 
-const current = ref(0);
+const current = ref(1);
 const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
