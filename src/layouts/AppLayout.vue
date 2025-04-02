@@ -187,10 +187,12 @@ const headerButtonsArrayForAdmin = computed(() => [
     name: "Users",
     link: "/admin/users",
     messageNumber: 45,
+    icon: "mdi-account",
   },
   {
     name: "Coaches",
     link: "/admin/coaches",
+    icon: "mdi-account-group",
     messageNumber: localStorage.getItem("numberCoach"), // Теперь обновляется динамически
   },
 ]);
