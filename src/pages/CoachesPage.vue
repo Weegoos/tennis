@@ -1,20 +1,23 @@
 <template>
   <div>
-    <div class="card">
+    <div :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'">
       <p class="text-h4 text-bold">Coaches</p>
       <q-btn color="primary" label="Add a form" @click="addForm" />
     </div>
     <section v-if="coaches.data > []">
       <q-card
         data-testid="coachesID"
-        class="card"
+        :class="$q.screen.width < mobileWidth ? 'q-ma-md' : 'card'"
         v-for="(items, index) in coaches.data"
         :key="index"
       >
         <q-tooltip>
           Click here to view detailed information about the coach</q-tooltip
         >
-        <q-card-section class="row q-gutter-md">
+        <q-card-section
+          class="q-gutter-md"
+          :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+        >
           <div class="col-2">
             <q-img
               src="src/assets/coaches/coaches1.jpg"
@@ -123,6 +126,7 @@ const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const mobileWidth = proxy.$mobileWidth;
 const statusForUser = proxy.$statusForUser;
 const $q = useQuasar();
 const apiStore = useApiStore();
