@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-sm">
     <q-card class="my-card q-mb-md">
-      <div class="row">
+      <div :class="$q.screen.width < mobileWidth ? 'col' : 'row'">
         <section class="col-2">
           <q-img
             src="https://cdn.quasar.dev/img/mountains.jpg"
@@ -19,19 +19,6 @@
               <p class="text-subtitle1">{{ category }}</p>
               <p class="">From {{ startDate }} To {{ endDate }}</p>
             </div>
-            <!-- <div
-                  class="col"
-                  align="right"
-                  v-if="userRole === humanResources"
-                >
-                  <q-btn flat icon="edit" @click="editTournament(tournament)" />
-                  <q-btn
-                    flat
-                    icon="delete"
-                    color="red-4"
-                    @click="deleteTournament(tournament.id)"
-                  />
-                </div> -->
           </q-card-section>
           <q-card-section>
             <div>{{ location }}, {{ city }}</div>
@@ -39,7 +26,9 @@
           <q-card-actions align="right">
             <q-btn
               color="black"
-              class="q-pa-md button"
+              class="q-pa-md"
+              rounded
+              :class="$q.screen.width < mobileWidth ? 'buttonMobile' : 'button'"
               label="Explore"
               @click="exploreTournaments(tournament)"
             />
@@ -49,7 +38,10 @@
     </q-card>
     <q-card class="create">
       <q-card-section>
-        <div class="row q-gutter-sm">
+        <div
+          class="q-gutter-sm"
+          :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+        >
           <div class="col">
             <q-input v-model="startDate" type="text" label="Start date">
               <template v-slot:prepend>
@@ -174,11 +166,14 @@
           </div>
         </div>
       </q-card-section>
-      <q-card-actions align="right">
+      <q-card-actions :align="$q.screen.width < mobileWidth ? '' : 'right'">
         <q-btn
           no-caps
           color="green"
-          class="button"
+          rounded
+          :class="
+            $q.screen.width < mobileWidth ? 'buttonMobile q-pa-sm' : 'button'
+          "
           label="Create"
           @click="createEvent"
         />
@@ -197,6 +192,7 @@ import { useApiStore } from "src/stores/api-store";
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const mobileWidth = proxy.$mobileWidth;
 const apiStore = useApiStore();
 
 const startDate = ref("");
@@ -252,5 +248,9 @@ const createEvent = async () => {
 .button {
   width: 150px;
   font-size: 18px;
+}
+
+.buttonMobile {
+  width: 100%;
 }
 </style>

@@ -48,6 +48,7 @@
                 label="Edit Information"
                 @click="editInformation"
                 color="orange-4"
+                rounded
               />
 
               <q-btn
@@ -56,6 +57,7 @@
                 label="Logout"
                 @click="logout"
                 color="red-4"
+                rounded
               />
             </div>
           </div>
