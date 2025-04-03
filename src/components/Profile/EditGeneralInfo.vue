@@ -4,7 +4,7 @@
       <q-card>
         <q-card-section class="items-center" style="width: 300px">
           <p class="text-h5 text-bold text-center">Editing</p>
-          <q-input v-model="gender" type="text" label="Gender" />
+          <q-select v-model="gender" :options="genderList" label="Gender" />
           <q-input v-model="firstName" type="text" label="First name" />
           <q-input v-model="lastName" type="text" label="Last name" />
           <q-input v-model="phone" type="text" label="Phone" />
@@ -33,12 +33,14 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
-import { getCurrentInstance, ref, watch } from "vue";
+import { useApiStore } from "src/stores/api-store";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const props = defineProps({
   openEditPage: {
@@ -66,6 +68,18 @@ const lastName = ref("");
 const phone = ref("");
 const rating = ref("");
 const updatedInfo = ref("");
+const genderList = ref([]);
+
+const getAllList = async () => {
+  try {
+    await apiStore.getGender(serverURL, $q);
+    genderList.value = apiStore.gender.value;
+    console.log(genderList.value);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const updateInformation = async () => {
   console.log("Updating information...");
 
@@ -91,6 +105,10 @@ const updateInformation = async () => {
     console.error("Error updating information:", error.response?.data || error);
   }
 };
+
+onMounted(() => {
+  getAllList();
+});
 </script>
 
 <style></style>

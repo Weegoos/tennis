@@ -4,7 +4,10 @@
       <q-card>
         <p class="text-center text-width-thin text-h4 q-mt-md">Edit</p>
         <q-card-section>
-          <div class="row q-gutter-sm">
+          <div
+            class="q-gutter-sm"
+            :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+          >
             <div class="col">
               <q-input v-model="startDate" type="text" label="Start date">
                 <template v-slot:prepend>
@@ -79,7 +82,10 @@
               </q-input>
             </div>
           </div>
-          <div class="row q-gutter-sm q-mt-sm">
+          <div
+            class="q-gutter-sm q-mt-sm"
+            :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+          >
             <div class="col">
               <q-select
                 v-model="category"
@@ -113,7 +119,10 @@
             </div>
           </div>
 
-          <div class="row q-gutter-sm q-mt-sm">
+          <div
+            class="q-gutter-sm q-mt-sm"
+            :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
+          >
             <div class="col">
               <q-input v-model="minLevel" type="number" label="Minimum level" />
             </div>
@@ -153,11 +162,13 @@
 import { useQuasar } from "quasar";
 import { useApiStore } from "src/stores/api-store";
 import { patchMethod } from "src/composables/apiMethod/patch";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const mobileWidth = proxy.$mobileWidth;
 const props = defineProps({
   openEditTournamentComponent: {
     type: Boolean,

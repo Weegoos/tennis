@@ -12,6 +12,7 @@ export const useApiStore = defineStore("api", {
     category: ref([]),
     role: ref([]),
     language: ref([]),
+    gender: ref([]),
     numberOfCoach: ref(0),
   }),
   actions: {
@@ -77,6 +78,15 @@ export const useApiStore = defineStore("api", {
         serverURL,
         "enum/language",
         this.language,
+        $q,
+        "Ошибка при получении списка городов"
+      );
+    },
+    async getGender(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/gender",
+        this.gender,
         $q,
         "Ошибка при получении списка городов"
       );

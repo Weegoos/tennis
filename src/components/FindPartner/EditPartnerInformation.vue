@@ -6,7 +6,7 @@
           <div class="col">
             <q-input v-model="firstName" type="text" label="First Name" />
             <q-input v-model="phone" type="number" label="Phone" />
-            <q-input v-model="city" type="text" label="City" />
+            <q-select v-model="city" :options="cityOptions" label="City" />
           </div>
           <div class="col">
             <q-input v-model="lastName" type="text" label="Last Name" />
@@ -31,7 +31,8 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
-import { getCurrentInstance, ref, watch } from "vue";
+import { useApiStore } from "src/stores/api-store";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const props = defineProps({
@@ -47,6 +48,7 @@ const props = defineProps({
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const apiStore = useApiStore();
 
 const isOpenFindPartnetInformation = ref(
   props.openEditPartnerInformationWindow
@@ -71,6 +73,16 @@ const rating = ref("");
 const city = ref("");
 const stadium = ref("");
 const description = ref("");
+const cityOptions = ref([]);
+
+const getAllList = async () => {
+  try {
+    await apiStore.getCity(serverURL, $q);
+    cityOptions.value = apiStore.city.value;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const partnerInfo = ref("");
 const updatePartnerInfo = async () => {
@@ -93,6 +105,10 @@ const updatePartnerInfo = async () => {
     params
   );
 };
+
+onMounted(() => {
+  getAllList();
+});
 </script>
 
 <style></style>
