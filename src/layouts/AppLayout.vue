@@ -195,6 +195,11 @@ const headerButtonsArrayForAdmin = computed(() => [
     icon: "mdi-account-group",
     messageNumber: localStorage.getItem("numberCoach"), // Теперь обновляется динамически
   },
+  {
+    name: "Find a partner",
+    link: "/admin/partner",
+    icon: "mdi-account-search",
+  },
 ]);
 
 const router = useRouter();

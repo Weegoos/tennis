@@ -58,6 +58,10 @@ const routes = [
         path: "coaches",
         component: () => import("pages/Admin/AdminAllCoaches.vue"),
       },
+      {
+        path: "partner",
+        component: () => import("pages/Admin/AdminAllPartners.vue"),
+      },
     ],
   },
   {
