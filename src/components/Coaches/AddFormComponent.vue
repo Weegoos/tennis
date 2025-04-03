@@ -6,7 +6,11 @@
         <q-card-section class="row q-gutter-md">
           <section class="col">
             <q-select v-model="city" :options="cityOptions" label="City" />
-            <q-input v-model="language" type="text" label="Language" />
+            <q-select
+              v-model="language"
+              :options="languageList"
+              label="Language"
+            />
             <q-input v-model="cost" type="number" label="Cost" />
           </section>
           <section class="col">
@@ -66,13 +70,14 @@ const closeForm = () => {
 };
 
 const city = ref("");
-const language = ref([]);
+const language = ref(null);
 const cost = ref("");
 const service = ref("");
 const description = ref("");
 const experience = ref("");
 const stadium = ref("");
 const cityOptions = ref([]);
+const languageList = ref([]);
 
 const createCoaches = async () => {
   const payload = {
@@ -87,13 +92,16 @@ const createCoaches = async () => {
   postMethod(serverURL, "coach", payload, $q, "Тренер успешно зареган");
 };
 
-const getCityList = async () => {
+const getAllList = async () => {
   await apiStore.getCity(serverURL, $q);
   cityOptions.value = apiStore.city.value;
+
+  await apiStore.getLanguage(serverURL, $q);
+  languageList.value = apiStore.language.value;
 };
 
 onMounted(() => {
-  getCityList();
+  getAllList();
 });
 </script>
 

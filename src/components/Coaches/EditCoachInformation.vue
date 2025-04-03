@@ -5,8 +5,12 @@
         <q-card-section class="">
           <section class="row q-gutter-md">
             <div class="col">
-              <q-input v-model="language" type="text" label="Language" />
-              <q-input v-model="city" type="text" label="City" />
+              <q-select v-model="city" :options="cityOptions" label="City" />
+              <q-select
+                v-model="language"
+                :options="languageList"
+                label="Language"
+              />
               <q-input v-model="service" type="text" label="Service" />
             </div>
             <div class="col">
@@ -35,12 +39,15 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
-import { getCurrentInstance, ref, watch } from "vue";
+import { useApiStore } from "src/stores/api-store";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variabels
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const apiStore = useApiStore();
+
 const props = defineProps({
   openCoachEditWindow: {
     type: Boolean,
@@ -60,15 +67,28 @@ watch(
   }
 );
 
+const language = ref(null);
+const languageList = ref(["Batyr"]);
+const cityOptions = ref([]);
+const getAllList = async () => {
+  try {
+    await apiStore.getLanguage(serverURL, $q);
+    languageList.value = apiStore.language.value;
+    await apiStore.getCity(serverURL, $q);
+    cityOptions.value = apiStore.city.value;
+    console.log(languageList.value);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const emit = defineEmits(["closeEditCoachInformationWindow"]);
 const closeEditCoachInformationWindow = () => {
   emit("closeEditCoachInformationWindow");
 };
-// http://localhost:8000/api/v1/coach/1?city=ASTANA&language=English
 const coacheInfo = ref("");
 
 const city = ref("");
-const language = ref("");
 const cost = ref("");
 const service = ref("");
 const description = ref("");
@@ -97,6 +117,10 @@ const updateCoachInfo = async () => {
     params
   );
 };
+
+onMounted(() => {
+  getAllList();
+});
 </script>
 
 <style></style>
