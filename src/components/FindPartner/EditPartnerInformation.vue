@@ -92,6 +92,8 @@ const updatePartnerInfo = async () => {
     "Ошибка:",
     params
   );
+
+  console.log(params);
 };
 </script>
 
