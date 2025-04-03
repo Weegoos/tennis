@@ -12,10 +12,10 @@
       hide-bottom
     />
 
-    <CoachesDetailedInformation
-      :isOpenCoachesDetailedInformation="isOpenCoachesDetailedInformation"
-      :coachesInfo="Object(coachesInfo)"
-      @closeCoacheDetailedInformation="closeCoacheDetailedInformation"
+    <FindPartnerDetailedInformation
+      :isOpenPartnerDetailedInformation="isOpenPartnerDetailedInformation"
+      :partnerInfo="Object(partnerInfo)"
+      @closePartnerDetailedInformation="closePartnerDetailedInformation"
     />
   </div>
   <div v-else data-testid="noData">
@@ -33,7 +33,7 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
-import CoachesDetailedInformation from "src/components/Admin/CoachesDetailedInformation.vue";
+import FindPartnerDetailedInformation from "src/components/Admin/FindPartnerDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useApiStore } from "src/stores/api-store";
 
@@ -57,7 +57,7 @@ const columns = [
     name: "fullName",
     label: "Full Name",
     align: "left",
-    field: (coaches) => `${coaches.lastName} ${coaches.firstName}`,
+    field: (partner) => `${partner.lastName} ${partner.firstName}`,
     sortable: true,
   },
   {
@@ -86,7 +86,7 @@ const columns = [
 const rows = ref([]);
 const maxPage = ref("");
 
-const getEnabledCoaches = async (page) => {
+const getEnabledPartner = async (page) => {
   await getMethod(
     serverURL,
     `partner/page?page=${page}&size=${maxNumberOfRequestPerPage}&enabled=${statusForAdmin}`,
@@ -97,25 +97,27 @@ const getEnabledCoaches = async (page) => {
     maxPage.value = Math.ceil(
       rows.value.totalCount / maxNumberOfRequestPerPage
     );
-    rows.value = rows.value.data.map((coach, index) => ({
-      ...coach,
+    rows.value = rows.value.data.map((partner, index) => ({
+      ...partner,
     }));
   });
+
+  console.log(rows);
 };
 
 const enabledCoachesLength = ref(0);
-const getEnabledCoachesLength = async () => {
-  await getMethod(
-    serverURL,
-    "coach?enabled=false",
-    enabledCoachesLength,
-    $q,
-    "Ошибка при получении количество тренеров в админ странице:"
-  );
-  console.log(enabledCoachesLength.value.length);
-  await apiStore.setNumber(enabledCoachesLength.value.length);
-  localStorage.setItem("numberCoach", enabledCoachesLength.value.length);
-};
+// const getEnabledCoachesLength = async () => {
+//   await getMethod(
+//     serverURL,
+//     "coach?enabled=false",
+//     enabledCoachesLength,
+//     $q,
+//     "Ошибка при получении количество тренеров в админ странице:"
+//   );
+//   console.log(enabledCoachesLength.value.length);
+//   await apiStore.setNumber(enabledCoachesLength.value.length);
+//   localStorage.setItem("numberCoach", enabledCoachesLength.value.length);
+// };
 
 const current = ref(1);
 const pagination = (page) => {
@@ -125,20 +127,21 @@ const pagination = (page) => {
 };
 
 onMounted(() => {
-  getEnabledCoaches(1);
-  getEnabledCoachesLength();
+  getEnabledPartner(1);
 });
 
-const isOpenCoachesDetailedInformation = ref(false);
-const coachesInfo = ref([]);
+const isOpenPartnerDetailedInformation = ref(false);
+const partnerInfo = ref([]);
 const viewDetailedInformation = (evt, row, index) => {
-  isOpenCoachesDetailedInformation.value = true;
-  coachesInfo.value = row;
-  console.log(coachesInfo.value);
+  console.log(777);
+
+  isOpenPartnerDetailedInformation.value = true;
+  partnerInfo.value = row;
+  console.log(row);
 };
 
-const closeCoacheDetailedInformation = () => {
-  isOpenCoachesDetailedInformation.value = false;
+const closePartnerDetailedInformation = () => {
+  isOpenPartnerDetailedInformation.value = false;
 };
 </script>
 
