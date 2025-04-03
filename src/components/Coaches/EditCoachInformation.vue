@@ -89,8 +89,7 @@ const updateCoachInfo = async () => {
 
   await putMethod(
     serverURL,
-    `coach`,
-    `${props.coachID}`,
+    `coach${props.coachID}`,
     coacheInfo,
     $q,
     "Успешно обновлено",

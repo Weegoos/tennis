@@ -85,8 +85,7 @@ const updatePartnerInfo = async () => {
 
   await putMethod(
     serverURL,
-    `partner`,
-    `${props.partnerId}`,
+    `partner/${props.partnerId}`,
     partnerInfo,
     $q,
     "Успешно обновлено",

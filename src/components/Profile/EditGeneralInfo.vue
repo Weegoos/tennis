@@ -31,8 +31,7 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { Cookies, useQuasar } from "quasar";
+import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
 import { getCurrentInstance, ref, watch } from "vue";
 
@@ -66,7 +65,7 @@ const firstName = ref("");
 const lastName = ref("");
 const phone = ref("");
 const rating = ref("");
-
+const updatedInfo = ref("");
 const updateInformation = async () => {
   console.log("Updating information...");
 
@@ -81,9 +80,8 @@ const updateInformation = async () => {
   try {
     putMethod(
       serverURL,
-      "user",
-      "update?",
-      "",
+      "user/update?",
+      updatedInfo,
       $q,
       "Профиль успешно обновлен",
       "Error: ",

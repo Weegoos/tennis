@@ -6,7 +6,6 @@ const notifyStore = useNotifyStore();
 export async function putMethod(
   serverURL,
   url,
-  id,
   variableRef,
   $q,
   successMessage,
@@ -15,19 +14,15 @@ export async function putMethod(
 ) {
   notifyStore.loading($q, "Подождите, идет обновление", QSpinnerGears);
   try {
-    const response = await axios.put(
-      `${serverURL}${url}/${id}`,
-      variableRef.value,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-        params,
-        withCredentials: true,
-      }
-    );
+    const response = await axios.put(`${serverURL}${url}`, variableRef.value, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+      params,
+      withCredentials: true,
+    });
 
     console.log("Ответ сервера:", response.data);
     notifyStore.nofifySuccess($q, successMessage);

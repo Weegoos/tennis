@@ -10,6 +10,7 @@ export const useApiStore = defineStore("api", {
     userData: ref([]),
     city: ref([]),
     category: ref([]),
+    role: ref([]),
     numberOfCoach: ref(0),
   }),
   actions: {
@@ -61,7 +62,15 @@ export const useApiStore = defineStore("api", {
         "Ошибка при получении списка городов"
       );
     },
-
+    async getRoles(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/roles",
+        this.role,
+        $q,
+        "Ошибка при получении списка городов"
+      );
+    },
     async setNumber(value) {
       this.numberOfCoach = value;
     },

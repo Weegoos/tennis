@@ -151,8 +151,6 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getCurrentInstance, onMounted, ref, watch } from "vue";
-import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { patchMethod } from "src/composables/apiMethod/patch";
 
