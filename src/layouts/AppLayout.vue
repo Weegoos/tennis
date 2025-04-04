@@ -65,6 +65,7 @@
       </q-page-container>
       <q-footer
         reveal
+        v-if="!isAuthPage"
         elevated
         style="background-color: #30222e"
         align="center"

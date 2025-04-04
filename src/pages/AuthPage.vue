@@ -72,6 +72,7 @@
             no-caps
             label="Enter"
             data-testid="authorizationButton"
+            rounded
             @click="authorization"
           />
           <q-btn

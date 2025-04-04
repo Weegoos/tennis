@@ -58,7 +58,7 @@
             :class="$q.screen.width > mobileWidth ? 'text-h4' : 'text-h6'"
             data-testid="registrationContent"
           >
-            Registration Batyr
+            Registration
           </p>
         </q-card-section>
         <q-card-section>
@@ -126,6 +126,7 @@
             no-caps
             label="Register"
             @click="registration"
+            rounded
             data-testid="registrationButton"
           />
           <q-btn
@@ -155,7 +156,6 @@ const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const notifyStore = useNotifyStore();
-const cookie = Cookies.has("accessToken");
 const router = useRouter();
 
 // slide
