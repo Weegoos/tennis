@@ -58,7 +58,7 @@
             :class="$q.screen.width > mobileWidth ? 'text-h4' : 'text-h6'"
             data-testid="registrationContent"
           >
-            Registration
+            Registration Batyr
           </p>
         </q-card-section>
         <q-card-section>

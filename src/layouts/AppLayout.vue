@@ -26,30 +26,31 @@
           />
           <q-toolbar-title> tennis.kz </q-toolbar-title>
         </q-toolbar>
+        <q-drawer
+          v-if="$q.screen.width > mobileWidth"
+          side="left"
+          v-model="drawer"
+          bordered
+          :width="220"
+          :breakpoint="500"
+          content-class="bg-grey-3"
+          class="fixed-drawer"
+        >
+          <q-list bordered>
+            <q-item
+              clickable
+              v-ripple
+              class="text-black"
+              v-for="(buttons, index) in isUser"
+              :key="index"
+              @click="navigationBar(buttons.link)"
+            >
+              <q-item-section>{{ buttons.name }}</q-item-section>
+            </q-item>
+          </q-list>
+        </q-drawer>
       </q-header>
-      <q-drawer
-        v-if="$q.screen.width > mobileWidth"
-        side="left"
-        v-model="drawer"
-        bordered
-        :width="220"
-        :breakpoint="500"
-        content-class="bg-grey-3"
-        class="fixed-drawer"
-      >
-        <q-list bordered>
-          <q-item
-            clickable
-            v-ripple
-            class="text-black"
-            v-for="(buttons, index) in isUser"
-            :key="index"
-            @click="navigationBar(buttons.link)"
-          >
-            <q-item-section>{{ buttons.name }}</q-item-section>
-          </q-item>
-        </q-list>
-      </q-drawer>
+
       <q-page-container>
         <q-page>
           <router-view />
