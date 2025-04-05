@@ -129,14 +129,8 @@ const authorization = async () => {
     $q.loading.hide();
     notifyStore.nofifySuccess($q, `Авторизация прошла успешно!`);
 
-    Cookies.set("accessToken", response.data.accessToken, {
-      path: "/",
-      domain: "localhost",
-    });
-    Cookies.set("refreshToken", response.data.refreshToken, {
-      path: "/",
-      domain: "localhost",
-    });
+    Cookies.set("accessToken", response.data.accessToken);
+    Cookies.set("refreshToken", response.data.refreshToken);
 
     console.log("Токен после установки:", Cookies.get("accessToken"));
 
