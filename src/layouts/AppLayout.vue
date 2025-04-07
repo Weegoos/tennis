@@ -134,8 +134,8 @@ watch(
   }
 );
 
-const userRole = ref(null);
-const isUser = ref(null);
+const userRole = ref("USER");
+const isUser = ref("USER");
 
 const headerButtonsArrayForUser = ref([
   {
@@ -214,7 +214,7 @@ const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
 const drawer = ref(true);
-
+isUser.value = headerButtonsArrayForUser.value;
 const defineRole = async () => {
   try {
     await getMethod(serverURL, "user/authenticated", userRole, $q, "Error: ");

@@ -6,6 +6,7 @@
   >
     <!-- Левая половина с видео -->
     <div
+      data-testid="videoTestid"
       style="flex: 1; position: relative; overflow: hidden"
       v-if="$q.screen.width > mobileWidth"
     >
@@ -142,83 +143,99 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import axios from "axios";
 import { Cookies, QSpinnerGears, useQuasar } from "quasar";
 import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 import { useNotifyStore } from "src/stores/notify-store";
+export default {
+  setup() {
+    // global variables
+    const { proxy } = getCurrentInstance();
+    const serverURL = proxy.$serverURL;
+    const mobileWidth = proxy.$mobileWidth;
+    const $q = useQuasar();
+    const notifyStore = useNotifyStore();
+    const router = useRouter();
 
-// global variables
-const { proxy } = getCurrentInstance();
-const serverURL = proxy.$serverURL;
-const mobileWidth = proxy.$mobileWidth;
-const $q = useQuasar();
-const notifyStore = useNotifyStore();
-const router = useRouter();
+    // slide
+    const slide = ref("style");
+    const slides = ["style", "tv"];
+    let slideIndex = 0;
+    let interval = null;
 
-// slide
-const slide = ref("style");
-const slides = ["style", "tv"];
-let slideIndex = 0;
-let interval = null;
+    // variables
+    const isPwd = ref(true);
 
-// variables
-const isPwd = ref(true);
-
-onMounted(() => {
-  interval = setInterval(() => {
-    slideIndex = (slideIndex + 1) % slides.length;
-    slide.value = slides[slideIndex];
-  }, 5500);
-});
-
-onBeforeMount(() => {
-  clearInterval(interval);
-});
-
-// function
-const name = ref("");
-const secondName = ref("");
-const email = ref("");
-const password = ref("");
-
-const registration = async () => {
-  notifyStore.loading($q, "Подождите...", QSpinnerGears);
-  try {
-    const data = {
-      email: email.value,
-      firstName: name.value,
-      lastName: secondName.value,
-      password: password.value,
-      role: "USER",
-    };
-    const response = await axios.post(`${serverURL}auth/signup`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
+    onMounted(() => {
+      interval = setInterval(() => {
+        slideIndex = (slideIndex + 1) % slides.length;
+        slide.value = slides[slideIndex];
+      }, 5500);
     });
-    notifyStore.nofifySuccess($q, "Сообщение отправлено в почту!");
-    Cookies.set("accessToken", response.data.accessToken);
-    Cookies.set("refreshToken", response.data.refreshToken);
-  } catch (error) {
-    console.error("Registration error:", error);
-    notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
-  } finally {
-    $q.loading.hide();
-  }
-};
 
-const pushToAuthorization = () => {
-  router.push("/authorization");
-};
+    onBeforeMount(() => {
+      clearInterval(interval);
+    });
 
-const handleKey = (e) => {
-  if (e.key === "Enter") {
-    registration();
-  }
+    // function
+    const name = ref("");
+    const secondName = ref("");
+    const email = ref("");
+    const password = ref("");
+
+    const registration = async () => {
+      notifyStore.loading($q, "Подождите...", QSpinnerGears);
+      try {
+        const data = {
+          email: email.value,
+          firstName: name.value,
+          lastName: secondName.value,
+          password: password.value,
+          role: "USER",
+        };
+        const response = await axios.post(`${serverURL}auth/signup`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        notifyStore.nofifySuccess($q, "Сообщение отправлено в почту!");
+        Cookies.set("accessToken", response.data.accessToken);
+        Cookies.set("refreshToken", response.data.refreshToken);
+      } catch (error) {
+        console.error("Registration error:", error);
+        notifyStore.notifyError($q, "Ошибка регистрации. Попробуйте снова.");
+      } finally {
+        $q.loading.hide();
+      }
+    };
+
+    const pushToAuthorization = () => {
+      router.push("/authorization");
+    };
+
+    const handleKey = (e) => {
+      if (e.key === "Enter") {
+        registration();
+      }
+    };
+
+    return {
+      slide,
+      isPwd,
+      name,
+      secondName,
+      mobileWidth,
+      email,
+      password,
+      registration,
+      pushToAuthorization,
+      handleKey,
+    };
+  },
 };
 </script>
 
