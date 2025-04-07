@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tests for AuthPage.vue > should find authorizationContent data-testid 1`] = `
+DOMWrapper {
+  "isDisabled": [Function],
+  "wrapperElement": <p
+    class="text-bold text-h6"
+    data-testid="authorizationContent"
+    data-v-c025950a=""
+  >
+     Authorization 
+  </p>,
+}
+`;
