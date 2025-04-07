@@ -13,6 +13,7 @@ export const useApiStore = defineStore("api", {
     role: ref([]),
     language: ref([]),
     gender: ref([]),
+    service: ref([]),
     numberOfCoach: ref(0),
   }),
   actions: {
@@ -61,7 +62,7 @@ export const useApiStore = defineStore("api", {
         "enum/category",
         this.category,
         $q,
-        "Ошибка при получении списка городов"
+        "Ошибка при получении списка категории"
       );
     },
     async getRoles(serverURL, $q) {
@@ -70,7 +71,7 @@ export const useApiStore = defineStore("api", {
         "enum/roles",
         this.role,
         $q,
-        "Ошибка при получении списка городов"
+        "Ошибка при получении списка роле"
       );
     },
     async getLanguage(serverURL, $q) {
@@ -79,7 +80,7 @@ export const useApiStore = defineStore("api", {
         "enum/language",
         this.language,
         $q,
-        "Ошибка при получении списка городов"
+        "Ошибка при получении списка языка"
       );
     },
     async getGender(serverURL, $q) {
@@ -88,7 +89,16 @@ export const useApiStore = defineStore("api", {
         "enum/gender",
         this.gender,
         $q,
-        "Ошибка при получении списка городов"
+        "Ошибка при получении списка пола"
+      );
+    },
+    async getService(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/service",
+        this.service,
+        $q,
+        "Ошибка при получении списка сервисов"
       );
     },
     async setNumber(value) {

@@ -14,7 +14,11 @@
             <q-input v-model="cost" type="number" label="Cost" />
           </section>
           <section class="col">
-            <q-input v-model="service" type="text" label="Service" />
+            <q-select
+              v-model="service"
+              :options="serviceOptions"
+              label="Service"
+            />
             <q-input
               v-model="description"
               type="text"
@@ -78,6 +82,7 @@ const experience = ref("");
 const stadium = ref("");
 const cityOptions = ref([]);
 const languageList = ref([]);
+const serviceOptions = ref([]);
 
 const createCoaches = async () => {
   const payload = {
@@ -98,6 +103,11 @@ const getAllList = async () => {
 
   await apiStore.getLanguage(serverURL, $q);
   languageList.value = apiStore.language.value;
+
+  await apiStore.getService(serverURL, $q);
+  serviceOptions.value = apiStore.service.value;
+
+  console.log();
 };
 
 onMounted(() => {
