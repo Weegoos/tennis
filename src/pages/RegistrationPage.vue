@@ -128,7 +128,6 @@
             label="Register"
             @click="registration"
             rounded
-            data-testid="registrationButton"
           />
           <q-btn
             color="primary"

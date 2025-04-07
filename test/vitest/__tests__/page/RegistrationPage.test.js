@@ -20,11 +20,34 @@ describe("tests for RegistrationPage", () => {
     expect(registrationContent.text()).toContain("Registration");
     expect(registrationContent).toMatchSnapshot();
   });
-  it("should find registrationForm data-testid", () => {
+  it("should find nameInput data-testid", () => {
     const nameInput = wrapper.find('[data-testid="nameInput"]');
     expect(nameInput.exists()).toBe(true);
 
     nameInput.setValue("Example Name");
     expect(nameInput.element.value).toBe("Example Name");
+  });
+
+  it("should find emailInput data-testid", () => {
+    const secondNameInput = wrapper.find('[data-testid="emailInput"]');
+    expect(secondNameInput.exists()).toBe(true);
+
+    secondNameInput.setValue("Example Second Name");
+    expect(secondNameInput.element.value).toBe("Example Second Name");
+  });
+
+  it("should find emailInput data-testid", () => {
+    const emailInput = wrapper.find('[data-testid="emailInput"]');
+    expect(emailInput.exists()).toBe(true);
+
+    emailInput.setValue("example@gmail.com");
+    expect(emailInput.element.value).toBe("example@gmail.com");
+  });
+  it("should find passwordInput data-testid", () => {
+    const passwordInput = wrapper.find('[data-testid="passwordInput"]');
+    expect(passwordInput.exists()).toBe(true);
+
+    passwordInput.setValue("examplePassword");
+    expect(passwordInput.element.value).toBe("examplePassword");
   });
 });
