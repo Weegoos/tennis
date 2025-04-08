@@ -6,7 +6,7 @@ beforeEach(() => {
     serverURL: "https://csia-back.onrender.com/",
     clientURL: "http://localhost:9000/#/",
     maxItemsPerPage: 10,
-    mobileWidth: 800,
+    mobileWidth: 500,
   }));
 
   vi.mock("axios");
@@ -59,6 +59,35 @@ beforeEach(() => {
           },
         },
       })),
+    };
+  });
+
+  vi.mock("src/stores/notify-store", async () => {
+    return {
+      useNotifyStore: () => ({
+        loading: vi.fn(),
+        notifyError: vi.fn(),
+      }),
+    };
+  });
+  vi.mock("src/composables/apiMethod/get.js", () => {
+    return {
+      getMethod: vi.fn(() => Promise.resolve()),
+    };
+  });
+  vi.mock("src/composables/apiMethod/post.js", () => {
+    return {
+      postMethod: vi.fn(() => Promise.resolve()),
+    };
+  });
+  vi.mock("src/composables/apiMethod/delete.js", () => {
+    return {
+      deleteMethod: vi.fn(() => Promise.resolve()),
+    };
+  });
+  vi.mock("src/composables/apiMethod/put.js", () => {
+    return {
+      putMethod: vi.fn(() => Promise.resolve()),
     };
   });
 });

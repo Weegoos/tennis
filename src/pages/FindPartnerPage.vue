@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'">
+    <div
+      data-testid="findPartner"
+      :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'"
+    >
       <p
         class="text-bold"
+        data-testid="findPartnerContent"
         :class="$q.screen.width < mobileWidth ? 'text-h6' : 'text-h4'"
       >
         Find a partner
@@ -111,11 +115,11 @@
     <EditPartnerInformation
       :openEditPartnerInformationWindow="openEditPartnerInformationWindow"
       @closeEditPartnerInformationPage="closeEditPartnerInformationPage"
-      :partnerId="partnerId"
+      :partnerId="Number(partnerId)"
     />
     <DetailedInformation
       :openDetailedWindow="openDetailedWindow"
-      :fullInformationAboutPartner="fullInformationAboutPartner"
+      :fullInformationAboutPartner="Object(fullInformationAboutPartner)"
       @closeWindow="closeWindow"
     />
   </div>
