@@ -40,4 +40,25 @@ beforeEach(() => {
       })),
     };
   });
+  vi.mock("src/stores/api-store", () => {
+    return {
+      useApiStore: vi.fn(() => ({
+        getUserProfile: vi.fn(),
+        getCity: vi.fn(),
+        getCategory: vi.fn(),
+        getLanguage: vi.fn(),
+        getGender: vi.fn(),
+        getService: vi.fn(),
+        setNumber: vi.fn(),
+
+        userData: {
+          email: "test@example.com",
+          userInfo: {
+            firstName: "Test",
+            lastName: "User",
+          },
+        },
+      })),
+    };
+  });
 });
