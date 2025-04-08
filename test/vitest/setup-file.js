@@ -32,4 +32,12 @@ beforeEach(() => {
       }),
     };
   });
+
+  vi.mock("src/stores/javascript-store", () => {
+    return {
+      useJavaScriptFunction: vi.fn(() => ({
+        redirect: vi.fn(),
+      })),
+    };
+  });
 });
