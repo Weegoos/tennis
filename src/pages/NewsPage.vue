@@ -27,7 +27,12 @@
         </div>
         <q-card-actions align="right">
           <q-btn flat icon="mdi-pencil" />
-          <q-btn flat color="red-4" icon="mdi-delete" />
+          <q-btn
+            flat
+            color="red-4"
+            icon="mdi-delete"
+            @click="deleteNews(news)"
+          />
         </q-card-actions>
 
         <q-dialog
@@ -71,29 +76,48 @@
         </q-dialog>
       </q-card-section>
     </q-card>
+    <q-pagination
+      class="justify-center q-my-sm"
+      v-model="current"
+      :min="1"
+      :max="maxPage"
+      @update:model-value="pagination"
+    />
   </div>
 </template>
 
 <script setup>
 import { useQuasar } from "quasar";
+import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const humanResources = proxy.$humanResources;
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
 
 const allNews = ref([]);
-const getAllNews = async () => {
+const getAllNews = async (page) => {
   try {
     await getMethod(
       serverURL,
-      "news/allNews?page=1&size=10",
+      `news/allNews?page=${page}&size=${maxNumberOfRequestPerPage}`,
       allNews,
       $q,
       "Error: "
     );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const deleteNews = async (newsInfo) => {
+  console.log(newsInfo.id);
+  try {
+    deleteMethod(serverURL, "news", newsInfo.id);
   } catch (error) {
     console.error(error);
   }
@@ -104,8 +128,27 @@ const checkAuthorInfo = async (authorInfo) => {
   openWindowAboutAuthor.value = true;
 };
 
+const maxPage = ref("");
+watch(
+  () => allNews.value,
+  (newVal) => {
+    if (newVal && newVal.totalCount) {
+      maxPage.value = Math.ceil(newVal.totalCount / maxNumberOfRequestPerPage);
+    } else {
+      maxPage.value = 1;
+    }
+  }
+);
+
+const current = ref(1);
+const pagination = (page) => {
+  console.log("Текущая страница:", page);
+  current.value = page;
+  getAllNews(current.value);
+};
+
 onMounted(() => {
-  getAllNews();
+  getAllNews(1);
 });
 </script>
 

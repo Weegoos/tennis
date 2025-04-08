@@ -6,7 +6,7 @@ export default ({ app }) => {
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "HR";
   const adminRole = "ADMIN";
-  const maxNumberOfRequestPerPage = 10;
+  const maxNumberOfRequestPerPage = 1;
   const statusForUser = true;
   const statusForAdmin = false;
 
