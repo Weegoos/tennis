@@ -14,9 +14,9 @@
       <q-btn color="primary" label="Place a request" @click="sendRequest" />
     </div>
     <section>
-      <section v-if="partner.data > []">
+      <section data-testid="partnerDataTestID" v-if="partner.data > []">
         <q-card
-          data-testid="coachesID"
+          data-testid="partnerID"
           :class="$q.screen.width < mobileWidth ? 'q-ma-md q-py-sm' : 'card'"
           v-for="(items, index) in partner.data"
           :key="index"
@@ -76,7 +76,7 @@
               </section>
             </section>
             <div
-              v-if="userInfo.role == humanResources"
+              v-if="userInfo.value.role === humanResources"
               class="col"
               align="right"
               data-testid="buttonSection"
@@ -97,7 +97,11 @@
           </q-card-section>
         </q-card>
       </section>
-      <section v-else class="text-center text-h5 text-bold">
+      <section
+        data-testid="partnerNoData"
+        v-else
+        class="text-center text-h5 text-bold"
+      >
         There is no announcement about the coaches
       </section>
     </section>

@@ -43,7 +43,7 @@ beforeEach(() => {
   vi.mock("src/stores/api-store", () => {
     return {
       useApiStore: vi.fn(() => ({
-        getUserProfile: vi.fn(),
+        getUserProfile: vi.fn().mockResolvedValue({ role: "HR" }),
         getCity: vi.fn(),
         getCategory: vi.fn(),
         getLanguage: vi.fn(),
@@ -53,6 +53,7 @@ beforeEach(() => {
 
         userData: {
           email: "test@example.com",
+          role: "HR",
           userInfo: {
             firstName: "Test",
             lastName: "User",
