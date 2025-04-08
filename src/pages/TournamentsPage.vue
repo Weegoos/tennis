@@ -26,7 +26,7 @@
         data-testid="openAddTournamentsButton"
       />
     </section>
-    <div data-testid="tournamentsID" v-if="tournaments.data != 0">
+    <div data-testid="tournamentsID" v-if="tournaments.data > []">
       <section
         v-for="(tournament, id) in tournaments.data"
         :key="id"

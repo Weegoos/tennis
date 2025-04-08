@@ -1,9 +1,10 @@
 <template>
-  <div class="q-px-lg q-py-md text-black">
+  <div class="q-px-lg q-py-md text-black" data-testid="wrapperDataTestID">
     <q-card
+      data-testid="tournamentCard"
       class="rounded-xl shadow-4xl bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 text-black"
     >
-      <q-card-section>
+      <q-card-section data-testid="tournamentCardSection">
         <div class="text-h4 q-mb-md font-extrabold text-center">
           Tournament Rules & Regulations
         </div>
