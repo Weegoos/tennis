@@ -6,6 +6,7 @@
       transition-next="jump-left"
       swipeable
       animated
+      data-testid="carousel"
       control-color="white"
       prev-icon="arrow_left"
       next-icon="arrow_right"
@@ -16,6 +17,7 @@
       class="full-width"
     >
       <q-carousel-slide
+        data-testid="carouselSlide"
         v-for="(carousel, index) in slideInformation"
         :key="index"
         :name="carousel.name"
@@ -31,6 +33,7 @@
       </q-carousel-slide>
     </q-carousel>
     <section
+      data-testid="tournamentPage"
       :class="$q.screen.width > mobileWidth ? 'q-mt-lg q-pa-xl q-mx-xl' : ''"
     >
       <TournamentPage />
