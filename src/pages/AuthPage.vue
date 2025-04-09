@@ -6,6 +6,7 @@
   >
     <!-- Левая половина с видео -->
     <div
+      data-testid="backgroundVideo"
       style="flex: 1; position: relative; overflow: hidden"
       v-if="$q.screen.width > mobileWidth"
     >
@@ -21,6 +22,7 @@
 
     <!-- Правая половина с текстом -->
     <div
+      data-testid="backgroundText"
       class="content"
       :class="
         $q.screen.width > mobileWidth ? 'desktopDesign' : 'background-container'
@@ -54,7 +56,7 @@
                 ? 'text-h4 text-black'
                 : 'text-h6 text-white'
             "
-            data-testid="authorizationContent"
+            data-testid="authorizationTitle"
           >
             {{
               email
@@ -64,6 +66,7 @@
           </p>
 
           <div
+            data-testid="inputDiv"
             class="q-gutter-sm"
             :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
           >
@@ -136,7 +139,7 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-actions vertical>
+        <q-card-actions data-testid="actions" vertical>
           <q-btn
             no-caps
             color="green"

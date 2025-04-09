@@ -6,7 +6,7 @@ beforeEach(() => {
     serverURL: "https://csia-back.onrender.com/",
     clientURL: "http://localhost:9000/#/",
     maxItemsPerPage: 10,
-    mobileWidth: 500,
+    mobileWidth: 1050,
   }));
 
   vi.mock("axios");
