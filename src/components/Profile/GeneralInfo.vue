@@ -1,22 +1,34 @@
 <template>
-  <div :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'q-pa-xl'">
-    <q-tabs v-model="tab" class="text-teal">
+  <div
+    data-testid="wrapperDiv"
+    :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'q-pa-xl'"
+  >
+    <q-tabs v-model="tab" class="text-teal" data-testid="wrapperTabs">
       <q-tab
         name="info"
         icon="ion-person"
+        data-testid="infoTab"
         no-caps
         label="General information"
       />
       <q-tab
         name="tournaments"
         icon="ion-trophy"
+        data-testid="tournamentsTab"
         no-caps
         label="My tournaments"
       />
-      <q-tab name="settings" icon="ion-settings" no-caps label="Settings" />
+      <q-tab
+        name="settings"
+        data-testid="settingsTab"
+        icon="ion-settings"
+        no-caps
+        label="Settings"
+      />
     </q-tabs>
 
     <q-tab-panels
+      data-testid="animatedPanels"
       v-model="tab"
       animated
       swipeable
@@ -56,7 +68,7 @@
               />
             </div>
           </div>
-          <div class="col">
+          <div class="col" data-testid="generalInformation">
             <div class="text-h4 q-mb-md">General information</div>
             <p>
               <span class="q-mr-md text-bold">Full name</span

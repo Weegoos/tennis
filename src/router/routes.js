@@ -66,6 +66,10 @@ const routes = [
         path: "profile",
         component: () => import("pages/Admin/AdminProfile.vue"),
       },
+      {
+        path: "stats",
+        component: () => import("pages/Admin/AdminStats.vue"),
+      },
     ],
   },
   {
