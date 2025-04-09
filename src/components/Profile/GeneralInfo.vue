@@ -156,6 +156,8 @@ import { getCurrentInstance, onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
 import { Cookies } from "quasar";
 import { useI18n } from "vue-i18n";
+import stadium from "../../composables/stadium.json";
+console.log(stadium);
 
 // general variables
 const apiStore = useApiStore();

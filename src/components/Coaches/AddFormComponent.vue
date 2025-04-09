@@ -29,7 +29,7 @@
           </section>
         </q-card-section>
         <q-card-section>
-          <q-input v-model="stadium" type="text" label="Stadium" />
+          <q-select v-model="stadium" :options="stadiumList" label="Stadium" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn flat label="Close" color="negative" @click="closeForm" />
@@ -45,7 +45,8 @@ import { Cookies, useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
-
+import stadiumJSON from "../../composables/stadium.json";
+console.log(stadiumJSON);
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
@@ -83,6 +84,7 @@ const stadium = ref("");
 const cityOptions = ref([]);
 const languageList = ref([]);
 const serviceOptions = ref([]);
+const stadiumList = ref(stadiumJSON);
 
 const createCoaches = async () => {
   const payload = {
