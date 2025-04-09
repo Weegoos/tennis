@@ -87,7 +87,7 @@
             "
             data-testid="registrationContent"
           >
-            {{ name ? `Welcome ${name}` : "Registration" }}
+            {{ name ? `Welcome ${name}` : t("registration") }}
           </p>
           <div
             class="q-gutter-sm"
@@ -247,6 +247,7 @@ import { onBeforeMount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 import { useNotifyStore } from "src/stores/notify-store";
+import { useI18n } from "vue-i18n";
 export default {
   setup() {
     // global variables
@@ -256,8 +257,14 @@ export default {
     const $q = useQuasar();
     const notifyStore = useNotifyStore();
     const router = useRouter();
+    const { t, locale } = useI18n();
 
+    console.log("Current locale:", locale.value);
+    const changeLanguage = (lang) => {
+      locale.value = lang; // Просто меняем значение locale
+    };
     // slide
+
     const slide = ref("style");
     const slides = ["style", "tv"];
     let slideIndex = 0;
@@ -331,6 +338,9 @@ export default {
       registration,
       pushToAuthorization,
       handleKey,
+      t,
+      locale,
+      changeLanguage,
     };
   },
 };

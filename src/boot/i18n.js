@@ -1,14 +1,15 @@
-import { boot } from "quasar/wrappers";
 import { createI18n } from "vue-i18n";
-import messages from "src/i18n";
+import messages from "../i18n/en-US/index";
 
-export default boot(({ app }) => {
+export default ({ app }) => {
+  // Create I18n instance
+  const savedLocale = localStorage.getItem("locale") || "ru-RU";
   const i18n = createI18n({
-    locale: "en-US",
-    globalInjection: true,
+    locale: savedLocale,
+    legacy: false, // comment this out if not using Composition API
     messages,
   });
 
-  // Set i18n instance on app
+  // Tell app to use the I18n instance
   app.use(i18n);
-});
+};

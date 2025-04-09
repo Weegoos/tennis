@@ -75,8 +75,9 @@
                 </div>
               </section>
             </section>
+
             <div
-              v-if="userInfo.value.role === humanResources"
+              v-if="userInfo.role === humanResources"
               class="col"
               align="right"
               data-testid="buttonSection"
