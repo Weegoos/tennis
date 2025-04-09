@@ -222,7 +222,7 @@
         <q-card-actions vertical>
           <q-btn
             no-caps
-            color="green-4 "
+            color="green"
             label="Register"
             @click="registration"
             rounded

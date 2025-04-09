@@ -20,19 +20,45 @@
     </div>
 
     <!-- Правая половина с текстом -->
-    <div class="content">
-      <q-card class="my-card" style="width: 100%">
-        <q-card-section align="center">
+    <div
+      class="content"
+      :class="
+        $q.screen.width > mobileWidth ? 'desktopDesign' : 'background-container'
+      "
+    >
+      <video
+        v-if="$q.screen.width < mobileWidth"
+        autoplay
+        muted
+        loop
+        playsinline
+        class="background-video"
+      >
+        <source src="../assets/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <q-card
+        class="my-card"
+        :class="
+          $q.screen.width > mobileWidth
+            ? 'desktopDesign'
+            : 'mobileDesign contentRelative text-white'
+        "
+      >
+        <q-card-section>
           <p
-            class="text-bold"
-            :class="$q.screen.width > mobileWidth ? 'text-h4' : 'text-h6'"
+            aling="center"
+            class="text-bold text-center"
+            :class="
+              $q.screen.width > mobileWidth
+                ? 'text-h4 text-black'
+                : 'text-h6 text-white'
+            "
             data-testid="authorizationContent"
           >
-            Authorization
+            {{ email ? `Welcome back ${email}` : "Authorization" }}
           </p>
-        </q-card-section>
 
-        <q-card-section>
           <div
             class="q-gutter-sm"
             :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
@@ -42,8 +68,26 @@
                 v-model="email"
                 data-testid="emailInput"
                 type="email"
-                label="Enter your email address"
-                hint="For example: example@gmail.com"
+                placeholder="Enter your email"
+                stack-label
+                class="q-mb-sm input"
+                :class="
+                  $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
+                "
+                :color="$q.screen.width < mobileWidth ? 'white' : 'black'"
+                :input-class="
+                  $q.screen.width < mobileWidth ? 'text-white' : 'text-black'
+                "
+                :label-class="
+                  $q.screen.width < mobileWidth ? 'text-white' : 'text-black'
+                "
+                :input-style="
+                  $q.screen.width < mobileWidth
+                    ? 'color: white'
+                    : 'color: black'
+                "
+                rounded
+                outlined
               />
             </div>
             <div class="col">
@@ -51,8 +95,26 @@
                 v-model="password"
                 data-testid="passwordInput"
                 :type="isPwd ? 'password' : 'text'"
-                hint="At least 8 characters"
-                label="Enter the password"
+                placeholder="Enter your password"
+                stack-label
+                class="q-mb-sm input"
+                :class="
+                  $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
+                "
+                :color="$q.screen.width < mobileWidth ? 'white' : 'black'"
+                :input-class="
+                  $q.screen.width < mobileWidth ? 'text-white' : 'text-black'
+                "
+                :label-class="
+                  $q.screen.width < mobileWidth ? 'text-white' : 'text-black'
+                "
+                :input-style="
+                  $q.screen.width < mobileWidth
+                    ? 'color: white'
+                    : 'color: black'
+                "
+                rounded
+                outlined
               >
                 <template v-slot:append>
                   <q-icon
@@ -65,21 +127,19 @@
             </div>
           </div>
         </q-card-section>
-
         <q-card-actions vertical>
           <q-btn
-            color="positive"
             no-caps
-            label="Enter"
-            data-testid="authorizationButton"
-            rounded
+            color="green"
+            label="Authorize"
             @click="authorization"
+            rounded
           />
           <q-btn
-            color="primary"
+            :color="$q.screen.width < mobileWidth ? 'white' : 'primary'"
             no-caps
             flat
-            label="Don't have an account?"
+            label="Don't have an account? Enter"
             @click="pushToRegistration"
           />
         </q-card-actions>
@@ -177,6 +237,9 @@ const handleKey = (e) => {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.desktopDesign {
+  width: 90%;
 }
 </style>
