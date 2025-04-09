@@ -73,7 +73,7 @@
         :class="
           $q.screen.width > mobileWidth
             ? 'desktopDesign'
-            : 'mobileDesign content text-white'
+            : 'mobileDesign contentRelative text-white'
         "
       >
         <q-card-section>
@@ -99,7 +99,7 @@
                 v-model="name"
                 placeholder="Enter your name"
                 stack-label
-                class="q-mb-sm"
+                class="q-mb-sm input"
                 :class="
                   $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
                 "
@@ -115,6 +115,11 @@
                     ? 'color: white'
                     : 'color: black'
                 "
+                :style="
+                  $q.screen.width < mobileWidth
+                    ? 'border: 1px solid white'
+                    : 'border: 1px solid black'
+                "
                 rounded
                 outlined
               />
@@ -125,7 +130,7 @@
                 data-testid="secondNameInput"
                 placeholder="Enter your second name"
                 stack-label
-                class="q-mb-sm"
+                class="q-mb-sm input"
                 :class="
                   $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
                 "
@@ -157,7 +162,7 @@
                 type="email"
                 placeholder="Enter your email"
                 stack-label
-                class="q-mb-sm"
+                class="q-mb-sm input"
                 :class="
                   $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
                 "
@@ -184,7 +189,7 @@
                 :type="isPwd ? 'password' : 'text'"
                 placeholder="Enter your password"
                 stack-label
-                class="q-mb-sm"
+                class="q-mb-sm input"
                 :class="
                   $q.screen.width < mobileWidth ? 'text-white ' : 'text-black'
                 "
@@ -223,7 +228,7 @@
             rounded
           />
           <q-btn
-            color="primary"
+            :color="$q.screen.width < mobileWidth ? 'white' : 'primary'"
             no-caps
             flat
             label="Do you have an account? Enter"
@@ -354,5 +359,9 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+
+.desktopDesign {
+  width: 90%;
 }
 </style>
