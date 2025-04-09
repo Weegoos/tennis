@@ -9,23 +9,37 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import * as echarts from "echarts";
+import { getMethod } from "src/composables/apiMethod/get";
+import { useQuasar } from "quasar";
 
-// Предположим, что у тебя есть данные о пользователях и турнирах
-const totalTournaments = 15; // Примерное количество турниров
-const totalUsers = 120; // Примерное количество пользователей
+// global variables
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const $q = useQuasar();
 
-const defineLength = async () => {};
+const totalTournaments = ref(null);
+const totalUsers = ref(null);
+
+const defineLength = async () => {
+  try {
+    await getMethod(serverURL, "tournament", totalTournaments, $q, "Error: ");
+    await getMethod(serverURL, "user/all", totalUsers, $q, "Error: ");
+    console.log(totalTournaments.value.length);
+  } catch (error) {
+    console.error("Ошибка при получении данных:", error);
+  }
+};
 
 const chart = ref(null);
 
-onMounted(() => {
+const updateChart = () => {
   const myChart = echarts.init(chart.value);
 
   const option = {
     title: {
-      text: "Аналитика по турнирам и пользователям",
+      text: "Общая аналитика",
     },
     tooltip: {},
     legend: {
@@ -39,17 +53,26 @@ onMounted(() => {
       {
         name: "Турниры",
         type: "bar",
-        data: [totalTournaments], // Используем количество турниров
+        data: [totalTournaments.value ? totalTournaments.value.length : 0], // Количество турниров
       },
       {
         name: "Пользователи",
         type: "bar",
-        data: [totalUsers], // Используем количество пользователей
+        data: [totalUsers.value ? totalUsers.value.length : 0], // Количество пользователей
       },
     ],
   };
 
   myChart.setOption(option);
+};
+
+// Отслеживаем изменения как для totalTournaments, так и для totalUsers
+watch([totalTournaments, totalUsers], () => {
+  updateChart();
+});
+
+onMounted(() => {
+  defineLength();
 });
 </script>
 
