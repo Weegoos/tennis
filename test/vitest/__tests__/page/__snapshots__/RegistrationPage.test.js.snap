@@ -4,7 +4,8 @@ exports[`tests for RegistrationPage > should find registrationContent data-testi
 DOMWrapper {
   "isDisabled": [Function],
   "wrapperElement": <p
-    class="text-bold text-h6"
+    aling="center"
+    class="text-bold text-center text-h6 text-white"
     data-testid="registrationContent"
     data-v-6282d38c=""
   >
