@@ -158,6 +158,7 @@ const options = [
   { label: "Русский", value: "ru-RU" },
   { label: "English", value: "en-US" },
   { label: "Қазақша", value: "kz-KZ" },
+  { label: "Deutsch", value: "de-DU" },
 ];
 
 const changeLanguage = () => {
