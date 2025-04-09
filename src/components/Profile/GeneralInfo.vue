@@ -182,7 +182,6 @@ onMounted(async () => {
   gender.value = user.userInfo.gender;
   phone.value = user.userInfo.phone;
   rating.value = user.userInfo.rating;
-  console.log(user.userInfo);
 });
 
 const openEditPage = ref(false);
