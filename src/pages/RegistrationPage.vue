@@ -87,7 +87,7 @@
             "
             data-testid="registrationContent"
           >
-            Registration
+            {{ name ? `Welcome ${name}` : "Registration" }}
           </p>
           <div
             class="q-gutter-sm"
