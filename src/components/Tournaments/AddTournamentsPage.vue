@@ -132,7 +132,11 @@
             />
           </div>
           <div class="col">
-            <q-input v-model="location" type="text" label="Location" />
+            <q-select
+              v-model="location"
+              :options="locationOptions"
+              label="Location"
+            />
           </div>
           <div class="col">
             <q-input v-model="city" type="text" label="City" list="city" />
@@ -187,7 +191,7 @@ import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
-
+import locationJSON from "src/composables/location.json";
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
@@ -206,6 +210,7 @@ const description = ref("");
 const maxParticipants = ref("");
 const minLevel = ref("");
 const maxLevel = ref("");
+const locationOptions = ref(locationJSON);
 
 const categoryOptions = ref([]);
 
