@@ -20,6 +20,9 @@ export default {
     },
   },
   authorization: {
-    button: "Anmelden",
+    text: "Autorisierung",
+    button: "Einloggen",
+    welcomeBack: "Willkommen zurück",
+    accountText: "Kein Konto? Registrieren",
   },
 };

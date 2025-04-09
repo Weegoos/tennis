@@ -260,12 +260,8 @@ export default {
     const $q = useQuasar();
     const notifyStore = useNotifyStore();
     const router = useRouter();
-    const { t, locale } = useI18n();
+    const { t } = useI18n();
 
-    console.log("Current locale:", locale.value);
-    const changeLanguage = (lang) => {
-      locale.value = lang; // Просто меняем значение locale
-    };
     // slide
 
     const slide = ref("style");
@@ -342,8 +338,6 @@ export default {
       pushToAuthorization,
       handleKey,
       t,
-      locale,
-      changeLanguage,
     };
   },
 };

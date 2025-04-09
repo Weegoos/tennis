@@ -27,7 +27,10 @@ export default {
       },
     },
     authorization: {
+      text: "Authorization",
       button: "Authorize",
+      welcomeBack: "Welcome back",
+      accountText: "Don't have an account? Enter",
     },
   },
   "ru-RU": ruRU,

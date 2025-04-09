@@ -56,7 +56,11 @@
             "
             data-testid="authorizationContent"
           >
-            {{ email ? `Welcome back ${email}` : "Authorization" }}
+            {{
+              email
+                ? `${t("authorization.welcomeBack")} ${email}`
+                : `${t("authorization.text")}`
+            }}
           </p>
 
           <div
@@ -68,7 +72,7 @@
                 v-model="email"
                 data-testid="emailInput"
                 type="email"
-                placeholder="Enter your email"
+                :placeholder="t('enterEmail')"
                 stack-label
                 class="q-mb-sm input"
                 :class="
@@ -95,7 +99,7 @@
                 v-model="password"
                 data-testid="passwordInput"
                 :type="isPwd ? 'password' : 'text'"
-                placeholder="Enter your password"
+                :placeholder="t('enterPassword')"
                 stack-label
                 class="q-mb-sm input"
                 :class="
@@ -120,6 +124,11 @@
                   <q-icon
                     :name="isPwd ? 'visibility_off' : 'visibility'"
                     class="cursor-pointer"
+                    :class="
+                      $q.screen.width < mobileWidth
+                        ? 'text-white'
+                        : 'text-black'
+                    "
                     @click="isPwd = !isPwd"
                   />
                 </template>
@@ -131,7 +140,7 @@
           <q-btn
             no-caps
             color="green"
-            label="Authorize"
+            :label="t('authorization.button')"
             @click="authorization"
             rounded
           />
@@ -139,7 +148,7 @@
             :color="$q.screen.width < mobileWidth ? 'white' : 'primary'"
             no-caps
             flat
-            label="Don't have an account? Enter"
+            :label="t('authorization.accountText')"
             @click="pushToRegistration"
           />
         </q-card-actions>
@@ -155,7 +164,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
 import { useNotifyStore } from "src/stores/notify-store";
-import { useApiStore } from "src/stores/api-store";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -167,6 +176,7 @@ const router = useRouter();
 
 // variables
 const isPwd = ref(true);
+const { t } = useI18n();
 
 // function
 const email = ref("");

@@ -20,6 +20,9 @@ export default {
     },
   },
   authorization: {
+    text: "Авторизация",
     button: "Войти",
+    welcomeBack: "С возвращением",
+    accountText: "Нет аккаунта? Зарегистрироваться",
   },
 };

@@ -20,6 +20,9 @@ export default {
     },
   },
   authorization: {
+    text: "Сайтқа кіру",
     button: "Кіру",
+    welcomeBack: "Қайта келдіңіз",
+    accountText: "Аккаунтыңыз жоқ па? Тіркелу",
   },
 };
