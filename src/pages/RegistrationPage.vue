@@ -19,7 +19,7 @@
         style="width: 100%; height: 100%; object-fit: cover"
       ></video>
       <!-- Надпись -->
-      <div class="carouselClass">
+      <div class="carouselClass" data-testid="carouselTestID">
         <q-carousel
           v-model="slide"
           transition-prev="scale"
@@ -55,6 +55,7 @@
 
     <!-- Правая половина с текстом -->
     <div
+      data-testid="backgroundText"
       class="content"
       :class="
         $q.screen.width > mobileWidth ? 'desktopDesign' : 'background-container'
@@ -81,7 +82,7 @@
       >
         <q-card-section>
           <p
-            aling="center"
+            align="center"
             class="text-bold text-center"
             :class="
               $q.screen.width > mobileWidth
@@ -93,6 +94,7 @@
             {{ name ? `${t("welcome")} ${name}` : t("registrationText") }}
           </p>
           <div
+            data-testid="inputDiv"
             class="q-gutter-sm"
             :class="$q.screen.width > mobileWidth ? 'row' : 'column'"
           >
@@ -222,7 +224,7 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-actions vertical>
+        <q-card-actions data-testid="actions" vertical>
           <q-btn
             no-caps
             color="green"

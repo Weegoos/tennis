@@ -26,6 +26,34 @@ describe("tests for RegistrationPage", () => {
     );
     expect(registrationContent.exists()).toBe(true);
   });
+
+  it("should find carouselTestID data-testid", () => {
+    const carouselTestID = wrapper.find('[data-testid="carouselTestID"]');
+    expect(carouselTestID.exists()).toBe(false);
+  });
+
+  it("should find registrationContent data-testid", () => {
+    const registrationContent = wrapper.find(
+      '[data-testid="registrationContent"]'
+    );
+    expect(registrationContent.exists()).toBe(true);
+  });
+
+  it("should find inputDiv data-testid", () => {
+    const inputDiv = wrapper.find('[data-testid="inputDiv"]');
+    expect(inputDiv.exists()).toBe(true);
+  });
+
+  it("should find actions data-testid", () => {
+    const actions = wrapper.find('[data-testid="actions"]');
+    expect(actions.exists()).toBe(true);
+  });
+
+  it("should find backgroundText data-testid", () => {
+    const backgroundText = wrapper.find('[data-testid="backgroundText"]');
+    expect(backgroundText.exists()).toBe(true);
+  });
+
   it("should find nameInput data-testid", () => {
     const nameInput = wrapper.find('[data-testid="nameInput"]');
     expect(nameInput.exists()).toBe(true);
