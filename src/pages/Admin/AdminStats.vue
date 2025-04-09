@@ -21,11 +21,13 @@ const $q = useQuasar();
 
 const totalTournaments = ref(null);
 const totalUsers = ref(null);
+const totalPartner = ref(null);
 
 const defineLength = async () => {
   try {
     await getMethod(serverURL, "tournament", totalTournaments, $q, "Error: ");
     await getMethod(serverURL, "user/all", totalUsers, $q, "Error: ");
+    await getMethod(serverURL, "partner/all", totalPartner, $q, "Error: ");
     console.log(totalTournaments.value.length);
   } catch (error) {
     console.error("Ошибка при получении данных:", error);
@@ -43,7 +45,7 @@ const updateChart = () => {
     },
     tooltip: {},
     legend: {
-      data: ["Турниры", "Пользователи"],
+      data: ["Турниры", "Пользователи", "Партнеры"],
     },
     xAxis: {
       data: ["Общее количество"],
@@ -60,6 +62,11 @@ const updateChart = () => {
         type: "bar",
         data: [totalUsers.value ? totalUsers.value.length : 0], // Количество пользователей
       },
+      {
+        name: "Партнеры",
+        type: "bar",
+        data: [totalPartner.value ? totalPartner.value.length : 0], // Количество пользователей
+      },
     ],
   };
 
@@ -67,7 +74,7 @@ const updateChart = () => {
 };
 
 // Отслеживаем изменения как для totalTournaments, так и для totalUsers
-watch([totalTournaments, totalUsers], () => {
+watch([totalTournaments, totalUsers, totalPartner], () => {
   updateChart();
 });
 
