@@ -157,6 +157,7 @@ const language = ref(locale.value);
 const options = [
   { label: "Русский", value: "ru-RU" },
   { label: "English", value: "en-US" },
+  { label: "Қазақша", value: "kz-KZ" },
 ];
 
 const changeLanguage = () => {

@@ -1,6 +1,7 @@
 // This is just an example,
 // so you can safely delete all default props below
 import ruRU from "../ru-RU/index";
+import kzKZ from "../kz-Kz/index";
 export default {
   "en-US": {
     welcome: "Welcome",
@@ -29,4 +30,5 @@ export default {
     },
   },
   "ru-RU": ruRU,
+  "kz-KZ": kzKZ,
 };
