@@ -34,16 +34,19 @@
           class="transparent-carousel text-white shadow-1 rounded-borders"
         >
           <q-carousel-slide name="tv" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">Mail</p>
+            <p class="text-h5 text-bold">
+              {{ t("registration.carousel.mail.title") }}
+            </p>
             <div class="q-mt-md text-center">
-              The special character "@" must be present in the mail. Make sure
-              that you have entered the correct and working email address.
+              {{ t("registration.carousel.mail.text") }}
             </div>
           </q-carousel-slide>
           <q-carousel-slide name="style" class="column no-wrap flex-center">
-            <p class="text-h5 text-bold">Password</p>
+            <p class="text-h5 text-bold">
+              {{ t("registration.carousel.password.title") }}
+            </p>
             <div class="q-mt-md text-center">
-              The password must consist of 6 characters with special characters.
+              {{ t("registration.carousel.password.text") }}
             </div>
           </q-carousel-slide>
         </q-carousel>
@@ -87,7 +90,7 @@
             "
             data-testid="registrationContent"
           >
-            {{ name ? `${t("welcome")} ${name}` : t("registration") }}
+            {{ name ? `${t("welcome")} ${name}` : t("registrationText") }}
           </p>
           <div
             class="q-gutter-sm"
@@ -128,7 +131,7 @@
               <q-input
                 v-model="secondName"
                 data-testid="secondNameInput"
-                placeholder="Enter your second name"
+                :placeholder="t('enterSecondName')"
                 stack-label
                 class="q-mb-sm input"
                 :class="
@@ -160,7 +163,7 @@
                 v-model="email"
                 data-testid="emailInput"
                 type="email"
-                placeholder="Enter your email"
+                :placeholder="t('enterEmail')"
                 stack-label
                 class="q-mb-sm input"
                 :class="
@@ -187,7 +190,7 @@
                 v-model="password"
                 data-testid="passwordInput"
                 :type="isPwd ? 'password' : 'text'"
-                placeholder="Enter your password"
+                :placeholder="t('enterPassword')"
                 stack-label
                 class="q-mb-sm input"
                 :class="
@@ -223,7 +226,7 @@
           <q-btn
             no-caps
             color="green"
-            label="Register"
+            :label="t('registration.button')"
             @click="registration"
             rounded
           />
@@ -231,7 +234,7 @@
             :color="$q.screen.width < mobileWidth ? 'white' : 'primary'"
             no-caps
             flat
-            label="Do you have an account? Enter"
+            :label="t('registration.accountText')"
             @click="pushToAuthorization"
           />
         </q-card-actions>
