@@ -87,7 +87,7 @@
             "
             data-testid="registrationContent"
           >
-            {{ name ? `Welcome ${name}` : t("registration") }}
+            {{ name ? `${t("welcome")} ${name}` : t("registration") }}
           </p>
           <div
             class="q-gutter-sm"
@@ -97,7 +97,7 @@
               <q-input
                 data-testid="nameInput"
                 v-model="name"
-                placeholder="Enter your name"
+                :placeholder="t('enterName')"
                 stack-label
                 class="q-mb-sm input"
                 :class="

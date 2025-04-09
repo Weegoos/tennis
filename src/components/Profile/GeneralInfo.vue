@@ -13,12 +13,7 @@
         no-caps
         label="My tournaments"
       />
-      <q-tab
-        name="reservations"
-        icon="ion-calendar"
-        no-caps
-        label="My reservations"
-      />
+      <q-tab name="settings" icon="ion-settings" no-caps label="Settings" />
     </q-tabs>
 
     <q-tab-panels
@@ -116,26 +111,23 @@
         </p>
       </q-tab-panel>
 
-      <q-tab-panel name="reservations">
-        <div class="text-h4 q-mb-md">My reservations</div>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          praesentium cumque magnam odio iure quidem, quod illum numquam
-          possimus obcaecati commodi minima assumenda consectetur culpa fuga
-          nulla ullam. In, libero.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          praesentium cumque magnam odio iure quidem, quod illum numquam
-          possimus obcaecati commodi minima assumenda consectetur culpa fuga
-          nulla ullam. In, libero.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          praesentium cumque magnam odio iure quidem, quod illum numquam
-          possimus obcaecati commodi minima assumenda consectetur culpa fuga
-          nulla ullam. In, libero.
-        </p>
+      <q-tab-panel name="settings">
+        <div>
+          <q-select
+            v-model="language"
+            :options="options"
+            label="Выберите язык"
+            filled
+            emit-value
+            map-options
+          />
+          <q-btn
+            color="primary"
+            icon="check"
+            label="OK"
+            @click="changeLanguage"
+          />
+        </div>
       </q-tab-panel>
     </q-tab-panels>
 
@@ -151,14 +143,26 @@ import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
 import { Cookies } from "quasar";
+import { useI18n } from "vue-i18n";
 
 // general variables
 const apiStore = useApiStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
+const { locale } = useI18n();
 
 const tab = ref("info");
+const language = ref(locale.value);
+const options = [
+  { label: "Русский", value: "ru-RU" },
+  { label: "English", value: "en-US" },
+];
+
+const changeLanguage = () => {
+  locale.value = language.value;
+  localStorage.setItem("locale", language.value);
+};
 
 const firstName = ref("");
 const secondName = ref("");
