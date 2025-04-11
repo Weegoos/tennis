@@ -1,7 +1,9 @@
 <template>
   <div>
-    <section v-if="!isAuthPage" class="bg-grey-4 text-center q-pa-md">
-      News!
+    <section v-if="!isAuthPage" class="bg-grey-4 q-pa-md">
+      <q-scroll-area style="height: 25px" align="center">
+        🚀 New version of the website is available!
+      </q-scroll-area>
     </section>
     <q-layout
       view="hHr LpR lFf"
