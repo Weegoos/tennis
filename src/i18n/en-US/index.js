@@ -32,6 +32,44 @@ export default {
       welcomeBack: "Welcome back",
       accountText: "Don't have an account? Enter",
     },
+    indexPage: {
+      tournamentPage: {
+        newsText: "News",
+        allNews: "All",
+        interview: "Interviews",
+        championships: "Championships",
+        analysis: "Analysis",
+      },
+      achievementsPage: {
+        achievementText: "Our Achievements",
+        tournamentsHeld: "Tournaments Held",
+        usedBalls: "Balls Used",
+        numberOfPlayers: "Number of Players",
+        subscribers: "Subscribers",
+      },
+      parallaxPage: {
+        block1: {
+          text: "Why Choose Us?",
+        },
+        block2: {
+          text: "Unique Approach",
+          caption: "Mentorship and personal attention to each participant",
+        },
+        block3: {
+          text: "Growth and Development",
+          caption:
+            "We support skill development and personal growth at every stage.",
+        },
+        block4: {
+          text: "Strong Community",
+          caption: "You become part of a friendly and supportive community.",
+        },
+        block5: {
+          text: "Skill Sharpening",
+          caption: "Real tournaments, challenges, and a chance to shine.",
+        },
+      },
+    },
   },
   "ru-RU": ruRU,
   "kz-KZ": kzKZ,

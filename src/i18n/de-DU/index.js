@@ -25,4 +25,44 @@ export default {
     welcomeBack: "Willkommen zurück",
     accountText: "Kein Konto? Registrieren",
   },
+  indexPage: {
+    tournamentPage: {
+      newsText: "Nachrichten",
+      allNews: "Alle",
+      interview: "Interviews",
+      championships: "Meisterschaften",
+      analysis: "Analyse",
+    },
+    achievementsPage: {
+      achievementText: "Unsere Erfolge",
+      tournamentsHeld: "Veranstaltete Turniere",
+      usedBalls: "Verwendete Bälle",
+      numberOfPlayers: "Anzahl der Spieler",
+      subscribers: "Abonnenten",
+    },
+    parallaxPage: {
+      block1: {
+        text: "Warum wählt man uns?",
+      },
+      block2: {
+        text: "Einzigartiger Ansatz",
+        caption: "Mentoring und persönliche Betreuung für jeden Teilnehmer",
+      },
+      block3: {
+        text: "Wachstum und Entwicklung",
+        caption:
+          "Wir unterstützen die Entwicklung von Fähigkeiten und persönlichem Wachstum in jeder Phase.",
+      },
+      block4: {
+        text: "Starke Gemeinschaft",
+        caption:
+          "Du wirst Teil einer freundlichen und unterstützenden Community.",
+      },
+      block5: {
+        text: "Fähigkeiten verbessern",
+        caption:
+          "Echte Turniere, Herausforderungen und die Chance, dich zu beweisen.",
+      },
+    },
+  },
 };
