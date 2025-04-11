@@ -38,22 +38,21 @@
     >
       <TournamentPage />
     </section>
-    <section class="q-mt-md">
+    <section class="q-mt-md" data-testid="achievementsPage">
       <AchievementsPage />
     </section>
-    <section>
+    <section data-testid="parallaxPage">
       <ParallaxPage />
     </section>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, getCurrentInstance } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
 import AchievementsPage from "../components/IndexPage/AchievementsPage.vue";
 import ParallaxPage from "../components/IndexPage/ParallaxPage.vue";
 
-import { getCurrentInstance } from "vue ";
 import { useJavaScriptFunction } from "src/stores/javascript-store";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;

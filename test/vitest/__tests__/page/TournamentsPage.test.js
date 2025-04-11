@@ -2,10 +2,18 @@ import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-v
 import { flushPromises, mount } from "@vue/test-utils";
 import { Quasar } from "quasar";
 import TournamentPage from "src/components/IndexPage/TournamentPage.vue";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { nextTick } from "vue";
+import { createI18n } from "vue-i18n";
+import messages from "../../../../src/i18n/en-US/index";
 
 installQuasarPlugin();
+
+const i18n = createI18n({
+  legacy: false,
+  locale: "ru-RU",
+  messages,
+});
 
 let testData = {
   page: 1,
@@ -48,7 +56,7 @@ let testData = {
 describe("tests for TournamentsPage.vue", () => {
   const wrapper = mount(TournamentPage, {
     global: {
-      plugins: [Quasar],
+      plugins: [Quasar, i18n],
     },
   });
   it("should find tournamentsID data-testid", async () => {
