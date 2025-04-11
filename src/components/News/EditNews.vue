@@ -19,8 +19,9 @@
               }"
             />
           </q-card-section>
-          <q-card-actions vertical align="center">
-            <q-btn flat label="Edit" @click="editNews" />
+          <q-card-actions align="center">
+            <q-btn no-caps label="Close" @click="closePage" />
+            <q-btn no-caps label="Edit" @click="editNews" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -31,17 +32,34 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
-import { getCurrentInstance, ref } from "vue";
+import { getCurrentInstance, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const props = defineProps({
+  isOpenEditPage: {
+    required: true,
+    default: false,
+  },
+});
 
 const editor = ref("Write your description");
-const confirm = ref(false);
+const confirm = ref(props.isOpenEditPage);
 const title = ref("");
-const editPayload = ref("");
+
+watch(
+  () => props.isOpenEditPage,
+  (newVal) => {
+    confirm.value = newVal;
+  }
+);
+
+const emit = defineEmits(["closePage"]);
+const closePage = () => {
+  emit("closePage");
+};
 
 const editNews = async () => {
   try {

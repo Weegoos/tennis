@@ -6,7 +6,7 @@
           Latest sports news, expert insights, and player updates.
           <span class="text-light-green">All in one place.</span>
         </div>
-        <div class="text-body1">
+        <div class="text-body1 q-mt-sm">
           Stay informed with up-to-date tennis news, exclusive interviews, and
           behind-the-scenes content.
         </div>
@@ -66,6 +66,7 @@
                   no-caps
                   label="Edit"
                   style="width: 100%"
+                  @click="openEditPage"
                 />
               </div>
               <div class="col">
@@ -122,7 +123,10 @@
           </q-card-section>
         </q-card>
       </section>
-      <EditNews />
+      <EditNews
+        :isOpenEditPage="Boolean(isOpenEditPage)"
+        @closePage="closePage"
+      />
     </div>
     <q-pagination
       class="justify-center q-my-sm text-center"
@@ -196,6 +200,15 @@ const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
   getAllNews(current.value);
+};
+
+const isOpenEditPage = ref(false);
+const openEditPage = () => {
+  isOpenEditPage.value = true;
+};
+
+const closePage = () => {
+  isOpenEditPage.value = false;
 };
 
 onMounted(() => {
