@@ -1,5 +1,6 @@
 <template>
   <p
+    data-testid="achievementText"
     class="text-center text-bold"
     :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
   >
