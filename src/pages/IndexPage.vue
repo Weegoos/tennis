@@ -38,8 +38,11 @@
     >
       <TournamentPage />
     </section>
-    <section class="q-my-md">
+    <section class="q-mt-md">
       <AchievementsPage />
+    </section>
+    <section class="">
+      <ParallaxPage />
     </section>
   </div>
 </template>
@@ -48,6 +51,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
 import AchievementsPage from "../components/IndexPage/AchievementsPage.vue";
+import ParallaxPage from "../components/IndexPage/ParallaxPage.vue";
 
 import { getCurrentInstance } from "vue ";
 import { useJavaScriptFunction } from "src/stores/javascript-store";
