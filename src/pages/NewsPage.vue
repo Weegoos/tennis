@@ -122,6 +122,7 @@
           </q-card-section>
         </q-card>
       </section>
+      <EditNews />
     </div>
     <q-pagination
       class="justify-center q-my-sm text-center"
@@ -137,9 +138,10 @@
 <script setup>
 import { all } from "axios";
 import { useQuasar } from "quasar";
+import EditNews from "src/components/News/EditNews.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
-import { computed, getCurrentInstance, onMounted, ref, watch } from "vue";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
