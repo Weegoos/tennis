@@ -1,6 +1,10 @@
 <template>
-  <div v-for="(item, index) in textForParallax" :key="index">
-    <q-parallax>
+  <div
+    data-testid="parallaxTestID"
+    v-for="(item, index) in textForParallax"
+    :key="index"
+  >
+    <q-parallax data-testid="parallaxContainer">
       <template v-slot:media>
         <img :src="item.img" />
       </template>

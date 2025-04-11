@@ -80,7 +80,6 @@ const nextSlide = () => {
 
 onMounted(() => {
   intervalId = setInterval(nextSlide, 5000);
-  javascriptStore.redirect();
 });
 
 onBeforeUnmount(() => {

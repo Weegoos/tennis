@@ -1,84 +1,132 @@
 <template>
   <div class="q-pa-md">
-    <q-card
-      class="my-card q-mt-sm row"
-      v-for="(news, index) in allNews.data"
-      :key="index"
-    >
-      <div class="col-2">
-        <q-img
-          src="https://cdn.quasar.dev/img/mountains.jpg"
-          spinner-color="primary"
-          spinner-size="82px"
-        />
-      </div>
-      <q-card-section class="col">
-        <div class="text-h6">{{ news.title }}</div>
-        <div class="text-subtitle2">
-          By
-          <q-btn
-            rounded
-            flat
-            no-caps
-            :label="news.author.email"
-            @click="checkAuthorInfo(news.author)"
-          />
-          <p>{{ news.description }}</p>
+    <q-card class="my-card q-pa-sm q-ma-sm text-center">
+      <q-card-section>
+        <div class="text-h5 text-bold">
+          Latest sports news, expert insights, and player updates.
+          <span class="text-light-green">All in one place.</span>
         </div>
-        <q-card-actions align="right">
-          <q-btn flat icon="mdi-pencil" />
-          <q-btn
-            flat
-            color="red-4"
-            icon="mdi-delete"
-            @click="deleteNews(news)"
+        <div class="text-body1">
+          Stay informed with up-to-date tennis news, exclusive interviews, and
+          behind-the-scenes content.
+        </div>
+        <div class="row justify-center">
+          <q-input
+            style="width: 50vw"
+            v-model="text"
+            type="text"
+            placeholder="Search..."
+            class="q-mr-sm"
+            dense
           />
-        </q-card-actions>
-
-        <q-dialog
-          v-model="openWindowAboutAuthor"
-          persistent
-          style="width: 800px"
-        >
-          <q-card style="width: 800px">
-            <q-card-section>
-              <section class="row q-gutter-sm">
-                <div class="col">
-                  <span class="infoHeadline">Full Name</span>
-                  <p class="infoStyle">
-                    {{ news.author.userInfo.firstName }}
-                    {{ news.author.userInfo.lastName }}
-                  </p>
-                </div>
-                <div class="col">
-                  <span class="infoHeadline">Phone Number</span>
-                  <p class="infoStyle">{{ news.author.userInfo.phone }}</p>
-                </div>
-              </section>
-              <section class="row q-gutter-sm">
-                <div class="col">
-                  <span class="infoHeadline">Rating</span>
-                  <p class="infoStyle">
-                    {{ news.author.userInfo.rating }}
-                  </p>
-                </div>
-                <div class="col">
-                  <span class="infoHeadline">Age</span>
-                  <p class="infoStyle">{{ news.author.userInfo.age }}</p>
-                </div>
-              </section>
-            </q-card-section>
-
-            <q-card-actions align="right">
-              <q-btn flat label="Cancel" color="primary" v-close-popup />
-            </q-card-actions>
-          </q-card>
-        </q-dialog>
+          <q-btn
+            dense
+            class="q-pa-sm"
+            color="primary"
+            icon="search"
+            @click="onClick"
+          />
+        </div>
       </q-card-section>
     </q-card>
+    <div class="row">
+      <section
+        class="col-12 col-sm-6 col-md-4"
+        v-for="(news, index) in allNews.data"
+        :key="index"
+      >
+        <q-card
+          class="my-card q-mt-md q-mx-sm q-pa-sm"
+          style="border-radius: 10px"
+        >
+          <div class="col">
+            <q-img
+              src="https://cdn.quasar.dev/img/mountains.jpg"
+              spinner-color="primary"
+              spinner-size="82px"
+              style="border-radius: 10px"
+            />
+          </div>
+          <q-card-section class="col">
+            <q-btn
+              no-caps
+              color="light-green-6"
+              :label="news.author.email"
+              @click="checkAuthorInfo(news.author)"
+            />
+            <div class="text-h5 text-gray q-mt-md">{{ news.title }}</div>
+            <div class="text-subtitle2 q-mt-sm">
+              <p>{{ news.description }}</p>
+            </div>
+            <q-card-actions class="row q-gutter-sm text-center">
+              <div class="col">
+                <q-btn
+                  color="green-2"
+                  class="text-green-8"
+                  no-caps
+                  label="Edit"
+                  style="width: 100%"
+                />
+              </div>
+              <div class="col">
+                <q-btn
+                  color="red-8"
+                  no-caps
+                  class="text-red-2"
+                  label="Delete"
+                  @click="deleteNews(news)"
+                  style="width: 100%"
+                />
+              </div>
+            </q-card-actions>
+
+            <q-dialog
+              v-model="openWindowAboutAuthor"
+              persistent
+              style="width: 800px"
+            >
+              <q-card style="width: 800px">
+                <q-card-section>
+                  <section class="row q-gutter-sm">
+                    <div class="col">
+                      <span class="infoHeadline">Full Name</span>
+                      <p class="infoStyle">
+                        {{ news.author.userInfo.firstName }}
+                        {{ news.author.userInfo.lastName }}
+                      </p>
+                    </div>
+                    <div class="col">
+                      <span class="infoHeadline">Phone Number</span>
+                      <p class="infoStyle">{{ news.author.userInfo.phone }}</p>
+                    </div>
+                  </section>
+                  <section class="row q-gutter-sm">
+                    <div class="col">
+                      <span class="infoHeadline">Rating</span>
+                      <p class="infoStyle">
+                        {{ news.author.userInfo.rating }}
+                      </p>
+                    </div>
+                    <div class="col">
+                      <span class="infoHeadline">Age</span>
+                      <p class="infoStyle">{{ news.author.userInfo.age }}</p>
+                    </div>
+                  </section>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn flat label="Cancel" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+          </q-card-section>
+        </q-card>
+      </section>
+    </div>
     <q-pagination
-      class="justify-center q-my-sm"
+      class="justify-center q-my-sm text-center"
       v-model="current"
+      v-if="allNews > []"
       :min="1"
       :max="maxPage"
       @update:model-value="pagination"
@@ -87,10 +135,11 @@
 </template>
 
 <script setup>
+import { all } from "axios";
 import { useQuasar } from "quasar";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
-import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { computed, getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const { proxy } = getCurrentInstance();
