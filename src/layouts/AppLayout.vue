@@ -119,7 +119,6 @@ const mobileWidth = proxy.$mobileWidth;
 const adminRole = proxy.$adminRole;
 const serverURL = proxy.$serverURL;
 const route = useRoute();
-const apiStore = useApiStore();
 const fullPath = ref(route.fullPath);
 const $q = useQuasar();
 
@@ -213,7 +212,7 @@ const headerButtonsArrayForAdmin = computed(() => [
 const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
-const drawer = ref(true);
+const drawer = ref(false);
 isUser.value = headerButtonsArrayForUser.value;
 const defineRole = async () => {
   try {

@@ -38,8 +38,8 @@
     >
       <TournamentPage />
     </section>
-    <section>
-      <!-- <AchievementsPage /> -->
+    <section class="q-my-md">
+      <AchievementsPage />
     </section>
   </div>
 </template>
@@ -47,9 +47,9 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
-import AchievementsPage from "./AchievementsPage.vue";
+import AchievementsPage from "../components/IndexPage/AchievementsPage.vue";
 
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance } from "vue ";
 import { useJavaScriptFunction } from "src/stores/javascript-store";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;

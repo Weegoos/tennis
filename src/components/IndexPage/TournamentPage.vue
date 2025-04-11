@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="">
-      <p class="text-h4 text-bold">News</p>
+      <p
+        class="text-center text-bold"
+        :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
+      >
+        News
+      </p>
 
       <q-tabs
         v-model="tab"
@@ -63,8 +68,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { getCurrentInstance, ref } from "vue";
 
+// global variables
+const { proxy } = getCurrentInstance();
+const mobileWidth = proxy.$mobileWidth;
 const tab = ref("all");
 </script>
 

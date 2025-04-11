@@ -1,7 +1,15 @@
 <template>
+  <p
+    class="text-center text-bold"
+    :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
+  >
+    Our achievements
+  </p>
   <div style="background-color: #24293e" class="text-white q-pa-xl">
-    <p class="text-center text-h3 text-bold">Our achievements</p>
-    <div class="row q-gutter-xl">
+    <div
+      class="q-gutter-xl text-center"
+      :class="$q.screen.width < mobileWidth ? 'col ' : 'row'"
+    >
       <div
         class="col q-pa-md"
         v-for="(item, index) in achievements"
@@ -16,7 +24,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { getCurrentInstance, ref } from "vue";
+
+// global variables
+const { proxy } = getCurrentInstance();
+const mobileWidth = proxy.$mobileWidth;
 
 const achievements = ref([
   {
