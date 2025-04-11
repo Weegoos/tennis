@@ -25,4 +25,42 @@ export default {
     welcomeBack: "С возвращением",
     accountText: "Нет аккаунта? Зарегистрироваться",
   },
+  indexPage: {
+    tournamentPage: {
+      newsText: "Новости",
+      allNews: "Все",
+      interview: "Интервью",
+      championships: "Чемпионаты",
+      analysis: "Анализ",
+    },
+    achievementsPage: {
+      achievementText: "Наши достижения",
+      tournamentsHeld: "Проведено турниров",
+      usedBalls: "Использовано мячей",
+      numberOfPlayers: "Количество игроков",
+      subscribers: "Подписчиков",
+    },
+    parallaxPage: {
+      block1: {
+        text: "Почему выбирают нас?",
+      },
+      block2: {
+        text: "Уникальный подход",
+        caption: "Наставничество и персональное внимание к каждому участнику",
+      },
+      block3: {
+        text: "Рост и развитие",
+        caption:
+          "Поддерживаем развитие навыков и личностный рост на каждом этапе.",
+      },
+      block4: {
+        text: "Сильное сообщество",
+        caption: "Ты становишься частью дружного и поддерживающего комьюнити.",
+      },
+      block5: {
+        text: "Оттачивание навыков",
+        caption: "Реальные турниры, челленджи и шанс показать себя.",
+      },
+    },
+  },
 };

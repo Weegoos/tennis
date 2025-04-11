@@ -41,7 +41,7 @@
     <section class="q-mt-md">
       <AchievementsPage />
     </section>
-    <section class="">
+    <section>
       <ParallaxPage />
     </section>
   </div>

@@ -3,7 +3,7 @@
     class="text-center text-bold"
     :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
   >
-    Our achievements
+    {{ t("indexPage.achievementsPage.achievementText") }}
   </p>
   <div style="background-color: #24293e" class="text-white q-pa-xl">
     <div
@@ -25,26 +25,28 @@
 
 <script setup>
 import { getCurrentInstance, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
+const { t } = useI18n();
 
 const achievements = ref([
   {
-    name: "Tournaments held",
+    name: t("indexPage.achievementsPage.tournamentsHeld"),
     stats: 48,
   },
   {
-    name: "Used balls",
+    name: t("indexPage.achievementsPage.usedBalls"),
     stats: 1510,
   },
   {
-    name: "Number of players",
+    name: t("indexPage.achievementsPage.numberOfPlayers"),
     stats: 222,
   },
   {
-    name: "Subscribers",
+    name: t("indexPage.achievementsPage.subscribers"),
     stats: 333,
   },
 ]);

@@ -5,7 +5,7 @@
         class="text-center text-bold"
         :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
       >
-        News
+        {{ t("indexPage.tournamentPage.newsText") }}
       </p>
 
       <q-tabs
@@ -17,10 +17,19 @@
         align="justify"
         narrow-indicator
       >
-        <q-tab name="all" label="All" />
-        <q-tab name="interview" label="Interview" />
-        <q-tab name="championship" label="Championships" />
-        <q-tab name="analysis" label="Analysis" />
+        <q-tab name="all" :label="t('indexPage.tournamentPage.allNews')" />
+        <q-tab
+          name="interview"
+          :label="t('indexPage.tournamentPage.interview')"
+        />
+        <q-tab
+          name="championship"
+          :label="t('indexPage.tournamentPage.championships')"
+        />
+        <q-tab
+          name="analysis"
+          :label="t('indexPage.tournamentPage.analysis')"
+        />
       </q-tabs>
 
       <q-separator />
@@ -69,11 +78,13 @@
 
 <script setup>
 import { getCurrentInstance, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
 const tab = ref("all");
+const { t } = useI18n();
 </script>
 
 <style scoped>

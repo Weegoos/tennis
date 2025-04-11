@@ -35,37 +35,40 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+// globalVariables
+const { t } = useI18n();
 
 const textForParallax = [
   {
     icon: "mdi-star-circle",
     img: "https://images.unsplash.com/photo-1519611103964-90f61a50d3e6?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Почему выбирают нас?",
+    text: t("indexPage.parallaxPage.block1.text"),
   },
   {
     icon: "mdi-account-check",
     img: "https://images.unsplash.com/photo-1627314387807-df615e8567de?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Уникальный подход",
-    caption: " Наставничество и персональное внимание к каждому участнику",
+    text: t("indexPage.parallaxPage.block2.text"),
+    caption: t("indexPage.parallaxPage.block2.caption"),
   },
   {
     icon: "mdi-chart-line",
     img: "https://images.unsplash.com/photo-1448743133657-f67644da3008?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Рост и развитие",
-    caption:
-      " Поддерживаем развитие навыков и личностный рост на каждом этапе.",
+    text: t("indexPage.parallaxPage.block3.text"),
+    caption: t("indexPage.parallaxPage.block3.caption"),
   },
   {
     icon: "mdi-account-group",
     img: "https://images.unsplash.com/photo-1661474973381-130596c650c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Сильное сообщество",
-    caption: " Ты становишься частью дружного и поддерживающего комьюнити.",
+    text: t("indexPage.parallaxPage.block4.text"),
+    caption: t("indexPage.parallaxPage.block4.caption"),
   },
   {
     icon: "mdi-briefcase-search",
     img: "https://images.unsplash.com/photo-1628617716354-5bdc769a3484?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    text: "Оттачивание навыков",
-    caption: "Реальные турниры, челленджи и шанс показать себя.",
+    text: t("indexPage.parallaxPage.block5.text"),
+    caption: t("indexPage.parallaxPage.block5.caption"),
   },
 ];
 </script>
