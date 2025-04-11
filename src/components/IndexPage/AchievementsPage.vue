@@ -6,19 +6,27 @@
   >
     {{ t("indexPage.achievementsPage.achievementText") }}
   </p>
-  <div style="background-color: #24293e" class="text-white q-pa-xl">
+  <div
+    data-testid="achievementContainer"
+    style="background-color: #24293e"
+    class="text-white q-pa-xl"
+  >
     <div
+      data-testid="achievementWrapper"
       class="q-gutter-xl text-center"
       :class="$q.screen.width < mobileWidth ? 'col ' : 'row'"
     >
       <div
+        data-testid="achievementVForContainer"
         class="col q-pa-md"
         v-for="(item, index) in achievements"
         :key="index"
         style="background-color: #1f2535"
       >
-        <p class="text-bold text-h5">{{ item.stats }}</p>
-        <p class="text-body1">{{ item.name }}</p>
+        <p data-testid="statsText" class="text-bold text-h5">
+          {{ item.stats }}
+        </p>
+        <p data-testid="nameText" class="text-body1">{{ item.name }}</p>
       </div>
     </div>
   </div>
