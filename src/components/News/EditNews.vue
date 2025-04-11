@@ -42,6 +42,11 @@ const props = defineProps({
   isOpenEditPage: {
     required: true,
     default: false,
+    type: Boolean,
+  },
+  newsIdenticator: {
+    required: true,
+    type: Number,
   },
 });
 
@@ -65,7 +70,7 @@ const editNews = async () => {
   try {
     await putMethod(
       serverURL,
-      `news/14/updateNews?`,
+      `news/${props.newsIdenticator}/updateNews?`,
       "",
       $q,
       "The news has been successfully updated",

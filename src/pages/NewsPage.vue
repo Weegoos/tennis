@@ -13,7 +13,7 @@
         <div class="row justify-center">
           <q-input
             style="width: 50vw"
-            v-model="text"
+            v-model="search"
             type="text"
             placeholder="Search..."
             class="q-mr-sm"
@@ -24,7 +24,7 @@
             class="q-pa-sm"
             color="primary"
             icon="search"
-            @click="onClick"
+            @click="searchFunction"
           />
         </div>
       </q-card-section>
@@ -66,7 +66,7 @@
                   no-caps
                   label="Edit"
                   style="width: 100%"
-                  @click="openEditPage"
+                  @click="openEditPage(news.id)"
                 />
               </div>
               <div class="col">
@@ -126,6 +126,7 @@
       <EditNews
         :isOpenEditPage="Boolean(isOpenEditPage)"
         @closePage="closePage"
+        :newsIdenticator="Number(newsIdenticator)"
       />
     </div>
     <q-pagination
@@ -202,14 +203,20 @@ const pagination = (page) => {
   getAllNews(current.value);
 };
 
+const newsIdenticator = ref(null);
 const isOpenEditPage = ref(false);
-const openEditPage = () => {
+const openEditPage = (newsId) => {
   isOpenEditPage.value = true;
+  newsIdenticator.value = newsId;
 };
 
 const closePage = () => {
   isOpenEditPage.value = false;
 };
+
+// search
+const search = ref("");
+const searchFunction = () => {};
 
 onMounted(() => {
   getAllNews(1);
