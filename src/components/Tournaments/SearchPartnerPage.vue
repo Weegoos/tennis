@@ -34,6 +34,13 @@
             </q-td>
           </template>
         </q-table>
+        <q-pagination
+          class="justify-center q-my-sm text-center"
+          v-model="current"
+          :min="1"
+          :max="maxPage"
+          @update:model-value="pagination"
+        />
         <q-card-actions align="right">
           <q-btn
             flat
@@ -51,7 +58,7 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
-import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { getCurrentInstance, ref, watch } from "vue";
 
 // global variables
 const props = defineProps({
@@ -64,6 +71,7 @@ const props = defineProps({
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 
 const confirm = ref(props.isOpenSearchComponent);
 
@@ -123,18 +131,47 @@ const columns = [
 const usersBySearch = ref([]);
 const rows = ref([]);
 const searchUser = ref("");
-const isClickedToSearchUser = ref(true);
+const isClickedToSearchUser = ref(false);
 
-const searchUserByInput = () => {
-  getAllUserBySearch(searchUser.value);
-  isClickedToSearchUser.value = true;
+// pagination
+const maxPage = ref("");
+watch(
+  () => usersBySearch.value,
+  (newVal) => {
+    if (newVal && newVal.totalCount) {
+      maxPage.value = Math.ceil(newVal.totalCount / maxNumberOfRequestPerPage);
+    } else {
+      maxPage.value = 1;
+    }
+  }
+);
+const current = ref(1);
+const pagination = (page) => {
+  current.value = page;
 };
 
-const getAllUserBySearch = async (input) => {
+const fetchUsers = () => {
+  if (!searchUser.value) return;
+  getAllUserBySearch(searchUser.value, current.value);
+};
+
+const searchUserByInput = () => {
+  current.value = 1;
+  isClickedToSearchUser.value = true;
+  fetchUsers();
+};
+
+watch(current, (newPage) => {
+  if (isClickedToSearchUser.value) {
+    fetchUsers();
+  }
+});
+
+const getAllUserBySearch = async (input, page) => {
   try {
     await getMethod(
       serverURL,
-      `user/search?name=${input}&page=1&size=10`,
+      `user/search?name=${input}&page=${page}&size=${maxNumberOfRequestPerPage}`,
       usersBySearch,
       $q,
       "Ошибка при получении пользоветелй поо поиску: "

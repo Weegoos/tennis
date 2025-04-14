@@ -33,13 +33,13 @@
         color="green-4"
         no-caps
         label="Register to the tournament"
-        :disable="isRelatedUserToTournament"
+        :disable="!isRelatedUserToTournament"
         @click="registerToTournament"
       >
         <q-tooltip
           transition-show="scale"
           transition-hide="scale"
-          v-if="isRelatedUserToTournament"
+          v-if="isRelatedUserToTournament == false"
         >
           {{ messageToUser }}
         </q-tooltip>
@@ -48,7 +48,7 @@
         color="primary"
         no-caps
         label="Search partner"
-        :disable="isRelatedUserToTournament"
+        v-if="isRelatedUserToTournament && isRelatedUserFormat"
         @click="openSearchComponent"
       >
       </q-btn>
@@ -275,27 +275,36 @@ const getInformationAboutPaarticipants = async (id) => {
 };
 
 const isRelatedUserToTournament = ref(false);
+const isRelatedUserFormat = ref(false);
 const messageToUser = ref("");
 const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
   await apiStore.getUserProfile();
-  if (tournamentInfo.category === apiStore.userData.userInfo.gender) {
-    isRelatedUserToTournament.value = true;
-    messageToUser.value =
-      "Your gender and the required gender in the tournament do not match";
-  }
 
   if (
     tournamentInfo.minLevel > apiStore.userData.userInfo.rating ||
     tournamentInfo.maxLevel < apiStore.userData.userInfo.rating
   ) {
-    isRelatedUserToTournament.value = true;
+    isRelatedUserToTournament.value = false;
     messageToUser.value =
       "Your level does not match the required level in the tournament";
+  } else {
+    isRelatedUserToTournament.value = true;
   }
+
+  if (tournamentInfo.category.includes("DOUBLE")) {
+    isRelatedUserFormat.value = true;
+    console.log(777);
+  } else {
+    isRelatedUserFormat.value = false;
+  }
+
+  console.log(tournamentInfo.category.includes("DOUBLE"));
+  console.log(isRelatedUserFormat.value);
+  console.log(isRelatedUserToTournament.value);
 };
 
 // search
-const isOpenSearchComponent = ref(true);
+const isOpenSearchComponent = ref(false);
 const openSearchComponent = () => {
   isOpenSearchComponent.value = true;
 };
