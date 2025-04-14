@@ -25,7 +25,6 @@
         :rows="participantsRows"
         :columns="participantsColumns"
         row-key="participant"
-        :separator="separator"
         hide-bottom
       />
     </div>
@@ -79,8 +78,6 @@ const registerToTournament = async () => {
   const url = window.location.hash;
   const match = url.match(/\/hr\/(\d+)/);
   const id = Number(match[1]);
-  console.log(id);
-
   await apiStore.getUserProfile();
 
   const tournamentRegistration = {
@@ -165,7 +162,6 @@ const defineId = () => {
 
   if (match) {
     const id = match[1];
-    console.log(id);
     getTournamentsByID(id);
     getInformationAboutPaarticipants(id);
   } else {
@@ -266,8 +262,6 @@ const getInformationAboutPaarticipants = async (id) => {
     "Ошибка при получении информации о участниках"
   );
 
-  console.log("API Response:", participants.value); // Посмотреть, что реально приходит
-
   const cleanParticipants =
     Array.isArray(participants.value) && Array.isArray(participants.value[0])
       ? participants.value[0]
@@ -278,16 +272,12 @@ const getInformationAboutPaarticipants = async (id) => {
   participantsRows.value = Array.isArray(participants.value)
     ? participants.value.flat()
     : [];
-
-  console.log("Processed participantsRows:", participantsRows.value);
 };
 
 const isRelatedUserToTournament = ref(false);
 const messageToUser = ref("");
 const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
-  console.log(tournamentInfo);
   await apiStore.getUserProfile();
-  console.log(apiStore.userData.userInfo.rating);
   if (tournamentInfo.category === apiStore.userData.userInfo.gender) {
     isRelatedUserToTournament.value = true;
     messageToUser.value =

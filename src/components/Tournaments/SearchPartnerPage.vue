@@ -11,26 +11,37 @@
           <div class="col">
             <q-input v-model="searchUser" type="text" label="Search the user" />
           </div>
-          <q-btn rounded icon="mdi-account-search" @click="onClick" />
+          <q-btn rounded icon="mdi-account-search" @click="searchUserByInput" />
         </q-card-section>
         <q-table
+          v-show="isClickedToSearchUser"
           flat
           bordered
           title="User(-s)"
           :rows="rows"
           :columns="columns"
           row-key="name"
-          :separator="separator"
           hide-bottom
-        />
+        >
+          <template v-slot:body-cell-actions="props">
+            <q-td align="center">
+              <q-btn
+                color="primary"
+                icon="mdi-account-plus"
+                size="sm"
+                @click="inviteUser(props.row)"
+              />
+            </q-td>
+          </template>
+        </q-table>
         <q-card-actions align="right">
           <q-btn
             flat
-            label="Cancel"
+            no-caps
+            label="Close"
             color="primary"
             @click="closeSearchPartnerComponent"
           />
-          <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -38,7 +49,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { useQuasar } from "quasar";
+import { getMethod } from "src/composables/apiMethod/get";
+import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
 const props = defineProps({
@@ -48,9 +61,11 @@ const props = defineProps({
     required: true,
   },
 });
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const $q = useQuasar();
 
 const confirm = ref(props.isOpenSearchComponent);
-const searchUser = ref("");
 
 watch(
   () => props.isOpenSearchComponent,
@@ -66,11 +81,20 @@ const closeSearchPartnerComponent = () => {
 
 const columns = [
   {
+    name: "id",
+    required: true,
+    label: "№",
+    align: "left",
+    field: "id",
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
     name: "firstName",
     required: true,
     label: "First Name",
     align: "left",
-    field: (row) => row.name,
+    field: "firstName",
     format: (val) => `${val}`,
     sortable: true,
   },
@@ -78,37 +102,55 @@ const columns = [
     name: "lastName",
     align: "center",
     label: "Last Name",
-    field: "calories",
+    field: "lastName",
     sortable: true,
   },
   {
     name: "rating",
     label: "Rating",
-    field: "calcium",
+    field: "rating",
     sortable: true,
     sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
   {
-    name: "iron",
-    label: "Iron (%)",
-    field: "iron",
-    sortable: true,
-    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+    name: "actions",
+    label: "Пригласить",
+    align: "center",
+    field: "id",
   },
 ];
 
-const rows = [
-  {
-    name: "Frozen Yogurt",
-    calories: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-    sodium: 87,
-    calcium: "14%",
-    iron: "1%",
-  },
-];
+const usersBySearch = ref([]);
+const rows = ref([]);
+const searchUser = ref("");
+const isClickedToSearchUser = ref(true);
+
+const searchUserByInput = () => {
+  getAllUserBySearch(searchUser.value);
+  isClickedToSearchUser.value = true;
+};
+
+const getAllUserBySearch = async (input) => {
+  try {
+    await getMethod(
+      serverURL,
+      `user/search?name=${input}&page=1&size=10`,
+      usersBySearch,
+      $q,
+      "Ошибка при получении пользоветелй поо поиску: "
+    );
+
+    rows.value = usersBySearch.value.data.map((user) => user);
+
+    console.log(rows.value);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const inviteUser = (row) => {
+  console.log(row);
+};
 </script>
 
 <style></style>
