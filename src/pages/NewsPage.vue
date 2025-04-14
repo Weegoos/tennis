@@ -10,7 +10,7 @@
           Stay informed with up-to-date tennis news, exclusive interviews, and
           behind-the-scenes content.
         </div>
-        <div class="row justify-center">
+        <div class="row justify-center q-gutter-sm">
           <q-input
             style="width: 50vw"
             v-model="search"
@@ -25,6 +25,13 @@
             color="primary"
             icon="search"
             @click="searchFunction"
+          />
+          <q-btn
+            color="primary"
+            no-caps
+            icon="mdi-plus"
+            label="Add the news"
+            @click="openAddNewsBlock"
           />
         </div>
       </q-card-section>
@@ -41,7 +48,8 @@
         >
           <div class="col">
             <q-img
-              src="https://cdn.quasar.dev/img/mountains.jpg"
+              v-if="news.imageUrl"
+              :src="news.imageUrl"
               spinner-color="primary"
               spinner-size="82px"
               style="border-radius: 10px"
@@ -137,12 +145,18 @@
       :max="maxPage"
       @update:model-value="pagination"
     />
+    <AddNews
+      :isOpenAddNewsBlock="Boolean(isOpenAddNewsBlock)"
+      @closeAddNewsBlock="closeAddNewsBlock"
+    />
   </div>
 </template>
 
 <script setup>
 import { all } from "axios";
-import { useQuasar } from "quasar";
+import { Cookies, useQuasar } from "quasar";
+import axios from "axios";
+import AddNews from "src/components/News/AddNews.vue";
 import EditNews from "src/components/News/EditNews.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
@@ -156,8 +170,11 @@ const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
 
 const allNews = ref([]);
+
 const getAllNews = async (page) => {
   try {
+    // или где ты его хранишь
+
     await getMethod(
       serverURL,
       `news/allNews?page=${page}&size=${maxNumberOfRequestPerPage}`,
@@ -165,8 +182,29 @@ const getAllNews = async (page) => {
       $q,
       "Error: "
     );
+    console.log(allNews.value);
+
+    // Загружаем изображения для каждой новости
+    for (const item of allNews.value.data) {
+      try {
+        const imageUrl = `${serverURL}news/${item.id}/image`;
+
+        const imageRes = await axios.get(imageUrl, {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
+          },
+          responseType: "blob",
+        });
+
+        item.imageUrl = URL.createObjectURL(imageRes.data);
+      } catch (err) {
+        console.error(err);
+        console.warn(`Не удалось загрузить изображение для новости ${item.id}`);
+        item.imageUrl = null;
+      }
+    }
   } catch (error) {
-    console.error(error);
+    console.error("Ошибка при получении новостей:", error);
   }
 };
 
@@ -217,6 +255,15 @@ const closePage = () => {
 // search
 const search = ref("");
 const searchFunction = () => {};
+
+const isOpenAddNewsBlock = ref(false);
+const openAddNewsBlock = () => {
+  isOpenAddNewsBlock.value = true;
+};
+
+const closeAddNewsBlock = () => {
+  isOpenAddNewsBlock.value = false;
+};
 
 onMounted(() => {
   getAllNews(1);
