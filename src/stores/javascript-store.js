@@ -8,7 +8,7 @@ export const useJavaScriptFunction = defineStore("javascript", {
       const router = useRouter();
       const accessToken = Cookies.get("accessToken");
       if (!accessToken) {
-        router.push("/authorization");
+        console.log("no");
       }
     },
   },

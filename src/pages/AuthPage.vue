@@ -156,32 +156,34 @@
           />
         </q-card-actions>
       </q-card>
-      <q-btn-dropdown
-        class="fixed-bottom-right q-mb-md"
-        :class="$q.screen.width < mobileWidth ? 'q-mx-md' : 'q-mx-lg'"
-        color="black"
-        rounded
-        icon="mdi-web"
-      >
-        <q-list v-for="(lang, index) in options" :key="index">
-          <q-item
-            clickable
-            v-close-popup
-            @click="() => selectLanguage(lang.value)"
-          >
-            <q-item-section>
-              <q-item-label>{{ lang.label }}</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-btn-dropdown>
+      <section class="fixed-bottom-right">
+        <q-btn-dropdown
+          class="q-mb-md"
+          :class="$q.screen.width < mobileWidth ? 'q-mx-md' : 'q-mx-lg'"
+          color="black"
+          rounded
+          icon="mdi-web"
+        >
+          <q-list v-for="(lang, index) in options" :key="index">
+            <q-item
+              clickable
+              v-close-popup
+              @click="() => selectLanguage(lang.value)"
+            >
+              <q-item-section>
+                <q-item-label>{{ lang.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </section>
     </div>
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
+import { Cookies, Dark, QSpinnerGears, useQuasar } from "quasar";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getCurrentInstance } from "vue";
