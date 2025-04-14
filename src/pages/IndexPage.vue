@@ -84,6 +84,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   clearInterval(intervalId);
+  javascriptStore.redirect();
 });
 </script>
 

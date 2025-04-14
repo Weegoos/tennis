@@ -14,7 +14,6 @@
         :rows="rows"
         :columns="columns"
         row-key="name"
-        :separator="separator"
         hide-bottom
       />
     </div>
@@ -30,7 +29,7 @@
         hide-bottom
       />
     </div>
-    <div class="q-pa-md">
+    <div class="q-pa-md q-gutter-sm">
       <q-btn
         color="green-4"
         no-caps
@@ -46,17 +45,29 @@
           {{ messageToUser }}
         </q-tooltip>
       </q-btn>
+      <q-btn
+        color="primary"
+        no-caps
+        label="Search partner"
+        :disable="isRelatedUserToTournament"
+        @click="openSearchComponent"
+      >
+      </q-btn>
     </div>
+    <SearchPartnerPage
+      :isOpenSearchComponent="Boolean(isOpenSearchComponent)"
+      @closeSearchPartnerComponent="closeSearchPartnerComponent"
+    />
   </div>
 </template>
 
 <script setup>
-import { Cookies, QSpinnerGears, useQuasar } from "quasar";
-import { useNotifyStore } from "src/stores/notify-store";
+import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, reactive, ref } from "vue";
 import { getMethod } from "src/composables/apiMethod/get";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
+import SearchPartnerPage from "./SearchPartnerPage.vue";
 
 // global variables
 const $q = useQuasar();
@@ -291,6 +302,16 @@ const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
     messageToUser.value =
       "Your level does not match the required level in the tournament";
   }
+};
+
+// search
+const isOpenSearchComponent = ref(true);
+const openSearchComponent = () => {
+  isOpenSearchComponent.value = true;
+};
+
+const closeSearchPartnerComponent = () => {
+  isOpenSearchComponent.value = false;
 };
 
 onMounted(() => {
