@@ -17,8 +17,8 @@ export default {
       carousel: {
         mail: {
           title: "Mail",
-          text: ` The special character "@" must be present in the mail. Make sure
-                that you have entered the correct and working email address.`,
+          text: `The special character  must be present in the mail. Make sure
+       that you have entered the correct and working email address.`,
         },
         password: {
           title: "Password",

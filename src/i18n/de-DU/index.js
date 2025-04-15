@@ -11,7 +11,7 @@ export default {
     carousel: {
       mail: {
         title: "E-Mail",
-        text: `Die E-Mail-Adresse muss das Symbol "@" enthalten. Stellen Sie sicher, dass Sie eine gültige und funktionierende E-Mail-Adresse eingegeben haben.`,
+        text: `Die E-Mail-Adresse muss das Symbol enthalten. Stellen Sie sicher, dass Sie eine gültige und funktionierende E-Mail-Adresse eingegeben haben.`,
       },
       password: {
         title: "Passwort",

@@ -58,6 +58,8 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
+import { postMethod } from "src/composables/apiMethod/post";
+import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, ref, watch } from "vue";
 
 // global variables
@@ -72,6 +74,7 @@ const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
+const apiStore = useApiStore();
 
 const confirm = ref(props.isOpenSearchComponent);
 
@@ -185,8 +188,30 @@ const getAllUserBySearch = async (input, page) => {
   }
 };
 
-const inviteUser = (row) => {
-  console.log(row);
+const inviteUser = async (row) => {
+  try {
+    await apiStore.getUserProfile();
+    const url = window.location.hash;
+    const match = url.match(/\/hr\/(\d+)/);
+    const tournamentID = match[1];
+    // console.log(apiStore.userData.id);
+    // console.log(id);
+    // console.log(row.id);
+    const payload = {
+      tournamentId: tournamentID,
+      userId: apiStore.userData.id,
+      partnerId: row.id,
+    };
+    postMethod(
+      serverURL,
+      "registration",
+      payload,
+      $q,
+      "Приглашение успешно отправлено!"
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 
