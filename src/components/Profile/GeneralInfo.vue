@@ -108,19 +108,38 @@
       </q-tab-panel>
 
       <q-tab-panel name="tournaments">
-        <div class="text-h4 q-mb-md">My tournaments</div>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          praesentium cumque magnam odio iure quidem, quod illum numquam
-          possimus obcaecati commodi minima assumenda consectetur culpa fuga
-          nulla ullam. In, libero.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-          praesentium cumque magnam odio iure quidem, quod illum numquam
-          possimus obcaecati commodi minima assumenda consectetur culpa fuga
-          nulla ullam. In, libero.
-        </p>
+        <div>
+          <q-table
+            flat
+            bordered
+            title="Invitation(-s)"
+            :rows="allInvintations"
+            :columns="columns"
+            row-key="name"
+            hide-bottom
+          >
+            <template v-slot:body-cell-accept="props">
+              <q-td align="center">
+                <q-btn
+                  color="primary"
+                  icon="mdi-thumb-up"
+                  size="sm"
+                  @click="rejectInvintation(props.row)"
+                />
+              </q-td>
+            </template>
+            <template v-slot:body-cell-reject="props">
+              <q-td align="center">
+                <q-btn
+                  color="primary"
+                  icon="mdi-thumb-down"
+                  size="sm"
+                  @click="rejectInvintation(props.row)"
+                />
+              </q-td>
+            </template>
+          </q-table>
+        </div>
       </q-tab-panel>
 
       <q-tab-panel name="settings">
@@ -154,15 +173,17 @@
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
-import { Cookies } from "quasar";
+import { Cookies, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
+import { getMethod } from "src/composables/apiMethod/get";
 
-// general variables
+// global variables
 const apiStore = useApiStore();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
 const { locale } = useI18n();
+const $q = useQuasar();
 
 const tab = ref("info");
 const language = ref(locale.value);
@@ -176,6 +197,82 @@ const options = [
 const changeLanguage = () => {
   locale.value = language.value;
   localStorage.setItem("locale", language.value);
+};
+
+const columns = [
+  {
+    name: "id",
+    required: true,
+    label: "№",
+    align: "left",
+    field: (user) => user.id,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "partner",
+    required: true,
+    label: "Partner",
+    align: "left",
+    field: (user) => user.user.email,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "tournament",
+    required: true,
+    label: "Tournament",
+    align: "left",
+    field: (user) => user.tournament.description,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "category",
+    required: true,
+    label: "Category",
+    align: "left",
+    field: (user) => user.tournament.category,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "status",
+    required: true,
+    label: "Status",
+    align: "left",
+    field: (user) => user.status,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "accept",
+    label: "Accept",
+    align: "center",
+    field: "id",
+  },
+  {
+    name: "reject",
+    label: "Reject",
+    align: "center",
+    field: "id",
+  },
+];
+
+const allInvintations = ref([]);
+const getInvintations = async () => {
+  try {
+    await getMethod(
+      serverURL,
+      "user/invintations",
+      allInvintations,
+      $q,
+      "Error: "
+    );
+    console.log(allInvintations.value);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const firstName = ref("");
@@ -194,7 +291,12 @@ onMounted(async () => {
   gender.value = user.userInfo.gender;
   phone.value = user.userInfo.phone;
   rating.value = user.userInfo.rating;
+  getInvintations();
 });
+
+const rejectInvintation = (row) => {
+  console.log(row);
+};
 
 const openEditPage = ref(false);
 const editInformation = () => {
