@@ -48,6 +48,7 @@
         >
           <div class="col">
             <q-img
+              :ratio="16 / 9"
               v-if="news.imageUrl"
               :src="news.imageUrl"
               spinner-color="primary"
@@ -59,12 +60,14 @@
             <q-btn
               no-caps
               color="light-green-6"
-              :label="news.author.email"
+              :label="`${news.author.userInfo.firstName} ${news.author.userInfo.lastName}`"
               @click="checkAuthorInfo(news.author)"
             />
-            <div class="text-h5 text-gray q-mt-md">{{ news.title }}</div>
+            <div class="text-h5 text-gray q-mt-md">
+              {{ news.title || "Not specified" }}
+            </div>
             <div class="text-subtitle2 q-mt-sm">
-              <p>{{ news.description }}</p>
+              <p>{{ news.description || "Not specified" }}</p>
             </div>
             <q-card-actions class="row q-gutter-sm text-center">
               <div class="col">
@@ -100,13 +103,15 @@
                     <div class="col">
                       <span class="infoHeadline">Full Name</span>
                       <p class="infoStyle">
-                        {{ news.author.userInfo.firstName }}
-                        {{ news.author.userInfo.lastName }}
+                        {{ news.author.userInfo.firstName || "Not specified" }}
+                        {{ news.author.userInfo.lastName || "Not specified" }}
                       </p>
                     </div>
                     <div class="col">
                       <span class="infoHeadline">Phone Number</span>
-                      <p class="infoStyle">{{ news.author.userInfo.phone }}</p>
+                      <p class="infoStyle">
+                        {{ news.author.userInfo.phone || "Not specified" }}
+                      </p>
                     </div>
                   </section>
                   <section class="row q-gutter-sm">
@@ -118,7 +123,9 @@
                     </div>
                     <div class="col">
                       <span class="infoHeadline">Age</span>
-                      <p class="infoStyle">{{ news.author.userInfo.age }}</p>
+                      <p class="infoStyle">
+                        {{ news.author.userInfo.age || "Not specified" }}
+                      </p>
                     </div>
                   </section>
                 </q-card-section>

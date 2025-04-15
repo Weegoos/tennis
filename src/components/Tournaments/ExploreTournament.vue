@@ -1,9 +1,15 @@
 <template>
   <div>
-    <p class="text-weight-regular text-h1 text-center q-mt-xl text-bold">
+    <p
+      :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h1 '"
+      class="text-weight-regular text-center q-mt-xl text-bold"
+    >
       {{ tournament.description }}
     </p>
-    <p class="text-weight-thin text-h5 text-center q-mt-xl text-bold">
+    <p
+      :class="$q.screen.width < mobileWidth ? 'text-h6' : 'text-h5'"
+      class="text-weight-thin text-center q-mt-xl text-bold"
+    >
       {{ tournament.location }} - {{ tournament.city }}
     </p>
     <div class="q-pa-md">
@@ -29,7 +35,7 @@
       />
     </div>
     <div class="q-pa-md q-gutter-sm">
-      <q-btn
+      <!-- <q-btn
         color="green-4"
         no-caps
         label="Register to the tournament"
@@ -43,10 +49,11 @@
         >
           {{ messageToUser }}
         </q-tooltip>
-      </q-btn>
+      </q-btn> -->
       <q-btn
         color="primary"
         no-caps
+        rounded
         label="Search partner"
         v-if="isRelatedUserToTournament && isRelatedUserFormat"
         @click="openSearchComponent"
@@ -73,6 +80,7 @@ const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const apiStore = useApiStore();
+const mobileWidth = proxy.$mobileWidth;
 
 const registerToTournament = async () => {
   const url = window.location.hash;

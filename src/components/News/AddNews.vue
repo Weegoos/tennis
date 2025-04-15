@@ -32,7 +32,7 @@
           <q-btn
             flat
             no-caps
-            label="Turn on Wifi"
+            label="Add"
             color="primary"
             @click="handleSubmit"
           />
