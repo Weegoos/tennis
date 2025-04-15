@@ -38,6 +38,9 @@
     >
       <TournamentPage />
     </section>
+    <section class="q-mt-md">
+      <MeetFounders />
+    </section>
     <section class="q-mt-md" data-testid="achievementsPage">
       <AchievementsPage />
     </section>
@@ -52,8 +55,8 @@ import { ref, onMounted, onBeforeUnmount, getCurrentInstance } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
 import AchievementsPage from "../components/IndexPage/AchievementsPage.vue";
 import ParallaxPage from "../components/IndexPage/ParallaxPage.vue";
-
 import { useJavaScriptFunction } from "src/stores/javascript-store";
+import MeetFounders from "src/components/IndexPage/MeetFounders.vue";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
 const javascriptStore = useJavaScriptFunction();
@@ -78,13 +81,17 @@ const nextSlide = () => {
   slide.value = slides[slideIndex];
 };
 
+const visible = ref(false);
+const target = ref(null);
+
+let observer;
+
 onMounted(() => {
   intervalId = setInterval(nextSlide, 5000);
 });
 
 onBeforeUnmount(() => {
   clearInterval(intervalId);
-  javascriptStore.redirect();
 });
 </script>
 
