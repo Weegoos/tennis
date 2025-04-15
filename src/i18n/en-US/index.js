@@ -70,6 +70,12 @@ export default {
         },
       },
     },
+    tournamentPage: {
+      mainPage: {
+        participants: "Participants",
+        exploreButton: "Explore",
+      },
+    },
   },
   "ru-RU": ruRU,
   "kz-KZ": kzKZ,

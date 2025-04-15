@@ -57,7 +57,9 @@
                   </p>
                   <p>{{ tournament.location }}, {{ tournament.city }}</p>
                   <p class="text-bold">
-                    Participants: 10/{{ tournament.maxParticipants }}
+                    {{ t("tournamentPage.mainPage.participants") }} : 10/{{
+                      tournament.maxParticipants
+                    }}
                   </p>
                 </div>
                 <div
@@ -79,7 +81,7 @@
                 <q-btn
                   color="black"
                   class="q-pa-md button"
-                  label="Explore"
+                  :label="t('tournamentPage.mainPage.exploreButton')"
                   @click="exploreTournaments(tournament)"
                 />
               </q-card-actions>
@@ -113,6 +115,7 @@ import { useApiStore } from "src/stores/api-store";
 import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -123,6 +126,7 @@ const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const mobileWidth = proxy.$mobileWidth;
 const $q = useQuasar();
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const tournaments = ref("");
 const maxPage = ref("");

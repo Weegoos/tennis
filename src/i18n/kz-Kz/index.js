@@ -62,4 +62,10 @@ export default {
       },
     },
   },
+  tournamentPage: {
+    mainPage: {
+      participants: "Қатысушылар",
+      exploreButton: "Зерттеу",
+    },
+  },
 };

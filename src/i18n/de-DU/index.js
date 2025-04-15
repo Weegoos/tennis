@@ -65,4 +65,10 @@ export default {
       },
     },
   },
+  tournamentPage: {
+    mainPage: {
+      participants: "Teilnehmer",
+      exploreButton: "Entdecken",
+    },
+  },
 };

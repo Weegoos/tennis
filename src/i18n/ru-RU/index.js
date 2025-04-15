@@ -63,4 +63,10 @@ export default {
       },
     },
   },
+  tournamentPage: {
+    mainPage: {
+      participants: "Участники",
+      exploreButton: "Исследовать",
+    },
+  },
 };
