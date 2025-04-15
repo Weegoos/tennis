@@ -108,12 +108,12 @@
       </q-tab-panel>
 
       <q-tab-panel name="tournaments">
-        <div>
+        <div v-if="allInvitations && allInvitations?.length">
           <q-table
             flat
             bordered
             title="Invitation(-s)"
-            :rows="allInvintations"
+            :rows="allInvitations"
             :columns="columns"
             row-key="name"
             hide-bottom
@@ -124,7 +124,7 @@
                   color="primary"
                   icon="mdi-thumb-up"
                   size="sm"
-                  @click="rejectInvintation(props.row)"
+                  @click="acceptInvitation(props.row)"
                 />
               </q-td>
             </template>
@@ -134,12 +134,13 @@
                   color="primary"
                   icon="mdi-thumb-down"
                   size="sm"
-                  @click="rejectInvintation(props.row)"
+                  @click="rejectInvitation(props.row)"
                 />
               </q-td>
             </template>
           </q-table>
         </div>
+        <div v-else>No data</div>
       </q-tab-panel>
 
       <q-tab-panel name="settings">
@@ -176,6 +177,7 @@ import EditGeneralInfo from "./EditGeneralInfo.vue";
 import { Cookies, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { getMethod } from "src/composables/apiMethod/get";
+import { putMethod } from "src/composables/apiMethod/put";
 
 // global variables
 const apiStore = useApiStore();
@@ -259,17 +261,17 @@ const columns = [
   },
 ];
 
-const allInvintations = ref([]);
-const getInvintations = async () => {
+const allInvitations = ref([]);
+const getInvitations = async () => {
   try {
     await getMethod(
       serverURL,
       "user/invintations",
-      allInvintations,
+      allInvitations,
       $q,
       "Error: "
     );
-    console.log(allInvintations.value);
+    console.log(allInvitations.value);
   } catch (error) {
     console.error(error);
   }
@@ -291,11 +293,44 @@ onMounted(async () => {
   gender.value = user.userInfo.gender;
   phone.value = user.userInfo.phone;
   rating.value = user.userInfo.rating;
-  getInvintations();
+  getInvitations();
 });
 
-const rejectInvintation = (row) => {
-  console.log(row);
+const acceptVar = ref("");
+const acceptInvitation = async (row) => {
+  console.log(row.id);
+  console.log(row.user.id);
+  try {
+    await putMethod(
+      serverURL,
+      `registration/${row.id}/confirm?partnerId=${row.user.id}`,
+      acceptVar,
+      $q,
+      "Приглашение успешно принято!",
+      "Ошибка при принятии приглашение: ",
+      {}
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const rejectInvitation = async (row) => {
+  console.log(row.id);
+  console.log(row.user.id);
+  try {
+    await putMethod(
+      serverURL,
+      `registration/${row.id}/reject?partnerId=${row.user.id}`,
+      acceptVar,
+      $q,
+      "Приглашение успешно принято!",
+      "Ошибка при принятии приглашение: ",
+      {}
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const openEditPage = ref(false);
