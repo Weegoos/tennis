@@ -15,6 +15,9 @@ export default {
   costText: "Kosten",
   description: "Beschreibung",
   closeButton: "Schließen",
+  firstNameText: "Vorname",
+  lastNameText: "Nachname",
+
   fullNameText: "Vollständiger Name",
   personalDataText: "Persönliche Daten",
   genderText: "Geschlecht",
@@ -131,6 +134,9 @@ export default {
       mainText: "Detaillierte Informationen",
       captionTextOfPersonalData: "Vollständiger Name, E-Mail, Telefonnummer",
       captionTextOfProfessionalInformation: "Erfahrung, Dienstleistung, Kosten",
+    },
+    postRequest: {
+      button: "Veröffentlichen",
     },
   },
 };

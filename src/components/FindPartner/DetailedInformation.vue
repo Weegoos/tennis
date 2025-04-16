@@ -124,7 +124,7 @@
           <q-btn
             flat
             no-caps
-            label="Close"
+            :label="t('closeButton')"
             color="red-4"
             @click="closeWindow"
           />

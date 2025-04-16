@@ -15,19 +15,19 @@ export default {
   costText: "Бағасы",
   description: "Сипаттама",
   closeButton: "Жабу",
+  firstNameText: "Аты",
+  lastNameText: "Тегі",
   fullNameText: "Толық аты-жөні",
   personalDataText: "Жеке деректер",
   genderText: "Жыныс",
   phoneNumber: "Телефон нөмірі",
   professionalInformationText: "Кәсіби ақпарат",
-
   timePart: {
     label: "Уақыты",
     caption: "Жасалған және жаңартылған уақыты",
     createdAt: "Жасалған күні",
     updatedAt: "Жаңартылған күні",
   },
-
   registration: {
     button: "Тіркелу",
     accountText: "Аккаунтыңыз бар ма? Кіру",
@@ -128,6 +128,9 @@ export default {
       captionTextOfPersonalData:
         "Толық аты-жөні, электрондық пошта, телефон нөмірі",
       captionTextOfProfessionalInformation: "Тәжірибе, қызмет, бағасы",
+    },
+    postRequest: {
+      button: "Жариялау",
     },
   },
 };

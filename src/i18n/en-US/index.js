@@ -22,6 +22,9 @@ export default {
     description: "Description",
     closeButton: "Close",
 
+    firstNameText: "First name",
+    lastNameText: "Last name",
+
     fullNameText: "Full name",
     personalDataText: "Personal data",
     genderText: "Gender",
@@ -137,6 +140,9 @@ export default {
         mainText: "Detailed Information",
         captionTextOfPersonalData: "Full name, email, phone number",
         captionTextOfProfessionalInformation: "Experience, service, cost",
+      },
+      postRequest: {
+        button: "Post",
       },
     },
   },

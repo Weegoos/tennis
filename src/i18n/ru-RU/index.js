@@ -15,6 +15,9 @@ export default {
   costText: "Стоимость",
   description: "Описание",
   closeButton: "Закрыть",
+  firstNameText: "Имя",
+  lastNameText: "Фамилия",
+
   fullNameText: "Полное имя",
   personalDataText: "Личные данные",
   genderText: "Пол",
@@ -129,6 +132,9 @@ export default {
       captionTextOfPersonalData:
         "Полное имя, электронная почта, номер телефона",
       captionTextOfProfessionalInformation: "Опыт, услуга, стоимость",
+    },
+    postRequest: {
+      button: "Опубликовать",
     },
   },
 };
