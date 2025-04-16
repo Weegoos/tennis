@@ -3,82 +3,110 @@
     <q-dialog v-model="isOpenDetailedWindowAboutCoache" persistent>
       <q-card>
         <p class="text-center text-bold text-h5 q-mt-md">
-          Detailed Information
+          {{ t("coachPage.detailedInformation.mainText") }}
         </p>
         <q-card-section class="row items-center">
           <q-list>
             <q-expansion-item
               popup
-              caption="Full name, email, phone number"
+              :caption="
+                t('coachPage.detailedInformation.captionTextOfPersonalData')
+              "
               icon="filter_1"
-              label="Personal data"
+              :label="t('personalDataText')"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span data-testid="fullName" class="infoHeadline"
-                    >Full name</span
-                  >
+                  <span data-testid="fullName" class="infoHeadline">{{
+                    t("fullNameText")
+                  }}</span>
                   <p class="infoStyle">
                     {{
-                      props.coacheInformation.user.firstName || "Not specified"
+                      props.coacheInformation.user.firstName ||
+                      t("notSpecifiedText")
                     }}
                     {{
-                      props.coacheInformation.user.lastName || "Not specified"
+                      props.coacheInformation.user.lastName ||
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Gender</span>
+                  <span class="infoHeadline">{{ t("genderText") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.user.gender || "Not specified" }}
+                    {{
+                      props.coacheInformation.user.gender ||
+                      t("notSpecifiedText")
+                    }}
                   </p>
-                  <span class="infoHeadline">Phone Number</span>
+                  <span class="infoHeadline">{{ t("phoneNumber") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.user.phone || "Not specified" }}
+                    {{
+                      props.coacheInformation.user.phone ||
+                      t("notSpecifiedText")
+                    }}
                   </p>
-                  <span class="infoHeadline">Rating</span>
+                  <span class="infoHeadline">{{ t("ratingText") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.user.rating || "Not specified" }}
+                    {{
+                      props.coacheInformation.user.rating ||
+                      t("notSpecifiedText")
+                    }}
                   </p>
                 </q-card-section>
               </q-card>
             </q-expansion-item>
             <q-expansion-item
               popup
-              caption="Experience, service, cost"
+              :caption="
+                t(
+                  'coachPage.detailedInformation.captionTextOfProfessionalInformation'
+                )
+              "
               icon="filter_2"
-              label="Professional information"
+              :label="t('professionalInformationText')"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span data-testid="" class="infoHeadline">Experience</span>
+                  <span data-testid="" class="infoHeadline">{{
+                    t("experienceText")
+                  }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.experience || "Not specified" }}
+                    {{
+                      props.coacheInformation.experience ||
+                      t("notSpecifiedText")
+                    }}
                   </p>
-                  <span class="infoHeadline">Cost</span>
+                  <span class="infoHeadline">{{ t("costText") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.cost || "Not specified" }}
+                    {{ props.coacheInformation.cost || t("notSpecifiedText") }}
                   </p>
-                  <span class="infoHeadline">Service</span>
+                  <span class="infoHeadline">{{ t("serviceText") }}</span>
                   <p class="infoStyle">
                     {{
                       props.coacheInformation.services[0].serviceName ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Language</span>
+                  <span class="infoHeadline">{{ t("languageText") }}</span>
                   <p class="infoStyle">
                     {{
-                      props.coacheInformation.languages[0] || "Not specified"
+                      props.coacheInformation.languages[0] ||
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Description</span>
+                  <span class="infoHeadline">{{ t("description") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.description || "Not specified" }}
+                    {{
+                      props.coacheInformation.description ||
+                      t("notSpecifiedText")
+                    }}
                   </p>
-                  <span class="infoHeadline">Stadium</span>
+                  <span class="infoHeadline">{{ t("stadiumText") }}</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.stadium || "Not specified" }}
+                    {{
+                      props.coacheInformation.stadium || t("notSpecifiedText")
+                    }}
                   </p>
                 </q-card-section>
               </q-card>
@@ -89,7 +117,7 @@
           <q-btn
             flat
             no-caps
-            label="Close"
+            :label="t('closeButton')"
             color="red-4"
             @click="closeWindow"
           />
@@ -101,7 +129,9 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
+// global variables
 const props = defineProps({
   openDetailedWindow: {
     type: Boolean,
@@ -112,6 +142,7 @@ const props = defineProps({
     required: true,
   },
 });
+const { t } = useI18n();
 
 const isOpenDetailedWindowAboutCoache = ref(props.openDetailedWindow);
 

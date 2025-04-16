@@ -10,12 +10,16 @@ export default {
   experienceText: "Тәжірибесі",
   notSpecifiedText: "Көрсетілмеген",
   cityText: "Қала",
-
   languageText: "Тіл",
   stadiumText: "Стадион",
   costText: "Бағасы",
   description: "Сипаттама",
   closeButton: "Жабу",
+  fullNameText: "Толық аты-жөні",
+  personalDataText: "Жеке деректер",
+  genderText: "Жыныс",
+  phoneNumber: "Телефон нөмірі",
+  professionalInformationText: "Кәсіби ақпарат",
 
   registration: {
     button: "Тіркелу",
@@ -95,6 +99,12 @@ export default {
     createCoach: {
       mainText: "Тренер құру",
       sendButton: "Жіберу",
+    },
+    detailedInformation: {
+      mainText: "Толық ақпарат",
+      captionTextOfPersonalData:
+        "Толық аты-жөні, электрондық пошта, телефон нөмірі",
+      captionTextOfProfessionalInformation: "Тәжірибе, қызмет, бағасы",
     },
   },
 };

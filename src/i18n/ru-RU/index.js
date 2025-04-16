@@ -10,12 +10,16 @@ export default {
   experienceText: "Опыт",
   notSpecifiedText: "Не указано",
   cityText: "Город",
-
   languageText: "Язык",
   stadiumText: "Стадион",
   costText: "Стоимость",
   description: "Описание",
   closeButton: "Закрыть",
+  fullNameText: "Полное имя",
+  personalDataText: "Личные данные",
+  genderText: "Пол",
+  phoneNumber: "Номер телефона",
+  professionalInformationText: "Профессиональная информация",
 
   registration: {
     button: "Зарегистрироваться",
@@ -96,6 +100,12 @@ export default {
     createCoach: {
       mainText: "Создать тренера",
       sendButton: "Отправить",
+    },
+    detailedInformation: {
+      mainText: "Подробная информация",
+      captionTextOfPersonalData:
+        "Полное имя, электронная почта, номер телефона",
+      captionTextOfProfessionalInformation: "Опыт, услуга, стоимость",
     },
   },
 };

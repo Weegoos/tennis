@@ -16,12 +16,17 @@ export default {
     experienceText: "Experience",
     notSpecifiedText: "Not specified",
     cityText: "City",
-
     languageText: "Language",
     stadiumText: "Stadium",
     costText: "Cost",
     description: "Description",
     closeButton: "Close",
+
+    fullNameText: "Full name",
+    personalDataText: "Personal data",
+    genderText: "Gender",
+    phoneNumber: "Phone Number",
+    professionalInformationText: "Professional information",
 
     registration: {
       button: "Register",
@@ -104,6 +109,12 @@ export default {
       createCoach: {
         mainText: "Create Coache",
         sendButton: "Send",
+      },
+
+      detailedInformation: {
+        mainText: "Detailed Information",
+        captionTextOfPersonalData: "Full name, email, phone number",
+        captionTextOfProfessionalInformation: "Experience, service, cost",
       },
     },
   },
