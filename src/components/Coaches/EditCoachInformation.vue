@@ -1,7 +1,11 @@
 <template>
   <div>
-    <q-dialog v-model="isOpenEditCoachInformationWindow" persistent>
-      <q-card>
+    <q-dialog
+      v-model="isOpenEditCoachInformationWindow"
+      persistent
+      :full-width="$q.screen.width < mobileWidth ? true : false"
+    >
+      <q-card :style="$q.screen.width < mobileWidth ? '' : 'width: 800px'">
         <q-card-section class="">
           <section class="row q-gutter-md">
             <div class="col">
@@ -11,11 +15,19 @@
                 :options="languageList"
                 label="Language"
               />
-              <q-input v-model="service" type="text" label="Service" />
+              <q-select
+                v-model="service"
+                :options="serviceOptions"
+                label="Service"
+              />
             </div>
             <div class="col">
               <q-input v-model="cost" type="number" label="Cost" />
-              <q-input v-model="stadium" type="text" label="Stadium" />
+              <q-select
+                v-model="stadium"
+                :options="stadiumList"
+                label="Stadium"
+              />
               <q-input v-model="experience" type="number" label="Experience" />
             </div>
           </section>
@@ -26,10 +38,16 @@
           <q-btn
             flat
             label="Close"
+            no-caps
             color="red-4"
             @click="closeEditCoachInformationWindow"
           />
-          <q-btn label="Update" color="orange-4" @click="updateCoachInfo" />
+          <q-btn
+            no-caps
+            label="Update"
+            color="orange-4"
+            @click="updateCoachInfo"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -41,12 +59,13 @@ import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
-
+import stadiumJSON from "../../composables/stadium.json";
 // global variabels
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const apiStore = useApiStore();
+const mobileWidth = proxy.$mobileWidth;
 
 const props = defineProps({
   openCoachEditWindow: {
@@ -76,7 +95,9 @@ const getAllList = async () => {
     languageList.value = apiStore.language.value;
     await apiStore.getCity(serverURL, $q);
     cityOptions.value = apiStore.city.value;
-    console.log(languageList.value);
+
+    await apiStore.getService(serverURL, $q);
+    serviceOptions.value = apiStore.service.value;
   } catch (error) {
     console.error(error);
   }
@@ -94,6 +115,8 @@ const service = ref("");
 const description = ref("");
 const experience = ref("");
 const stadium = ref("");
+const stadiumList = ref(stadiumJSON);
+const serviceOptions = ref([]);
 
 const updateCoachInfo = async () => {
   const params = {};
@@ -109,7 +132,7 @@ const updateCoachInfo = async () => {
 
   await putMethod(
     serverURL,
-    `coach${props.coachID}`,
+    `coach/${props.coachID}`,
     coacheInfo,
     $q,
     "Успешно обновлено",

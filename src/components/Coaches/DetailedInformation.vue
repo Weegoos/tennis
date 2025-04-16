@@ -61,11 +61,16 @@
                   </p>
                   <span class="infoHeadline">Service</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.service || "Not specified" }}
+                    {{
+                      props.coacheInformation.services[0].serviceName ||
+                      "Not specified"
+                    }}
                   </p>
                   <span class="infoHeadline">Language</span>
                   <p class="infoStyle">
-                    {{ props.coacheInformation.language || "Not specified" }}
+                    {{
+                      props.coacheInformation.languages[0] || "Not specified"
+                    }}
                   </p>
                   <span class="infoHeadline">Description</span>
                   <p class="infoStyle">

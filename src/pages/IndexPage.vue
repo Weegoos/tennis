@@ -81,11 +81,6 @@ const nextSlide = () => {
   slide.value = slides[slideIndex];
 };
 
-const visible = ref(false);
-const target = ref(null);
-
-let observer;
-
 onMounted(() => {
   intervalId = setInterval(nextSlide, 5000);
 });

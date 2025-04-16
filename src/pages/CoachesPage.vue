@@ -1,91 +1,125 @@
 <template>
-  <div>
-    <div :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'">
-      <p class="text-h4 text-bold">Coaches</p>
-      <q-btn color="primary" label="Add a form" @click="addForm" />
-    </div>
-    <section v-if="coaches.data > []">
-      <q-card
-        data-testid="coachesID"
-        :class="$q.screen.width < mobileWidth ? 'q-ma-md' : 'card'"
+  <div class="q-pa-md">
+    <q-card class="my-card q-pa-sm q-ma-sm text-center">
+      <q-card-section>
+        <div class="text-h5 text-bold">
+          Submit your application to join our coaching program.
+          <span class="text-deep-purple"
+            >We’ll get in touch with you shortly.</span
+          >
+        </div>
+        <div class="text-body1 q-mt-sm">
+          Fill out the form below to apply, share your experience, and become
+          part of our professional coaching team.
+        </div>
+        <div class="row justify-center q-gutter-sm">
+          <q-input
+            style="width: 50vw"
+            v-model="search"
+            type="text"
+            placeholder="Search..."
+            class="q-mr-sm"
+            dense
+          />
+          <q-btn
+            dense
+            class="q-pa-sm"
+            color="primary"
+            icon="search"
+            @click="searchFunction"
+          />
+          <q-btn
+            color="primary"
+            icon="mdi-plus"
+            no-caps
+            label="Add a form"
+            @click="addForm"
+          />
+        </div>
+      </q-card-section>
+    </q-card>
+    <section v-if="coaches.data > []" class="row">
+      <div
+        class="col-12 col-sm-6 col-md-4"
         v-for="(items, index) in coaches.data"
         :key="index"
       >
-        <q-tooltip>
-          Click here to view detailed information about the coach</q-tooltip
-        >
-        <q-card-section
-          class="q-gutter-md"
-          :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
-        >
-          <div class="col-2">
-            <q-img
-              src="src/assets/coaches/coaches1.jpg"
-              :ratio="10 / 9"
-              spinner-color="primary"
-              spinner-size="82px"
-              class="full-height"
-            />
-          </div>
-          <section
-            class="col-8"
-            @click="viewDetailedInformationAboutCoache(items)"
+        <q-card data-testid="coachesID" class="my-card q-mt-md q-mx-sm q-pa-sm">
+          <q-tooltip>
+            Click here to view detailed information about the coach</q-tooltip
           >
-            <div class="text-h4 text-bold">
-              {{ items.user.firstName || "Not specified" }}
-              {{ items.user.lastName || "Not specified" }}
+          <q-card-section class="q-gutter-md">
+            <div class="col-2">
+              <q-img
+                src="src/assets/coaches/coaches1.jpg"
+                :ratio="10 / 7"
+                spinner-color="primary"
+                spinner-size="82px"
+                class="full-height"
+              />
             </div>
-            <div class="text-subtitle1">
-              {{ items.description || "Not specified" }}
-            </div>
-            <section class="row">
-              <div class="col">
-                <div class="q-mt-lg">
-                  <p class="text-body1">
-                    <span class="text-bold">Service: </span
-                    ><span>{{ items.service || "Not specified" }}</span>
-                  </p>
-                  <p class="text-body1">
-                    <span class="text-bold">Experience: </span
-                    ><span>{{ items.experience || "Not specified" }}</span>
-                  </p>
-                </div>
+            <section
+              class="col-8"
+              @click="viewDetailedInformationAboutCoache(items)"
+            >
+              <div class="text-h4 text-bold">
+                {{ items.user.firstName || "Not specified" }}
+                {{ items.user.lastName || "Not specified" }}
               </div>
-              <div class="col">
-                <div class="q-mt-lg">
-                  <p class="text-body1">
-                    <span class="text-bold">Rating: </span
-                    ><span>{{ items.user.rating || "Not specified" }}</span>
-                  </p>
-                  <p class="text-body1">
-                    <span class="text-bold">City: </span
-                    ><span>{{ items.city }}</span>
-                  </p>
-                </div>
+              <div class="text-subtitle1">
+                {{ items.description || "Not specified" }}
               </div>
+              <section class="row">
+                <div class="col">
+                  <div class="q-mt-lg">
+                    <p class="text-body1">
+                      <span class="text-bold">Rating: </span
+                      ><span>{{ items.user.rating || "Not specified" }}</span>
+                    </p>
+                    <p class="text-body1">
+                      <span class="text-bold">Service: </span
+                      ><span>{{
+                        items.services[0].serviceName || "Not specified"
+                      }}</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="q-mt-lg">
+                    <p class="text-body1">
+                      <span class="text-bold">Experience: </span
+                      ><span>{{ items.experience || "Not specified" }}</span>
+                    </p>
+                    <p class="text-body1">
+                      <span class="text-bold">City: </span
+                      ><span>{{ items.city }}</span>
+                    </p>
+                  </div>
+                </div>
+              </section>
             </section>
-          </section>
-          <div
-            class="col"
-            v-if="userInfo.role == humanResources"
-            align="right"
-            data-testid="buttonSection"
-          >
-            <q-btn
-              flat
-              color="black"
-              icon="edit"
-              @click="editCoachInformation(items.id)"
-            />
-            <q-btn
-              flat
-              color="red-4"
-              icon="delete"
-              @click="deleteCoaches(items.id)"
-            />
-          </div>
-        </q-card-section>
-      </q-card>
+            <div
+              class="col"
+              v-if="userInfo.role == humanResources"
+              align="right"
+              data-testid="buttonSection"
+            >
+              <q-btn
+                flat
+                color="black"
+                icon="edit"
+                @click="editCoachInformation(items.id)"
+              />
+              <q-btn
+                flat
+                color="red-4"
+                icon="delete"
+                @click="deleteCoaches(items.id)"
+              />
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
     </section>
     <section v-else class="text-center text-h5 text-bold">
       There is no announcement about the coaches
@@ -102,7 +136,8 @@
       @closeEditCoachInformationWindow="closeEditCoachInformationWindow"
     />
     <q-pagination
-      class="justify-center"
+      v-if="coaches.data > []"
+      class="justify-center q-pa-sm"
       v-model="current"
       :min="1"
       :max="maxPage"

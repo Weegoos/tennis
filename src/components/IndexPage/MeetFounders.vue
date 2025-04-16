@@ -71,11 +71,6 @@ onMounted(() => {
     if (el) observer.observe(el);
   });
 });
-onBeforeUnmount(() => {
-  if (observer && target.value) {
-    observer.unobserve(target.value);
-  }
-});
 
 const pushToAboutPage = () => {
   router.push("/about");

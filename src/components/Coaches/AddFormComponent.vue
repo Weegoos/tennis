@@ -91,12 +91,14 @@ const createCoaches = async () => {
     city: city.value,
     language: Array.isArray(language.value) ? language.value : [language.value],
     cost: Number(cost.value) || 0,
-    service: service.value,
+    coachServices: Array.isArray(service.value)
+      ? service.value
+      : [service.value],
     description: description.value,
     experience: Number(experience.value) || 0,
     stadium: stadium.value,
   };
-  postMethod(serverURL, "coach", payload, $q, "Тренер успешно зареган");
+  postMethod(serverURL, "coach", payload, $q, "Тренер успешно зарегестрирован");
 };
 
 const getAllList = async () => {
