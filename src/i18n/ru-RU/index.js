@@ -10,6 +10,13 @@ export default {
   experienceText: "Опыт",
   notSpecifiedText: "Не указано",
   cityText: "Город",
+
+  languageText: "Язык",
+  stadiumText: "Стадион",
+  costText: "Стоимость",
+  description: "Описание",
+  closeButton: "Закрыть",
+
   registration: {
     button: "Зарегистрироваться",
     accountText: "Уже есть аккаунт? Войти",
@@ -83,5 +90,8 @@ export default {
     clickToViewDetailedInformation:
       "Нажмите здесь, чтобы просмотреть подробную информацию о тренере",
     noData: "Нет объявлений о тренерах",
+    editCoach: {
+      updateButton: "Обновить",
+    },
   },
 };

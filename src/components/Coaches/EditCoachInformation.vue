@@ -9,42 +9,54 @@
         <q-card-section class="">
           <section class="row q-gutter-md">
             <div class="col">
-              <q-select v-model="city" :options="cityOptions" label="City" />
+              <q-select
+                v-model="city"
+                :options="cityOptions"
+                :label="t('cityText')"
+              />
               <q-select
                 v-model="language"
                 :options="languageList"
-                label="Language"
+                :label="t('languageText')"
               />
               <q-select
                 v-model="service"
                 :options="serviceOptions"
-                label="Service"
+                :label="t('serviceText')"
               />
             </div>
             <div class="col">
-              <q-input v-model="cost" type="number" label="Cost" />
+              <q-input v-model="cost" type="number" :label="t('costText')" />
               <q-select
                 v-model="stadium"
                 :options="stadiumList"
-                label="Stadium"
+                :label="t('stadiumText')"
               />
-              <q-input v-model="experience" type="number" label="Experience" />
+              <q-input
+                v-model="experience"
+                type="number"
+                :label="t('experienceText')"
+              />
             </div>
           </section>
-          <q-input v-model="description" type="text" label="Description" />
+          <q-input
+            v-model="description"
+            type="text"
+            :label="t('description')"
+          />
         </q-card-section>
 
         <q-card-actions align="right">
           <q-btn
             flat
-            label="Close"
+            :label="t('closeButton')"
             no-caps
             color="red-4"
             @click="closeEditCoachInformationWindow"
           />
           <q-btn
             no-caps
-            label="Update"
+            :label="t('coachPage.editCoach.updateButton')"
             color="orange-4"
             @click="updateCoachInfo"
           />
@@ -60,12 +72,14 @@ import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import stadiumJSON from "../../composables/stadium.json";
+import { useI18n } from "vue-i18n";
 // global variabels
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const apiStore = useApiStore();
 const mobileWidth = proxy.$mobileWidth;
+const { t } = useI18n();
 
 const props = defineProps({
   openCoachEditWindow: {

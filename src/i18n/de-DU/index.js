@@ -11,6 +11,12 @@ export default {
   notSpecifiedText: "Nicht angegeben",
   cityText: "Stadt",
 
+  languageText: "Sprache",
+  stadiumText: "Stadion",
+  costText: "Kosten",
+  description: "Beschreibung",
+  closeButton: "Schließen",
+
   registration: {
     button: "Registrieren",
     accountText: "Haben Sie ein Konto? Anmelden",
@@ -87,5 +93,8 @@ export default {
     clickToViewDetailedInformation:
       "Klicken Sie hier, um detaillierte Informationen über den Trainer zu sehen",
     noData: "Es gibt keine Bekanntmachungen über Trainer",
+    editCoach: {
+      updateButton: "Aktualisieren",
+    },
   },
 };

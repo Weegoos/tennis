@@ -16,6 +16,13 @@ export default {
     experienceText: "Experience",
     notSpecifiedText: "Not specified",
     cityText: "City",
+
+    languageText: "Language",
+    stadiumText: "Stadium",
+    costText: "Cost",
+    description: "Description",
+    closeButton: "Close",
+
     registration: {
       button: "Register",
       accountText: "Do you have an account? Enter",
@@ -87,10 +94,13 @@ export default {
       captionText: `Fill out the form below to apply, share your experience, and become
           part of our professional coaching team.`,
       search: "Search...",
-      addFormText: 'Add a form"',
+      addFormText: "Add a form",
       clickToViewDetailedInformation:
         " Click here to view detailed information about the coach",
       noData: "There is no announcement about the coaches",
+      editCoach: {
+        updateButton: "Update",
+      },
     },
   },
   "ru-RU": ruRU,

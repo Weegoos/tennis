@@ -11,6 +11,12 @@ export default {
   notSpecifiedText: "Көрсетілмеген",
   cityText: "Қала",
 
+  languageText: "Тіл",
+  stadiumText: "Стадион",
+  costText: "Бағасы",
+  description: "Сипаттама",
+  closeButton: "Жабу",
+
   registration: {
     button: "Тіркелу",
     accountText: "Аккаунтыңыз бар ма? Кіру",
@@ -83,5 +89,8 @@ export default {
     clickToViewDetailedInformation:
       "Бапкер туралы толық ақпаратты көру үшін мұнда басыңыз",
     noData: "Бапкерлер туралы хабарландырулар жоқ",
+    editCoach: {
+      updateButton: "Жаңарту",
+    },
   },
 };
