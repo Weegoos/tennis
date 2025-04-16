@@ -5,6 +5,11 @@ export default {
   enterSecondName: "Введите фамилию",
   enterEmail: "Введите электронную почту",
   enterPassword: "Введите пароль",
+  serviceText: "Услуга",
+  ratingText: "Рейтинг",
+  experienceText: "Опыт",
+  notSpecifiedText: "Не указано",
+  cityText: "Город",
   registration: {
     button: "Зарегистрироваться",
     accountText: "Уже есть аккаунт? Войти",
@@ -68,5 +73,15 @@ export default {
       participants: "Участники",
       exploreButton: "Исследовать",
     },
+  },
+  coachPage: {
+    mainText: "Отправьте заявку на участие в нашей программе для тренеров.",
+    mainTextWithAnotherColor: "Мы свяжемся с вами в ближайшее время.",
+    captionText: `Заполните форму ниже, чтобы подать заявку, рассказать о своем опыте и стать частью нашей профессиональной команды тренеров.`,
+    search: "Поиск...",
+    addFormText: "Добавить форму",
+    clickToViewDetailedInformation:
+      "Нажмите здесь, чтобы просмотреть подробную информацию о тренере",
+    noData: "Нет объявлений о тренерах",
   },
 };

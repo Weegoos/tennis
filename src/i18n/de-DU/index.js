@@ -5,6 +5,12 @@ export default {
   enterSecondName: "Geben Sie Ihren Nachnamen ein",
   enterEmail: "Geben Sie Ihre E-Mail ein",
   enterPassword: "Geben Sie Ihr Passwort ein",
+  serviceText: "Dienstleistung",
+  ratingText: "Bewertung",
+  experienceText: "Erfahrung",
+  notSpecifiedText: "Nicht angegeben",
+  cityText: "Stadt",
+
   registration: {
     button: "Registrieren",
     accountText: "Haben Sie ein Konto? Anmelden",
@@ -70,5 +76,16 @@ export default {
       participants: "Teilnehmer",
       exploreButton: "Entdecken",
     },
+  },
+  coachPage: {
+    mainText: "Reichen Sie Ihre Bewerbung für unser Trainerprogramm ein.",
+    mainTextWithAnotherColor:
+      "Wir werden uns in Kürze mit Ihnen in Verbindung setzen.",
+    captionText: `Füllen Sie das untenstehende Formular aus, um sich zu bewerben, Ihre Erfahrung zu teilen und Teil unseres professionellen Trainerteams zu werden.`,
+    search: "Suchen...",
+    addFormText: "Formular hinzufügen",
+    clickToViewDetailedInformation:
+      "Klicken Sie hier, um detaillierte Informationen über den Trainer zu sehen",
+    noData: "Es gibt keine Bekanntmachungen über Trainer",
   },
 };

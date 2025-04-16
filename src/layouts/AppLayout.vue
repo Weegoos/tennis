@@ -56,13 +56,30 @@
       <q-page-container>
         <q-page>
           <router-view />
-          <q-page-scroller
-            position="bottom-right"
-            :scroll-offset="150"
-            :offset="[18, 18]"
-          >
-            <q-btn icon="keyboard_arrow_up" color="black" />
-          </q-page-scroller>
+          <section class="row">
+            <!-- <q-page-scroller :scroll-offset="150" :offset="[18, 18]">
+              <q-btn icon="keyboard_arrow_up" color="black" />
+            </q-page-scroller> -->
+            <q-btn-dropdown
+              class="fixed-bottom-right q-mb-md"
+              :class="$q.screen.width < mobileWidth ? 'q-mx-md' : 'q-mx-lg'"
+              color="black"
+              rounded
+              icon="mdi-web"
+            >
+              <q-list v-for="(lang, index) in options" :key="index">
+                <q-item
+                  clickable
+                  v-close-popup
+                  @click="() => selectLanguage(lang.value)"
+                >
+                  <q-item-section>
+                    <q-item-label>{{ lang.label }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-btn-dropdown>
+          </section>
         </q-page>
       </q-page-container>
       <q-footer
@@ -114,6 +131,7 @@ import { getCurrentInstance } from "vue";
 import { Cookies, useQuasar } from "quasar";
 import { useApiStore } from "src/stores/api-store";
 import { getMethod } from "src/composables/apiMethod/get";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -123,6 +141,21 @@ const serverURL = proxy.$serverURL;
 const route = useRoute();
 const fullPath = ref(route.fullPath);
 const $q = useQuasar();
+const { t, locale } = useI18n();
+
+const language = ref(locale.value);
+const options = [
+  { label: "Русский", value: "ru-RU" },
+  { label: "English", value: "en-US" },
+  { label: "Қазақша", value: "kz-KZ" },
+  { label: "Deutsch", value: "de-DU" },
+];
+
+const selectLanguage = (val) => {
+  language.value = val;
+  locale.value = val;
+  localStorage.setItem("locale", val);
+};
 
 const isAuthPage = computed(() => {
   return route.path === "/registration" || route.path === "/authorization";

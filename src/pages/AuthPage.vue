@@ -156,27 +156,6 @@
           />
         </q-card-actions>
       </q-card>
-      <section class="fixed-bottom-right">
-        <q-btn-dropdown
-          class="q-mb-md"
-          :class="$q.screen.width < mobileWidth ? 'q-mx-md' : 'q-mx-lg'"
-          color="black"
-          rounded
-          icon="mdi-web"
-        >
-          <q-list v-for="(lang, index) in options" :key="index">
-            <q-item
-              clickable
-              v-close-popup
-              @click="() => selectLanguage(lang.value)"
-            >
-              <q-item-section>
-                <q-item-label>{{ lang.label }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-      </section>
     </div>
   </div>
 </template>
@@ -200,7 +179,7 @@ const router = useRouter();
 
 // variables
 const isPwd = ref(true);
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 // function
 const email = ref("");
@@ -245,20 +224,6 @@ const handleKey = (e) => {
   if (e.key === "Enter") {
     authorization();
   }
-};
-
-const language = ref(locale.value);
-const options = [
-  { label: "Русский", value: "ru-RU" },
-  { label: "English", value: "en-US" },
-  { label: "Қазақша", value: "kz-KZ" },
-  { label: "Deutsch", value: "de-DU" },
-];
-
-const selectLanguage = (val) => {
-  language.value = val;
-  locale.value = val;
-  localStorage.setItem("locale", val);
 };
 </script>
 

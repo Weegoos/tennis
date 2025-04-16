@@ -90,6 +90,7 @@ export default {
       addFormText: 'Add a form"',
       clickToViewDetailedInformation:
         " Click here to view detailed information about the coach",
+      noData: "There is no announcement about the coaches",
     },
   },
   "ru-RU": ruRU,

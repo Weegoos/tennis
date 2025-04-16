@@ -89,7 +89,9 @@
                   <div class="q-mt-lg">
                     <p class="text-body1">
                       <span class="text-bold">{{ t("experienceText") }}: </span
-                      ><span>{{ items.experience || "Not specified" }}</span>
+                      ><span>{{
+                        items.experience || t("notSpecifiedText")
+                      }}</span>
                     </p>
                     <p class="text-body1">
                       <span class="text-bold">{{ t("cityText") }}: </span
@@ -123,7 +125,7 @@
       </div>
     </section>
     <section v-else class="text-center text-h5 text-bold">
-      There is no announcement about the coaches
+      {{ t("coachPage.noData") }}
     </section>
     <AddFormComponent :openForm="openForm" @closeForm="closeForm" />
     <DetailedInformation
@@ -183,7 +185,6 @@ const coacheInformation = ref("");
 const viewDetailedInformationAboutCoache = (info) => {
   openDetailedWindow.value = true;
   coacheInformation.value = info;
-  console.log(userInfo);
 };
 
 const closeWindow = () => {
@@ -200,7 +201,6 @@ const getAllCoaches = async (page) => {
     $q,
     "Ошибка при получении тренеров:"
   );
-  console.log(coaches.value);
 };
 
 const userInfo = ref([]);
@@ -227,7 +227,6 @@ onMounted(() => {
 
 const current = ref(1);
 const pagination = (page) => {
-  console.log("Текущая страница:", page);
   current.value = page;
   getAllCoaches(current.value);
 };
@@ -241,7 +240,6 @@ const coachID = ref("");
 const editCoachInformation = async (id) => {
   openCoachEditWindow.value = true;
   coachID.value = id;
-  console.log(typeof coachID.value);
 };
 
 const closeEditCoachInformationWindow = () => {

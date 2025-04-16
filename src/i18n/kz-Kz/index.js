@@ -5,6 +5,12 @@ export default {
   enterSecondName: "Тегіңізді енгізіңіз",
   enterEmail: "Электронды поштаңызды енгізіңіз",
   enterPassword: "Құпиясөзді енгізіңіз",
+  serviceText: "Қызмет түрі",
+  ratingText: "Рейтинг",
+  experienceText: "Тәжірибесі",
+  notSpecifiedText: "Көрсетілмеген",
+  cityText: "Қала",
+
   registration: {
     button: "Тіркелу",
     accountText: "Аккаунтыңыз бар ма? Кіру",
@@ -67,5 +73,15 @@ export default {
       participants: "Қатысушылар",
       exploreButton: "Зерттеу",
     },
+  },
+  coachPage: {
+    mainText: "Бапкерлер бағдарламасына қатысу үшін өтінім жіберіңіз.",
+    mainTextWithAnotherColor: "Біз жақын арада сізбен байланысамыз.",
+    captionText: `Өтінім беру, өз тәжірибеңізбен бөлісу және кәсіби бапкерлер командасының бір бөлігі болу үшін төмендегі форманы толтырыңыз.`,
+    search: "Іздеу...",
+    addFormText: "Форма қосу",
+    clickToViewDetailedInformation:
+      "Бапкер туралы толық ақпаратты көру үшін мұнда басыңыз",
+    noData: "Бапкерлер туралы хабарландырулар жоқ",
   },
 };
