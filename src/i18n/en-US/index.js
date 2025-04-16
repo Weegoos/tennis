@@ -11,6 +11,11 @@ export default {
     enterSecondName: "Enter your second name",
     enterEmail: "Enter your email",
     enterPassword: "Enter your password",
+    serviceText: "Service",
+    ratingText: "Rating",
+    experienceText: "Experience",
+    notSpecifiedText: "Not specified",
+    cityText: "City",
     registration: {
       button: "Register",
       accountText: "Do you have an account? Enter",
@@ -75,6 +80,16 @@ export default {
         participants: "Participants",
         exploreButton: "Explore",
       },
+    },
+    coachPage: {
+      mainText: "Submit your application to join our coaching program.",
+      mainTextWithAnotherColor: "We’ll get in touch with you shortly.",
+      captionText: `Fill out the form below to apply, share your experience, and become
+          part of our professional coaching team.`,
+      search: "Search...",
+      addFormText: 'Add a form"',
+      clickToViewDetailedInformation:
+        " Click here to view detailed information about the coach",
     },
   },
   "ru-RU": ruRU,

@@ -3,21 +3,20 @@
     <q-card class="my-card q-pa-sm q-ma-sm text-center">
       <q-card-section>
         <div class="text-h5 text-bold">
-          Submit your application to join our coaching program.
-          <span class="text-deep-purple"
-            >We’ll get in touch with you shortly.</span
+          {{ t("coachPage.mainText") }}
+          <span class="text-deep-purple">
+            {{ t("coachPage.mainTextWithAnotherColor") }}</span
           >
         </div>
         <div class="text-body1 q-mt-sm">
-          Fill out the form below to apply, share your experience, and become
-          part of our professional coaching team.
+          {{ t("coachPage.captionText") }}
         </div>
         <div class="row justify-center q-gutter-sm">
           <q-input
             style="width: 50vw"
             v-model="search"
             type="text"
-            placeholder="Search..."
+            :placeholder="t('coachPage.search')"
             class="q-mr-sm"
             dense
           />
@@ -32,7 +31,7 @@
             color="primary"
             icon="mdi-plus"
             no-caps
-            label="Add a form"
+            :label="t('coachPage.addFormText')"
             @click="addForm"
           />
         </div>
@@ -46,7 +45,7 @@
       >
         <q-card data-testid="coachesID" class="my-card q-mt-md q-mx-sm q-pa-sm">
           <q-tooltip>
-            Click here to view detailed information about the coach</q-tooltip
+            {{ t("coachPage.clickToViewDetailedInformation") }}</q-tooltip
           >
           <q-card-section class="q-gutter-md">
             <div class="col-2">
@@ -63,23 +62,25 @@
               @click="viewDetailedInformationAboutCoache(items)"
             >
               <div class="text-h4 text-bold">
-                {{ items.user.firstName || "Not specified" }}
-                {{ items.user.lastName || "Not specified" }}
+                {{ items.user.firstName || t("notSpecifiedText") }}
+                {{ items.user.lastName || t("notSpecifiedText") }}
               </div>
               <div class="text-subtitle1">
-                {{ items.description || "Not specified" }}
+                {{ items.description || t("notSpecifiedText") }}
               </div>
               <section class="row">
                 <div class="col">
                   <div class="q-mt-lg">
                     <p class="text-body1">
-                      <span class="text-bold">Rating: </span
-                      ><span>{{ items.user.rating || "Not specified" }}</span>
+                      <span class="text-bold">{{ t("ratingText") }}: </span
+                      ><span>{{
+                        items.user.rating || t("notSpecifiedText")
+                      }}</span>
                     </p>
                     <p class="text-body1">
-                      <span class="text-bold">Service: </span
+                      <span class="text-bold">{{ t("serviceText") }}: </span
                       ><span>{{
-                        items.services[0].serviceName || "Not specified"
+                        items.services[0].serviceName || t("notSpecifiedText")
                       }}</span>
                     </p>
                   </div>
@@ -87,11 +88,11 @@
                 <div class="col">
                   <div class="q-mt-lg">
                     <p class="text-body1">
-                      <span class="text-bold">Experience: </span
+                      <span class="text-bold">{{ t("experienceText") }}: </span
                       ><span>{{ items.experience || "Not specified" }}</span>
                     </p>
                     <p class="text-body1">
-                      <span class="text-bold">City: </span
+                      <span class="text-bold">{{ t("cityText") }}: </span
                       ><span>{{ items.city }}</span>
                     </p>
                   </div>
@@ -155,6 +156,7 @@ import { getMethod } from "src/composables/apiMethod/get";
 import DetailedInformation from "src/components/Coaches/DetailedInformation.vue";
 import { useApiStore } from "src/stores/api-store";
 import EditCoachInformation from "src/components/Coaches/EditCoachInformation.vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -165,6 +167,7 @@ const mobileWidth = proxy.$mobileWidth;
 const statusForUser = proxy.$statusForUser;
 const $q = useQuasar();
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const openForm = ref(false);
 const addForm = () => {
