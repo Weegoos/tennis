@@ -107,4 +107,13 @@ export default {
       captionTextOfProfessionalInformation: "Тәжірибе, қызмет, бағасы",
     },
   },
+  findPartnerPage: {
+    mainText: "Өзіңізге сай теннис серіктесін тауып, байланыс орнатыңыз.",
+    mainTextWithAnotherColor: "Барлығы бір жерде.",
+    captionText:
+      "Ойыншыларды деңгейі, орналасқан жері немесе қолжетімділігі бойынша іздеңіз — ойынды бүгіннен бастаңыз!",
+    sendRequest: "Серіктес сұранысын қосу",
+    detailedInformation:
+      "Серіктес туралы толық ақпаратты көру үшін мұнда басыңыз",
+  },
 };

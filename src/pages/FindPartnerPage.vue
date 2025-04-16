@@ -1,37 +1,57 @@
 <template>
-  <div>
-    <div
-      data-testid="findPartner"
-      :class="$q.screen.width < mobileWidth ? 'q-pa-md' : 'card'"
-    >
-      <p
-        class="text-bold"
-        data-testid="findPartnerContent"
-        :class="$q.screen.width < mobileWidth ? 'text-h6' : 'text-h4'"
+  <div class="q-pa-md">
+    <q-card class="my-card q-pa-sm q-ma-sm text-center">
+      <q-card-section>
+        <div class="text-h5 text-bold">
+          {{ t("findPartnerPage.mainText") }}
+          <span class="text-light-green">{{
+            t("findPartnerPage.mainTextWithAnotherColor")
+          }}</span>
+        </div>
+        <div class="text-body1 q-mt-sm">
+          {{ t("findPartnerPage.captionText") }}
+        </div>
+        <div class="row justify-center q-gutter-sm">
+          <q-input
+            style="width: 50vw"
+            v-model="search"
+            type="text"
+            :placeholder="t('coachPage.search')"
+            class="q-mr-sm"
+            dense
+          />
+          <q-btn
+            dense
+            class="q-pa-sm"
+            color="primary"
+            icon="search"
+            @click="searchFunction"
+          />
+          <q-btn
+            color="primary"
+            no-caps
+            icon="mdi-plus"
+            :label="t('findPartnerPage.sendRequest')"
+            @click="sendRequest"
+          />
+        </div>
+      </q-card-section>
+    </q-card>
+
+    <section class="row" v-if="partner.data > []">
+      <section
+        data-testid="partnerDataTestID"
+        class="col-12 col-sm-6 col-md-4"
+        v-for="(items, index) in partner.data"
+        :key="index"
       >
-        Find a partner
-      </p>
-      <q-btn color="primary" label="Place a request" @click="sendRequest" />
-    </div>
-    <section>
-      <section data-testid="partnerDataTestID" v-if="partner.data > []">
-        <q-card
-          data-testid="partnerID"
-          :class="$q.screen.width < mobileWidth ? 'q-ma-md q-py-sm' : 'card'"
-          v-for="(items, index) in partner.data"
-          :key="index"
-        >
-          <q-tooltip>
-            Click here to view detailed information about the coach</q-tooltip
-          >
-          <q-card-section
-            class="q-gutter-md"
-            :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
-          >
+        <q-card data-testid="partnerID" class="my-card q-mt-md q-mx-sm q-pa-sm">
+          <q-tooltip> {{ t("findPartnerPage.detailedInformation") }}</q-tooltip>
+          <q-card-section class="q-gutter-md">
             <div class="col-2">
               <q-img
                 src="src/assets/coaches/coaches1.jpg"
-                :ratio="10 / 9"
+                :ratio="10 / 7"
                 spinner-color="primary"
                 spinner-size="82px"
                 class="full-height"
@@ -42,34 +62,34 @@
               @click="viewDetailedInformationAboutCoache(items)"
             >
               <div class="text-h4 text-bold">
-                {{ items.firstName || "Not specified" }}
-                {{ items.lastName || "Not specified" }}
+                {{ items.firstName || t("notSpecifiedText") }}
+                {{ items.lastName || t("notSpecifiedText") }}
               </div>
               <div class="text-subtitle1">
-                {{ items.description || "Not specified" }}
+                {{ items.description || t("notSpecifiedText") }}
               </div>
               <section class="row">
                 <div class="col">
                   <div class="q-mt-lg">
                     <p class="text-body1">
-                      <span class="text-bold">Phone: </span
-                      ><span>{{ items.phone || "Not specified" }}</span>
+                      <span class="text-bold">{{ t("phoneNumber") }}: </span
+                      ><span>{{ items.phone || t("notSpecifiedText") }}</span>
                     </p>
                     <p class="text-body1">
-                      <span class="text-bold">City: </span
-                      ><span>{{ items.city || "Not specified" }}</span>
+                      <span class="text-bold">{{ t("cityText") }}: </span
+                      ><span>{{ items.city || t("notSpecifiedText") }}</span>
                     </p>
                   </div>
                 </div>
                 <div class="col">
                   <div class="q-mt-lg">
                     <p class="text-body1">
-                      <span class="text-bold">Rating: </span
-                      ><span>{{ items.rating || "Not specified" }}</span>
+                      <span class="text-bold">{{ t("ratingText") }}: </span
+                      ><span>{{ items.rating || t("notSpecifiedText") }}</span>
                     </p>
                     <p class="text-body1">
-                      <span class="text-bold">Stadium: </span
-                      ><span>{{ items.stadium }}</span>
+                      <span class="text-bold">{{ t("stadiumText") }}: </span
+                      ><span>{{ items.stadium || t("notSpecifiedText") }}</span>
                     </p>
                   </div>
                 </div>
@@ -98,19 +118,20 @@
           </q-card-section>
         </q-card>
       </section>
-      <section
-        data-testid="partnerNoData"
-        v-else
-        class="text-center text-h5 text-bold"
-      >
-        There is no announcement about the coaches
-      </section>
+    </section>
+    <section
+      data-testid="partnerNoData"
+      v-else
+      class="text-center text-h5 text-bold"
+    >
+      There is no announcement about the coaches
     </section>
     <PostRequest
       :openPostRequestWindow="openPostRequestWindow"
       @closePostRequestWindow="closePostRequestWindow"
     />
     <q-pagination
+      v-if="partner.data > []"
       class="justify-center"
       v-model="current"
       :min="1"
@@ -139,6 +160,7 @@ import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -149,6 +171,7 @@ const apiStore = useApiStore();
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const statusForUser = proxy.$statusForUser;
 const $q = useQuasar();
+const { t } = useI18n();
 
 const openPostRequestWindow = ref(false);
 const sendRequest = () => {

@@ -110,4 +110,14 @@ export default {
       captionTextOfProfessionalInformation: "Erfahrung, Dienstleistung, Kosten",
     },
   },
+  findPartnerPage: {
+    mainText:
+      "Finde deinen idealen Tennispartner und vernetze dich mit anderen.",
+    mainTextWithAnotherColor: "Alles an einem Ort.",
+    captionText:
+      "Suche nach Spielern basierend auf Spielstärke, Standort oder Verfügbarkeit – und beginne noch heute zu spielen!",
+    sendRequest: "Partneranfrage hinzufügen",
+    detailedInformation:
+      "Klicke hier, um detaillierte Informationen über den Partner anzuzeigen",
+  },
 };

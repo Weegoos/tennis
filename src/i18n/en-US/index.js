@@ -117,6 +117,15 @@ export default {
         captionTextOfProfessionalInformation: "Experience, service, cost",
       },
     },
+    findPartnerPage: {
+      mainText: ` Find your ideal tennis partner and connect with others.`,
+      mainTextWithAnotherColor: "All in one place.",
+      captionText: `Search for players by skill level, location, or availability — and
+          start playing today!`,
+      sendRequest: "Add a partner request",
+      detailedInformation:
+        "Click here to view detailed information about the partner",
+    },
   },
   "ru-RU": ruRU,
   "kz-KZ": kzKZ,

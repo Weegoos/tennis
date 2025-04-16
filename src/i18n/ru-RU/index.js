@@ -108,4 +108,13 @@ export default {
       captionTextOfProfessionalInformation: "Опыт, услуга, стоимость",
     },
   },
+  findPartnerPage: {
+    mainText: "Найдите идеального партнёра по теннису и свяжитесь с ним.",
+    mainTextWithAnotherColor: "Всё в одном месте.",
+    captionText:
+      "Ищите игроков по уровню, местоположению или доступности — начните играть уже сегодня!",
+    sendRequest: "Добавить запрос на партнёра",
+    detailedInformation:
+      "Нажмите здесь, чтобы просмотреть подробную информацию о партнёре",
+  },
 };
