@@ -21,6 +21,13 @@ export default {
   phoneNumber: "Номер телефона",
   professionalInformationText: "Профессиональная информация",
 
+  timePart: {
+    label: "Время",
+    caption: "Время создания и обновления",
+    createdAt: "Дата создания",
+    updatedAt: "Дата обновления",
+  },
+
   registration: {
     button: "Зарегистрироваться",
     accountText: "Уже есть аккаунт? Войти",
@@ -111,10 +118,17 @@ export default {
   findPartnerPage: {
     mainText: "Найдите идеального партнёра по теннису и свяжитесь с ним.",
     mainTextWithAnotherColor: "Всё в одном месте.",
+    search: "Поиск...",
     captionText:
       "Ищите игроков по уровню, местоположению или доступности — начните играть уже сегодня!",
     sendRequest: "Добавить запрос на партнёра",
-    detailedInformation:
+    detailedInformationAboutPartner:
       "Нажмите здесь, чтобы просмотреть подробную информацию о партнёре",
+    detailedInformation: {
+      mainText: "Подробная информация",
+      captionTextOfPersonalData:
+        "Полное имя, электронная почта, номер телефона",
+      captionTextOfProfessionalInformation: "Опыт, услуга, стоимость",
+    },
   },
 };

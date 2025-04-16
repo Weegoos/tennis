@@ -3,50 +3,56 @@
     <q-dialog v-model="isOpenDetailedWindowAboutPartner" persistent>
       <q-card>
         <p class="text-center text-bold text-h5 q-mt-md">
-          Detailed Information
+          {{ t("findPartnerPage.detailedInformation.mainText") }}
         </p>
         <q-card-section class="row items-center">
           <q-list>
             <q-expansion-item
               popup
-              caption="Full name, email, phone number"
+              :caption="
+                t(
+                  'findPartnerPage.detailedInformation.captionTextOfPersonalData'
+                )
+              "
               icon="filter_1"
-              label="Personal data"
+              :label="t('personalDataText')"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span data-testid="fullName" class="infoHeadline"
-                    >Full name</span
-                  >
+                  <span data-testid="fullName" class="infoHeadline">{{
+                    t("fullNameText")
+                  }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.firstName ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                     {{
                       props.fullInformationAboutPartner.lastName ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
 
-                  <span class="infoHeadline">Phone Number</span>
+                  <span class="infoHeadline">{{ t("phoneNumber") }}</span>
                   <p class="infoStyle">
                     {{
-                      props.fullInformationAboutPartner.phone || "Not specified"
+                      props.fullInformationAboutPartner.phone ||
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Rating</span>
+                  <span class="infoHeadline">{{ t("ratingText") }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.rating ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">City</span>
+                  <span class="infoHeadline">{{ t("cityText") }}</span>
                   <p class="infoStyle">
                     {{
-                      props.fullInformationAboutPartner.city || "Not specified"
+                      props.fullInformationAboutPartner.city ||
+                      t("notSpecifiedText")
                     }}
                   </p>
                 </q-card-section>
@@ -54,25 +60,29 @@
             </q-expansion-item>
             <q-expansion-item
               popup
-              caption="Experience, service, cost"
+              :caption="
+                t(
+                  'findPartnerPage.detailedInformation.captionTextOfProfessionalInformation'
+                )
+              "
               icon="filter_2"
-              label="Professional information"
+              :label="t('professionalInformationText')"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span class="infoHeadline">Description</span>
+                  <span class="infoHeadline">{{ t("description") }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.description ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Stadium</span>
+                  <span class="infoHeadline">{{ t("stadiumText") }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.stadium ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
                 </q-card-section>
@@ -80,25 +90,29 @@
             </q-expansion-item>
             <q-expansion-item
               popup
-              caption="Created, updated time"
+              :caption="t('timePart.caption')"
               icon="filter_3"
-              label="Time"
+              :label="t('timePart.label')"
             >
               <q-separator />
               <q-card>
                 <q-card-section>
-                  <span class="infoHeadline">Created At</span>
+                  <span class="infoHeadline">{{
+                    t("timePart.createdAt")
+                  }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.createdAt ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
-                  <span class="infoHeadline">Updated At</span>
+                  <span class="infoHeadline">{{
+                    t("timePart.updatedAt")
+                  }}</span>
                   <p class="infoStyle">
                     {{
                       props.fullInformationAboutPartner.updatedAt ||
-                      "Not specified"
+                      t("notSpecifiedText")
                     }}
                   </p>
                 </q-card-section>
@@ -122,7 +136,9 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
+// global variables
 const props = defineProps({
   openDetailedWindow: {
     type: Boolean,
@@ -132,6 +148,7 @@ const props = defineProps({
     type: Object,
   },
 });
+const { t } = useI18n();
 
 const isOpenDetailedWindowAboutPartner = ref(props.openDetailedWindow);
 

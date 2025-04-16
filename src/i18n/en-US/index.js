@@ -28,6 +28,13 @@ export default {
     phoneNumber: "Phone Number",
     professionalInformationText: "Professional information",
 
+    timePart: {
+      label: "Time",
+      caption: "Created, updated time",
+      createdAt: "Created At",
+      updatedAt: "Updated At",
+    },
+
     registration: {
       button: "Register",
       accountText: "Do you have an account? Enter",
@@ -120,11 +127,17 @@ export default {
     findPartnerPage: {
       mainText: ` Find your ideal tennis partner and connect with others.`,
       mainTextWithAnotherColor: "All in one place.",
+      search: "Search...",
       captionText: `Search for players by skill level, location, or availability — and
           start playing today!`,
       sendRequest: "Add a partner request",
-      detailedInformation:
+      detailedInformationAboutPartner:
         "Click here to view detailed information about the partner",
+      detailedInformation: {
+        mainText: "Detailed Information",
+        captionTextOfPersonalData: "Full name, email, phone number",
+        captionTextOfProfessionalInformation: "Experience, service, cost",
+      },
     },
   },
   "ru-RU": ruRU,

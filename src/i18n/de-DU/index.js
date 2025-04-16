@@ -21,6 +21,13 @@ export default {
   phoneNumber: "Telefonnummer",
   professionalInformationText: "Berufliche Informationen",
 
+  timePart: {
+    label: "Zeit",
+    caption: "Erstellungs- und Aktualisierungszeit",
+    createdAt: "Erstellt am",
+    updatedAt: "Aktualisiert am",
+  },
+
   registration: {
     button: "Registrieren",
     accountText: "Haben Sie ein Konto? Anmelden",
@@ -114,10 +121,16 @@ export default {
     mainText:
       "Finde deinen idealen Tennispartner und vernetze dich mit anderen.",
     mainTextWithAnotherColor: "Alles an einem Ort.",
+    search: "Suchen...",
     captionText:
       "Suche nach Spielern basierend auf Spielstärke, Standort oder Verfügbarkeit – und beginne noch heute zu spielen!",
     sendRequest: "Partneranfrage hinzufügen",
-    detailedInformation:
+    detailedInformationAboutPartner:
       "Klicke hier, um detaillierte Informationen über den Partner anzuzeigen",
+    detailedInformation: {
+      mainText: "Detaillierte Informationen",
+      captionTextOfPersonalData: "Vollständiger Name, E-Mail, Telefonnummer",
+      captionTextOfProfessionalInformation: "Erfahrung, Dienstleistung, Kosten",
+    },
   },
 };

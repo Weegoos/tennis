@@ -16,7 +16,7 @@
             style="width: 50vw"
             v-model="search"
             type="text"
-            :placeholder="t('coachPage.search')"
+            :placeholder="t('findPartnerPage.search')"
             class="q-mr-sm"
             dense
           />
@@ -46,7 +46,11 @@
         :key="index"
       >
         <q-card data-testid="partnerID" class="my-card q-mt-md q-mx-sm q-pa-sm">
-          <q-tooltip> {{ t("findPartnerPage.detailedInformation") }}</q-tooltip>
+          <q-tooltip>
+            {{
+              t("findPartnerPage.detailedInformationAboutPartner")
+            }}</q-tooltip
+          >
           <q-card-section class="q-gutter-md">
             <div class="col-2">
               <q-img

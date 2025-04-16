@@ -21,6 +21,13 @@ export default {
   phoneNumber: "Телефон нөмірі",
   professionalInformationText: "Кәсіби ақпарат",
 
+  timePart: {
+    label: "Уақыты",
+    caption: "Жасалған және жаңартылған уақыты",
+    createdAt: "Жасалған күні",
+    updatedAt: "Жаңартылған күні",
+  },
+
   registration: {
     button: "Тіркелу",
     accountText: "Аккаунтыңыз бар ма? Кіру",
@@ -110,10 +117,17 @@ export default {
   findPartnerPage: {
     mainText: "Өзіңізге сай теннис серіктесін тауып, байланыс орнатыңыз.",
     mainTextWithAnotherColor: "Барлығы бір жерде.",
+    search: "Іздеу...",
     captionText:
       "Ойыншыларды деңгейі, орналасқан жері немесе қолжетімділігі бойынша іздеңіз — ойынды бүгіннен бастаңыз!",
     sendRequest: "Серіктес сұранысын қосу",
-    detailedInformation:
+    detailedInformationAboutPartner:
       "Серіктес туралы толық ақпаратты көру үшін мұнда басыңыз",
+    detailedInformation: {
+      mainText: "Толық ақпарат",
+      captionTextOfPersonalData:
+        "Толық аты-жөні, электрондық пошта, телефон нөмірі",
+      captionTextOfProfessionalInformation: "Тәжірибе, қызмет, бағасы",
+    },
   },
 };
