@@ -138,5 +138,8 @@ export default {
     postRequest: {
       button: "Veröffentlichen",
     },
+    editPartnerInformation: {
+      edit: "Bearbeiten",
+    },
   },
 };

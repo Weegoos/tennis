@@ -132,5 +132,8 @@ export default {
     postRequest: {
       button: "Жариялау",
     },
+    editPartnerInformation: {
+      edit: "Өңдеу",
+    },
   },
 };

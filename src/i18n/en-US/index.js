@@ -144,6 +144,9 @@ export default {
       postRequest: {
         button: "Post",
       },
+      editPartnerInformation: {
+        edit: "Edit",
+      },
     },
   },
   "ru-RU": ruRU,

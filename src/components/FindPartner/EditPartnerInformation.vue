@@ -1,28 +1,56 @@
 <template>
-  <q-dialog v-model="isOpenFindPartnetInformation" persistent>
-    <q-card>
-      <q-card-section class="">
+  <q-dialog
+    v-model="isOpenFindPartnetInformation"
+    persistent
+    :full-width="$q.screen.width < mobileWidth ? true : false"
+  >
+    <q-card :style="$q.screen.width < mobileWidth ? '' : 'width: 800px'">
+      <q-card-section>
         <section class="row q-gutter-sm">
           <div class="col">
-            <q-input v-model="firstName" type="text" label="First Name" />
-            <q-input v-model="phone" type="number" label="Phone" />
-            <q-select v-model="city" :options="cityOptions" label="City" />
+            <q-input
+              v-model="firstName"
+              type="text"
+              :label="t('firstNameText')"
+            />
+            <q-input v-model="phone" type="number" :label="t('phoneNumber')" />
+            <q-select
+              v-model="city"
+              :options="cityOptions"
+              :label="t('cityText')"
+            />
           </div>
           <div class="col">
-            <q-input v-model="lastName" type="text" label="Last Name" />
-            <q-input v-model="rating" type="number" label="Rating" />
-            <q-input v-model="stadium" type="text" label="Stadium" />
+            <q-input
+              v-model="lastName"
+              type="text"
+              :label="t('lastNameText')"
+            />
+            <q-input v-model="rating" type="number" :label="t('ratingText')" />
+            <q-select
+              :options="stadiumList"
+              v-model="stadium"
+              type="text"
+              :label="t('stadiumText')"
+            />
           </div>
         </section>
-        <q-input v-model="description" type="text" label="Description" />
+        <q-input v-model="description" type="text" :label="t('description')" />
       </q-card-section>
       <q-card-actions align="right">
         <q-btn
-          label="Close"
+          no-caps
+          flat
+          :label="t('closeButton')"
           color="red-4"
           @click="closeEditPartnerInformationPage"
         />
-        <q-btn label="Edit" color="orange-4" @click="updatePartnerInfo" />
+        <q-btn
+          no-caps
+          :label="t('findPartnerPage.editPartnerInformation.edit')"
+          color="orange-4"
+          @click="updatePartnerInfo"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -33,7 +61,8 @@ import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
-
+import stadiumOptions from "../../composables/stadium.json";
+import { useI18n } from "vue-i18n";
 // global variables
 const props = defineProps({
   openEditPartnerInformationWindow: {
@@ -49,6 +78,8 @@ const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const apiStore = useApiStore();
+const mobileWidth = proxy.$mobileWidth;
+const { t } = useI18n();
 
 const isOpenFindPartnetInformation = ref(
   props.openEditPartnerInformationWindow
@@ -74,6 +105,7 @@ const city = ref("");
 const stadium = ref("");
 const description = ref("");
 const cityOptions = ref([]);
+const stadiumList = ref(stadiumOptions);
 
 const getAllList = async () => {
   try {
