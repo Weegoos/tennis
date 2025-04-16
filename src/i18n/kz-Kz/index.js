@@ -92,5 +92,9 @@ export default {
     editCoach: {
       updateButton: "Жаңарту",
     },
+    createCoach: {
+      mainText: "Тренер құру",
+      sendButton: "Жіберу",
+    },
   },
 };

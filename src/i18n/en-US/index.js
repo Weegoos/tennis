@@ -101,6 +101,10 @@ export default {
       editCoach: {
         updateButton: "Update",
       },
+      createCoach: {
+        mainText: "Create Coache",
+        sendButton: "Send",
+      },
     },
   },
   "ru-RU": ruRU,

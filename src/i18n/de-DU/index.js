@@ -96,5 +96,9 @@ export default {
     editCoach: {
       updateButton: "Aktualisieren",
     },
+    createCoach: {
+      mainText: "Trainer erstellen",
+      sendButton: "Senden",
+    },
   },
 };

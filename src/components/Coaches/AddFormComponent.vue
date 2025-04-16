@@ -2,14 +2,16 @@
   <div>
     <q-dialog v-model="form" persistent>
       <q-card style="width: 800px">
-        <p class="text-h5 text-bold text-center q-mt-md">Create Coache</p>
+        <p class="text-h5 text-bold text-center q-mt-md">
+          {{ t("coachPage.createCoach.mainText") }}
+        </p>
         <q-card-section class="row q-gutter-md">
           <section class="col">
             <q-select v-model="city" :options="cityOptions" label="City" />
             <q-select
               v-model="language"
               :options="languageList"
-              label="Language"
+              :label="t('languageText')"
             />
             <q-input v-model="cost" type="number" label="Cost" />
           </section>
@@ -17,23 +19,42 @@
             <q-select
               v-model="service"
               :options="serviceOptions"
-              label="Service"
+              :label="t('serviceText')"
             />
             <q-input
               v-model="description"
               type="text"
               autogrow
-              label="Description"
+              :label="t('description')"
             />
-            <q-input v-model="experience" type="number" label="Experience" />
+            <q-input
+              v-model="experience"
+              type="number"
+              :label="t('experienceText')"
+            />
           </section>
         </q-card-section>
         <q-card-section>
-          <q-select v-model="stadium" :options="stadiumList" label="Stadium" />
+          <q-select
+            v-model="stadium"
+            :options="stadiumList"
+            :label="t('stadiumText')"
+          />
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Close" color="negative" @click="closeForm" />
-          <q-btn flat label="Send" color="positive" @click="createCoaches" />
+          <q-btn
+            flat
+            :label="t('closeButton')"
+            no-caps
+            color="negative"
+            @click="closeForm"
+          />
+          <q-btn
+            :label="t('coachPage.createCoach.sendButton')"
+            no-caps
+            color="positive"
+            @click="createCoaches"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -46,12 +67,14 @@ import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import stadiumJSON from "../../composables/stadium.json";
+import { useI18n } from "vue-i18n";
 console.log(stadiumJSON);
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const props = defineProps({
   openForm: {
