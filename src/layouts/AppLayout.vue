@@ -242,6 +242,11 @@ const headerButtonsArrayForAdmin = computed(() => [
     link: "/admin/profile",
     icon: "mdi-account",
   },
+  {
+    name: "Stats",
+    link: "/admin/stats",
+    icon: "mdi-chart-bar",
+  },
 ]);
 
 const router = useRouter();
