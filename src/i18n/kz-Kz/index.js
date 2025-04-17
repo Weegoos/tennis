@@ -17,6 +17,7 @@ export default {
   closeButton: "Жабу",
   firstNameText: "Аты",
   lastNameText: "Тегі",
+  ageText: "Жасы",
   fullNameText: "Толық аты-жөні",
   personalDataText: "Жеке деректер",
   genderText: "Жыныс",
@@ -151,5 +152,15 @@ export default {
     editPartnerInformation: {
       edit: "Өңдеу",
     },
+  },
+  newsPage: {
+    mainText:
+      "Соңғы спорт жаңалықтары, сараптамалық пікірлер және ойыншылар туралы ақпараттар.",
+    mainTextWithAnotherColor: "Барлығы бір жерде.",
+    captionText: `Теннис жайлы өзекті жаңалықтармен, эксклюзивті сұхбаттармен және сахна сыртындағы материалдармен хабардар болыңыз.`,
+    search: "Іздеу...",
+    openAddNewsBlock: "Жаңалық қосу",
+    editNews: "Өңдеу",
+    deleteNews: "Жою",
   },
 };

@@ -17,6 +17,7 @@ export default {
   closeButton: "Закрыть",
   firstNameText: "Имя",
   lastNameText: "Фамилия",
+  ageText: "Возраст",
 
   fullNameText: "Полное имя",
   personalDataText: "Личные данные",
@@ -155,5 +156,15 @@ export default {
     editPartnerInformation: {
       edit: "Редактировать",
     },
+  },
+  newsPage: {
+    mainText:
+      "Последние спортивные новости, экспертные мнения и обновления о игроках.",
+    mainTextWithAnotherColor: "Всё в одном месте.",
+    captionText: `Будьте в курсе актуальных новостей тенниса, эксклюзивных интервью и закулисных материалов.`,
+    search: "Поиск...",
+    openAddNewsBlock: "Добавить новость",
+    editNews: "Редактировать",
+    deleteNews: "Удалить",
   },
 };

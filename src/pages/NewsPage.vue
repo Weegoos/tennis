@@ -3,19 +3,20 @@
     <q-card class="my-card q-pa-sm q-ma-sm text-center">
       <q-card-section>
         <div class="text-h5 text-bold">
-          Latest sports news, expert insights, and player updates.
-          <span class="text-light-green">All in one place.</span>
+          {{ t("newsPage.mainText") }}
+          <span class="text-light-green">{{
+            t("newsPage.mainTextWithAnotherColor")
+          }}</span>
         </div>
         <div class="text-body1 q-mt-sm">
-          Stay informed with up-to-date tennis news, exclusive interviews, and
-          behind-the-scenes content.
+          {{ t("newsPage.captionText") }}
         </div>
         <div class="row justify-center q-gutter-sm">
           <q-input
             style="width: 50vw"
             v-model="search"
             type="text"
-            placeholder="Search..."
+            :placeholder="t('newsPage.search')"
             class="q-mr-sm"
             dense
           />
@@ -30,7 +31,7 @@
             color="primary"
             no-caps
             icon="mdi-plus"
-            label="Add the news"
+            :label="t('newsPage.openAddNewsBlock')"
             @click="openAddNewsBlock"
           />
         </div>
@@ -64,10 +65,10 @@
               @click="checkAuthorInfo(news.author)"
             />
             <div class="text-h5 text-gray q-mt-md">
-              {{ news.title || "Not specified" }}
+              {{ news.title || t("notSpecifiedText") }}
             </div>
             <div class="text-subtitle2 q-mt-sm">
-              <p>{{ news.description || "Not specified" }}</p>
+              <p>{{ news.description || t("notSpecifiedText") }}</p>
             </div>
             <q-card-actions class="row q-gutter-sm text-center">
               <div class="col">
@@ -75,7 +76,7 @@
                   color="green-2"
                   class="text-green-8"
                   no-caps
-                  label="Edit"
+                  :label="t('newsPage.editNews')"
                   style="width: 100%"
                   @click="openEditPage(news.id)"
                 />
@@ -85,7 +86,7 @@
                   color="red-8"
                   no-caps
                   class="text-red-2"
-                  label="Delete"
+                  :label="t('newsPage.deleteNews')"
                   @click="deleteNews(news)"
                   style="width: 100%"
                 />
@@ -101,37 +102,44 @@
                 <q-card-section>
                   <section class="row q-gutter-sm">
                     <div class="col">
-                      <span class="infoHeadline">Full Name</span>
+                      <span class="infoHeadline">{{ t("fullNameText") }}</span>
                       <p class="infoStyle">
-                        {{ news.author.userInfo.firstName || "Not specified" }}
-                        {{ news.author.userInfo.lastName || "Not specified" }}
+                        {{
+                          news.author.userInfo.firstName ||
+                          t("notSpecifiedText")
+                        }}
+                        {{
+                          news.author.userInfo.lastName || t("notSpecifiedText")
+                        }}
                       </p>
                     </div>
                     <div class="col">
-                      <span class="infoHeadline">Phone Number</span>
+                      <span class="infoHeadline">{{ t("phoneNumber") }}</span>
                       <p class="infoStyle">
-                        {{ news.author.userInfo.phone || "Not specified" }}
+                        {{
+                          news.author.userInfo.phone || t("notSpecifiedText")
+                        }}
                       </p>
                     </div>
                   </section>
                   <section class="row q-gutter-sm">
                     <div class="col">
-                      <span class="infoHeadline">Rating</span>
+                      <span class="infoHeadline">{{ t("ratingText") }}</span>
                       <p class="infoStyle">
                         {{ news.author.userInfo.rating }}
                       </p>
                     </div>
                     <div class="col">
-                      <span class="infoHeadline">Age</span>
+                      <span class="infoHeadline">{{ t("ageText") }}</span>
                       <p class="infoStyle">
-                        {{ news.author.userInfo.age || "Not specified" }}
+                        {{ news.author.userInfo.age || t("notSpecifiedText") }}
                       </p>
                     </div>
                   </section>
                 </q-card-section>
 
                 <q-card-actions align="right">
-                  <q-btn flat label="Cancel" color="primary" v-close-popup />
+                  <q-btn flat label="Close" color="primary" v-close-popup />
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -169,6 +177,7 @@ import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -176,6 +185,7 @@ const serverURL = proxy.$serverURL;
 const humanResources = proxy.$humanResources;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
+const { t } = useI18n();
 
 const allNews = ref([]);
 

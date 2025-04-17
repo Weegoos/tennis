@@ -24,7 +24,7 @@ export default {
 
     firstNameText: "First name",
     lastNameText: "Last name",
-
+    ageText: "Age",
     fullNameText: "Full name",
     personalDataText: "Personal data",
     genderText: "Gender",
@@ -163,6 +163,16 @@ export default {
       editPartnerInformation: {
         edit: "Edit",
       },
+    },
+    newsPage: {
+      mainText: "Latest sports news, expert insights, and player updates.",
+      mainTextWithAnotherColor: "All in one place.",
+      captionText: `Stay informed with up-to-date tennis news, exclusive interviews, and
+          behind-the-scenes content.`,
+      search: "Search...",
+      openAddNewsBlock: "Add the news",
+      editNews: "Edit",
+      deleteNews: "Delete",
     },
   },
   "ru-RU": ruRU,

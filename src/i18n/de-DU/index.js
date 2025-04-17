@@ -17,7 +17,7 @@ export default {
   closeButton: "Schließen",
   firstNameText: "Vorname",
   lastNameText: "Nachname",
-
+  ageText: "Alter",
   fullNameText: "Vollständiger Name",
   personalDataText: "Persönliche Daten",
   genderText: "Geschlecht",
@@ -157,5 +157,15 @@ export default {
     editPartnerInformation: {
       edit: "Bearbeiten",
     },
+  },
+  newsPage: {
+    mainText:
+      "Neueste Sportnachrichten, Experteneinschätzungen und Spieler-Updates.",
+    mainTextWithAnotherColor: "Alles an einem Ort.",
+    captionText: `Bleiben Sie informiert mit aktuellen Tennisnachrichten, exklusiven Interviews und Einblicken hinter die Kulissen.`,
+    search: "Suchen...",
+    openAddNewsBlock: "Nachricht hinzufügen",
+    editNews: "Bearbeiten",
+    deleteNews: "Löschen",
   },
 };
