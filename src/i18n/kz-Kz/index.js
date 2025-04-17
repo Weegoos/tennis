@@ -25,13 +25,21 @@ export default {
   phoneNumber: "Телефон нөмірі",
   professionalInformationText: "Кәсіби ақпарат",
   createButton: "Жасау",
-
   timePart: {
     label: "Уақыты",
     caption: "Жасалған және жаңартылған уақыты",
     createdAt: "Жасалған күні",
     updatedAt: "Жаңартылған күні",
   },
+  profile: {
+    partnerText: "Серіктес",
+    tournamentText: "Турнир",
+    categoryText: "Санат",
+    statusText: "Статус",
+    acceptButton: "Қабылдау",
+    rejectButton: "Бас тарту",
+  },
+
   registration: {
     button: "Тіркелу",
     accountText: "Аккаунтыңыз бар ма? Кіру",
@@ -213,5 +221,19 @@ export default {
     fromText: "Басталуы",
     toText: "Аяқталуы",
     noData: "Қосымша турнирлер жоқ...",
+  },
+  editPage: {
+    tabs: {
+      generalInfo: "Жалпы ақпарат",
+      myTournaments: "Менің турнирлерім",
+      settings: "Баптаулар",
+    },
+    editInformationButton: "Ақпаратты өңдеу",
+    logoutButton: "Шығу",
+    dateOfBirth: "Туған күні",
+    noData: "Деректер жоқ",
+    selectLanguage: "Тілді таңдаңыз",
+    selectButton: "Таңдау",
+    invitationsText: "Шақыру(-лар)",
   },
 };

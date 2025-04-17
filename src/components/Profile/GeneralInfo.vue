@@ -9,21 +9,21 @@
         icon="ion-person"
         data-testid="infoTab"
         no-caps
-        label="General information"
+        :label="t('editPage.tabs.generalInfo')"
       />
       <q-tab
         name="tournaments"
         icon="ion-trophy"
         data-testid="tournamentsTab"
         no-caps
-        label="My tournaments"
+        :label="t('editPage.tabs.myTournaments')"
       />
       <q-tab
         name="settings"
         data-testid="settingsTab"
         icon="ion-settings"
         no-caps
-        label="Settings"
+        :label="t('editPage.tabs.settings')"
       />
     </q-tabs>
 
@@ -52,7 +52,7 @@
               <q-btn
                 class="q-mt-sm q-mr-sm"
                 no-caps
-                label="Edit Information"
+                :label="t('editPage.editInformationButton')"
                 @click="editInformation"
                 color="orange-4"
                 rounded
@@ -61,7 +61,7 @@
               <q-btn
                 class="q-mt-sm"
                 no-caps
-                label="Logout"
+                :label="t('editPage.logoutButton')"
                 @click="logout"
                 color="red-4"
                 rounded
@@ -69,38 +69,41 @@
             </div>
           </div>
           <div class="col" data-testid="generalInformation">
-            <div class="text-h4 q-mb-md">General information</div>
+            <div class="text-h4 q-mb-md">
+              {{ t("editPage.tabs.generalInfo") }}
+            </div>
             <p>
-              <span class="q-mr-md text-bold">Full name</span
+              <span class="q-mr-md text-bold">{{ t("fullNameText") }}</span
               ><span
-                >{{ secondName || "Not found" }}
-                {{ firstName || "Not found" }}</span
+                >{{ secondName || t("notSpecifiedText") }}
+                {{ firstName || t("notSpecifiedText") }}</span
               >
             </p>
             <p>
-              <span class="q-mr-md text-bold">Date of birth</span
+              <span class="q-mr-md text-bold"
+                >{{ t("editPage.dateOfBirth") }}: </span
               ><span>13.07.2005</span>
             </p>
             <p>
-              <span class="q-mr-md text-bold">Gender</span
+              <span class="q-mr-md text-bold">{{ t("genderText") }}: </span
               ><span :class="[gender === null ? 'text-red' : 'text-black']">
-                {{ gender || "Not found" }}
+                {{ gender || t("notSpecifiedText") }}
               </span>
             </p>
             <p>
-              <span class="q-mr-md text-bold">Phone number</span
+              <span class="q-mr-md text-bold">{{ t("phoneNumber") }}: </span
               ><span :class="[phone === null ? 'text-red' : 'text-black']">
-                {{ phone || "Not found" }}
+                {{ phone || t("notSpecifiedText") }}
               </span>
             </p>
             <p>
-              <span class="q-mr-md text-bold">Mail</span
+              <span class="q-mr-md text-bold">{{ t("emailText") }}: </span
               ><span>{{ email }}</span>
             </p>
             <p>
-              <span class="q-mr-md text-bold">Rating</span
+              <span class="q-mr-md text-bold">{{ t("ratingText") }}: </span
               ><span :class="[rating === null ? 'text-red' : 'text-black']">
-                {{ rating || "Not found" }}
+                {{ rating || t("notSpecifiedText") }}
               </span>
             </p>
           </div>
@@ -112,7 +115,7 @@
           <q-table
             flat
             bordered
-            title="Invitation(-s)"
+            :title="t('editPage.invitationsText')"
             :rows="allInvitations"
             :columns="columns"
             row-key="name"
@@ -140,7 +143,7 @@
             </template>
           </q-table>
         </div>
-        <div v-else>No data</div>
+        <div v-else>{{ t("editPage.noData") }}</div>
       </q-tab-panel>
 
       <q-tab-panel name="settings">
@@ -148,15 +151,17 @@
           <q-select
             v-model="language"
             :options="options"
-            label="Выберите язык"
+            :label="t('editPage.selectLanguage')"
             filled
             emit-value
             map-options
           />
           <q-btn
+            class="q-mt-sm justify-center"
             color="primary"
             icon="check"
-            label="OK"
+            no-caps
+            :label="t('editPage.selectButton')"
             @click="changeLanguage"
           />
         </div>
@@ -172,7 +177,7 @@
 
 <script setup>
 import { useApiStore } from "src/stores/api-store";
-import { getCurrentInstance, onMounted, ref } from "vue";
+import { computed, getCurrentInstance, onMounted, ref } from "vue";
 import EditGeneralInfo from "./EditGeneralInfo.vue";
 import { Cookies, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
@@ -186,6 +191,7 @@ const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
 const { locale } = useI18n();
 const $q = useQuasar();
+const { t } = useI18n();
 
 const tab = ref("info");
 const language = ref(locale.value);
@@ -201,7 +207,7 @@ const changeLanguage = () => {
   localStorage.setItem("locale", language.value);
 };
 
-const columns = [
+const columns = computed(() => [
   {
     name: "id",
     required: true,
@@ -214,7 +220,7 @@ const columns = [
   {
     name: "partner",
     required: true,
-    label: "Partner",
+    label: t("profile.partnerText"),
     align: "left",
     field: (user) => user.user.email,
     format: (val) => `${val}`,
@@ -223,7 +229,7 @@ const columns = [
   {
     name: "tournament",
     required: true,
-    label: "Tournament",
+    label: t("profile.tournamentText"),
     align: "left",
     field: (user) => user.tournament.description,
     format: (val) => `${val}`,
@@ -232,7 +238,7 @@ const columns = [
   {
     name: "category",
     required: true,
-    label: "Category",
+    label: t("profile.categoryText"),
     align: "left",
     field: (user) => user.tournament.category,
     format: (val) => `${val}`,
@@ -241,7 +247,7 @@ const columns = [
   {
     name: "status",
     required: true,
-    label: "Status",
+    label: t("profile.statusText"),
     align: "left",
     field: (user) => user.status,
     format: (val) => `${val}`,
@@ -249,17 +255,17 @@ const columns = [
   },
   {
     name: "accept",
-    label: "Accept",
+    label: t("profile.acceptButton"),
     align: "center",
     field: "id",
   },
   {
     name: "reject",
-    label: "Reject",
+    label: t("profile.rejectButton"),
     align: "center",
     field: "id",
   },
-];
+]);
 
 const allInvitations = ref([]);
 const getInvitations = async () => {

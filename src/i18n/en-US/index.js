@@ -21,7 +21,6 @@ export default {
     costText: "Cost",
     description: "Description",
     closeButton: "Close",
-
     firstNameText: "First name",
     lastNameText: "Last name",
     ageText: "Age",
@@ -38,7 +37,14 @@ export default {
       createdAt: "Created At",
       updatedAt: "Updated At",
     },
-
+    profile: {
+      partnerText: "Partner",
+      tournamentText: "Tournament",
+      categoryText: "Category",
+      statusText: "Status",
+      acceptButton: "Accept",
+      rejectButton: "Reject",
+    },
     registration: {
       button: "Register",
       accountText: "Do you have an account? Enter",
@@ -222,6 +228,20 @@ export default {
       fromText: "From",
       toText: "To",
       noData: "There are no more tournaments...",
+    },
+    editPage: {
+      tabs: {
+        generalInfo: "General information",
+        myTournaments: "My tournaments",
+        settings: "Settings",
+      },
+      editInformationButton: "Edit Information",
+      logoutButton: "Logout",
+      dateOfBirth: "Date of birth",
+      noData: "No data",
+      selectLanguage: "Select Language",
+      selectButton: "Select",
+      invitationsText: "Invitation(-s)",
     },
   },
   "ru-RU": ruRU,

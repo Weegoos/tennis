@@ -27,14 +27,20 @@ export default {
   professionalInformationText: "Berufliche Informationen",
   emailText: "E-Mail",
   createButton: "Erstellen",
-
   timePart: {
     label: "Zeit",
     caption: "Erstellungs- und Aktualisierungszeit",
     createdAt: "Erstellt am",
     updatedAt: "Aktualisiert am",
   },
-
+  profile: {
+    partnerText: "Partner",
+    tournamentText: "Turnier",
+    categoryText: "Kategorie",
+    statusText: "Status",
+    acceptButton: "Akzeptieren",
+    rejectButton: "Ablehnen",
+  },
   registration: {
     button: "Registrieren",
     accountText: "Haben Sie ein Konto? Anmelden",
@@ -219,5 +225,19 @@ export default {
     fromText: "Von",
     toText: "Bis",
     noData: "Es gibt keine weiteren Turniere...",
+  },
+  editPage: {
+    tabs: {
+      generalInfo: "Allgemeine Informationen",
+      myTournaments: "Meine Turniere",
+      settings: "Einstellungen",
+    },
+    editInformationButton: "Information bearbeiten",
+    logoutButton: "Abmelden",
+    dateOfBirth: "Geburtsdatum",
+    noData: "Keine Daten",
+    selectLanguage: "Sprache auswählen",
+    selectButton: "Auswählen",
+    invitationsText: "Einladung(en)",
   },
 };

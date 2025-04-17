@@ -25,12 +25,19 @@ export default {
   phoneNumber: "Номер телефона",
   professionalInformationText: "Профессиональная информация",
   createButton: "Создать",
-
   timePart: {
     label: "Время",
     caption: "Время создания и обновления",
     createdAt: "Дата создания",
     updatedAt: "Дата обновления",
+  },
+  profile: {
+    partnerText: "Партнёр",
+    tournamentText: "Турнир",
+    categoryText: "Категория",
+    statusText: "Статус",
+    acceptButton: "Принять",
+    rejectButton: "Отклонить",
   },
 
   registration: {
@@ -216,5 +223,19 @@ export default {
     fromText: "От",
     toText: "До",
     noData: "Больше нет турниров...",
+  },
+  editPage: {
+    tabs: {
+      generalInfo: "Общая информация",
+      myTournaments: "Мои турниры",
+      settings: "Настройки",
+    },
+    editInformationButton: "Редактировать информацию",
+    logoutButton: "Выйти",
+    dateOfBirth: "Дата рождения",
+    noData: "Нет данных",
+    selectLanguage: "Выберите язык",
+    selectButton: "Выбрать",
+    invitationsText: "Приглашение(-я)",
   },
 };
