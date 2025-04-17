@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { getCurrentInstance, ref } from "vue";
+import { computed, getCurrentInstance, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 // global variables
@@ -41,7 +41,7 @@ const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
 const { t } = useI18n();
 
-const achievements = ref([
+const achievements = computed(() => [
   {
     name: t("indexPage.achievementsPage.tournamentsHeld"),
     stats: 48,

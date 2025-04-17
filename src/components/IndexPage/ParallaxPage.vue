@@ -38,43 +38,45 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { Cookies } from "quasar";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 // globalVariables
 const { t } = useI18n();
+console.log(localStorage.getItem("locale"));
 
-const textForParallax = [
+const textForParallax = computed(() => [
   {
     icon: "mdi-star-circle",
-    img: "https://images.unsplash.com/photo-1519611103964-90f61a50d3e6?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1519611103964-90f61a50d3e6",
     text: t("indexPage.parallaxPage.block1.text"),
   },
   {
     icon: "mdi-account-check",
-    img: "https://images.unsplash.com/photo-1627314387807-df615e8567de?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1627314387807-df615e8567de",
     text: t("indexPage.parallaxPage.block2.text"),
     caption: t("indexPage.parallaxPage.block2.caption"),
   },
   {
     icon: "mdi-chart-line",
-    img: "https://images.unsplash.com/photo-1448743133657-f67644da3008?q=80&w=1856&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1448743133657-f67644da3008",
     text: t("indexPage.parallaxPage.block3.text"),
     caption: t("indexPage.parallaxPage.block3.caption"),
   },
   {
     icon: "mdi-account-group",
-    img: "https://images.unsplash.com/photo-1661474973381-130596c650c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1661474973381-130596c650c4",
     text: t("indexPage.parallaxPage.block4.text"),
     caption: t("indexPage.parallaxPage.block4.caption"),
   },
   {
     icon: "mdi-briefcase-search",
-    img: "https://images.unsplash.com/photo-1628617716354-5bdc769a3484?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1628617716354-5bdc769a3484",
     text: t("indexPage.parallaxPage.block5.text"),
     caption: t("indexPage.parallaxPage.block5.caption"),
   },
-];
+]);
 </script>
 
 <style></style>

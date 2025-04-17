@@ -35,7 +35,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, getCurrentInstance } from "vue";
+import {
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  getCurrentInstance,
+  computed,
+} from "vue";
 import akzhan from "../../assets/team/akzhan.jpg";
 import arystanbek from "../../assets/team/arystanbek.jpg";
 import batyr from "../../assets/team/batyr.jpeg";
@@ -53,7 +59,7 @@ const { t } = useI18n();
 let observer;
 
 onMounted(() => {
-  visible.value = new Array(imgList.length).fill(false);
+  visible.value = new Array(imgList.value.length).fill(false);
 
   observer = new IntersectionObserver(
     (entries) => {
@@ -78,7 +84,7 @@ const pushToAboutPage = () => {
   router.push("/about");
 };
 
-const imgList = [
+const imgList = computed(() => [
   {
     img: batyr,
     fio: t("indexPage.meetFounders.founder1.fullName"),
@@ -94,7 +100,7 @@ const imgList = [
     fio: t("indexPage.meetFounders.founder3.fullName"),
     role: t("indexPage.meetFounders.founder3.role"),
   },
-];
+]);
 </script>
 
 <style scoped>
