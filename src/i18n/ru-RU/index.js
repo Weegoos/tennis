@@ -18,6 +18,7 @@ export default {
   firstNameText: "Имя",
   lastNameText: "Фамилия",
   ageText: "Возраст",
+  emailText: "Электронная почта",
 
   fullNameText: "Полное имя",
   personalDataText: "Личные данные",
@@ -196,6 +197,15 @@ export default {
       closeButton: "Закрыть",
       updateButton: "Обновить",
     },
+    exploreTournament: {
+      additionalInformation: "Дополнительная информация",
+      participants: "Участник(и)",
+      registerToTheTournament: "Зарегистрироваться на турнир",
+      searchPartner: "Найти партнёра",
+      levelDoesNotMatch:
+        "Ваш уровень не соответствует требуемому уровню для участия в турнире",
+    },
+
     internationalTournamentsText: "Международные турниры",
     fromText: "От",
     toText: "До",

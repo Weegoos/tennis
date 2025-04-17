@@ -18,6 +18,7 @@ export default {
   firstNameText: "Аты",
   lastNameText: "Тегі",
   ageText: "Жасы",
+  emailText: "Электрондық пошта",
   fullNameText: "Толық аты-жөні",
   personalDataText: "Жеке деректер",
   genderText: "Жыныс",
@@ -192,6 +193,14 @@ export default {
       closeButton: "Жабу",
       updateButton: "Жаңарту",
     },
+    exploreTournament: {
+      additionalInformation: "Қосымша ақпарат",
+      participants: "Қатысушы(лар)",
+      registerToTheTournament: "Турнирге тіркелу",
+      searchPartner: "Серіктес іздеу",
+      levelDoesNotMatch: "Сіздің деңгейіңіз турнир талаптарына сәйкес келмейді",
+    },
+
     internationalTournamentsText: "Халықаралық турнирлер",
     fromText: "Басталуы",
     toText: "Аяқталуы",

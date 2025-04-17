@@ -25,6 +25,7 @@ export default {
   genderText: "Geschlecht",
   phoneNumber: "Telefonnummer",
   professionalInformationText: "Berufliche Informationen",
+  emailText: "E-Mail",
 
   timePart: {
     label: "Zeit",
@@ -199,6 +200,15 @@ export default {
       closeButton: "Schließen",
       updateButton: "Aktualisieren",
     },
+    exploreTournament: {
+      additionalInformation: "Zusätzliche Informationen",
+      participants: "Teilnehmer",
+      registerToTheTournament: "Für das Turnier registrieren",
+      searchPartner: "Partner suchen",
+      levelDoesNotMatch:
+        "Ihr Spielniveau entspricht nicht dem für das Turnier erforderlichen Niveau",
+    },
+
     internationalTournamentsText: "Internationale Turniere",
     fromText: "Von",
     toText: "Bis",

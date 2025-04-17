@@ -30,7 +30,7 @@ export default {
     genderText: "Gender",
     phoneNumber: "Phone Number",
     professionalInformationText: "Professional information",
-
+    emailText: "Email",
     timePart: {
       label: "Time",
       caption: "Created, updated time",
@@ -202,6 +202,14 @@ export default {
         maxLevelText: "Maximum level",
         closeButton: "Close",
         updateButton: "Update",
+      },
+      exploreTournament: {
+        additionalInformation: "Additional informations",
+        participants: "Participant(s)",
+        registerToTheTournament: "Register to the tournament",
+        searchPartner: "Search partner",
+        levelDoesNotMatch:
+          "Your level does not match the required level in the tournament",
       },
       internationalTournamentsText: "International tournaments",
       fromText: "From",

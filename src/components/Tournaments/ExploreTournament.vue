@@ -16,7 +16,7 @@
       <q-table
         flat
         bordered
-        title="Additional informations"
+        :title="t('tournamentPage.exploreTournament.additionalInformation')"
         :rows="rows"
         :columns="columns"
         row-key="name"
@@ -27,7 +27,7 @@
       <q-table
         flat
         bordered
-        title="Participant(s)"
+        :title="t('tournamentPage.exploreTournament.participants')"
         :rows="participantsRows"
         :columns="participantsColumns"
         row-key="participant"
@@ -35,10 +35,10 @@
       />
     </div>
     <div class="q-pa-md q-gutter-sm">
-      <!-- <q-btn
+      <q-btn
         color="green-4"
         no-caps
-        label="Register to the tournament"
+        :label="t('tournamentPage.exploreTournament.registerToTheTournament')"
         :disable="!isRelatedUserToTournament"
         @click="registerToTournament"
       >
@@ -49,12 +49,12 @@
         >
           {{ messageToUser }}
         </q-tooltip>
-      </q-btn> -->
+      </q-btn>
       <q-btn
         color="primary"
         no-caps
         rounded
-        label="Search partner"
+        :label="t('tournamentPage.exploreTournament.searchPartner')"
         v-if="isRelatedUserToTournament && isRelatedUserFormat"
         @click="openSearchComponent"
       >
@@ -69,11 +69,12 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getCurrentInstance, onMounted, reactive, ref } from "vue";
+import { computed, getCurrentInstance, onMounted, ref } from "vue";
 import { getMethod } from "src/composables/apiMethod/get";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import SearchPartnerPage from "./SearchPartnerPage.vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const $q = useQuasar();
@@ -81,6 +82,7 @@ const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const apiStore = useApiStore();
 const mobileWidth = proxy.$mobileWidth;
+const { t } = useI18n();
 
 const registerToTournament = async () => {
   const url = window.location.hash;
@@ -96,7 +98,7 @@ const registerToTournament = async () => {
   await postMethod(serverURL, "registration", tournamentRegistration, $q);
 };
 
-const columns = [
+const columns = computed(() => [
   {
     name: "id",
     label: "№",
@@ -106,61 +108,61 @@ const columns = [
   },
   {
     name: "startTime",
-    label: "Start Time",
+    label: t("tournamentPage.editPage.startTimeText"),
     align: "left",
     field: "startTime",
     sortable: true,
   },
   {
     name: "startDate",
-    label: "Start Date",
+    label: t("tournamentPage.editPage.startDateText"),
     align: "left",
     field: "startDate",
     sortable: true,
   },
   {
     name: "endDate",
-    label: "End Date",
+    label: t("tournamentPage.editPage.endDateText"),
     align: "left",
     field: "endDate",
     sortable: true,
   },
   {
     name: "minLevel",
-    label: "Minimum level",
+    label: t("tournamentPage.editPage.minLevelText"),
     align: "left",
     field: "minLevel",
     sortable: true,
   },
   {
     name: "maxLevel",
-    label: "Maximum level",
+    label: t("tournamentPage.editPage.maxLevelText"),
     align: "left",
     field: "maxLevel",
     sortable: true,
   },
   {
     name: "maxParticipants",
-    label: "Maximum participants",
+    label: t("tournamentPage.editPage.maxParticipantsText"),
     align: "left",
     field: "maxParticipants",
     sortable: true,
   },
   {
     name: "cost",
-    label: "Cost (тг)",
+    label: t("costText"),
     align: "left",
     field: `cost`,
     sortable: true,
   },
   {
     name: "category",
-    label: "Category",
+    label: t("tournamentPage.editPage.categoryText"),
     align: "left",
     field: `category`,
     sortable: true,
   },
-];
+]);
 
 const rows = ref([]);
 
@@ -208,7 +210,7 @@ const getTournamentsByID = async (id) => {
       : [];
 };
 
-const participantsColumns = [
+const participantsColumns = computed(() => [
   {
     name: "id",
     label: "№",
@@ -218,47 +220,48 @@ const participantsColumns = [
   },
   {
     name: "email",
-    label: "Email",
+    label: t("emailText"),
     align: "left",
     field: "email",
     sortable: true,
   },
   {
     name: "firstName",
-    label: "First Name",
+    label: t("firstNameText"),
     align: "left",
     field: (user) => user.userInfo.firstName,
     sortable: true,
   },
   {
     name: "lastName",
-    label: "Last Name",
+    label: t("lastNameText"),
     align: "left",
     field: (user) => user.userInfo.lastName,
     sortable: true,
   },
   {
     name: "phone",
-    label: "Phone",
+    label: t("phoneNumber"),
+    align: "left",
     align: "left",
     field: (user) => user.userInfo.phone,
     sortable: true,
   },
   {
     name: "gender",
-    label: "Gender",
+    label: t("genderText"),
     align: "left",
     field: (user) => user.userInfo.gender,
     sortable: true,
   },
   {
     name: "createdAt",
-    label: "Created At",
+    label: t("timePart.createdAt"),
     align: "left",
     field: "createdAt",
     sortable: true,
   },
-];
+]);
 const participants = ref([]);
 const participantsRows = ref([]);
 const getInformationAboutPaarticipants = async (id) => {
@@ -293,15 +296,15 @@ const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
     tournamentInfo.maxLevel < apiStore.userData.userInfo.rating
   ) {
     isRelatedUserToTournament.value = false;
-    messageToUser.value =
-      "Your level does not match the required level in the tournament";
+    messageToUser.value = t(
+      "tournamentPage.exploreTournament.levelDoesNotMatch"
+    );
   } else {
     isRelatedUserToTournament.value = true;
   }
 
   if (tournamentInfo.category.includes("DOUBLE")) {
     isRelatedUserFormat.value = true;
-    console.log(777);
   } else {
     isRelatedUserFormat.value = false;
   }
