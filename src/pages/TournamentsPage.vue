@@ -116,6 +116,7 @@ import EditTournamentsPage from "../components/Tournaments/EditTournamentsPage.v
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useI18n } from "vue-i18n";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -171,6 +172,7 @@ const pagination = (page) => {
 onMounted(() => {
   getTournaments(current.value);
   defineUserRole();
+  redirectToUser();
 });
 
 const exploreTournaments = (item) => {

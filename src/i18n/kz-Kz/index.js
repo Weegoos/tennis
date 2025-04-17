@@ -131,6 +131,7 @@ export default {
   },
   findPartnerPage: {
     mainText: "Өзіңізге сай теннис серіктесін тауып, байланыс орнатыңыз.",
+    noData: "Серіктес туралы хабарландыру жоқ",
     mainTextWithAnotherColor: "Барлығы бір жерде.",
     search: "Іздеу...",
     captionText:

@@ -143,7 +143,8 @@ export default {
       },
     },
     findPartnerPage: {
-      mainText: ` Find your ideal tennis partner and connect with others.`,
+      mainText: `Find your ideal tennis partner and connect with others.`,
+      noData: "There is no announcement about the partner",
       mainTextWithAnotherColor: "All in one place.",
       search: "Search...",
       captionText: `Search for players by skill level, location, or availability — and

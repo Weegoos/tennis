@@ -168,6 +168,7 @@ import EditNews from "src/components/News/EditNews.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -274,6 +275,7 @@ const closeAddNewsBlock = () => {
 
 onMounted(() => {
   getAllNews(1);
+  redirectToUser();
 });
 </script>
 

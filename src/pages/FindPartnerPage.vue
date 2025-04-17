@@ -128,7 +128,7 @@
       v-else
       class="text-center text-h5 text-bold"
     >
-      There is no announcement about the coaches
+      {{ t("findPartnerPage.noData") }}
     </section>
     <PostRequest
       :openPostRequestWindow="openPostRequestWindow"
@@ -162,6 +162,7 @@ import EditPartnerInformation from "src/components/FindPartner/EditPartnerInform
 import PostRequest from "src/components/Partner/PostRequest.vue";
 import { deleteMethod } from "src/composables/apiMethod/delete";
 import { getMethod } from "src/composables/apiMethod/get";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -227,6 +228,7 @@ watch(
 onMounted(() => {
   getPartner(1);
   getInformationAboutUser();
+  redirectToUser();
 });
 
 const current = ref(1);

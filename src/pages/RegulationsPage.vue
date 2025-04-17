@@ -99,7 +99,12 @@
 </template>
 
 <script setup>
-// No additional script needed for now
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  redirectToUser();
+});
 </script>
 
 <style scoped>

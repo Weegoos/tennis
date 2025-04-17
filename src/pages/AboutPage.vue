@@ -119,7 +119,12 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import Akzhan from "../assets/team/akzhan.jpg";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+onMounted(() => {
+  redirectToUser();
+});
 </script>
 
 <style></style>

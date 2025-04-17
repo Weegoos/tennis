@@ -132,6 +132,7 @@ import { Cookies, useQuasar } from "quasar";
 import { useApiStore } from "src/stores/api-store";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useI18n } from "vue-i18n";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -300,6 +301,7 @@ const updateWidth = () => {
 updateWidth();
 onMounted(() => {
   window.addEventListener("resize", updateWidth);
+  redirectToUser();
 });
 
 onUnmounted(() => {

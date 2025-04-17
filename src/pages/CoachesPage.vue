@@ -159,6 +159,7 @@ import DetailedInformation from "src/components/Coaches/DetailedInformation.vue"
 import { useApiStore } from "src/stores/api-store";
 import EditCoachInformation from "src/components/Coaches/EditCoachInformation.vue";
 import { useI18n } from "vue-i18n";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -223,6 +224,7 @@ watch(
 onMounted(() => {
   getAllCoaches(1);
   getUserInformation();
+  redirectToUser();
 });
 
 const current = ref(1);

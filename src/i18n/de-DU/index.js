@@ -138,6 +138,7 @@ export default {
   findPartnerPage: {
     mainText:
       "Finde deinen idealen Tennispartner und vernetze dich mit anderen.",
+    noData: "Es gibt keine Ankündigung über den Partner",
     mainTextWithAnotherColor: "Alles an einem Ort.",
     search: "Suchen...",
     captionText:

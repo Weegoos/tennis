@@ -55,11 +55,10 @@ import { ref, onMounted, onBeforeUnmount, getCurrentInstance } from "vue";
 import TournamentPage from "../components/IndexPage/TournamentPage.vue";
 import AchievementsPage from "../components/IndexPage/AchievementsPage.vue";
 import ParallaxPage from "../components/IndexPage/ParallaxPage.vue";
-import { useJavaScriptFunction } from "src/stores/javascript-store";
 import MeetFounders from "src/components/IndexPage/MeetFounders.vue";
+import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 const { proxy } = getCurrentInstance();
 const mobileWidth = proxy.$mobileWidth;
-const javascriptStore = useJavaScriptFunction();
 const slide = ref("tennis");
 const slides = ["tennis", "advertisement"];
 let slideIndex = 0;
@@ -83,6 +82,7 @@ const nextSlide = () => {
 
 onMounted(() => {
   intervalId = setInterval(nextSlide, 5000);
+  redirectToUser();
 });
 
 onBeforeUnmount(() => {

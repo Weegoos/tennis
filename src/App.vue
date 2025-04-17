@@ -9,19 +9,18 @@ import { onErrorCaptured, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import AppLayout from "./layouts/AppLayout.vue";
 import { useNotifyStore } from "./stores/notify-store";
-import { useJavaScriptFunction } from "./stores/javascript-store";
+import { redirectToUser } from "./composables/javascriptFunction/redirectToTheAuthPage";
 
 const notifyStore = useNotifyStore();
-const javascriptStore = useJavaScriptFunction();
 defineOptions({
   name: "App",
 });
 
 const $q = useQuasar();
 
-// onMounted(() => {
-//   javascriptStore.redirect();
-// });
+onMounted(() => {
+  redirectToUser();
+});
 
 onErrorCaptured((err, instance, info) => {
   console.log();

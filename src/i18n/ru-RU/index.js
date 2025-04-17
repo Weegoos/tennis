@@ -135,6 +135,7 @@ export default {
   },
   findPartnerPage: {
     mainText: "Найдите идеального партнёра по теннису и свяжитесь с ним.",
+    noData: "Нет объявлений о партнёре",
     mainTextWithAnotherColor: "Всё в одном месте.",
     search: "Поиск...",
     captionText:
