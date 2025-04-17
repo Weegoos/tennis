@@ -205,6 +205,12 @@ export default {
       levelDoesNotMatch:
         "Ваш уровень не соответствует требуемому уровню для участия в турнире",
     },
+    searchPartnerPage: {
+      searchUser: "Поиск пользователя",
+      usersText: "Пользователь(-и)",
+      closeButton: "Закрыть",
+      inviteButton: "Пригласить",
+    },
 
     internationalTournamentsText: "Международные турниры",
     fromText: "От",

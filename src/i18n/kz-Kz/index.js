@@ -200,6 +200,12 @@ export default {
       searchPartner: "Серіктес іздеу",
       levelDoesNotMatch: "Сіздің деңгейіңіз турнир талаптарына сәйкес келмейді",
     },
+    searchPartnerPage: {
+      searchUser: "Пайдаланушыны іздеу",
+      usersText: "Пайдаланушы(-лар)",
+      closeButton: "Жабу",
+      inviteButton: "Шақыру",
+    },
 
     internationalTournamentsText: "Халықаралық турнирлер",
     fromText: "Басталуы",

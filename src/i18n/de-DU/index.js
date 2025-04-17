@@ -208,7 +208,12 @@ export default {
       levelDoesNotMatch:
         "Ihr Spielniveau entspricht nicht dem für das Turnier erforderlichen Niveau",
     },
-
+    searchPartnerPage: {
+      searchUser: "Benutzer suchen",
+      usersText: "Benutzer(-)in",
+      closeButton: "Schließen",
+      inviteButton: "Einladen",
+    },
     internationalTournamentsText: "Internationale Turniere",
     fromText: "Von",
     toText: "Bis",

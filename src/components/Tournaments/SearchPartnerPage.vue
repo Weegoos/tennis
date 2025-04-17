@@ -9,7 +9,11 @@
       <q-card style="width: 800px">
         <q-card-section class="row">
           <div class="col">
-            <q-input v-model="searchUser" type="text" label="Search the user" />
+            <q-input
+              v-model="searchUser"
+              type="text"
+              :label="t('tournamentPage.searchPartnerPage.searchUser')"
+            />
           </div>
           <q-btn rounded icon="mdi-account-search" @click="searchUserByInput" />
         </q-card-section>
@@ -17,7 +21,7 @@
           v-show="isClickedToSearchUser"
           flat
           bordered
-          title="User(-s)"
+          :title="t('tournamentPage.searchPartnerPage.usersText')"
           :rows="rows"
           :columns="columns"
           row-key="name"
@@ -45,8 +49,8 @@
           <q-btn
             flat
             no-caps
-            label="Close"
-            color="primary"
+            :label="t('tournamentPage.searchPartnerPage.closeButton')"
+            color="red-4"
             @click="closeSearchPartnerComponent"
           />
         </q-card-actions>
@@ -60,7 +64,8 @@ import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
-import { getCurrentInstance, ref, watch } from "vue";
+import { computed, getCurrentInstance, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const props = defineProps({
@@ -75,6 +80,7 @@ const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const confirm = ref(props.isOpenSearchComponent);
 
@@ -90,7 +96,7 @@ const closeSearchPartnerComponent = () => {
   emit("closeSearchPartnerComponent");
 };
 
-const columns = [
+const columns = computed(() => [
   {
     name: "id",
     required: true,
@@ -103,7 +109,7 @@ const columns = [
   {
     name: "firstName",
     required: true,
-    label: "First Name",
+    label: t("firstNameText"),
     align: "left",
     field: "firstName",
     format: (val) => `${val}`,
@@ -112,24 +118,24 @@ const columns = [
   {
     name: "lastName",
     align: "center",
-    label: "Last Name",
+    label: t("lastNameText"),
     field: "lastName",
     sortable: true,
   },
   {
     name: "rating",
-    label: "Rating",
+    label: t("ratingText"),
     field: "rating",
     sortable: true,
     sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
   },
   {
     name: "actions",
-    label: "Пригласить",
+    label: t("tournamentPage.searchPartnerPage.inviteButton"),
     align: "center",
     field: "id",
   },
-];
+]);
 
 const usersBySearch = ref([]);
 const rows = ref([]);

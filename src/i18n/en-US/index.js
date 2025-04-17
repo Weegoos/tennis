@@ -211,6 +211,12 @@ export default {
         levelDoesNotMatch:
           "Your level does not match the required level in the tournament",
       },
+      searchPartnerPage: {
+        searchUser: "Search the user",
+        usersText: "User(-s)",
+        closeButton: "Close",
+        inviteButton: "Invite",
+      },
       internationalTournamentsText: "International tournaments",
       fromText: "From",
       toText: "To",
