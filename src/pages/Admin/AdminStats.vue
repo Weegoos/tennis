@@ -1,11 +1,14 @@
 <template>
-  <q-page class="">
-    <q-card class="my-card">
-      <q-card-section>
-        <div ref="chart" style="width: 100%; height: 400px"></div>
-      </q-card-section>
-    </q-card>
-  </q-page>
+  <div v-if="role === 'ADMIN'">
+    <q-page class="">
+      <q-card class="my-card">
+        <q-card-section>
+          <div ref="chart" style="width: 100%; height: 400px"></div>
+        </q-card-section>
+      </q-card>
+    </q-page>
+  </div>
+  <div v-else>У вас нет прав для просмотра данной страницы</div>
 </template>
 
 <script setup>
@@ -13,11 +16,14 @@ import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import * as echarts from "echarts";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useQuasar } from "quasar";
+import { useApiStore } from "src/stores/api-store";
+import { redirectForUserThatOpenAdminPage } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const totalTournaments = ref(null);
 const totalUsers = ref(null);
@@ -78,8 +84,16 @@ watch([totalTournaments, totalUsers, totalPartner], () => {
   updateChart();
 });
 
+const role = ref(null);
+const getAdminRole = async () => {
+  await apiStore.getUserProfile();
+  role.value = apiStore.userData.role;
+};
+
 onMounted(() => {
   defineLength();
+  getAdminRole();
+  redirectForUserThatOpenAdminPage();
 });
 </script>
 
