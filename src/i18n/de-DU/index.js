@@ -1,5 +1,3 @@
-import { P } from "app/src-cordova/www/assets/index.74a4c528";
-
 export default {
   welcome: "Willkommen",
   registrationText: "Registrierung",
