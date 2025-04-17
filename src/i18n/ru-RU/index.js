@@ -166,5 +166,13 @@ export default {
     openAddNewsBlock: "Добавить новость",
     editNews: "Редактировать",
     deleteNews: "Удалить",
+    addNews: {
+      mainText: "Добавить новость",
+      title: "Введите заголовок",
+      description: "Введите описание",
+      uploadPhoto: "Загрузите фото",
+      closeButton: "Закрыть",
+      addNewsButton: "Добавить",
+    },
   },
 };

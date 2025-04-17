@@ -3,16 +3,20 @@
     <q-dialog v-model="confirm" persistent position="right">
       <q-card style="width: 350px">
         <q-card-section>
-          <span> Add News</span>
-          <q-input v-model="title" type="text" label="Enter your title" />
+          <span class="text-h5">{{ t("newsPage.addNews.mainText") }}</span>
+          <q-input
+            v-model="title"
+            type="text"
+            :label="t('newsPage.addNews.title')"
+          />
           <q-input
             v-model="description"
             type="text"
-            label="Enter your description"
+            :label="t('newsPage.addNews.description')"
           />
           <q-uploader
             ref="uploaderRef"
-            label="Загрузите фото"
+            :label="t('newsPage.addNews.uploadPhoto')"
             color="primary"
             text-color="white"
             accept="image/*"
@@ -25,14 +29,13 @@
           <q-btn
             flat
             no-caps
-            label="Close"
-            color="primary"
+            :label="t('newsPage.addNews.closeButton')"
+            color="red-4"
             @click="closeAddNewsBlock"
           />
           <q-btn
-            flat
             no-caps
-            label="Add"
+            :label="t('newsPage.addNews.addNewsButton')"
             color="primary"
             @click="handleSubmit"
           />
@@ -43,9 +46,10 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { getCurrentInstance, ref, watch } from "vue";
 import axios from "axios";
 import { Cookies } from "quasar";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const props = defineProps({
@@ -55,6 +59,10 @@ const props = defineProps({
     required: true,
   },
 });
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const { t } = useI18n();
+
 const confirm = ref(props.isOpenAddNewsBlock);
 watch(
   () => props.isOpenAddNewsBlock,
@@ -86,25 +94,20 @@ const handleSubmit = async () => {
   formData.append("file", files[0]); // берём только первый файл
 
   try {
-    const response = await axios.post(
-      "http://localhost:8000/api/v1/news/",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
-      }
-    );
+    const response = await axios.post(`${serverURL}api/v1/news/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${Cookies.get("accessToken")}`,
+      },
+    });
 
     console.log("Успешно отправлено:", response.data);
 
-    // Очистка формы после успешной отправки
     title.value = "";
     description.value = "";
-    uploaderRef.value.reset(); // Очистить выбранные файлы
+    uploaderRef.value.reset();
 
-    closeAddNewsBlock(); // Закрыть диалог
+    closeAddNewsBlock();
   } catch (error) {
     console.error("Ошибка при отправке:", error);
   }

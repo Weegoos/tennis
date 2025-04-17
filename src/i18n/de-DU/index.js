@@ -167,5 +167,13 @@ export default {
     openAddNewsBlock: "Nachricht hinzufügen",
     editNews: "Bearbeiten",
     deleteNews: "Löschen",
+    addNews: {
+      mainText: "Nachricht hinzufügen",
+      title: "Geben Sie Ihren Titel ein",
+      description: "Geben Sie Ihre Beschreibung ein",
+      uploadPhoto: "Foto hochladen",
+      closeButton: "Schließen",
+      addNewsButton: "Hinzufügen",
+    },
   },
 };

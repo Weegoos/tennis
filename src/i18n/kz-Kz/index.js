@@ -162,5 +162,13 @@ export default {
     openAddNewsBlock: "Жаңалық қосу",
     editNews: "Өңдеу",
     deleteNews: "Жою",
+    addNews: {
+      mainText: "Жаңалық қосу",
+      title: "Тақырыпты енгізіңіз",
+      description: "Сипаттаманы енгізіңіз",
+      uploadPhoto: "Фотосуретті жүктеңіз",
+      closeButton: "Жабу",
+      addNewsButton: "Қосу",
+    },
   },
 };
