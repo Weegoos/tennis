@@ -242,6 +242,11 @@ export default {
       selectLanguage: "Select Language",
       selectButton: "Select",
       invitationsText: "Invitation(-s)",
+      editBlock: {
+        editText: "Edit",
+        closeButton: "Close",
+        updateButton: "Update",
+      },
     },
   },
   "ru-RU": ruRU,

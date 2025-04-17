@@ -235,5 +235,10 @@ export default {
     selectLanguage: "Тілді таңдаңыз",
     selectButton: "Таңдау",
     invitationsText: "Шақыру(-лар)",
+    editBlock: {
+      editText: "Өңдеу",
+      closeButton: "Жабу",
+      updateButton: "Жаңарту",
+    },
   },
 };

@@ -3,25 +3,35 @@
     <q-dialog v-model="editPage" persistent>
       <q-card>
         <q-card-section class="items-center" style="width: 300px">
-          <p class="text-h5 text-bold text-center">Editing</p>
-          <q-select v-model="gender" :options="genderList" label="Gender" />
-          <q-input v-model="firstName" type="text" label="First name" />
-          <q-input v-model="lastName" type="text" label="Last name" />
-          <q-input v-model="phone" type="text" label="Phone" />
-          <q-input v-model="rating" type="number" label="Rating" />
+          <p class="text-h5 text-bold text-center">
+            {{ t("editPage.editBlock.editText") }}
+          </p>
+          <q-select
+            v-model="gender"
+            :options="genderList"
+            :label="t('genderText')"
+          />
+          <q-input
+            v-model="firstName"
+            type="text"
+            :label="t('firstNameText')"
+          />
+          <q-input v-model="lastName" type="text" :label="t('lastNameText')" />
+          <q-input v-model="phone" type="text" :label="t('phoneNumber')" />
+          <q-input v-model="rating" type="number" :label="t('ratingText')" />
         </q-card-section>
         <q-card-actions align="right">
           <q-btn
             no-caps
             flat
-            label="Close"
-            color="negative"
+            :label="t('editPage.editBlock.closeButton')"
+            color="red-4"
             @click="closeOpenPage"
           />
           <q-btn
             color="positive"
             no-caps
-            label="Update"
+            :label="t('editPage.editBlock.updateButton')"
             @click="updateInformation"
           />
         </q-card-actions>
@@ -35,12 +45,14 @@ import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const $q = useQuasar();
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const props = defineProps({
   openEditPage: {

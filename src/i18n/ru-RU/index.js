@@ -237,5 +237,10 @@ export default {
     selectLanguage: "Выберите язык",
     selectButton: "Выбрать",
     invitationsText: "Приглашение(-я)",
+    editBlock: {
+      editText: "Редактировать",
+      closeButton: "Закрыть",
+      updateButton: "Обновить",
+    },
   },
 };

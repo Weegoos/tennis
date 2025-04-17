@@ -239,5 +239,10 @@ export default {
     selectLanguage: "Sprache auswählen",
     selectButton: "Auswählen",
     invitationsText: "Einladung(en)",
+    editBlock: {
+      editText: "Bearbeiten",
+      closeButton: "Schließen",
+      updateButton: "Aktualisieren",
+    },
   },
 };
