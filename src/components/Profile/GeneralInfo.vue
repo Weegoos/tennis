@@ -277,11 +277,11 @@ onMounted(async () => {
 const acceptVar = ref("");
 const acceptInvitation = async (row) => {
   console.log(row.id);
-  console.log(row.user.id);
+  console.log(row.partner.id);
   try {
     await putMethod(
       serverURL,
-      `registration/${row.id}/confirm?partnerId=${row.user.id}`,
+      `registration/${row.id}/confirm?partnerId=${row.partner.id}`,
       acceptVar,
       $q,
       "Приглашение успешно принято!",
@@ -299,7 +299,7 @@ const rejectInvitation = async (row) => {
   try {
     await putMethod(
       serverURL,
-      `registration/${row.id}/reject?partnerId=${row.user.id}`,
+      `registration/${row.id}/reject?partnerId=${row.partner.id}`,
       acceptVar,
       $q,
       "Приглашение успешно принято!",

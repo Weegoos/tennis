@@ -2,7 +2,7 @@
 export default ({ app }) => {
   // Объявляем глобальные переменные
   const mobileWidth = 1050;
-  const serverURL = "http://localhost:8000/api/v1/";
+  const serverURL = "https://tennis-p30s.onrender.com/api/v1/";
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "HR";
   const adminRole = "ADMIN";

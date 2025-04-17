@@ -1,6 +1,9 @@
 <template>
-  <div class="q-pa-md">
-    <q-card class="my-card q-pa-sm q-ma-sm text-center">
+  <div class="q-pa-md" data-testid="findPartner">
+    <q-card
+      class="my-card q-pa-sm q-ma-sm text-center"
+      data-testid="findPartnerContent"
+    >
       <q-card-section>
         <div class="text-h5 text-bold">
           {{ t("findPartnerPage.mainText") }}
