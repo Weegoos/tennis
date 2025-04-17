@@ -18,13 +18,6 @@
         no-caps
         :label="t('editPage.tabs.myTournaments')"
       />
-      <q-tab
-        name="settings"
-        data-testid="settingsTab"
-        icon="ion-settings"
-        no-caps
-        :label="t('editPage.tabs.settings')"
-      />
     </q-tabs>
 
     <q-tab-panels
@@ -144,27 +137,6 @@
           </q-table>
         </div>
         <div v-else>{{ t("editPage.noData") }}</div>
-      </q-tab-panel>
-
-      <q-tab-panel name="settings">
-        <div>
-          <q-select
-            v-model="language"
-            :options="options"
-            :label="t('editPage.selectLanguage')"
-            filled
-            emit-value
-            map-options
-          />
-          <q-btn
-            class="q-mt-sm justify-center"
-            color="primary"
-            icon="check"
-            no-caps
-            :label="t('editPage.selectButton')"
-            @click="changeLanguage"
-          />
-        </div>
       </q-tab-panel>
     </q-tab-panels>
 
