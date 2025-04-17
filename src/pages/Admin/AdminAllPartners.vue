@@ -1,33 +1,36 @@
 <template>
-  <div class="q-pa-md" data-testid="rowsID" v-if="rows && rows.length">
-    <q-table
-      data-testid="userTable"
-      flat
-      bordered
-      :rows="rows"
-      :columns="columns"
-      row-key="id"
-      @row-click="viewDetailedInformation"
-      loading="true"
-      hide-bottom
-    />
+  <div v-if="role === 'ADMIN'">
+    <div class="q-pa-md" data-testid="rowsID" v-if="rows && rows.length">
+      <q-table
+        data-testid="userTable"
+        flat
+        bordered
+        :rows="rows"
+        :columns="columns"
+        row-key="id"
+        @row-click="viewDetailedInformation"
+        loading="true"
+        hide-bottom
+      />
 
-    <FindPartnerDetailedInformation
-      :isOpenPartnerDetailedInformation="isOpenPartnerDetailedInformation"
-      :partnerInfo="Object(partnerInfo)"
-      @closePartnerDetailedInformation="closePartnerDetailedInformation"
+      <FindPartnerDetailedInformation
+        :isOpenPartnerDetailedInformation="isOpenPartnerDetailedInformation"
+        :partnerInfo="Object(partnerInfo)"
+        @closePartnerDetailedInformation="closePartnerDetailedInformation"
+      />
+    </div>
+    <div v-else data-testid="noData">
+      <p>No data</p>
+    </div>
+    <q-pagination
+      class="justify-center"
+      v-model="current"
+      :min="1"
+      :max="maxPage"
+      @update:model-value="pagination"
     />
   </div>
-  <div v-else data-testid="noData">
-    <p>No data</p>
-  </div>
-  <q-pagination
-    class="justify-center"
-    v-model="current"
-    :min="1"
-    :max="maxPage"
-    @update:model-value="pagination"
-  />
+  <div v-else>У вас нет прав для просмотра данной страницы</div>
 </template>
 
 <script setup>
@@ -36,6 +39,7 @@ import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import FindPartnerDetailedInformation from "src/components/Admin/FindPartnerDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
 import { useApiStore } from "src/stores/api-store";
+import { redirectForUserThatOpenAdminPage } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -126,8 +130,16 @@ const pagination = (page) => {
   getEnabledCoaches(current.value);
 };
 
+const role = ref(null);
+const getAdminRole = async () => {
+  await apiStore.getUserProfile();
+  role.value = apiStore.userData.role;
+};
+
 onMounted(() => {
   getEnabledPartner(1);
+  redirectForUserThatOpenAdminPage();
+  getAdminRole();
 });
 
 const isOpenPartnerDetailedInformation = ref(false);

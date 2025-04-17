@@ -1,31 +1,34 @@
 <template>
-  <div class="q-pa-md" data-testid="rowsID" v-if="rows && rows.length">
-    <q-table
-      data-testid="userTable"
-      flat
-      bordered
-      :rows="rows"
-      :columns="columns"
-      row-key="id"
-      @row-click="viewDetailedInformation"
-      hide-bottom=""
-    />
-    <UserDetailedInformation
-      :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
-      :userInfo="Object(userInfo)"
-      @closeUserDetailedInformation="closeUserDetailedInformation"
+  <div v-if="role === 'ADMIN'">
+    <div class="q-pa-md" data-testid="rowsID" v-if="rows && rows.length">
+      <q-table
+        data-testid="userTable"
+        flat
+        bordered
+        :rows="rows"
+        :columns="columns"
+        row-key="id"
+        @row-click="viewDetailedInformation"
+        hide-bottom=""
+      />
+      <UserDetailedInformation
+        :isOpenUserDetailedInformation="isOpenUserDetailedInformation"
+        :userInfo="Object(userInfo)"
+        @closeUserDetailedInformation="closeUserDetailedInformation"
+      />
+    </div>
+    <div v-else data-testid="noData">
+      <p>No data</p>
+    </div>
+    <q-pagination
+      class="justify-center"
+      v-model="current"
+      :min="1"
+      :max="maxPage"
+      @update:model-value="pagination"
     />
   </div>
-  <div v-else data-testid="noData">
-    <p>No data</p>
-  </div>
-  <q-pagination
-    class="justify-center"
-    v-model="current"
-    :min="1"
-    :max="maxPage"
-    @update:model-value="pagination"
-  />
+  <div v-else>У вас нет прав для просмотра данной страницы</div>
 </template>
 
 <script setup>
@@ -33,6 +36,8 @@ import axios from "axios";
 import { Cookies, useQuasar } from "quasar";
 import UserDetailedInformation from "src/components/Admin/UserDetailedInformation.vue";
 import { getMethod } from "src/composables/apiMethod/get";
+import { redirectForUserThatOpenAdminPage } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 
 // global variables
@@ -40,6 +45,7 @@ const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
+const apiStore = useApiStore();
 
 const columns = [
   {
@@ -93,9 +99,10 @@ const getAllUsers = async (page) => {
       maxPage.value = Math.ceil(
         rows.value.totalElements / maxNumberOfRequestPerPage
       );
-      rows.value = rows.value.content.map((user, index) => ({
+      rows.value = rows.value.data.map((user, index) => ({
         ...user,
       }));
+      console.log(rows);
     });
   } catch (error) {
     console.error(error);
@@ -108,11 +115,19 @@ const pagination = (page) => {
   current.value = page;
   console.log(current.value);
 
-  getAllUsers(current.value - 1);
+  getAllUsers(current.value);
+};
+
+const role = ref(null);
+const getAdminRole = async () => {
+  await apiStore.getUserProfile();
+  role.value = apiStore.userData.role;
 };
 
 onMounted(() => {
-  getAllUsers(current.value - 1);
+  getAllUsers(current.value);
+  redirectForUserThatOpenAdminPage();
+  getAdminRole();
 });
 
 const isOpenUserDetailedInformation = ref(false);

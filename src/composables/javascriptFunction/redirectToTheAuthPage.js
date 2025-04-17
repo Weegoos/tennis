@@ -1,10 +1,9 @@
 import { useApiStore } from "src/stores/api-store";
 const clientURL = "http://localhost:9000/#/";
-export async function redirectToUser() {
+async function redirectToUser() {
   try {
     const apiStore = useApiStore();
     await apiStore.getUserProfile();
-    console.log(apiStore.userData.role);
 
     if (
       apiStore.userData.role === null ||
@@ -16,3 +15,18 @@ export async function redirectToUser() {
     window.location.href = `${clientURL}authorization`;
   }
 }
+
+async function redirectForUserThatOpenAdminPage() {
+  try {
+    const apiStore = useApiStore();
+    await apiStore.getUserProfile();
+    console.log(apiStore.userData.role);
+    if (apiStore.userData.role != "ADMIN") {
+      window.location.href = `${clientURL}`;
+    }
+  } catch (error) {
+    window.location.href = `${clientURL}authorization`;
+  }
+}
+
+export { redirectToUser, redirectForUserThatOpenAdminPage };
