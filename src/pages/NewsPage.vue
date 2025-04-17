@@ -28,6 +28,7 @@
             @click="searchFunction"
           />
           <q-btn
+            v-if="role === humanResources"
             color="primary"
             no-caps
             icon="mdi-plus"
@@ -71,7 +72,7 @@
               <p>{{ news.description || t("notSpecifiedText") }}</p>
             </div>
             <q-card-actions class="row q-gutter-sm text-center">
-              <div class="col">
+              <div class="col" v-if="role === humanResources">
                 <q-btn
                   color="green-2"
                   class="text-green-8"
@@ -81,7 +82,7 @@
                   @click="openEditPage(news.id)"
                 />
               </div>
-              <div class="col">
+              <div class="col" v-if="role === humanResources">
                 <q-btn
                   color="red-8"
                   no-caps
@@ -178,6 +179,7 @@ import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 import { useI18n } from "vue-i18n";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -186,6 +188,7 @@ const humanResources = proxy.$humanResources;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
 const { t } = useI18n();
+const apiStore = useApiStore();
 
 const allNews = ref([]);
 
@@ -283,9 +286,16 @@ const closeAddNewsBlock = () => {
   isOpenAddNewsBlock.value = false;
 };
 
+const role = ref(null);
+const defineRole = async () => {
+  await apiStore.getUserProfile();
+  role.value = apiStore.userData.role;
+};
+
 onMounted(() => {
   getAllNews(1);
   redirectToUser();
+  defineRole();
 });
 </script>
 

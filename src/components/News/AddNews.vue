@@ -94,7 +94,7 @@ const handleSubmit = async () => {
   formData.append("file", files[0]); // берём только первый файл
 
   try {
-    const response = await axios.post(`${serverURL}api/v1/news/`, formData, {
+    const response = await axios.post(`${serverURL}news/`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${Cookies.get("accessToken")}`,

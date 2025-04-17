@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-pa-md">
     <section
       class="text-uppercase text-center q-mt-lg text-weight-thin"
       :class="$q.screen.width < mobileWidth ? 'text-h5' : 'text-h1'"
@@ -26,28 +26,26 @@
         data-testid="openAddTournamentsButton"
       />
     </section>
-    <div data-testid="tournamentsID" v-if="tournaments.data > []">
+    <div data-testid="tournamentsID" v-if="tournaments.data > []" class="row">
       <section
+        class="col-12 col-sm-6 col-md-4"
         v-for="(tournament, id) in tournaments.data"
         :key="id"
-        class="q-ma-md"
         data-testid="tournamentContent"
       >
-        <q-card class="my-card">
-          <div class="" :class="$q.screen.width < mobileWidth ? 'col' : 'row'">
+        <q-card class="my-card q-mt-md q-mx-sm q-pa-sm">
+          <div>
             <section class="col-2">
               <q-img
                 src="https://cdn.quasar.dev/img/mountains.jpg"
-                :ratio="16 / 12"
+                :ratio="10 / 7"
                 spinner-color="primary"
                 spinner-size="82px"
                 class="full-height"
               />
             </section>
             <section class="col">
-              <q-card-section
-                :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
-              >
+              <q-card-section>
                 <div class="text-capitalize col">
                   <p class="text-weight-thin text-body1">International</p>
                   <p class="text-h4">{{ tournament.description }}</p>
