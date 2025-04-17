@@ -1,3 +1,5 @@
+import { P } from "app/src-cordova/www/assets/index.74a4c528";
+
 export default {
   welcome: "Willkommen",
   registrationText: "Registrierung",
@@ -106,12 +108,6 @@ export default {
       },
     },
   },
-  tournamentPage: {
-    mainPage: {
-      participants: "Teilnehmer",
-      exploreButton: "Entdecken",
-    },
-  },
   coachPage: {
     mainText: "Reichen Sie Ihre Bewerbung für unser Trainerprogramm ein.",
     mainTextWithAnotherColor:
@@ -175,5 +171,37 @@ export default {
       closeButton: "Schließen",
       addNewsButton: "Hinzufügen",
     },
+  },
+  tournamentPage: {
+    mainPage: {
+      participants: "Teilnehmer",
+      exploreButton: "Entdecken",
+    },
+    mainText: {
+      text1: "SCHÖPFER",
+      text2: "ZENTRUM",
+    },
+    captionText: {
+      text1: "Diese Community ist großartig",
+      text2: "Wir sind stolz auf sie alle",
+      text3: "Fachleute warten.",
+    },
+    editPage: {
+      mainText: "Informationen bearbeiten",
+      startDateText: "Anfangsdatum",
+      endDateText: "Enddatum",
+      startTimeText: "Startzeit",
+      categoryText: "Kategorie",
+      maxParticipantsText: "Maximale Teilnehmerzahl",
+      locationText: "Standort",
+      minLevelText: "Mindestniveau",
+      maxLevelText: "Höchstes Niveau",
+      closeButton: "Schließen",
+      updateButton: "Aktualisieren",
+    },
+    internationalTournamentsText: "Internationale Turniere",
+    fromText: "Von",
+    toText: "Bis",
+    noData: "Es gibt keine weiteren Turniere...",
   },
 };

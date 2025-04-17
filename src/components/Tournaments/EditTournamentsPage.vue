@@ -2,14 +2,20 @@
   <div>
     <q-dialog v-model="isEditTournament" persistent full-width>
       <q-card>
-        <p class="text-center text-width-thin text-h4 q-mt-md">Edit</p>
+        <p class="text-center text-width-thin text-h4 q-mt-md">
+          {{ t("tournamentPage.editPage.mainText") }}
+        </p>
         <q-card-section>
           <div
             class="q-gutter-sm"
             :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
           >
             <div class="col">
-              <q-input v-model="startDate" type="text" label="Start date">
+              <q-input
+                v-model="startDate"
+                type="text"
+                :label="t('tournamentPage.editPage.startDateText')"
+              >
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy
@@ -34,7 +40,11 @@
             </div>
 
             <div class="col">
-              <q-input v-model="endDate" type="text" label="End date">
+              <q-input
+                v-model="endDate"
+                type="text"
+                :label="t('tournamentPage.editPage.endDateText')"
+              >
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy
@@ -58,7 +68,11 @@
               </q-input>
             </div>
             <div class="col">
-              <q-input v-model="startTime" type="text" label="Start time">
+              <q-input
+                v-model="startTime"
+                type="text"
+                :label="t('tournamentPage.editPage.startTimeText')"
+              >
                 <template v-slot:append>
                   <q-icon name="access_time" class="cursor-pointer">
                     <q-popup-proxy
@@ -90,24 +104,28 @@
               <q-select
                 v-model="category"
                 :options="categoryOptions"
-                label="Category"
+                :label="t('tournamentPage.editPage.categoryText')"
               />
             </div>
             <div class="col">
               <q-input
                 v-model="maxParticipants"
                 type="number"
-                label="Maximum number of participants"
+                :label="t('tournamentPage.editPage.maxParticipantsText')"
               />
             </div>
             <div class="col">
-              <q-input v-model="location" type="text" label="Location" />
+              <q-input
+                v-model="location"
+                type="text"
+                :label="t('tournamentPage.editPage.locationText')"
+              />
             </div>
             <div class="col">
               <q-input
                 v-model="city"
                 type="text"
-                label="City"
+                :label="t('cityText')"
                 list="cityList"
               />
 
@@ -124,13 +142,21 @@
             :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
           >
             <div class="col">
-              <q-input v-model="minLevel" type="number" label="Minimum level" />
+              <q-input
+                v-model="minLevel"
+                type="number"
+                :label="t('tournamentPage.editPage.minLevelText')"
+              />
             </div>
             <div class="col">
-              <q-input v-model="maxLevel" type="number" label="Maximum level" />
+              <q-input
+                v-model="maxLevel"
+                type="number"
+                :label="t('tournamentPage.editPage.maxLevelText')"
+              />
             </div>
             <div class="col">
-              <q-input v-model="cost" type="number" label="Cost" />
+              <q-input v-model="cost" type="number" :label="t('costText')" />
             </div>
           </div>
           <div class="row q-gutter-sm q-mt-sm">
@@ -138,7 +164,7 @@
               <q-input
                 v-model="description"
                 type="text"
-                label="Description"
+                :label="t('description')"
                 autogrow
               />
             </div>
@@ -147,11 +173,17 @@
         <q-card-actions align="right">
           <q-btn
             flat
-            label="Close"
+            no-caps
+            :label="t('tournamentPage.editPage.closeButton')"
             color="red-4"
             @click="closeEditTournament"
           />
-          <q-btn flat label="Update" color="green-4" @click="updateEvent" />
+          <q-btn
+            no-caps
+            :label="t('tournamentPage.editPage.updateButton')"
+            color="green-4"
+            @click="updateEvent"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -163,6 +195,7 @@ import { useQuasar } from "quasar";
 import { useApiStore } from "src/stores/api-store";
 import { patchMethod } from "src/composables/apiMethod/patch";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const $q = useQuasar();
@@ -180,6 +213,7 @@ const props = defineProps({
   },
 });
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const startDate = ref("");
 const endDate = ref("");

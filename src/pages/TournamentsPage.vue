@@ -4,17 +4,18 @@
       class="text-uppercase text-center q-mt-lg text-weight-thin"
       :class="$q.screen.width < mobileWidth ? 'text-h5' : 'text-h1'"
     >
-      <p>CREATORS</p>
-      <p>HUB</p>
+      <p>{{ t("tournamentPage.mainText.text1") }}</p>
+      <p>{{ t("tournamentPage.mainText.text2") }}</p>
     </section>
     <section class="text-center q-mt-lg text-h6 text-weight-thin">
-      <span>This community is awesome</span>
-      <p>Proud of all of them</p>
+      <span>{{ t("tournamentPage.captionText.text1") }}</span>
+      <p>{{ t("tournamentPage.captionText.text2") }}</p>
     </section>
     <section class="row">
       <div class="col q-px-lg">
         <p class="text-weight-thin text-body1 q-pt-md">
-          <span class="text-bold">1679</span> professionals waiting.
+          <span class="text-bold">1679</span>
+          {{ t("tournamentPage.captionText.text3") }}
         </p>
       </div>
       <q-btn
@@ -47,11 +48,15 @@
             <section class="col">
               <q-card-section>
                 <div class="text-capitalize col">
-                  <p class="text-weight-thin text-body1">International</p>
+                  <p class="text-weight-thin text-body1">
+                    {{ t("tournamentPage.internationalTournamentsText") }}
+                  </p>
                   <p class="text-h4">{{ tournament.description }}</p>
                   <p class="text-subtitle1">{{ tournament.category }}</p>
                   <p class="">
-                    From {{ tournament.startDate }} To {{ tournament.endDate }}
+                    {{ t("tournamentPage.fromText") }}
+                    {{ tournament.startDate }} {{ t("tournamentPage.toText") }}
+                    {{ tournament.endDate }}
                   </p>
                   <p>{{ tournament.location }}, {{ tournament.city }}</p>
                   <p class="text-bold">
@@ -78,6 +83,7 @@
               <q-card-actions align="right" data-testid="exploreTournaments">
                 <q-btn
                   color="black"
+                  no-caps
                   class="q-pa-md button"
                   :label="t('tournamentPage.mainPage.exploreButton')"
                   @click="exploreTournaments(tournament)"
@@ -94,7 +100,7 @@
       </section>
     </div>
     <div data-testid="noInfo" v-else class="text-center q-mt-md">
-      <p class="text-h6 text-bold">There are no more tournaments...</p>
+      <p class="text-h6 text-bold">{{ t("tournamentPage.noData") }}</p>
     </div>
     <q-pagination
       class="justify-center"

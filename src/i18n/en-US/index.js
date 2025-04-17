@@ -112,12 +112,6 @@ export default {
         },
       },
     },
-    tournamentPage: {
-      mainPage: {
-        participants: "Participants",
-        exploreButton: "Explore",
-      },
-    },
     coachPage: {
       mainText: "Submit your application to join our coaching program.",
       mainTextWithAnotherColor: "We’ll get in touch with you shortly.",
@@ -181,6 +175,38 @@ export default {
         closeButton: "Close",
         addNewsButton: "Add",
       },
+    },
+    tournamentPage: {
+      mainPage: {
+        participants: "Participants",
+        exploreButton: "Explore",
+      },
+      mainText: {
+        text1: "CREATORS",
+        text2: "HUB",
+      },
+      captionText: {
+        text1: "This community is awesome",
+        text2: "Proud of all of them",
+        text3: "professionals waiting.",
+      },
+      editPage: {
+        mainText: "Edit information",
+        startDateText: "Start date",
+        endDateText: "End date",
+        startTimeText: "Start time",
+        categoryText: "Category",
+        maxParticipantsText: "Maximum number of participants",
+        locationText: "Location",
+        minLevelText: "Minimum level",
+        maxLevelText: "Maximum level",
+        closeButton: "Close",
+        updateButton: "Update",
+      },
+      internationalTournamentsText: "International tournaments",
+      fromText: "From",
+      toText: "To",
+      noData: "There are no more tournaments...",
     },
   },
   "ru-RU": ruRU,

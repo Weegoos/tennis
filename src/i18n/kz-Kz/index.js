@@ -101,12 +101,6 @@ export default {
       },
     },
   },
-  tournamentPage: {
-    mainPage: {
-      participants: "Қатысушылар",
-      exploreButton: "Зерттеу",
-    },
-  },
   coachPage: {
     mainText: "Бапкерлер бағдарламасына қатысу үшін өтінім жіберіңіз.",
     mainTextWithAnotherColor: "Біз жақын арада сізбен байланысамыз.",
@@ -170,5 +164,37 @@ export default {
       closeButton: "Жабу",
       addNewsButton: "Қосу",
     },
+  },
+  tournamentPage: {
+    mainPage: {
+      participants: "Қатысушылар",
+      exploreButton: "Зерттеу",
+    },
+    mainText: {
+      text1: "ЖАСАУШЫЛАР",
+      text2: "ОРТАЛЫҒЫ",
+    },
+    captionText: {
+      text1: "Бұл қауымдастық керемет",
+      text2: "Бәріне мақтанышпен қараймыз",
+      text3: "кәсіби мамандар күтіп отыр.",
+    },
+    editPage: {
+      mainText: "Ақпаратты өңдеу",
+      startDateText: "Басталу күні",
+      endDateText: "Аяқталу күні",
+      startTimeText: "Басталу уақыты",
+      categoryText: "Санат",
+      maxParticipantsText: "Қатысушылардың максималды саны",
+      locationText: "Өтетін орны",
+      minLevelText: "Ең төменгі деңгей",
+      maxLevelText: "Ең жоғарғы деңгей",
+      closeButton: "Жабу",
+      updateButton: "Жаңарту",
+    },
+    internationalTournamentsText: "Халықаралық турнирлер",
+    fromText: "Басталуы",
+    toText: "Аяқталуы",
+    noData: "Қосымша турнирлер жоқ...",
   },
 };

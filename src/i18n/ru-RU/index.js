@@ -105,12 +105,6 @@ export default {
       },
     },
   },
-  tournamentPage: {
-    mainPage: {
-      participants: "Участники",
-      exploreButton: "Исследовать",
-    },
-  },
   coachPage: {
     mainText: "Отправьте заявку на участие в нашей программе для тренеров.",
     mainTextWithAnotherColor: "Мы свяжемся с вами в ближайшее время.",
@@ -174,5 +168,37 @@ export default {
       closeButton: "Закрыть",
       addNewsButton: "Добавить",
     },
+  },
+  tournamentPage: {
+    mainPage: {
+      participants: "Участники",
+      exploreButton: "Исследовать",
+    },
+    mainText: {
+      text1: "СОЗДАТЕЛИ",
+      text2: "ЦЕНТР",
+    },
+    captionText: {
+      text1: "Это сообщество потрясающее",
+      text2: "Гордимся каждым из них",
+      text3: "профессионалы ждут.",
+    },
+    editPage: {
+      mainText: "Редактировать информацию",
+      startDateText: "Дата начала",
+      endDateText: "Дата окончания",
+      startTimeText: "Время начала",
+      categoryText: "Категория",
+      maxParticipantsText: "Максимальное количество участников",
+      locationText: "Местоположение",
+      minLevelText: "Минимальный уровень",
+      maxLevelText: "Максимальный уровень",
+      closeButton: "Закрыть",
+      updateButton: "Обновить",
+    },
+    internationalTournamentsText: "Международные турниры",
+    fromText: "От",
+    toText: "До",
+    noData: "Больше нет турниров...",
   },
 };
