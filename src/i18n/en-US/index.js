@@ -96,6 +96,21 @@ export default {
           caption: "Real tournaments, challenges, and a chance to shine.",
         },
       },
+      meetFounders: {
+        mainText: "Meet Founders",
+        founder1: {
+          fullName: "Batyr Ashim",
+          role: "Front-end Developer",
+        },
+        founder2: {
+          fullName: "Arystanbek Abuyev",
+          role: "Back-end Developer",
+        },
+        founder3: {
+          fullName: "Akzhan Omir",
+          role: "Back-end Developer",
+        },
+      },
     },
     tournamentPage: {
       mainPage: {

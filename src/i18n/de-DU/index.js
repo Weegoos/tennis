@@ -90,6 +90,21 @@ export default {
           "Echte Turniere, Herausforderungen und die Chance, dich zu beweisen.",
       },
     },
+    meetFounders: {
+      mainText: "Lernen Sie die Gründer kennen",
+      founder1: {
+        fullName: "Batyr Ashim",
+        role: "Frontend-Entwickler",
+      },
+      founder2: {
+        fullName: "Arystanbek Abuyev",
+        role: "Backend-Entwickler",
+      },
+      founder3: {
+        fullName: "Akzhan Omir",
+        role: "Backend-Entwickler",
+      },
+    },
   },
   tournamentPage: {
     mainPage: {

@@ -5,7 +5,7 @@
       class="text-center text-bold"
       :class="$q.screen.width < mobileWidth ? 'text-h4' : 'text-h3'"
     >
-      Meet Founders
+      {{ t("indexPage.meetFounders.mainText") }}
     </p>
     <div class="row">
       <section
@@ -40,6 +40,7 @@ import akzhan from "../../assets/team/akzhan.jpg";
 import arystanbek from "../../assets/team/arystanbek.jpg";
 import batyr from "../../assets/team/batyr.jpeg";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const { proxy } = getCurrentInstance();
@@ -47,6 +48,7 @@ const mobileWidth = proxy.$mobileWidth;
 const visible = ref([]); // массив видимости
 const targets = []; // просто массив DOM элементов
 const router = useRouter();
+const { t } = useI18n();
 
 let observer;
 
@@ -79,18 +81,18 @@ const pushToAboutPage = () => {
 const imgList = [
   {
     img: batyr,
-    fio: "Batyr Ashim",
-    role: "Front-end Developer",
+    fio: t("indexPage.meetFounders.founder1.fullName"),
+    role: t("indexPage.meetFounders.founder1.role"),
   },
   {
     img: arystanbek,
-    fio: "Arystanbek Abuyev",
-    role: "Back-end Developer",
+    fio: t("indexPage.meetFounders.founder2.fullName"),
+    role: t("indexPage.meetFounders.founder2.role"),
   },
   {
     img: akzhan,
-    fio: "Akzhan Omir",
-    role: "Back-end Developer",
+    fio: t("indexPage.meetFounders.founder3.fullName"),
+    role: t("indexPage.meetFounders.founder3.role"),
   },
 ];
 </script>

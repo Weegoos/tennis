@@ -84,6 +84,21 @@ export default {
         caption: "Нағыз турнирлер, челлендждер және өзіңді көрсету мүмкіндігі.",
       },
     },
+    meetFounders: {
+      mainText: "Негізін қалаушылармен танысыңыз",
+      founder1: {
+        fullName: "Батыр Ашим",
+        role: "Фронтенд әзірлеуші",
+      },
+      founder2: {
+        fullName: "Арыстанбек Әбуев",
+        role: "Бэкенд әзірлеуші",
+      },
+      founder3: {
+        fullName: "Ақжан Өмір",
+        role: "Бэкенд әзірлеуші",
+      },
+    },
   },
   tournamentPage: {
     mainPage: {

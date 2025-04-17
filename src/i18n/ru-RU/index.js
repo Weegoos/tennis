@@ -88,6 +88,21 @@ export default {
         caption: "Реальные турниры, челленджи и шанс показать себя.",
       },
     },
+    meetFounders: {
+      mainText: "Познакомьтесь с основателями",
+      founder1: {
+        fullName: "Батыр Ашим",
+        role: "Фронтенд-разработчик",
+      },
+      founder2: {
+        fullName: "Арыстанбек Абуев",
+        role: "Бэкенд-разработчик",
+      },
+      founder3: {
+        fullName: "Акжан Омир",
+        role: "Бэкенд-разработчик",
+      },
+    },
   },
   tournamentPage: {
     mainPage: {
