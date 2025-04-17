@@ -14,10 +14,15 @@
         <section class="col">
           <q-card-section class="row">
             <div class="text-capitalize col">
-              <p class="text-weight-thin text-body1">International</p>
+              <p class="text-weight-thin text-body1">
+                {{ t("tournamentPage.internationalTournamentsText") }}
+              </p>
               <p class="text-h4">{{ description }}</p>
               <p class="text-subtitle1">{{ category }}</p>
-              <p class="">From {{ startDate }} To {{ endDate }}</p>
+              <p class="">
+                {{ t("tournamentPage.fromText") }} {{ startDate }}
+                {{ t("tournamentPage.toText") }} {{ endDate }}
+              </p>
             </div>
           </q-card-section>
           <q-card-section>
@@ -27,9 +32,10 @@
             <q-btn
               color="black"
               class="q-pa-md"
+              no-caps
               rounded
               :class="$q.screen.width < mobileWidth ? 'buttonMobile' : 'button'"
-              label="Explore"
+              :label="t('tournamentPage.mainPage.exploreButton')"
               @click="exploreTournaments(tournament)"
             />
           </q-card-actions>
@@ -43,7 +49,11 @@
           :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
         >
           <div class="col">
-            <q-input v-model="startDate" type="text" label="Start date">
+            <q-input
+              v-model="startDate"
+              type="text"
+              :label="t('tournamentPage.editPage.startDateText')"
+            >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
                   <q-popup-proxy
@@ -68,7 +78,11 @@
           </div>
 
           <div class="col">
-            <q-input v-model="endDate" type="text" label="End date">
+            <q-input
+              v-model="endDate"
+              type="text"
+              :label="t('tournamentPage.editPage.endDateText')"
+            >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
                   <q-popup-proxy
@@ -92,7 +106,11 @@
             </q-input>
           </div>
           <div class="col">
-            <q-input v-model="time" type="text" label="Start time">
+            <q-input
+              v-model="time"
+              type="text"
+              :label="t('tournamentPage.editPage.startTimeText')"
+            >
               <template v-slot:append>
                 <q-icon name="access_time" class="cursor-pointer">
                   <q-popup-proxy
@@ -121,25 +139,30 @@
             <q-select
               v-model="category"
               :options="categoryOptions"
-              label="Category"
+              :label="t('tournamentPage.editPage.categoryText')"
             />
           </div>
           <div class="col">
             <q-input
               v-model="maxParticipants"
               type="number"
-              label="Maximum number of participants"
+              :label="t('tournamentPage.editPage.maxParticipantsText')"
             />
           </div>
           <div class="col">
             <q-select
               v-model="location"
               :options="locationOptions"
-              label="Location"
+              :label="t('tournamentPage.editPage.locationText')"
             />
           </div>
           <div class="col">
-            <q-input v-model="city" type="text" label="City" list="city" />
+            <q-input
+              v-model="city"
+              type="text"
+              :label="t('cityText')"
+              list="city"
+            />
             <datalist id="city">
               <section v-for="(cities, id) in cities" :key="id">
                 <option :value="cities"></option>
@@ -150,10 +173,18 @@
 
         <div class="row q-gutter-sm q-mt-sm">
           <div class="col">
-            <q-input v-model="minLevel" type="number" label="Minimum level" />
+            <q-input
+              v-model="minLevel"
+              type="number"
+              :label="t('tournamentPage.editPage.minLevelText')"
+            />
           </div>
           <div class="col">
-            <q-input v-model="maxLevel" type="number" label="Maximum level" />
+            <q-input
+              v-model="maxLevel"
+              type="number"
+              :label="t('tournamentPage.editPage.maxLevelText')"
+            />
           </div>
           <div class="col">
             <q-input v-model="cost" type="number" label="Cost" />
@@ -164,7 +195,7 @@
             <q-input
               v-model="description"
               type="text"
-              label="Description"
+              :label="t('description')"
               autogrow
             />
           </div>
@@ -178,7 +209,7 @@
           :class="
             $q.screen.width < mobileWidth ? 'buttonMobile q-pa-sm' : 'button'
           "
-          label="Create"
+          :label="t('createButton')"
           @click="createEvent"
         />
       </q-card-actions>
@@ -192,12 +223,14 @@ import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import locationJSON from "src/composables/location.json";
+import { useI18n } from "vue-i18n";
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const mobileWidth = proxy.$mobileWidth;
 const apiStore = useApiStore();
+const { t } = useI18n();
 
 const startDate = ref("");
 const endDate = ref("");

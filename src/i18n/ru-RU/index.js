@@ -19,12 +19,12 @@ export default {
   lastNameText: "Фамилия",
   ageText: "Возраст",
   emailText: "Электронная почта",
-
   fullNameText: "Полное имя",
   personalDataText: "Личные данные",
   genderText: "Пол",
   phoneNumber: "Номер телефона",
   professionalInformationText: "Профессиональная информация",
+  createButton: "Создать",
 
   timePart: {
     label: "Время",

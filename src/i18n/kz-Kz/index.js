@@ -24,6 +24,8 @@ export default {
   genderText: "Жыныс",
   phoneNumber: "Телефон нөмірі",
   professionalInformationText: "Кәсіби ақпарат",
+  createButton: "Жасау",
+
   timePart: {
     label: "Уақыты",
     caption: "Жасалған және жаңартылған уақыты",

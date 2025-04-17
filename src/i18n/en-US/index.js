@@ -31,6 +31,7 @@ export default {
     phoneNumber: "Phone Number",
     professionalInformationText: "Professional information",
     emailText: "Email",
+    createButton: "Create",
     timePart: {
       label: "Time",
       caption: "Created, updated time",
