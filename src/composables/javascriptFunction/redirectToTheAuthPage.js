@@ -1,5 +1,5 @@
 import { useApiStore } from "src/stores/api-store";
-const clientURL = "https://kaz-tennis.netlify.app/#/";
+const clientURL = "http://localhost:9000/#/";
 async function redirectToUser() {
   try {
     const apiStore = useApiStore();
