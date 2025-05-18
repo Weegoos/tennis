@@ -1,43 +1,35 @@
-# Tennis Project (tennis)
+# 🎾 Tennis Project — tennis.kz
 
-Topic of our diploma work is tennis.kz
+> Дипломный проект, посвящённый теннису в Казахстане.
 
-## Install the dependencies
+Деплой: [https://kaz-tennis.netlify.app](https://kaz-tennis.netlify.app/#/)
 
-```bash
-yarn
-# or
-npm install
-```
+---
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+## 📦 Стек технологий
 
-```bash
-quasar dev
-```
+### 🖥️ Frontend
 
-### Lint the files
+- [Vue 3](https://vuejs.org/) + [Quasar Framework](https://quasar.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Pinia](https://pinia.vuejs.org/) — state management
+- [Vue I18n](https://kazupon.github.io/vue-i18n/) — поддержка 4 языков
+- [Vue Router](https://router.vuejs.org/)
+- [Vitest](https://vitest.dev/) — юнит-тесты
+- [Cordova](https://cordova.apache.org/) — сборка Android-приложения
+- [VuePress](https://vuepress.vuejs.org/) — документация
 
-```bash
-yarn lint
-# or
-npm run lint
-```
+### 🛠 Backend
 
-### Format the files
+- Docker (контейнеризация, запуск в изолированной среде)
 
-```bash
-yarn format
-# or
-npm run format
-```
+---
 
-### Build the app for production
+## 🚀 Установка и запуск
+
+### 1. Клонируем репозиторий
 
 ```bash
-quasar build
+git clone https://github.com/your-username/tennis.git
+cd tennis
 ```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

@@ -10,14 +10,14 @@
       style="flex: 1; position: relative; overflow: hidden"
       v-if="$q.screen.width > mobileWidth"
     >
-      <video
-        src="../assets/background.mp4"
+      <img
+        src="../assets/tennis-background-img.avif"
         autoplay
         muted
         loop
         playsinline
         style="width: 100%; height: 100%; object-fit: cover"
-      ></video>
+      />
     </div>
 
     <!-- Правая половина с текстом -->
@@ -28,17 +28,11 @@
         $q.screen.width > mobileWidth ? 'desktopDesign' : 'background-container'
       "
     >
-      <video
+      <img
         v-if="$q.screen.width < mobileWidth"
-        autoplay
-        muted
-        loop
-        playsinline
+        src="../assets/tennis-background-img.avif"
         class="background-video"
-      >
-        <source src="../assets/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      />
       <q-card
         class="my-card"
         :class="
