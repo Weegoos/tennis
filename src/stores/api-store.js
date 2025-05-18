@@ -23,7 +23,7 @@ export const useApiStore = defineStore("api", {
       // notifyStore.loading($q, "Данные загружаются...", QSpinnerGears);
       try {
         const response = await axios.get(
-          "https://tennis-p30s.onrender.com/api/v1/user/authenticated",
+          "http://localhost:8000/api/v1/user/authenticated",
           {
             headers: {
               "Content-Type": "application/json",
