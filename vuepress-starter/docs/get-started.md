@@ -1,37 +1,103 @@
-# Get Started
+# Документация проекта "Tennis"
 
-This is a normal page, which contains VuePress basics.
+## Тема дипломной работы
 
-## Pages
+**Разработка системы для организации теннисных турниров с функцией регистрации участников и поддержкой различных форматов соревнований**
 
-You can add markdown files in your vuepress directory, every markdown file will be converted to a page in your site.
+**Қатысушыларды тіркеу және әртүрлі жарыс форматтарын қолдау функциясымен теннис турнирлерін ұйымдастыру жүйесін әзірлеу**
 
-See [routing][] for more details.
+**Development of a System for Organizing Tennis Tournaments with Participant Registration and Support for Various Competition Formats**
 
-## Content
+---
 
-Every markdown file [will be rendered to HTML, then converted to a Vue SFC][content].
+## Описание проекта
 
-VuePress support basic markdown syntax and [some extensions][synatex-extensions], you can also [use Vue features][vue-feature] in it.
+Данный проект представляет собой современное веб-приложение, предназначенное для администрирования теннисных турниров, регистрации участников, генерации сеток соревнований и ведения учёта результатов. Система поддерживает различные форматы соревнований (например, одиночные, парные, групповые этапы и плей-офф), а также доступна на нескольких языках.
 
-## Configuration
+Подробнее о функциональности, архитектуре и технологиях проекта см. ниже.
 
-VuePress use a `.vuepress/config.js`(or .ts) file as [site configuration][config], you can use it to config your site.
+Добро пожаловать в документацию проекта **Tennis**. Это мультиплатформенное приложение, разработанное с использованием современных веб-технологий и предназначенное для администрирования теннисных мероприятий, управления пользователями и публикации контента. Проект можно собрать как для веба, так и для Android с помощью Cordova.
 
-For [client side configuration][client-config], you can create `.vuepress/client.js`(or .ts).
+GitHub репозиторий: [Weegoos/tennis](https://github.com/Weegoos/tennis)
 
-Meanwhile, you can also add configuration per page with [frontmatter][].
+---
 
-## Layouts and customization
+## Технологии (Стек)
 
-Here are common configuration controlling layout of `@vuepress/theme-default`:
+Проект построен на следующих технологиях:
 
-- [navbar][]
-- [sidebar][]
+### **Vue 3 + Quasar Framework**
 
-Check [default theme docs][default-theme] for full reference.
+Основной фреймворк проекта. Quasar — мощная надстройка над Vue 3, позволяющая создавать SPA, SSR, PWA и мобильные приложения с единой кодовой базой.
 
-You can [add extra style][style] with `.vuepress/styles/index.scss` file.
+### **Tailwind CSS**
+
+Утилитарный CSS-фреймворк, который позволяет быстро создавать адаптивный интерфейс без написания кастомных стилей.
+
+### **Pinia**
+
+Современная библиотека управления состоянием от команды Vue. Она проста в использовании, поддерживает TypeScript и идеально подходит для Vue 3.
+
+### **Vue I18n**
+
+Механизм локализации, реализующий поддержку 4 языков: английский, русский, казахский и (добавьте при необходимости). Это позволяет делать приложение многоязычным и доступным.
+
+### **Vue Router**
+
+Система маршрутизации, обеспечивающая переход между страницами, поддержку вложенных маршрутов и динамическую загрузку компонентов.
+
+### **Vitest**
+
+Инструмент для написания и запуска юнит-тестов, созданный специально для экосистемы Vite и Vue. Обеспечивает высокую скорость и совместимость с Jest.
+
+### **Apache Cordova**
+
+Позволяет собирать Android-приложение из веб-кода, превращая Vue + Quasar проект в нативное Android-приложение (APK).
+
+### **VuePress**
+
+Используется для генерации этой документации. VuePress рендерит Markdown-файлы в HTML и предоставляет возможность использовать Vue-компоненты прямо внутри документации.
+
+---
+
+## Страницы
+
+Вы можете добавлять `.md`-файлы в директорию проекта VuePress. Каждый такой файл будет автоматически превращён в отдельную страницу сайта.
+
+Подробнее читайте в [документации по маршрутизации][routing].
+
+---
+
+## Контент
+
+Каждый `.md`-файл [превращается в HTML, а затем — во Vue-компонент][content].
+
+VuePress поддерживает базовый Markdown и [расширенные синтаксические возможности][synatex-extensions], включая возможность [использования Vue-компонентов внутри Markdown][vue-feature].
+
+---
+
+## Конфигурация
+
+Главный конфигурационный файл проекта — `.vuepress/config.js` или `.vuepress/config.ts`.
+
+Для клиентской настройки — `.vuepress/client.js`.
+
+Также можно задавать параметры страниц через [frontmatter][].
+
+---
+
+## Макеты и настройка внешнего вида
+
+Возможности темы `@vuepress/theme-default`:
+
+- Настройка [навигационной панели (navbar)][navbar]
+- Настройка [бокового меню (sidebar)][sidebar]
+
+Дополнительные стили можно задать через `.vuepress/styles/index.scss`.
+
+Полный список опций см. в [документации по теме по умолчанию][default-theme].
+
+---
 
 [routing]: https://vuejs.press/guide/page.html#routing
 [content]: https://vuejs.press/guide/page.html#content

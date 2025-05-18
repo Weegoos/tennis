@@ -1,0 +1,16 @@
+import comp from "/home/batyr_ashim/Рабочий стол/Diploma/client/tennis/vuepress-starter/docs/.vuepress/.temp/pages/get-started.html.vue"
+const data = JSON.parse("{\"path\":\"/get-started.html\",\"title\":\"Документация проекта \\\"Tennis\\\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"Тема дипломной работы\",\"slug\":\"тема-дипломнои-работы\",\"link\":\"#тема-дипломнои-работы\",\"children\":[]},{\"level\":2,\"title\":\"Описание проекта\",\"slug\":\"описание-проекта\",\"link\":\"#описание-проекта\",\"children\":[]},{\"level\":2,\"title\":\"Технологии (Стек)\",\"slug\":\"технологии-стек\",\"link\":\"#технологии-стек\",\"children\":[{\"level\":3,\"title\":\"Vue 3 + Quasar Framework\",\"slug\":\"vue-3-quasar-framework\",\"link\":\"#vue-3-quasar-framework\",\"children\":[]},{\"level\":3,\"title\":\"Tailwind CSS\",\"slug\":\"tailwind-css\",\"link\":\"#tailwind-css\",\"children\":[]},{\"level\":3,\"title\":\"Pinia\",\"slug\":\"pinia\",\"link\":\"#pinia\",\"children\":[]},{\"level\":3,\"title\":\"Vue I18n\",\"slug\":\"vue-i18n\",\"link\":\"#vue-i18n\",\"children\":[]},{\"level\":3,\"title\":\"Vue Router\",\"slug\":\"vue-router\",\"link\":\"#vue-router\",\"children\":[]},{\"level\":3,\"title\":\"Vitest\",\"slug\":\"vitest\",\"link\":\"#vitest\",\"children\":[]},{\"level\":3,\"title\":\"Apache Cordova\",\"slug\":\"apache-cordova\",\"link\":\"#apache-cordova\",\"children\":[]},{\"level\":3,\"title\":\"VuePress\",\"slug\":\"vuepress\",\"link\":\"#vuepress\",\"children\":[]}]},{\"level\":2,\"title\":\"Страницы\",\"slug\":\"страницы\",\"link\":\"#страницы\",\"children\":[]},{\"level\":2,\"title\":\"Контент\",\"slug\":\"контент\",\"link\":\"#контент\",\"children\":[]},{\"level\":2,\"title\":\"Конфигурация\",\"slug\":\"конфигурация\",\"link\":\"#конфигурация\",\"children\":[]},{\"level\":2,\"title\":\"Макеты и настройка внешнего вида\",\"slug\":\"макеты-и-настроика-внешнего-вида\",\"link\":\"#макеты-и-настроика-внешнего-вида\",\"children\":[]}],\"git\":{\"updatedTime\":1747543403000,\"contributors\":[{\"name\":\"Weegoos\",\"username\":\"Weegoos\",\"email\":\"batyr.ashim05@mail.ru\",\"commits\":1,\"url\":\"https://github.com/Weegoos\"}],\"changelog\":[{\"hash\":\"933c05f84011a5bee22bee91343217cbcaded365\",\"time\":1747543403000,\"email\":\"batyr.ashim05@mail.ru\",\"author\":\"Weegoos\",\"message\":\"Tennis: The backgound image has been changed\"}]},\"filePathRelative\":\"get-started.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

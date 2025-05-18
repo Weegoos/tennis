@@ -45,7 +45,7 @@
       <AchievementsPage />
     </section>
     <section data-testid="parallaxPage">
-      <ParallaxPage />
+      <!-- <ParallaxPage /> -->
     </section>
   </div>
 </template>

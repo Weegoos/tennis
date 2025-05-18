@@ -43,7 +43,7 @@ import {
   computed,
 } from "vue";
 import akzhan from "../../assets/team/akzhan.jpg";
-import arystanbek from "../../assets/team/arystanbek.jpg";
+import arystanbek from "../../assets/team/arystanbek.jpeg";
 import batyr from "../../assets/team/batyr.jpeg";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";

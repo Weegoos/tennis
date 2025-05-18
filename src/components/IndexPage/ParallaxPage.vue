@@ -11,13 +11,13 @@
 
       <template v-slot:content="scope">
         <div
-          class="absolute-full text-center flex flex-center column"
+          class="absolute column items-center text-center"
           :style="{
             opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
-            top: scope.percentScrolled * 40 + '%',
+            transform: `translateY(${scope.percentScrolled * 60}%)`,
             left: 0,
             right: 0,
-            transition: 'top 0.3s ease, opacity 0.3s ease',
+            transition: 'transform 0.3s ease, opacity 0.3s ease',
           }"
         >
           <section
@@ -41,7 +41,7 @@
 import { Cookies } from "quasar";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
-
+import parallax1 from "../../assets/parallax/parallax-1.jpeg";
 // globalVariables
 const { t } = useI18n();
 console.log(localStorage.getItem("locale"));

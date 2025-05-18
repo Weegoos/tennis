@@ -1,0 +1,16 @@
+import comp from "/home/batyr_ashim/Рабочий стол/Diploma/client/tennis/vuepress-starter/docs/.vuepress/.temp/pages/index.html.vue"
+const data = JSON.parse("{\"path\":\"/\",\"title\":\"Домой\",\"lang\":\"en-US\",\"frontmatter\":{\"home\":true,\"title\":\"Домой\",\"heroImage\":\"/images/docs/tennis-logo-round.png\",\"actions\":[{\"text\":\"Документация\",\"link\":\"/get-started.html\",\"type\":\"primary\"}],\"features\":[{\"title\":\"Vue 3 + Quasar Framework\",\"details\":\"Современный UI-фреймворк на основе Vue 3 для создания адаптивных SPA, SSR, PWA и мобильных приложений.\"},{\"title\":\"Tailwind CSS\",\"details\":\"Утилитарный CSS-фреймворк для быстрой и адаптивной верстки без написания кастомных стилей.\"},{\"title\":\"Pinia — state management\",\"details\":\"Официальная библиотека управления состоянием для Vue 3, простая и типобезопасная.\"},{\"title\":\"Vue I18n — поддержка 4 языков\",\"details\":\"Локализация интерфейса с возможностью переключения между четырьмя языками.\"},{\"title\":\"Vue Router\",\"details\":\"Маршрутизация во Vue-приложении с поддержкой вложенных маршрутов и динамической загрузки компонентов.\"},{\"title\":\"Vitest — юнит-тесты\",\"details\":\"Быстрый тестовый раннер для Vue и Vite, совместимый с Jest API.\"},{\"title\":\"Cordova — сборка Android-приложения\",\"details\":\"Интеграция с Apache Cordova для упаковки веб-приложения в Android APK.\"},{\"title\":\"VuePress — документация\",\"details\":\"Статический сайт для документации, написанной в Markdown с возможностью использования Vue-компонентов.\"}],\"footer\":\"MIT Licensed | Copyright © 2018-present VuePress Community\"},\"headers\":[],\"git\":{\"updatedTime\":1747543403000,\"contributors\":[{\"name\":\"Weegoos\",\"username\":\"Weegoos\",\"email\":\"batyr.ashim05@mail.ru\",\"commits\":1,\"url\":\"https://github.com/Weegoos\"}],\"changelog\":[{\"hash\":\"933c05f84011a5bee22bee91343217cbcaded365\",\"time\":1747543403000,\"email\":\"batyr.ashim05@mail.ru\",\"author\":\"Weegoos\",\"message\":\"Tennis: The backgound image has been changed\"}]},\"filePathRelative\":\"README.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

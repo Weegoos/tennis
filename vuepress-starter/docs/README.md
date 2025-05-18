@@ -1,29 +1,40 @@
 ---
 home: true
-title: Home
-heroImage: https://vuejs.press/images/hero.png
+title: Домой
+heroImage: /images/docs/tennis-logo-round.png
 actions:
-  - text: Get Started
+  - text: Документация
     link: /get-started.html
     type: primary
 
-  - text: Introduction
-    link: https://vuejs.press/guide/introduction.html
-    type: secondary
+  # - text: Introduction
+  #   link: https://vuejs.press/guide/introduction.html
+  #   type: secondary
 
 features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site.
-  - title: Bundlers
-    details: Default bundler is Vite, while Webpack is also supported. Choose the one you like!
+  - title: Vue 3 + Quasar Framework
+    details: Современный UI-фреймворк на основе Vue 3 для создания адаптивных SPA, SSR, PWA и мобильных приложений.
+
+  - title: Tailwind CSS
+    details: Утилитарный CSS-фреймворк для быстрой и адаптивной верстки без написания кастомных стилей.
+
+  - title: Pinia — state management
+    details: Официальная библиотека управления состоянием для Vue 3, простая и типобезопасная.
+
+  - title: Vue I18n — поддержка 4 языков
+    details: Локализация интерфейса с возможностью переключения между четырьмя языками.
+
+  - title: Vue Router
+    details: Маршрутизация во Vue-приложении с поддержкой вложенных маршрутов и динамической загрузки компонентов.
+
+  - title: Vitest — юнит-тесты
+    details: Быстрый тестовый раннер для Vue и Vite, совместимый с Jest API.
+
+  - title: Cordova — сборка Android-приложения
+    details: Интеграция с Apache Cordova для упаковки веб-приложения в Android APK.
+
+  - title: VuePress — документация
+    details: Статический сайт для документации, написанной в Markdown с возможностью использования Vue-компонентов.
 
 footer: MIT Licensed | Copyright © 2018-present VuePress Community
 ---

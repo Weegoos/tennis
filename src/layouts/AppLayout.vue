@@ -61,8 +61,12 @@
               <q-btn icon="keyboard_arrow_up" color="black" />
             </q-page-scroller> -->
             <q-btn-dropdown
-              class="fixed-bottom-right q-mb-md"
-              :class="$q.screen.width < mobileWidth ? 'q-mx-md' : 'q-mx-lg'"
+              class="q-mb-md"
+              :class="
+                $q.screen.width < mobileWidth
+                  ? 'q-mx-md fixed-top-right'
+                  : 'q-mx-lg fixed-bottom-right'
+              "
               color="black"
               rounded
               icon="mdi-web"

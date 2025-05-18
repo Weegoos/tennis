@@ -2,7 +2,7 @@
   "name": "tennis",
   "version": "0.0.1",
   "description": "Topic of our diploma work is tennis.kz",
-  "productName": "Tennis Project",
+  "productName": "Tennis",
   "author": "Weegoos <batyr.ashim05@mail.ru>",
   "private": true,
   "scripts": {
