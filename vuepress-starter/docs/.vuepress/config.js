@@ -9,7 +9,7 @@ export default defineUserConfig({
   description: "Разработка системы для организации теннисных турниров ",
 
   theme: defaultTheme({
-    logo: "https://vuejs.press/images/hero.png",
+    logo: "/images/docs/tennis-logo-round.png",
 
     navbar: ["/", "/get-started"],
   }),
