@@ -2,7 +2,7 @@
   <div>
     <q-dialog v-model="isOpenDetailedInformation" persistent>
       <q-card>
-        <q-card-section class="row items-center">
+        <q-card-section class="">
           <q-list>
             <q-expansion-item
               popup
@@ -33,6 +33,37 @@
                       props.detailedInformation.user.userInfo.rating ||
                       "Not specified"
                     }}
+                  </p>
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+            <q-expansion-item popup icon="filter_2" label="Match history">
+              <q-separator />
+              <q-card>
+                <q-card-section
+                  v-for="(match, index) in matchHistory.content"
+                  :key="index"
+                >
+                  <span data-testid="" class="infoHeadline"
+                    >Tournament Name</span
+                  >
+                  <p class="infoStyle">
+                    {{ match.tournamentName }}
+                  </p>
+                  <span data-testid="" class="infoHeadline"
+                    >Tournament Tier</span
+                  >
+                  <p class="infoStyle">
+                    {{ match.tournamentTier }}
+                  </p>
+                  <span data-testid="" class="infoHeadline">Opponent Name</span>
+                  <p class="infoStyle">
+                    {{ match.opponentName }}
+                  </p>
+
+                  <span data-testid="" class="infoHeadline">Winner</span>
+                  <p class="infoStyle">
+                    {{ match.winnerName || "Турнир продолжается" }}
                   </p>
                 </q-card-section>
               </q-card>
@@ -85,10 +116,34 @@ watch(
   }
 );
 
+watch(
+  () => props.detailedInformation,
+  (newVal) => {
+    getMatchHistory(newVal.id);
+  }
+);
+
 const emit = defineEmits(["closeDetailedInformationWindow"]);
 
 const closeDetailedInformationWindow = () => {
   emit("closeDetailedInformationWindow");
+};
+
+// match history
+const matchHistory = ref([]);
+const getMatchHistory = async (id) => {
+  try {
+    await getMethod(
+      serverURL,
+      `users/${id}/matches?page=1&size=10`,
+      matchHistory,
+      $q,
+      "Error: "
+    );
+    console.log(matchHistory.value);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 // Регистрация компонентов Chart.js
@@ -99,7 +154,6 @@ const userData = ref([]);
 const getData = async () => {
   try {
     await getMethod(serverURL, "users/1/stats", userData, $q, "Error:");
-    console.log(userData.value);
   } catch (error) {
     console.error(error);
   }
