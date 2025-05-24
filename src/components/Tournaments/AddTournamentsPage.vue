@@ -143,11 +143,7 @@
             />
           </div>
           <div class="col">
-            <q-input
-              v-model="maxParticipants"
-              type="number"
-              :label="t('tournamentPage.editPage.maxParticipantsText')"
-            />
+            <q-select v-model="tier" :options="tierOptions" label="Tier" />
           </div>
           <div class="col">
             <q-select
@@ -240,10 +236,11 @@ const location = ref("");
 const city = ref("");
 const cost = ref("");
 const description = ref("");
-const maxParticipants = ref("");
+const tier = ref("");
 const minLevel = ref("");
 const maxLevel = ref("");
 const locationOptions = ref(locationJSON);
+const tierOptions = ref([]);
 
 const categoryOptions = ref([]);
 
@@ -256,6 +253,9 @@ const getList = async () => {
   // category
   await apiStore.getCategory(serverURL, $q);
   categoryOptions.value = apiStore.category.value;
+
+  await apiStore.getTier(serverURL, $q);
+  tierOptions.value = apiStore.tier.value;
   console.log(apiStore.category.value);
 };
 
@@ -271,7 +271,7 @@ const createEvent = async () => {
     endDate: endDate.value,
     startTime: time.value,
     category: category.value,
-    maxParticipants: maxParticipants.value,
+    tier: tier.value,
     location: location.value,
     city: city.value,
     minLevel: minLevel.value,

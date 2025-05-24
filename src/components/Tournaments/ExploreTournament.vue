@@ -34,6 +34,9 @@
         hide-bottom
       />
     </div>
+    <div>
+      <BracketsPage :tournamentID="String(tournamentID)" />
+    </div>
     <div class="q-pa-md q-gutter-sm">
       <q-btn
         color="green-4"
@@ -75,6 +78,7 @@ import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import SearchPartnerPage from "./SearchPartnerPage.vue";
 import { useI18n } from "vue-i18n";
+import BracketsPage from "./BracketsPage.vue";
 
 // global variables
 const $q = useQuasar();
@@ -165,17 +169,19 @@ const columns = computed(() => [
 ]);
 
 const rows = ref([]);
-
+const tournamentID = ref("");
 const defineId = () => {
   const url = window.location.hash;
   const match = url.match(/\/hr\/(\d+)/);
 
   if (match) {
     const id = match[1];
+    tournamentID.value = id;
     getTournamentsByID(id);
     getInformationAboutPaarticipants(id);
+    console.log(typeof tournamentID.value);
   } else {
-    console.log("Не найден id");
+    console.error("Не найден id");
   }
 };
 
@@ -308,10 +314,6 @@ const checkTheUserInfoAndTournamentInfo = async (tournamentInfo) => {
   } else {
     isRelatedUserFormat.value = false;
   }
-
-  console.log(tournamentInfo.category.includes("DOUBLE"));
-  console.log(isRelatedUserFormat.value);
-  console.log(isRelatedUserToTournament.value);
 };
 
 // search
@@ -339,14 +341,5 @@ onMounted(() => {
 
 .match {
   text-align: center;
-}
-
-.tournament-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
 }
 </style>

@@ -14,6 +14,7 @@ export const useApiStore = defineStore("api", {
     language: ref([]),
     gender: ref([]),
     service: ref([]),
+    tier: ref([]),
     numberOfCoach: ref(0),
   }),
   actions: {
@@ -98,6 +99,15 @@ export const useApiStore = defineStore("api", {
         this.service,
         $q,
         "Ошибка при получении списка сервисов"
+      );
+    },
+    async getTier(serverURL, $q) {
+      await getMethod(
+        serverURL,
+        "enum/tier",
+        this.tier,
+        $q,
+        "Ошибка при получении тира"
       );
     },
     async setNumber(value) {
