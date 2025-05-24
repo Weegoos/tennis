@@ -223,6 +223,8 @@
         <TournamentResult
           :isOpenResultWindow="isOpenResultWindow"
           @closeTournamentResultWindow="closeTournamentResultWindow"
+          :matchInformation="Object(matchInformation)"
+          :matchID="Number(matchID)"
         />
       </div>
     </div>
@@ -292,10 +294,14 @@ async function fetchBracket(tournamentID) {
 
 const isOpenResultWindow = ref(false);
 const matchStatus = ref(null);
+const matchInformation = ref([]);
+const matchID = ref(null);
 const getInfoAboutMatch = (info) => {
   console.log(info);
   isOpenResultWindow.value = true;
   matchStatus.value = info.status;
+  matchInformation.value = info;
+  matchID.value = info.id;
 };
 
 const closeTournamentResultWindow = () => {
