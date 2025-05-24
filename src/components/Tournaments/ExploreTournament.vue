@@ -15,23 +15,24 @@
     <div class="q-pa-md">
       <q-table
         flat
+        class="cursor-pointer"
         bordered
         :title="t('tournamentPage.exploreTournament.additionalInformation')"
         :rows="rows"
         :columns="columns"
         row-key="name"
-        hide-bottom
       />
     </div>
     <div class="q-pa-md">
       <q-table
         flat
         bordered
+        class="cursor-pointer"
         :title="t('tournamentPage.exploreTournament.participants')"
         :rows="participantsRows"
         :columns="participantsColumns"
+        @row-click="viewDetailedInformationAboutParticipant"
         row-key="participant"
-        hide-bottom
       />
     </div>
     <div>
@@ -67,6 +68,10 @@
       :isOpenSearchComponent="Boolean(isOpenSearchComponent)"
       @closeSearchPartnerComponent="closeSearchPartnerComponent"
     />
+    <DetailedInformationAboutParticipant
+      :openWindowAboutParticipant="openWindowAboutParticipant"
+      :detailedInformation="Object(detailedInformation)"
+    />
   </div>
 </template>
 
@@ -79,6 +84,7 @@ import { useApiStore } from "src/stores/api-store";
 import SearchPartnerPage from "./SearchPartnerPage.vue";
 import { useI18n } from "vue-i18n";
 import BracketsPage from "./BracketsPage.vue";
+import DetailedInformationAboutParticipant from "./DetailedInformationAboutParticipant.vue";
 
 // global variables
 const $q = useQuasar();
@@ -179,7 +185,6 @@ const defineId = () => {
     tournamentID.value = id;
     getTournamentsByID(id);
     getInformationAboutPaarticipants(id);
-    console.log(typeof tournamentID.value);
   } else {
     console.error("Не найден id");
   }
@@ -225,46 +230,10 @@ const participantsColumns = computed(() => [
     sortable: true,
   },
   {
-    name: "email",
-    label: t("emailText"),
+    name: "participantName",
+    label: "Participant Name",
     align: "left",
-    field: "email",
-    sortable: true,
-  },
-  {
-    name: "firstName",
-    label: t("firstNameText"),
-    align: "left",
-    field: (user) => user.userInfo.firstName,
-    sortable: true,
-  },
-  {
-    name: "lastName",
-    label: t("lastNameText"),
-    align: "left",
-    field: (user) => user.userInfo.lastName,
-    sortable: true,
-  },
-  {
-    name: "phone",
-    label: t("phoneNumber"),
-    align: "left",
-    align: "left",
-    field: (user) => user.userInfo.phone,
-    sortable: true,
-  },
-  {
-    name: "gender",
-    label: t("genderText"),
-    align: "left",
-    field: (user) => user.userInfo.gender,
-    sortable: true,
-  },
-  {
-    name: "createdAt",
-    label: t("timePart.createdAt"),
-    align: "left",
-    field: "createdAt",
+    field: (user) => user.participantName,
     sortable: true,
   },
 ]);
@@ -289,6 +258,14 @@ const getInformationAboutPaarticipants = async (id) => {
   participantsRows.value = Array.isArray(participants.value)
     ? participants.value.flat()
     : [];
+};
+
+// detailed information about participant
+const detailedInformation = ref([]);
+const openWindowAboutParticipant = ref(false);
+const viewDetailedInformationAboutParticipant = async (info, row) => {
+  openWindowAboutParticipant.value = true;
+  detailedInformation.value = row;
 };
 
 const isRelatedUserToTournament = ref(false);

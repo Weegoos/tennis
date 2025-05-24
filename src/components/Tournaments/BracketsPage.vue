@@ -33,18 +33,22 @@
                             : 'item-background'
                         "
                       >
-                        {{ final.winnerName || "Not completed" }}
+                        {{ final.winnerName || "Турнир еще проводится" }}
                       </p>
                     </div>
                     <div class="item-childrens">
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant1Name }}
+                          {{
+                            final.participant1Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant2Name }}
+                          {{
+                            final.participant2Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                     </div>
@@ -72,18 +76,22 @@
                             : 'item-background'
                         "
                       >
-                        {{ final.winnerName || "" }}
+                        {{ final.winnerName || "Турнир еще проводится" }}
                       </p>
                     </div>
                     <div class="item-childrens">
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant1Name }}
+                          {{
+                            final.participant1Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant2Name }}
+                          {{
+                            final.participant2Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                     </div>
@@ -111,18 +119,22 @@
                             : 'item-background'
                         "
                       >
-                        {{ final.winnerName || "" }}
+                        {{ final.winnerName || "Турнир еще проводится" }}
                       </p>
                     </div>
                     <div class="item-childrens">
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant1Name }}
+                          {{
+                            final.participant1Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant2Name }}
+                          {{
+                            final.participant2Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                     </div>
@@ -150,18 +162,22 @@
                             : 'item-background'
                         "
                       >
-                        {{ final.winnerName || "" }}
+                        {{ final.winnerName || "Турнир еще проводится" }}
                       </p>
                     </div>
                     <div class="item-childrens">
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant1Name }}
+                          {{
+                            final.participant1Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                       <div class="item-child">
                         <p class="item-background">
-                          {{ final.participant2Name }}
+                          {{
+                            final.participant2Name || "Турнир еще проводится"
+                          }}
                         </p>
                       </div>
                     </div>
@@ -196,7 +212,6 @@ const props = defineProps({
 watch(
   () => props.tournamentID,
   (newVal) => {
-    console.log(newVal);
     fetchBracket(newVal);
   }
 );
@@ -231,7 +246,6 @@ async function fetchBracket(tournamentID) {
     );
 
     finals.value = response.filter((match) => match.roundName === "Финал");
-    console.log(semiFinals.value);
   } catch (err) {
     console.error(err);
   }

@@ -4,7 +4,6 @@ async function redirectToUser() {
   try {
     const apiStore = useApiStore();
     await apiStore.getUserProfile();
-    console.log(777);
 
     if (
       apiStore.userData.role === null ||
