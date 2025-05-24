@@ -66,6 +66,13 @@
                     {{ match.winnerName || "Турнир продолжается" }}
                   </p>
                 </q-card-section>
+                <q-pagination
+                  class="justify-center q-my-sm text-center"
+                  v-model="current"
+                  :min="1"
+                  :max="maxPage"
+                  @update:model-value="pagination"
+                />
               </q-card>
             </q-expansion-item>
           </q-list>
@@ -105,6 +112,7 @@ const props = defineProps({
 });
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
 
 const isOpenDetailedInformation = ref(props.openWindowAboutParticipant);
@@ -116,13 +124,6 @@ watch(
   }
 );
 
-watch(
-  () => props.detailedInformation,
-  (newVal) => {
-    getMatchHistory(newVal.id);
-  }
-);
-
 const emit = defineEmits(["closeDetailedInformationWindow"]);
 
 const closeDetailedInformationWindow = () => {
@@ -131,11 +132,11 @@ const closeDetailedInformationWindow = () => {
 
 // match history
 const matchHistory = ref([]);
-const getMatchHistory = async (id) => {
+const getMatchHistory = async (id, page) => {
   try {
     await getMethod(
       serverURL,
-      `users/${id}/matches?page=1&size=10`,
+      `users/${id}/matches?page=${page}&size=${maxNumberOfRequestPerPage}`,
       matchHistory,
       $q,
       "Error: "
@@ -144,6 +145,49 @@ const getMatchHistory = async (id) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+const maxPage = ref("");
+watch(
+  () => matchHistory.value,
+  (newVal) => {
+    if (newVal && newVal.totalElements) {
+      maxPage.value = Math.ceil(
+        newVal.totalElements / maxNumberOfRequestPerPage
+      );
+    } else {
+      maxPage.value = 1;
+    }
+  }
+);
+
+const current = ref(1); // текущая страница
+const userId = ref(null); // id пользователя из props
+
+// Общая функция получения истории матчей
+const updateMatchHistory = () => {
+  if (userId.value) {
+    getMatchHistory(userId.value, current.value);
+  }
+};
+
+// Watch на detailedInformation
+watch(
+  () => props.detailedInformation,
+  (newVal) => {
+    if (newVal?.id) {
+      userId.value = newVal.id;
+      current.value = 1;
+      updateMatchHistory();
+    }
+  }
+);
+
+// Пагинация
+const pagination = (page) => {
+  console.log("Текущая страница:", page);
+  current.value = page;
+  updateMatchHistory();
 };
 
 // Регистрация компонентов Chart.js
@@ -172,7 +216,7 @@ const chartData = computed(() => ({
 }));
 
 const tierData = computed(() => ({
-  labels: ["Futures", "Challenger", "Masters"],
+  labels: ["Challenger", "FUTURES", "Masters"],
   datasets: [
     {
       label: "Распределение",
