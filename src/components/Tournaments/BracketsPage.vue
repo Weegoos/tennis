@@ -93,8 +93,84 @@
             </div>
           </div>
         </q-tab-panel>
-        <q-tab-panel name="semi-final"></q-tab-panel>
-        <q-tab-panel name="final"></q-tab-panel>
+        <q-tab-panel name="semi-final">
+          <div class="wrapper">
+            <div class="item">
+              <div class="item-childrens">
+                <div class="item-child">
+                  <div
+                    class="item q-ml-md"
+                    v-for="(final, index) in semiFinals"
+                    :key="index"
+                  >
+                    <div class="item-parent">
+                      <p
+                        :class="
+                          ['COMPLETED', 'WALKOVER'].includes(final.status)
+                            ? 'winner'
+                            : 'item-background'
+                        "
+                      >
+                        {{ final.winnerName || "" }}
+                      </p>
+                    </div>
+                    <div class="item-childrens">
+                      <div class="item-child">
+                        <p class="item-background">
+                          {{ final.participant1Name }}
+                        </p>
+                      </div>
+                      <div class="item-child">
+                        <p class="item-background">
+                          {{ final.participant2Name }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="final">
+          <div class="wrapper">
+            <div class="item">
+              <div class="item-childrens">
+                <div class="item-child">
+                  <div
+                    class="item q-ml-md"
+                    v-for="(final, index) in finals"
+                    :key="index"
+                  >
+                    <div class="item-parent">
+                      <p
+                        :class="
+                          ['COMPLETED', 'WALKOVER'].includes(final.status)
+                            ? 'winner'
+                            : 'item-background'
+                        "
+                      >
+                        {{ final.winnerName || "" }}
+                      </p>
+                    </div>
+                    <div class="item-childrens">
+                      <div class="item-child">
+                        <p class="item-background">
+                          {{ final.participant1Name }}
+                        </p>
+                      </div>
+                      <div class="item-child">
+                        <p class="item-background">
+                          {{ final.participant2Name }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </q-tab-panel>
       </q-tab-panels>
     </div>
   </div>
@@ -127,7 +203,9 @@ watch(
 
 const eighthFinals = ref([]);
 const fourFinals = ref([]);
+const semiFinals = ref([]);
 const bracketData = ref([]);
+const finals = ref([]);
 
 const tab = ref("eight");
 async function fetchBracket(tournamentID) {
@@ -147,7 +225,13 @@ async function fetchBracket(tournamentID) {
     fourFinals.value = response.filter(
       (match) => match.roundName === "Четвертьфинал"
     );
-    console.log(fourFinals.value);
+
+    semiFinals.value = response.filter(
+      (match) => match.roundName === "Полуфинал"
+    );
+
+    finals.value = response.filter((match) => match.roundName === "Финал");
+    console.log(semiFinals.value);
   } catch (err) {
     console.error(err);
   }
