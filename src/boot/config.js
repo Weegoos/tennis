@@ -9,6 +9,7 @@ export default ({ app }) => {
   const maxNumberOfRequestPerPage = 9;
   const statusForUser = true;
   const statusForAdmin = false;
+  const completedMatchStatus = "COMPLETED";
 
   app.config.globalProperties.$mobileWidth = mobileWidth;
   app.config.globalProperties.$serverURL = serverURL;
@@ -19,4 +20,5 @@ export default ({ app }) => {
   app.config.globalProperties.$statusForAdmin = statusForAdmin;
   app.config.globalProperties.$statusForUser = statusForUser;
   app.config.globalProperties.$adminRole = adminRole;
+  app.config.globalProperties.$completedMatchStatus = completedMatchStatus;
 };

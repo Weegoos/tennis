@@ -3,7 +3,3 @@
     <q-btn color="red-4" label="Close" no-caps />
   </div>
 </template>
-
-<script setup></script>
-
-<style></style>

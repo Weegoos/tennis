@@ -5,7 +5,7 @@
         <q-tab name="eight" label="1/8" />
         <q-tab name="four" label="1/4" />
         <q-tab name="semi-final" label="1/2" />
-        <q-tab name="final" label="Final" />
+        <q-tab name="final" label="Final" no-caps />
       </q-tabs>
       <q-tab-panels
         v-model="tab"
@@ -24,6 +24,7 @@
                     class="item q-ml-md"
                     v-for="(final, index) in eighthFinals"
                     :key="index"
+                    @click="getInfoAboutMatch(final)"
                   >
                     <div class="item-parent">
                       <p
@@ -218,6 +219,12 @@
           </div>
         </q-tab-panel>
       </q-tab-panels>
+      <div v-if="matchStatus != completedMatchStatus">
+        <TournamentResult
+          :isOpenResultWindow="isOpenResultWindow"
+          @closeTournamentResultWindow="closeTournamentResultWindow"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -226,11 +233,13 @@
 import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, reactive, ref, watch } from "vue";
+import TournamentResult from "./TournamentResult.vue";
 
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const completedMatchStatus = proxy.$completedMatchStatus;
 const props = defineProps({
   tournamentID: {
     type: String,
@@ -280,6 +289,18 @@ async function fetchBracket(tournamentID) {
     console.error(err);
   }
 }
+
+const isOpenResultWindow = ref(false);
+const matchStatus = ref(null);
+const getInfoAboutMatch = (info) => {
+  console.log(info);
+  isOpenResultWindow.value = true;
+  matchStatus.value = info.status;
+};
+
+const closeTournamentResultWindow = () => {
+  isOpenResultWindow.value = false;
+};
 
 onMounted(() => {});
 </script>
