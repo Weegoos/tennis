@@ -1,11 +1,9 @@
 <template>
   <div>
-    <q-btn color="primary" icon="check" label="OK" @click="onClick" />
+    <q-btn color="red-4" label="Close" no-caps />
   </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script setup></script>
 
 <style></style>

@@ -21,6 +21,7 @@
         :rows="rows"
         :columns="columns"
         row-key="name"
+        hide-bottom
       />
     </div>
     <div class="q-pa-md">
@@ -71,6 +72,7 @@
     <DetailedInformationAboutParticipant
       :openWindowAboutParticipant="openWindowAboutParticipant"
       :detailedInformation="Object(detailedInformation)"
+      @closeDetailedInformationWindow="closeDetailedInformationWindow"
     />
   </div>
 </template>
@@ -266,6 +268,10 @@ const openWindowAboutParticipant = ref(false);
 const viewDetailedInformationAboutParticipant = async (info, row) => {
   openWindowAboutParticipant.value = true;
   detailedInformation.value = row;
+};
+
+const closeDetailedInformationWindow = () => {
+  openWindowAboutParticipant.value = false;
 };
 
 const isRelatedUserToTournament = ref(false);

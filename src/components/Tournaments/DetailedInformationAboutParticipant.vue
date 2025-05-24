@@ -3,14 +3,50 @@
     <q-dialog v-model="isOpenDetailedInformation" persistent>
       <q-card>
         <q-card-section class="row items-center">
-          <q-avatar icon="signal_wifi_off" color="primary" text-color="white" />
-          <span class="q-ml-sm"
-            >You are currently not connected to any network.</span
-          >
+          <q-list>
+            <q-expansion-item
+              popup
+              icon="filter_1"
+              label="Information about the participant"
+            >
+              <q-separator />
+              <q-card>
+                <q-card-section>
+                  <span data-testid="fullName" class="infoHeadline"
+                    >Full name</span
+                  >
+                  <p class="infoStyle">
+                    {{
+                      props.detailedInformation.user.userInfo.firstName ||
+                      "Not specified"
+                    }}
+                    {{
+                      props.detailedInformation.user.userInfo.lastName ||
+                      "Not specified"
+                    }}
+                  </p>
+                  <span data-testid="fullName" class="infoHeadline"
+                    >Rating</span
+                  >
+                  <p class="infoStyle">
+                    {{
+                      props.detailedInformation.user.userInfo.rating ||
+                      "Not specified"
+                    }}
+                  </p>
+                </q-card-section>
+              </q-card>
+            </q-expansion-item>
+          </q-list>
+        </q-card-section>
+        <q-card-section>
+          <h6 class="text-h6 text-center">Статистика игрока</h6>
+          <Pie :data="chartData" :options="chartOptions" />
+          <h6 class="text-h6 text-center">Матчи по тирам</h6>
+          <Pie :data="tierData" :options="tierOptions" />
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Cancel" color="primary" v-close-popup />
-          <q-btn flat label="Turn on Wifi" color="primary" v-close-popup />
+          <BaseCloseButton @click="closeDetailedInformationWindow" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -18,8 +54,12 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-
+import { computed, getCurrentInstance, onMounted, ref, watch } from "vue";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+import { Pie } from "vue-chartjs";
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from "chart.js";
+import { useQuasar } from "quasar";
+import { getMethod } from "src/composables/apiMethod/get";
 // global variables
 const props = defineProps({
   openWindowAboutParticipant: {
@@ -32,6 +72,9 @@ const props = defineProps({
     required: true,
   },
 });
+const { proxy } = getCurrentInstance();
+const serverURL = proxy.$serverURL;
+const $q = useQuasar();
 
 const isOpenDetailedInformation = ref(props.openWindowAboutParticipant);
 
@@ -41,6 +84,82 @@ watch(
     isOpenDetailedInformation.value = newVal;
   }
 );
+
+const emit = defineEmits(["closeDetailedInformationWindow"]);
+
+const closeDetailedInformationWindow = () => {
+  emit("closeDetailedInformationWindow");
+};
+
+// Регистрация компонентов Chart.js
+ChartJS.register(Title, Tooltip, Legend, ArcElement);
+
+// Данные для Pie диаграммы
+const userData = ref([]);
+const getData = async () => {
+  try {
+    await getMethod(serverURL, "users/1/stats", userData, $q, "Error:");
+    console.log(userData.value);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const chartData = computed(() => ({
+  labels: ["Победы", "Поражение"],
+  datasets: [
+    {
+      label: "Распределение",
+      data: [userData.value.totalWins ?? 0, userData.value.totalLosses],
+      backgroundColor: ["#4bc0c0", "#f87979"],
+      borderWidth: 1,
+    },
+  ],
+}));
+
+const tierData = computed(() => ({
+  labels: ["Futures", "Challenger", "Masters"],
+  datasets: [
+    {
+      label: "Распределение",
+      data: [
+        userData.value.winsByTier.CHALLENGER ?? 0,
+        userData.value.winsByTier.FUTURES ?? 0,
+        userData.value.winsByTier.MASTERS ?? 0,
+      ],
+      backgroundColor: ["#f87979", "#36a2eb", "#4bc0c0"],
+      borderWidth: 1,
+    },
+  ],
+}));
+
+const chartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom",
+    },
+    title: {
+      display: false,
+    },
+  },
+};
+
+const tierOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom",
+    },
+    title: {
+      display: false,
+    },
+  },
+};
+
+onMounted(() => {
+  getData();
+});
 </script>
 
 <style></style>
