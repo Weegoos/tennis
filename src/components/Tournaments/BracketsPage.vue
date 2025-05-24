@@ -83,6 +83,7 @@
                     class="item q-ml-md"
                     v-for="(final, index) in fourFinals"
                     :key="index"
+                    @click="getInfoAboutMatch(final)"
                   >
                     <div class="item-parent">
                       <p
@@ -141,6 +142,7 @@
                     class="item q-ml-md"
                     v-for="(final, index) in semiFinals"
                     :key="index"
+                    @click="getInfoAboutMatch(final)"
                   >
                     <div class="item-parent">
                       <p
@@ -151,6 +153,11 @@
                         "
                       >
                         {{ final.winnerName || "Турнир еще проводится" }}
+                        <q-badge
+                          v-if="final.score"
+                          class="bg-transparent text-black"
+                          :label="final.score"
+                        />
                       </p>
                     </div>
                     <div class="item-childrens">
@@ -159,6 +166,11 @@
                           {{
                             final.participant1Name || "Турнир еще проводится"
                           }}
+                          <q-badge
+                            align="top"
+                            v-if="final.participant1SeedNumber"
+                            >{{ final.participant1SeedNumber }}</q-badge
+                          >
                         </p>
                       </div>
                       <div class="item-child">
@@ -166,6 +178,11 @@
                           {{
                             final.participant2Name || "Турнир еще проводится"
                           }}
+                          <q-badge
+                            align="top"
+                            v-if="final.participant2SeedNumber"
+                            >{{ final.participant2SeedNumber }}</q-badge
+                          >
                         </p>
                       </div>
                     </div>
@@ -184,6 +201,7 @@
                     class="item q-ml-md"
                     v-for="(final, index) in finals"
                     :key="index"
+                    @click="getInfoAboutMatch(final)"
                   >
                     <div class="item-parent">
                       <p
@@ -194,6 +212,11 @@
                         "
                       >
                         {{ final.winnerName || "Турнир еще проводится" }}
+                        <q-badge
+                          v-if="final.score"
+                          class="bg-transparent text-black"
+                          :label="final.score"
+                        />
                       </p>
                     </div>
                     <div class="item-childrens">
@@ -202,6 +225,11 @@
                           {{
                             final.participant1Name || "Турнир еще проводится"
                           }}
+                          <q-badge
+                            align="top"
+                            v-if="final.participant1SeedNumber"
+                            >{{ final.participant1SeedNumber }}</q-badge
+                          >
                         </p>
                       </div>
                       <div class="item-child">
@@ -209,6 +237,11 @@
                           {{
                             final.participant2Name || "Турнир еще проводится"
                           }}
+                          <q-badge
+                            align="top"
+                            v-if="final.participant2SeedNumber"
+                            >{{ final.participant2SeedNumber }}</q-badge
+                          >
                         </p>
                       </div>
                     </div>

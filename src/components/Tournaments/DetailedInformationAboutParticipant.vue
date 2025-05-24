@@ -179,6 +179,7 @@ watch(
       userId.value = newVal.id;
       current.value = 1;
       updateMatchHistory();
+      getData(userId.value);
     }
   }
 );
@@ -195,9 +196,12 @@ ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 // Данные для Pie диаграммы
 const userData = ref([]);
-const getData = async () => {
+
+const getData = async (id) => {
+  console.log(id);
+
   try {
-    await getMethod(serverURL, "users/1/stats", userData, $q, "Error:");
+    await getMethod(serverURL, `users/${id}/stats`, userData, $q, "Error:");
   } catch (error) {
     console.error(error);
   }
@@ -215,21 +219,21 @@ const chartData = computed(() => ({
   ],
 }));
 
-const tierData = computed(() => ({
-  labels: ["Challenger", "FUTURES", "Masters"],
-  datasets: [
-    {
-      label: "Распределение",
-      data: [
-        userData.value.winsByTier.CHALLENGER ?? 0,
-        userData.value.winsByTier.FUTURES ?? 0,
-        userData.value.winsByTier.MASTERS ?? 0,
-      ],
-      backgroundColor: ["#f87979", "#36a2eb", "#4bc0c0"],
-      borderWidth: 1,
-    },
-  ],
-}));
+const tierData = computed(() => {
+  const wins = userData.value?.winsByTier ?? {};
+
+  return {
+    labels: ["Challenger", "FUTURES", "Masters"],
+    datasets: [
+      {
+        label: "Распределение",
+        data: [wins.CHALLENGER ?? 0, wins.FUTURES ?? 0, wins.MASTERS ?? 0],
+        backgroundColor: ["#f87979", "#36a2eb", "#4bc0c0"],
+        borderWidth: 1,
+      },
+    ],
+  };
+});
 
 const chartOptions = {
   responsive: true,
@@ -254,10 +258,6 @@ const tierOptions = {
     },
   },
 };
-
-onMounted(() => {
-  getData();
-});
 </script>
 
 <style></style>
