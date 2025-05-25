@@ -179,7 +179,7 @@ watch(
   () => props.detailedInformation,
   (newVal) => {
     if (newVal?.id) {
-      userId.value = newVal.id;
+      userId.value = newVal.primaryPlayer.id;
       current.value = 1;
       updateMatchHistory();
       getData(userId.value);

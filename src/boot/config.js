@@ -3,6 +3,7 @@ export default ({ app }) => {
   // Объявляем глобальные переменные
   const mobileWidth = 1050;
   const serverURL = "http://localhost:8000/api/v1/";
+  const adminURL = "http://localhost:8000/api/admin/";
   const clientURL = "http://localhost:9000/#/";
   const humanResources = "ORGANIZATOR";
   const adminRole = "ADMIN";
@@ -13,6 +14,7 @@ export default ({ app }) => {
 
   app.config.globalProperties.$mobileWidth = mobileWidth;
   app.config.globalProperties.$serverURL = serverURL;
+  app.config.globalProperties.$adminURL = adminURL;
   app.config.globalProperties.$humanResources = humanResources;
   app.config.globalProperties.$clientURL = clientURL;
   app.config.globalProperties.$maxNumberOfRequestPerPage =

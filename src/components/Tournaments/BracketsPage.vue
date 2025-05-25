@@ -292,6 +292,7 @@ const role = ref("");
 const getUserInfo = async () => {
   try {
     await apiStore.getUserProfile();
+    role.value = apiStore.userData.role;
   } catch (error) {
     console.error(error);
   }

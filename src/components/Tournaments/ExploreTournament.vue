@@ -39,7 +39,7 @@
     <div>
       <BracketsPage :tournamentID="String(tournamentID)" />
     </div>
-    <div class="q-pa-md q-gutter-sm">
+    <div class="q-pa-md q-gutter-sm row">
       <q-btn
         color="green-4"
         no-caps
@@ -55,6 +55,13 @@
           {{ messageToUser }}
         </q-tooltip>
       </q-btn>
+
+      <BasePostButton
+        v-if="userRole === humanResources"
+        label="Generate bracket"
+        @click="generateBracket"
+      />
+
       <q-btn
         color="primary"
         no-caps
@@ -87,13 +94,15 @@ import SearchPartnerPage from "./SearchPartnerPage.vue";
 import { useI18n } from "vue-i18n";
 import BracketsPage from "./BracketsPage.vue";
 import DetailedInformationAboutParticipant from "./DetailedInformationAboutParticipant.vue";
-
+import BasePostButton from "../atoms/BasePostButton.vue";
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
+const adminURL = proxy.$adminURL;
 const apiStore = useApiStore();
 const mobileWidth = proxy.$mobileWidth;
+const humanResources = proxy.$humanResources;
 const { t } = useI18n();
 
 const registerToTournament = async () => {
@@ -108,6 +117,35 @@ const registerToTournament = async () => {
     partnerId: undefined,
   };
   await postMethod(serverURL, "registration", tournamentRegistration, $q);
+};
+
+const userRole = ref(null);
+const defineUserRole = async () => {
+  try {
+    await apiStore.getUserProfile();
+    userRole.value = apiStore.userData.role;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const generateBracket = async () => {
+  const url = window.location.hash;
+  const match = url.match(/\/hr\/(\d+)/);
+  const id = Number(match[1]);
+  console.log(id);
+
+  try {
+    await postMethod(
+      adminURL,
+      `tournaments/${id}/generate-bracket`,
+      "",
+      $q,
+      "The tournament grid has been created"
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const columns = computed(() => [
@@ -268,6 +306,7 @@ const openWindowAboutParticipant = ref(false);
 const viewDetailedInformationAboutParticipant = async (info, row) => {
   openWindowAboutParticipant.value = true;
   detailedInformation.value = row;
+  console.log(row.primaryPlayer.id);
 };
 
 const closeDetailedInformationWindow = () => {
@@ -311,6 +350,7 @@ const closeSearchPartnerComponent = () => {
 
 onMounted(() => {
   defineId();
+  defineUserRole();
 });
 </script>
 

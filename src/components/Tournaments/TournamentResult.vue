@@ -25,7 +25,7 @@
             @click="closeDetailedInformationWindow"
             label="Close"
           />
-          <BasePostButton @click="sendInfo" />
+          <BasePostButton @click="sendInfo" label="Send" />
         </q-card-actions>
       </q-card>
     </q-dialog>
