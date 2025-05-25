@@ -173,17 +173,8 @@ watch(
   }
 );
 
-const userRole = ref({ role: "USER" });
-const isUser = computed(() => {
-  if (userRole.value.role === "ADMIN") {
-    return headerButtonsArrayForAdmin.value;
-  } else if (userRole.value.role === "USER" || userRole.value.role === "HR") {
-    return headerButtonsArrayForUser.value;
-  }
-  return [];
-});
-
-isUser.value = "USER";
+const userRole = ref("USER");
+const isUser = ref("USER");
 
 const headerButtonsArrayForUser = computed(() => [
   {
@@ -260,15 +251,21 @@ const routePath = useRoute();
 const currentPath = ref(routePath.path);
 const drawer = ref(false);
 
+isUser.value = headerButtonsArrayForUser.value;
 const defineRole = async () => {
   try {
     await getMethod(serverURL, "user/authenticated", userRole, $q, "Error: ");
     console.log("Роль пользователя:", userRole.value);
+
+    if (userRole.value.role === "USER" || userRole.value.role === "HR") {
+      isUser.value = headerButtonsArrayForUser.value;
+    } else if (userRole.value.role === "ADMIN") {
+      isUser.value = headerButtonsArrayForAdmin.value;
+    }
   } catch (error) {
     console.error("Ошибка при получении роли:", error);
   }
 };
-
 onBeforeMount(async () => {
   saveCurrentPath();
   if (Cookies.has("accessToken")) {
