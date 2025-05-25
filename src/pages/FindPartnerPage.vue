@@ -164,6 +164,7 @@ import { redirectToUser } from "src/composables/javascriptFunction/redirectToThe
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;

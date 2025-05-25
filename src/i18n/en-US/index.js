@@ -5,6 +5,18 @@ import kzKZ from "../kz-Kz/index";
 import deDU from "../de-DU/index";
 export default {
   "en-US": {
+    // navbar
+    mainPageText: "Main page",
+    tournamentsText: "Tournaments",
+    regulationsText: "Regulations",
+    coachesText: "Coaches",
+    newsPageText: "News",
+    aboutUsPageText: "About us",
+    findPartnerPageText: "Find a partner",
+    profileText: "Profile",
+    adminUsersPageText: "Users",
+    adminStatsPageText: "Stats",
+
     welcome: "Welcome",
     registrationText: "Registration",
     enterName: "Enter your name",

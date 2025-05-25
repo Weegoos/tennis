@@ -1,4 +1,16 @@
 export default {
+  // navbar
+  mainPageText: "Басты бет",
+  tournamentsText: "Турнирлер",
+  regulationsText: "Ережелер",
+  coachesText: "Жаттықтырушылар",
+  newsPageText: "Жаңалықтар",
+  aboutUsPageText: "Біз туралы",
+  findPartnerPageText: "Серіктес табу",
+  profileText: "Профиль",
+  adminUsersPageText: "Пайдаланушылар",
+  adminStatsPageText: "Статистика",
+
   welcome: "Қош келдіңіз",
   registrationText: "Тіркелу",
   enterName: "Атыңызды енгізіңіз",

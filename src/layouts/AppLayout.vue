@@ -173,52 +173,53 @@ watch(
   }
 );
 
-const userRole = ref("USER");
-const isUser = ref("USER");
+const userRole = ref({ role: "USER" });
+const isUser = computed(() => {
+  if (userRole.value.role === "ADMIN") {
+    return headerButtonsArrayForAdmin.value;
+  } else if (userRole.value.role === "USER" || userRole.value.role === "HR") {
+    return headerButtonsArrayForUser.value;
+  }
+  return [];
+});
 
-const headerButtonsArrayForUser = ref([
+isUser.value = "USER";
+
+const headerButtonsArrayForUser = computed(() => [
   {
-    name: "Main page",
+    name: t("mainPageText"),
     link: "/",
     icon: "mdi-home",
   },
   {
-    name: "Tournaments",
+    name: t("tournamentsText"),
     link: "/tournaments",
     icon: "mdi-trophy",
   },
   {
-    name: "Regulations",
+    name: t("regulationsText"),
     link: "/regulations",
   },
   {
-    name: "Rating",
-    link: "/ratings",
-  },
-  {
-    name: "Coaches",
+    name: t("coachesText"),
     link: "/coaches",
     icon: "mdi-account-group",
   },
   {
-    name: "Media Library",
-    link: "/media-library",
-  },
-  {
-    name: "News",
+    name: t("newsPageText"),
     link: "/news",
   },
   {
-    name: "About us",
+    name: t("aboutUsPageText"),
     link: "/about",
   },
   {
-    name: "Find a partner",
+    name: t("findPartnerPageText"),
     link: "/find-partner",
     icon: "mdi-account-search",
   },
   {
-    name: "Profile",
+    name: t("profileText"),
     link: "/profile",
     icon: "mdi-account",
   },
@@ -226,29 +227,29 @@ const headerButtonsArrayForUser = ref([
 
 const headerButtonsArrayForAdmin = computed(() => [
   {
-    name: "Users",
+    name: t("adminUsersPageText"),
     link: "/admin/users",
     messageNumber: 45,
     icon: "mdi-account",
   },
   {
-    name: "Coaches",
+    name: t("coachesText"),
     link: "/admin/coaches",
     icon: "mdi-account-group",
-    messageNumber: localStorage.getItem("numberCoach"), // Теперь обновляется динамически
+    messageNumber: localStorage.getItem("numberCoach"),
   },
   {
-    name: "Find a partner",
+    name: t("findPartnerPageText"),
     link: "/admin/partner",
     icon: "mdi-account-search",
   },
   {
-    name: "Profile",
+    name: t("profileText"),
     link: "/admin/profile",
     icon: "mdi-account",
   },
   {
-    name: "Stats",
+    name: t("adminStatsPageText"),
     link: "/admin/stats",
     icon: "mdi-chart-bar",
   },
@@ -258,17 +259,11 @@ const router = useRouter();
 const routePath = useRoute();
 const currentPath = ref(routePath.path);
 const drawer = ref(false);
-isUser.value = headerButtonsArrayForUser.value;
+
 const defineRole = async () => {
   try {
     await getMethod(serverURL, "user/authenticated", userRole, $q, "Error: ");
     console.log("Роль пользователя:", userRole.value);
-
-    if (userRole.value.role === "USER" || userRole.value.role === "HR") {
-      isUser.value = headerButtonsArrayForUser.value;
-    } else if (userRole.value.role === "ADMIN") {
-      isUser.value = headerButtonsArrayForAdmin.value;
-    }
   } catch (error) {
     console.error("Ошибка при получении роли:", error);
   }

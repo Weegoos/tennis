@@ -1,4 +1,16 @@
 export default {
+  // navbar
+  mainPageText: "Startseite",
+  tournamentsText: "Turniere",
+  regulationsText: "Regeln",
+  coachesText: "Trainer",
+  newsPageText: "Nachrichten",
+  aboutUsPageText: "Über uns",
+  findPartnerPageText: "Partner finden",
+  profileText: "Profil",
+  adminUsersPageText: "Benutzer",
+  adminStatsPageText: "Statistiken",
+
   welcome: "Willkommen",
   registrationText: "Registrierung",
   enterName: "Geben Sie Ihren Namen ein",

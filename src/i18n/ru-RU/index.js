@@ -1,4 +1,16 @@
 export default {
+  // navbar
+  mainPageText: "Главная страница",
+  tournamentsText: "Турниры",
+  regulationsText: "Правила",
+  coachesText: "Тренеры",
+  newsPageText: "Новости",
+  aboutUsPageText: "О нас",
+  findPartnerPageText: "Найти партнёра",
+  profileText: "Профиль",
+  adminUsersPageText: "Пользователи",
+  adminStatsPageText: "Статистика",
+
   welcome: "Добро пожаловать",
   registrationText: "Регистрация",
   enterName: "Введите имя",
