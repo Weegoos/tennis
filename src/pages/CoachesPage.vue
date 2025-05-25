@@ -48,14 +48,8 @@
             {{ t("coachPage.clickToViewDetailedInformation") }}</q-tooltip
           >
           <q-card-section class="q-gutter-md">
-            <div class="col-2">
-              <q-img
-                src="src/assets/coaches/coaches1.jpg"
-                :ratio="10 / 7"
-                spinner-color="primary"
-                spinner-size="82px"
-                class="full-height"
-              />
+            <div class="col-2" align="center">
+              <BaseAccountIcon />
             </div>
             <section
               class="col-8"
@@ -68,7 +62,7 @@
               <div class="text-subtitle1">
                 {{ items.description || t("notSpecifiedText") }}
               </div>
-              <section class="row">
+              <section :class="$q.screen.width < mobileWidth ? 'col' : 'row'">
                 <div class="col">
                   <div class="q-mt-lg">
                     <p class="text-body1">
@@ -160,6 +154,7 @@ import { useApiStore } from "src/stores/api-store";
 import EditCoachInformation from "src/components/Coaches/EditCoachInformation.vue";
 import { useI18n } from "vue-i18n";
 import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+import BaseAccountIcon from "src/components/atoms/BaseAccountIcon.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

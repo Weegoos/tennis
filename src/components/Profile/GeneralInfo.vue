@@ -33,13 +33,8 @@
           class="q-gutter-lg"
           :class="$q.screen.width < mobileWidth ? 'col' : 'row'"
         >
-          <div class="col-3">
-            <q-img
-              src="../../assets/coaches/coaches1.jpg"
-              :ratio="10 / 8"
-              spinner-color="primary"
-              spinner-size="82px"
-            />
+          <div class="col-3" align="center">
+            <BaseAccountIcon />
 
             <div class="col" align="center">
               <q-btn
@@ -155,6 +150,7 @@ import { Cookies, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { getMethod } from "src/composables/apiMethod/get";
 import { putMethod } from "src/composables/apiMethod/put";
+import BaseAccountIcon from "../atoms/BaseAccountIcon.vue";
 
 // global variables
 const apiStore = useApiStore();

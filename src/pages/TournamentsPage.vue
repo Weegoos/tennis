@@ -38,7 +38,7 @@
           <div>
             <section class="col-2">
               <q-img
-                src="https://cdn.quasar.dev/img/mountains.jpg"
+                src="../assets/tennis-logo-round.png"
                 :ratio="10 / 7"
                 spinner-color="primary"
                 spinner-size="82px"
