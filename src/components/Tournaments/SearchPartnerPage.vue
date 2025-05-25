@@ -46,11 +46,8 @@
           @update:model-value="pagination"
         />
         <q-card-actions align="right">
-          <q-btn
-            flat
-            no-caps
+          <BaseCloseButton
             :label="t('tournamentPage.searchPartnerPage.closeButton')"
-            color="red-4"
             @click="closeSearchPartnerComponent"
           />
         </q-card-actions>
@@ -66,6 +63,7 @@ import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import { computed, getCurrentInstance, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const props = defineProps({

@@ -20,12 +20,9 @@
           <q-input v-model="phone" type="text" :label="t('phoneNumber')" />
           <q-input v-model="rating" type="number" :label="t('ratingText')" />
         </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            no-caps
-            flat
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton
             :label="t('editPage.editBlock.closeButton')"
-            color="red-4"
             @click="closeOpenPage"
           />
           <q-btn
@@ -46,6 +43,7 @@ import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

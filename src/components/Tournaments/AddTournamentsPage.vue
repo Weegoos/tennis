@@ -4,7 +4,7 @@
       <div :class="$q.screen.width < mobileWidth ? 'col' : 'row'">
         <section class="col-2">
           <q-img
-            src="https://cdn.quasar.dev/img/mountains.jpg"
+            src="../../assets/tennis-logo-round.png"
             :ratio="16 / 12"
             spinner-color="primary"
             spinner-size="82px"
@@ -63,12 +63,7 @@
                   >
                     <q-date v-model="startDate" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
+                        <BaseCloseButton label="Close" v-close-popup />
                       </div>
                     </q-date>
                   </q-popup-proxy>
@@ -92,12 +87,7 @@
                   >
                     <q-date v-model="endDate" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
+                        <BaseCloseButton label="Close" v-close-popup />
                       </div>
                     </q-date>
                   </q-popup-proxy>
@@ -120,12 +110,7 @@
                   >
                     <q-time v-model="time" mask="HH:mm" format24h>
                       <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
+                        <BaseCloseButton label="Close" v-close-popup />
                       </div>
                     </q-time>
                   </q-popup-proxy>
@@ -215,11 +200,13 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import locationJSON from "src/composables/location.json";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();

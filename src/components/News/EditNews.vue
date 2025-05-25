@@ -19,8 +19,9 @@
               }"
             />
           </q-card-section>
-          <q-card-actions align="center">
-            <q-btn no-caps label="Close" @click="closePage" />
+          <q-card-actions align="center" class="gap-2">
+            <BaseCloseButton label="Close" @click="closePage" />
+
             <q-btn no-caps label="Edit" @click="editNews" />
           </q-card-actions>
         </q-card>
@@ -33,6 +34,7 @@
 import { useQuasar } from "quasar";
 import { putMethod } from "src/composables/apiMethod/put";
 import { getCurrentInstance, ref, watch } from "vue";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

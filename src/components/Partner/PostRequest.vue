@@ -50,14 +50,12 @@
           </section>
         </q-card-section>
 
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            no-caps
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton
             :label="t('closeButton')"
-            color="red-4"
             @click="closePostRequestWindow"
           />
+
           <q-btn
             :label="t('findPartnerPage.postRequest.button')"
             no-caps
@@ -77,6 +75,8 @@ import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import stadiumOptions from "../../composables/stadium.json";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+
 // global variables
 const props = defineProps({
   openPostRequestWindow: {

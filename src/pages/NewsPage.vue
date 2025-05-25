@@ -140,7 +140,7 @@
                 </q-card-section>
 
                 <q-card-actions align="right">
-                  <q-btn flat label="Close" color="primary" v-close-popup />
+                  <BaseCloseButton v-close-popup label="Close" />
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -169,7 +169,6 @@
 </template>
 
 <script setup>
-import { all } from "axios";
 import { Cookies, useQuasar } from "quasar";
 import axios from "axios";
 import AddNews from "src/components/News/AddNews.vue";
@@ -180,6 +179,7 @@ import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
 import { useI18n } from "vue-i18n";
 import { useApiStore } from "src/stores/api-store";
+import BaseCloseButton from "src/components/atoms/BaseCloseButton.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

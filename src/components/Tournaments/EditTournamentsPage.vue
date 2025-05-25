@@ -25,12 +25,7 @@
                     >
                       <q-date v-model="startDate" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
+                          <BaseCloseButton v-close-popup label="Close" />
                         </div>
                       </q-date>
                     </q-popup-proxy>
@@ -54,12 +49,7 @@
                     >
                       <q-date v-model="endDate" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
+                          <BaseCloseButton v-close-popup label="Close" />
                         </div>
                       </q-date>
                     </q-popup-proxy>
@@ -82,12 +72,7 @@
                     >
                       <q-time v-model="startTime" mask="HH:mm" format24h>
                         <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
+                          <BaseCloseButton v-close-popup label="Close" />
                         </div>
                       </q-time>
                     </q-popup-proxy>
@@ -170,14 +155,12 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            no-caps
-            :label="t('tournamentPage.editPage.closeButton')"
-            color="red-4"
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton
             @click="closeEditTournament"
+            :label="t('tournamentPage.editPage.closeButton')"
           />
+
           <q-btn
             no-caps
             :label="t('tournamentPage.editPage.updateButton')"
@@ -196,6 +179,7 @@ import { useApiStore } from "src/stores/api-store";
 import { patchMethod } from "src/composables/apiMethod/patch";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const $q = useQuasar();
