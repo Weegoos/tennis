@@ -18,18 +18,7 @@
         narrow-indicator
       >
         <q-tab name="all" :label="t('indexPage.tournamentPage.allNews')" />
-        <q-tab
-          name="interview"
-          :label="t('indexPage.tournamentPage.interview')"
-        />
-        <q-tab
-          name="championship"
-          :label="t('indexPage.tournamentPage.championships')"
-        />
-        <q-tab
-          name="analysis"
-          :label="t('indexPage.tournamentPage.analysis')"
-        />
+        <q-tab name="video" label="Video" />
       </q-tabs>
 
       <q-separator />
@@ -63,13 +52,14 @@
           The interview will be displayed here
         </q-tab-panel>
 
-        <q-tab-panel name="championship">
+        <q-tab-panel name="video">
           <div class="text-h6"></div>
-          The news about the Championship will be displayed here
-        </q-tab-panel>
-
-        <q-tab-panel name="analysis">
-          The news about the analysis will be displayed here
+          <div class="q-pa-md">
+            <q-video
+              :ratio="16 / 9"
+              src="https://www.youtube.com/embed/E5P_kc6g9b4"
+            />
+          </div>
         </q-tab-panel>
       </q-tab-panels>
     </div>
