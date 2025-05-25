@@ -98,10 +98,8 @@
           </q-tab-panel>
         </q-tab-panels>
         <q-card-actions class="q-pr-lg" align="right">
-          <q-btn
-            no-caps
+          <BaseCloseButton
             label="Close"
-            color="red-4"
             @click="closeUserDetailedInformation"
           />
         </q-card-actions>
@@ -112,11 +110,10 @@
 
 <script setup>
 import { useQuasar } from "quasar";
-import { getMethod } from "src/composables/apiMethod/get";
 import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
-
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;

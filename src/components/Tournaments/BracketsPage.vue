@@ -252,7 +252,9 @@
           </div>
         </q-tab-panel>
       </q-tab-panels>
-      <div v-if="matchStatus != completedMatchStatus">
+      <div
+        v-if="role === humanResources && matchStatus != completedMatchStatus"
+      >
         <TournamentResult
           :isOpenResultWindow="isOpenResultWindow"
           @closeTournamentResultWindow="closeTournamentResultWindow"
@@ -269,12 +271,15 @@ import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, reactive, ref, watch } from "vue";
 import TournamentResult from "./TournamentResult.vue";
+import { useApiStore } from "src/stores/api-store";
 
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const completedMatchStatus = proxy.$completedMatchStatus;
+const humanResources = proxy.$humanResources;
+const apiStore = useApiStore();
 const props = defineProps({
   tournamentID: {
     type: String,
@@ -282,6 +287,15 @@ const props = defineProps({
     default: undefined,
   },
 });
+
+const role = ref("");
+const getUserInfo = async () => {
+  try {
+    await apiStore.getUserProfile();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 watch(
   () => props.tournamentID,
@@ -330,7 +344,6 @@ const matchStatus = ref(null);
 const matchInformation = ref([]);
 const matchID = ref(null);
 const getInfoAboutMatch = (info) => {
-  console.log(info);
   isOpenResultWindow.value = true;
   matchStatus.value = info.status;
   matchInformation.value = info;
@@ -341,7 +354,9 @@ const closeTournamentResultWindow = () => {
   isOpenResultWindow.value = false;
 };
 
-onMounted(() => {});
+onMounted(() => {
+  getUserInfo();
+});
 </script>
 <style scoped>
 .winner {

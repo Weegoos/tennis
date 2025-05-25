@@ -41,14 +41,8 @@
             :label="t('stadiumText')"
           />
         </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            :label="t('closeButton')"
-            no-caps
-            color="negative"
-            @click="closeForm"
-          />
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton :label="t('closeButton')" @click="closeForm" />
           <q-btn
             :label="t('coachPage.createCoach.sendButton')"
             no-caps
@@ -62,13 +56,14 @@
 </template>
 
 <script setup>
-import { Cookies, useQuasar } from "quasar";
+import { useQuasar } from "quasar";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import { postMethod } from "src/composables/apiMethod/post";
 import { useApiStore } from "src/stores/api-store";
 import stadiumJSON from "../../composables/stadium.json";
 import { useI18n } from "vue-i18n";
-console.log(stadiumJSON);
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+
 // global variables
 const $q = useQuasar();
 const { proxy } = getCurrentInstance();

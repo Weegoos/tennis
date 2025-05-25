@@ -21,7 +21,10 @@
           />
         </q-card-section>
         <q-card-actions align="right" class="q-gutter-sm">
-          <BaseCloseButton @click="closeTournamentResultWindow" />
+          <BaseCloseButton
+            @click="closeDetailedInformationWindow"
+            label="Close"
+          />
           <BasePostButton @click="sendInfo" />
         </q-card-actions>
       </q-card>

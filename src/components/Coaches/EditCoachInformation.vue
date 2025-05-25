@@ -46,12 +46,9 @@
           />
         </q-card-section>
 
-        <q-card-actions align="right">
-          <q-btn
-            flat
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton
             :label="t('closeButton')"
-            no-caps
-            color="red-4"
             @click="closeEditCoachInformationWindow"
           />
           <q-btn
@@ -73,6 +70,8 @@ import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import stadiumJSON from "../../composables/stadium.json";
 import { useI18n } from "vue-i18n";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+
 // global variabels
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;

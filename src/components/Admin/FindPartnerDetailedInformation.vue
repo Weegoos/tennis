@@ -55,12 +55,11 @@
         </q-card-section>
         <q-card-section v-else> No data </q-card-section>
         <q-card-actions class="q-pr-lg" align="right">
-          <q-btn
-            no-caps
-            label="Close"
+          <BaseCloseButton
             color="red-4"
             @click="closePartnerDetailedInformation"
           />
+
           <q-btn
             no-caps
             color="green-4"
@@ -77,6 +76,7 @@
 import { useQuasar } from "quasar";
 import { patchMethod } from "src/composables/apiMethod/patch";
 import { getCurrentInstance, ref, watch } from "vue";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

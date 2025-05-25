@@ -113,14 +113,8 @@
             </q-expansion-item>
           </q-list>
         </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            no-caps
-            :label="t('closeButton')"
-            color="red-4"
-            @click="closeWindow"
-          />
+        <q-card-actions align="right" class="gap-2">
+          <BaseCloseButton :label="t('closeButton')" @click="closeWindow" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -130,7 +124,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 // global variables
 const props = defineProps({
   openDetailedWindow: {

@@ -43,10 +43,8 @@
         </q-card-section>
         <q-card-section v-else> No data </q-card-section>
         <q-card-actions class="q-pr-lg" align="right">
-          <q-btn
-            no-caps
+          <BaseCloseButton
             label="Close"
-            color="red-4"
             @click="closeCoacheDetailedInformation"
           />
           <q-btn
@@ -65,6 +63,7 @@
 import { useQuasar } from "quasar";
 import { patchMethod } from "src/composables/apiMethod/patch";
 import { getCurrentInstance, ref, watch } from "vue";
+import BaseCloseButton from "../atoms/BaseCloseButton.vue";
 
 // global variables
 const { proxy } = getCurrentInstance();

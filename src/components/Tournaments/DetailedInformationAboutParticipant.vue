@@ -84,7 +84,10 @@
           <Pie :data="tierData" :options="tierOptions" />
         </q-card-section>
         <q-card-actions align="right">
-          <BaseCloseButton @click="closeDetailedInformationWindow" />
+          <BaseCloseButton
+            @click="closeDetailedInformationWindow"
+            label="Close"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
