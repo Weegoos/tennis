@@ -1,4 +1,5 @@
 // app global css in SCSS form
+@use "sass:math";
 *,
 *::after,
 *::before {
@@ -63,13 +64,11 @@
   width: 100%;
 }
 
-//
 $side-margin: 50px;
 $vertical-margin: 10px;
 
 .wrapper {
   display: flex;
-  // height: 600px;
   justify-content: center;
 }
 
@@ -80,6 +79,7 @@ $vertical-margin: 10px;
 .item {
   display: flex;
   flex-direction: row-reverse;
+
   p {
     padding: 20px;
     margin: 0;
@@ -90,10 +90,11 @@ $vertical-margin: 10px;
     margin-left: $side-margin;
     display: flex;
     align-items: center;
+
     &:after {
       position: absolute;
       content: "";
-      width: $side-margin/2;
+      width: math.div($side-margin, 2);
       height: 2px;
       left: 0;
       top: 50%;
@@ -101,11 +102,13 @@ $vertical-margin: 10px;
       transform: translateX(-100%);
     }
   }
+
   &-childrens {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   &-child {
     display: flex;
     align-items: flex-start;
@@ -113,6 +116,7 @@ $vertical-margin: 10px;
     margin-top: $vertical-margin;
     margin-bottom: $vertical-margin;
     position: relative;
+
     &:before {
       content: "";
       position: absolute;
@@ -123,27 +127,27 @@ $vertical-margin: 10px;
       width: 25px;
       height: 2px;
     }
+
     &:after {
       content: "";
       position: absolute;
       background-color: #000000;
-      right: -$side-margin / 2;
+      right: math.div(-$side-margin, 2);
+
       height: calc(50% + 22px);
       width: 2px;
       top: 50%;
     }
+
     &:last-child {
       &:after {
         transform: translateY(-100%);
       }
     }
-    &:only-child:after {
-      display: none;
-      background-color: red;
-    }
+
+    &:only-child:after,
     &:only-child:before {
       display: none;
-      background-color: red;
     }
   }
 }
