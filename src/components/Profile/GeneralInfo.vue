@@ -68,9 +68,8 @@
               >
             </p>
             <p>
-              <span class="q-mr-md text-bold"
-                >{{ t("editPage.dateOfBirth") }}: </span
-              ><span>13.07.2005</span>
+              <span class="q-mr-md text-bold">Age: </span
+              ><span>{{ age || t("notSpecifiedText") }}</span>
             </p>
             <p>
               <span class="q-mr-md text-bold">{{ t("genderText") }}: </span
@@ -92,6 +91,12 @@
               <span class="q-mr-md text-bold">{{ t("ratingText") }}: </span
               ><span :class="[rating === null ? 'text-red' : 'text-black']">
                 {{ rating || t("notSpecifiedText") }}
+              </span>
+            </p>
+            <p>
+              <span class="q-mr-md text-bold">Points: </span
+              ><span :class="[rating === null ? 'text-red' : 'text-black']">
+                {{ points || t("notSpecifiedText") }}
               </span>
             </p>
           </div>
@@ -257,6 +262,8 @@ const phone = ref("");
 const email = ref("");
 const gender = ref("");
 const rating = ref("");
+const age = ref("");
+const points = ref("");
 
 onMounted(async () => {
   await apiStore.getUserProfile();
@@ -267,6 +274,8 @@ onMounted(async () => {
   gender.value = user.userInfo.gender;
   phone.value = user.userInfo.phone;
   rating.value = user.userInfo.rating;
+  age.value = user.userInfo.age;
+  points.value = user.userInfo.points;
   getInvitations();
 });
 

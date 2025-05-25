@@ -62,6 +62,12 @@
         @click="generateBracket"
       />
 
+      <BasePostButton
+        v-if="userRole === humanResources"
+        label="Calculate the points"
+        @click="calculatePoints"
+      />
+
       <q-btn
         color="primary"
         no-caps
@@ -142,6 +148,25 @@ const generateBracket = async () => {
       "",
       $q,
       "The tournament grid has been created"
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const calculatePoints = async () => {
+  const url = window.location.hash;
+  const match = url.match(/\/hr\/(\d+)/);
+  const id = Number(match[1]);
+  console.log(id);
+
+  try {
+    await postMethod(
+      adminURL,
+      `tournaments/${id}/calculate-points`,
+      "",
+      $q,
+      "The tournament has ended"
     );
   } catch (error) {
     console.error(error);
