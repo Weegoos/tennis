@@ -17,6 +17,7 @@ export default {
     profileText: "Profile",
     adminUsersPageText: "Users",
     adminStatsPageText: "Stats",
+    informationAboutParticipant: "Information about participant",
 
     welcome: "Welcome",
     registrationText: "Registration",
@@ -245,6 +246,11 @@ export default {
         finalText: "Final",
       },
 
+      userStats: {
+        statsText: "User Statistics",
+        tierMatchText: "Match Tier",
+      },
+
       internationalTournamentsText: "International tournaments",
       fromText: "From",
       toText: "To",
@@ -272,6 +278,17 @@ export default {
     ratingPage: {
       leaderboardText: "Leaderboard",
       pointsText: "Points",
+    },
+    detailedInformationAboutParticipant: {
+      tournamentName: "Tournament Name",
+      tournamentTier: "Tournament Tier",
+      opponentName: "Opponent Name",
+      winnerText: "Winner",
+      tournamentContinueText: "The tournament continues",
+      victories: "Victories",
+      defeat: "Defeat",
+      distribution: "Distribution",
+      matchHistory: "Match history",
     },
   },
   "ru-RU": ruRU,

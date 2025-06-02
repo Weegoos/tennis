@@ -11,6 +11,7 @@ export default {
   profileText: "Профиль",
   adminUsersPageText: "Пользователи",
   adminStatsPageText: "Статистика",
+  informationAboutParticipant: "Информация об участнике",
 
   welcome: "Добро пожаловать",
   registrationText: "Регистрация",
@@ -238,6 +239,10 @@ export default {
     bracketPage: {
       finalText: "Финал",
     },
+    userStats: {
+      statsText: "Статистика пользователя",
+      tierMatchText: "Уровень матча",
+    },
 
     internationalTournamentsText: "Международные турниры",
     fromText: "От",
@@ -267,5 +272,17 @@ export default {
   ratingPage: {
     leaderboardText: "Таблица лидеров",
     pointsText: "Очки",
+  },
+
+  detailedInformationAboutParticipant: {
+    tournamentName: "Название турнира",
+    tournamentTier: "Уровень турнира",
+    opponentName: "Имя соперника",
+    winnerText: "Победитель",
+    tournamentContinueText: "Турнир продолжается",
+    victories: "Победы",
+    defeat: "Поражение",
+    distribution: "Распределение",
+    matchHistory: "История матчей",
   },
 };

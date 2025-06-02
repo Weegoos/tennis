@@ -2,11 +2,15 @@
   <div>
     <q-card-section class="grid grid-rows-1 grid-cols-2 h-[250px]">
       <div class="h-[450px]" align="center">
-        <h6 class="text-h6 text-center">Статистика игрока</h6>
+        <h6 class="text-h6 text-center">
+          {{ t("tournamentPage.userStats.statsText") }}
+        </h6>
         <Pie :data="chartData" :options="chartOptions" />
       </div>
       <div class="h-[450px]" align="center">
-        <h6 class="text-h6 text-center">Матчи по тирам</h6>
+        <h6 class="text-h6 text-center">
+          {{ t("tournamentPage.userStats.tierMatchText") }}
+        </h6>
         <Pie :data="tierData" :options="tierOptions" />
       </div>
     </q-card-section>
@@ -19,12 +23,14 @@ import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from "chart.js";
 import { computed, getCurrentInstance, onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { getMethod } from "src/composables/apiMethod/get";
+import { useI18n } from "vue-i18n";
 
 //global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
 const maxNumberOfRequestPerPage = proxy.$maxNumberOfRequestPerPage;
 const $q = useQuasar();
+const { t } = useI18n();
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 

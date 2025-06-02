@@ -11,6 +11,7 @@ export default {
   profileText: "Profil",
   adminUsersPageText: "Benutzer",
   adminStatsPageText: "Statistiken",
+  informationAboutParticipant: "Informationen über den Teilnehmer",
 
   welcome: "Willkommen",
   registrationText: "Registrierung",
@@ -239,6 +240,12 @@ export default {
     bracketPage: {
       finalText: "Finale",
     },
+
+    userStats: {
+      statsText: "Benutzerstatistik",
+      tierMatchText: "Match-Stufe",
+    },
+
     internationalTournamentsText: "Internationale Turniere",
     fromText: "Von",
     toText: "Bis",
@@ -267,5 +274,17 @@ export default {
   ratingPage: {
     leaderboardText: "Bestenliste",
     pointsText: "Punkte",
+  },
+
+  detailedInformationAboutParticipant: {
+    tournamentName: "Turniername",
+    tournamentTier: "Turnierklasse",
+    opponentName: "Name des Gegners",
+    winnerText: "Sieger",
+    tournamentContinueText: "Das Turnier geht weiter",
+    victories: "Siege",
+    defeat: "Niederlage",
+    distribution: "Verteilung",
+    matchHistory: "Spielverlauf",
   },
 };

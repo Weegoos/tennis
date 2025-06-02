@@ -11,6 +11,7 @@ export default {
   profileText: "Профиль",
   adminUsersPageText: "Пайдаланушылар",
   adminStatsPageText: "Статистика",
+  informationAboutParticipant: "Қатысушы туралы ақпарат",
 
   welcome: "Қош келдіңіз",
   registrationText: "Тіркелу",
@@ -237,6 +238,11 @@ export default {
       finalText: "Финал",
     },
 
+    userStats: {
+      statsText: "Пайдаланушы статистикасы",
+      tierMatchText: "Матч деңгейі",
+    },
+
     internationalTournamentsText: "Халықаралық турнирлер",
     fromText: "Басталуы",
     toText: "Аяқталуы",
@@ -265,5 +271,17 @@ export default {
   ratingPage: {
     leaderboardText: "Көшбасшылар тақтасы",
     pointsText: "Ұпайлар",
+  },
+
+  detailedInformationAboutParticipant: {
+    tournamentName: "Турнир атауы",
+    tournamentTier: "Турнир деңгейі",
+    opponentName: "Қарсыластың аты",
+    winnerText: "Жеңімпаз",
+    tournamentContinueText: "Турнир жалғасуда",
+    victories: "Жеңістер",
+    defeat: "Жеңіліс",
+    distribution: "Тарату",
+    matchHistory: "Матчтар тарихы",
   },
 };
