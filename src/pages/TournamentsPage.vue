@@ -27,6 +27,7 @@
         data-testid="openAddTournamentsButton"
       />
     </section>
+    <!-- {{ tournaments }} -->
     <div data-testid="tournamentsID" v-if="tournaments.data > []" class="row">
       <section
         class="col-12 col-sm-6 col-md-4"
@@ -143,6 +144,7 @@ const getTournaments = async (page) => {
     $q,
     "Ошибка при получении турниров"
   );
+  console.log(tournaments.value);
 };
 
 watch(

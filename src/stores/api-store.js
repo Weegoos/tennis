@@ -21,7 +21,7 @@ export const useApiStore = defineStore("api", {
     async getUserProfile() {
       try {
         const response = await axios.get(
-          "https://tennis-p30s.onrender.com/api/v1/user/authenticated",
+          "http://localhost:8000/api/v1/user/authenticated",
           {
             headers: {
               "Content-Type": "application/json",

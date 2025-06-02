@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-card class="no-shadow" bordered>
-      <q-card-section class="text-h6"> Pie Chart </q-card-section>
+      <q-card-section class="text-h6"> Services </q-card-section>
       <q-card-section>
         <ECharts
           :option="options"
@@ -63,11 +63,11 @@ export default defineComponent({
               show: false,
             },
             data: [
-              { value: 1048, name: "Search Engine" },
-              { value: 735, name: "Direct access" },
-              { value: 580, name: "Email marketing" },
-              { value: 484, name: "Affiliate Advertising" },
-              { value: 300, name: "Video ad" },
+              { value: 1048, name: "CHILDREN_TRAINING" },
+              { value: 735, name: "BEGINNER_TRAINING" },
+              { value: 580, name: "AMATEUR_TRAINING" },
+              { value: 484, name: "ADVANCED_TRAINING" },
+              { value: 300, name: "SPARRING_PARTNER" },
             ],
           },
         ],

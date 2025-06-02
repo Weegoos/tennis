@@ -114,6 +114,7 @@ import { putMethod } from "src/composables/apiMethod/put";
 import { useApiStore } from "src/stores/api-store";
 import { getCurrentInstance, onMounted, ref, watch } from "vue";
 import BaseCloseButton from "../atoms/BaseCloseButton.vue";
+import { patchMethod } from "src/composables/apiMethod/patch";
 // global variables
 const { proxy } = getCurrentInstance();
 const serverURL = proxy.$serverURL;
@@ -157,9 +158,10 @@ onMounted(() => {
 const role = ref("");
 const editRole = async () => {
   try {
-    putMethod(
+    patchMethod(
       serverURL,
-      `user/role`,
+      `user`,
+      "role",
       role,
       $q,
       "The role has been changed",

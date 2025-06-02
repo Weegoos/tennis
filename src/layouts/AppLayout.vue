@@ -234,11 +234,11 @@ const headerButtonsArrayForAdmin = computed(() => [
     link: "/admin/partner",
     icon: "mdi-account-search",
   },
-  {
-    name: t("profileText"),
-    link: "/admin/profile",
-    icon: "mdi-account",
-  },
+  // {
+  //   name: t("profileText"),
+  //   link: "/admin/profile",
+  //   icon: "mdi-account",
+  // },
   {
     name: t("adminStatsPageText"),
     link: "/admin/stats",

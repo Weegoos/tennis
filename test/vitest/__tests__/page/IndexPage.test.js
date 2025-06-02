@@ -22,6 +22,8 @@ describe("tests for IndexPage.vue", () => {
     },
   });
 
+  const observer = wrapper.vm.observer;
+
   it("should find carousel data-testid", () => {
     const carousel = wrapper.find('[data-testid="carousel"]');
     expect(carousel.exists()).toBe(true);

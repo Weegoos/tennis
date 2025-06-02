@@ -68,29 +68,29 @@ const updateChart = () => {
 
   const option = {
     title: {
-      text: "Общая аналитика",
+      text: "General analytics",
     },
     tooltip: {},
     legend: {
-      data: ["Турниры", "Пользователи", "Партнеры"],
+      data: ["Tournaments", "Users", "Partners"],
     },
     xAxis: {
-      data: ["Общее количество"],
+      data: ["Total number"],
     },
     yAxis: {},
     series: [
       {
-        name: "Турниры",
+        name: "Tournaments",
         type: "bar",
         data: [totalTournaments.value ? totalTournaments.value.length : 0], // Количество турниров
       },
       {
-        name: "Пользователи",
+        name: "Users",
         type: "bar",
         data: [totalUsers.value ? totalUsers.value.length : 0], // Количество пользователей
       },
       {
-        name: "Партнеры",
+        name: "Partners",
         type: "bar",
         data: [totalPartner.value ? totalPartner.value.length : 0], // Количество пользователей
       },

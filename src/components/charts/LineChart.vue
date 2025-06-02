@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-card class="no-shadow" bordered>
-      <q-card-section class="text-h6"> Line Chart </q-card-section>
+      <q-card-section class="text-h6"> Cities </q-card-section>
       <q-card-section>
         <ECharts
           :option="options"
@@ -38,7 +38,7 @@ export default defineComponent({
           },
         },
         legend: {
-          data: ["Line 1", "Line 2", "Line 3", "Line 4", "Line 5"],
+          data: ["ASTANA", "ALMATY", "SHYMKENT", "AKTOBE", "ATYRAU"],
           bottom: 10,
         },
         grid: {
@@ -52,15 +52,7 @@ export default defineComponent({
           {
             type: "category",
             boundaryGap: false,
-            data: [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday",
-            ],
+            data: ["ASTANA", "ALMATY", "SHYMKENT", "AKTOBE", "ATYRAU"],
           },
         ],
         yAxis: [
@@ -70,7 +62,7 @@ export default defineComponent({
         ],
         series: [
           {
-            name: "Line 1",
+            name: "ASTANA",
             type: "line",
             stack: "Total",
             smooth: true,
@@ -97,7 +89,7 @@ export default defineComponent({
             data: [140, 232, 101, 264, 90, 340, 250],
           },
           {
-            name: "Line 2",
+            name: "ALMATY",
             type: "line",
             stack: "Total",
             smooth: true,
@@ -124,7 +116,7 @@ export default defineComponent({
             data: [120, 282, 111, 234, 220, 340, 310],
           },
           {
-            name: "Line 3",
+            name: "SHYMKENT",
             type: "line",
             stack: "Total",
             smooth: true,
@@ -151,7 +143,7 @@ export default defineComponent({
             data: [320, 132, 201, 334, 190, 130, 220],
           },
           {
-            name: "Line 4",
+            name: "AKTOBE",
             type: "line",
             stack: "Total",
             smooth: true,
@@ -178,7 +170,7 @@ export default defineComponent({
             data: [220, 402, 231, 134, 190, 230, 120],
           },
           {
-            name: "Line 5",
+            name: "ATYRAU",
             type: "line",
             stack: "Total",
             smooth: true,

@@ -42,7 +42,7 @@
           </q-list>
         </q-card-section>
         <q-card-section v-else> No data </q-card-section>
-        <q-card-actions class="q-pr-lg" align="right">
+        <q-card-actions class="q-pr-lg gap-2" align="right">
           <BaseCloseButton
             label="Close"
             @click="closeCoacheDetailedInformation"
