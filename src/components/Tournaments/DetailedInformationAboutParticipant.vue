@@ -164,17 +164,15 @@ watch(
   }
 );
 
-const current = ref(1); // текущая страница
-const userId = ref(null); // id пользователя из props
+const current = ref(1);
+const userId = ref(null);
 
-// Общая функция получения истории матчей
 const updateMatchHistory = () => {
   if (userId.value) {
     getMatchHistory(userId.value, current.value);
   }
 };
 
-// Watch на detailedInformation
 watch(
   () => props.detailedInformation,
   (newVal) => {
@@ -187,17 +185,14 @@ watch(
   }
 );
 
-// Пагинация
 const pagination = (page) => {
   console.log("Текущая страница:", page);
   current.value = page;
   updateMatchHistory();
 };
 
-// Регистрация компонентов Chart.js
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
-// Данные для Pie диаграммы
 const userData = ref([]);
 
 const getData = async (id) => {

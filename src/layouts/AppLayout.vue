@@ -210,6 +210,10 @@ const headerButtonsArrayForUser = computed(() => [
     icon: "mdi-account-search",
   },
   {
+    name: t("ratingText"),
+    link: "/ratings",
+  },
+  {
     name: t("profileText"),
     link: "/profile",
     icon: "mdi-account",

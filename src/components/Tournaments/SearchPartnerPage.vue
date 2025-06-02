@@ -198,9 +198,6 @@ const inviteUser = async (row) => {
     const url = window.location.hash;
     const match = url.match(/\/hr\/(\d+)/);
     const tournamentID = match[1];
-    // console.log(apiStore.userData.id);
-    // console.log(id);
-    // console.log(row.id);
     const payload = {
       tournamentId: tournamentID,
       userId: apiStore.userData.id,
