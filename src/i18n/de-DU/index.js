@@ -287,4 +287,34 @@ export default {
     distribution: "Verteilung",
     matchHistory: "Spielverlauf",
   },
+
+  regulationsPage: {
+    titleText: "Turnierregeln und Vorschriften",
+    eligibility: "Teilnahmeberechtigung",
+    registration: "Registrierung",
+    codeOfConduct: "Verhaltenskodex",
+    tournamentFormat: "Turnierformat",
+    matchRules: "Spielregeln",
+    playerSafety: "Spielersicherheit",
+    prizeDistribution: "Preisverteilung",
+    tournamentSchedule: "Turnierzeitplan",
+    description: {
+      eligibilityDesc:
+        "Alle Teilnehmer müssen mindestens 18 Jahre alt sein, um am Turnier teilzunehmen.",
+      registrationDesc:
+        "Teilnehmer müssen sich vor Beginn des Turniers über das offizielle System registrieren.",
+      codeOfConductDesc:
+        "Von allen Teilnehmern wird erwartet, dass sie den Verhaltenskodex einhalten und sportliches Verhalten zeigen.",
+      tournamentFormatDesc:
+        "Das Turnier wird im Round-Robin-Format mit K.-o.-Runden durchgeführt.",
+      matchRulesDesc:
+        "Alle Spiele werden nach den offiziellen Tennisregeln mit standardisierter Punktzahl und Ausrüstung gespielt.",
+      playerSafetyDesc:
+        "Spieler müssen Verletzungen sofort den Offiziellen melden und können aus gesundheitlichen Gründen disqualifiziert werden.",
+      prizeDistributionDesc:
+        "Preise werden an die drei besten Teilnehmer jeder Kategorie vergeben.",
+      tournamentSchedule:
+        "Der vollständige Turnierzeitplan wird online verfügbar sein und bei Bedarf aktualisiert.",
+    },
+  },
 };

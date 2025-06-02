@@ -290,6 +290,35 @@ export default {
       distribution: "Distribution",
       matchHistory: "Match history",
     },
+    regulationsPage: {
+      titleText: "Tournament Rules & Regulations",
+      eligibility: "Eligibility",
+      registration: "Registration",
+      codeOfConduct: "Code of Conduct",
+      tournamentFormat: "Tournament Format",
+      matchRules: "Match Rules",
+      playerSafety: "Player Safety",
+      prizeDistribution: "Prize Distribution",
+      tournamentSchedule: "Tournament Schedule",
+      description: {
+        eligibilityDesc:
+          "All participants must be at least 18 years old to compete in the tournament.",
+        registrationDesc:
+          "Participants must register through the official system before the tournament starts.",
+        codeOfConductDesc:
+          "All participants are expected to follow the code of conduct and display good sportsmanship.",
+        tournamentFormatDesc:
+          "The tournament will follow a round-robin format with knockout stages.",
+        matchRulesDesc:
+          "All matches will be played according to official tennis rules, with standard scoring and equipment.",
+        playerSafetyDesc:
+          "Players must report any injuries to the officials immediately and may be disqualified for health reasons.",
+        prizeDistributionDesc:
+          "Prizes will be awarded to the top three finishers in each category.",
+        tournamentSchedule:
+          "The full tournament schedule will be available online and updated as necessary.",
+      },
+    },
   },
   "ru-RU": ruRU,
   "kz-KZ": kzKZ,

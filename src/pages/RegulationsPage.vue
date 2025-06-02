@@ -9,7 +9,7 @@
     >
       <q-card-section data-testid="tournamentCardSection" class="p-6">
         <div class="text-2xl md:text-3xl font-bold text-center mb-4">
-          Tournament Rules & Regulations
+          {{ t("regulationsPage.titleText") }}
         </div>
 
         <q-separator color="white" class="my-4" />
@@ -34,53 +34,49 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { redirectToUser } from "src/composables/javascriptFunction/redirectToTheAuthPage";
+import { useI18n } from "vue-i18n";
 
 onMounted(() => {
   redirectToUser();
 });
 
-const rules = [
+// global variables
+const { t } = useI18n();
+
+const rules = computed(() => [
   {
-    title: "Eligibility",
-    description:
-      "All participants must be at least 18 years old to compete in the tournament.",
+    title: t("regulationsPage.eligibility"),
+    description: t("regulationsPage.description.eligibilityDesc"),
   },
   {
-    title: "Registration",
-    description:
-      "Participants must register through the official system before the tournament starts.",
+    title: t("regulationsPage.registration"),
+    description: t("regulationsPage.description.registrationDesc"),
   },
   {
-    title: "Code of Conduct",
-    description:
-      "All participants are expected to follow the code of conduct and display good sportsmanship.",
+    title: t("regulationsPage.codeOfConduct"),
+    description: t("regulationsPage.description.codeOfConductDesc"),
   },
   {
-    title: "Tournament Format",
-    description:
-      "The tournament will follow a round-robin format with knockout stages.",
+    title: t("regulationsPage.tournamentFormat"),
+    description: t("regulationsPage.description.tournamentFormatDesc"),
   },
   {
-    title: "Match Rules",
-    description:
-      "All matches will be played according to official tennis rules, with standard scoring and equipment.",
+    title: t("regulationsPage.matchRules"),
+    description: t("regulationsPage.description.matchRulesDesc"),
   },
   {
-    title: "Player Safety",
-    description:
-      "Players must report any injuries to the officials immediately and may be disqualified for health reasons.",
+    title: t("regulationsPage.playerSafety"),
+    description: t("regulationsPage.description.playerSafetyDesc"),
   },
   {
-    title: "Prize Distribution",
-    description:
-      "Prizes will be awarded to the top three finishers in each category.",
+    title: t("regulationsPage.prizeDistribution"),
+    description: t("regulationsPage.description.prizeDistributionDesc"),
   },
   {
-    title: "Tournament Schedule",
-    description:
-      "The full tournament schedule will be available online and updated as necessary.",
+    title: t("regulationsPage.tournamentSchedule"),
+    description: t("regulationsPage.description.tournamentSchedule"),
   },
-];
+]);
 </script>
