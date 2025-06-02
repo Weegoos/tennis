@@ -1,6 +1,7 @@
 export default {
   // navbar
   mainPageText: "Startseite",
+  videoText: "Video",
   tournamentsText: "Turniere",
   regulationsText: "Regeln",
   coachesText: "Trainer",
@@ -224,12 +225,19 @@ export default {
       searchPartner: "Partner suchen",
       levelDoesNotMatch:
         "Ihr Spielniveau entspricht nicht dem für das Turnier erforderlichen Niveau",
+      generateBracket: "Turnierbaum erstellen",
+      calculateThePoints: "Punkte berechnen",
+      participantName: "Teilnehmername",
     },
     searchPartnerPage: {
       searchUser: "Benutzer suchen",
       usersText: "Benutzer(-)in",
       closeButton: "Schließen",
       inviteButton: "Einladen",
+    },
+
+    bracketPage: {
+      finalText: "Finale",
     },
     internationalTournamentsText: "Internationale Turniere",
     fromText: "Von",
@@ -254,5 +262,10 @@ export default {
       closeButton: "Schließen",
       updateButton: "Aktualisieren",
     },
+  },
+
+  ratingPage: {
+    leaderboardText: "Bestenliste",
+    pointsText: "Punkte",
   },
 };

@@ -7,6 +7,7 @@ export default {
   "en-US": {
     // navbar
     mainPageText: "Main page",
+    videoText: "Video",
     tournamentsText: "Tournaments",
     regulationsText: "Regulations",
     coachesText: "Coaches",
@@ -229,6 +230,9 @@ export default {
         searchPartner: "Search partner",
         levelDoesNotMatch:
           "Your level does not match the required level in the tournament",
+        generateBracket: "Generate Bracket",
+        calculateThePoints: "Calculate the points",
+        participantName: "Participant Name",
       },
       searchPartnerPage: {
         searchUser: "Search the user",
@@ -236,6 +240,11 @@ export default {
         closeButton: "Close",
         inviteButton: "Invite",
       },
+
+      bracketPage: {
+        finalText: "Final",
+      },
+
       internationalTournamentsText: "International tournaments",
       fromText: "From",
       toText: "To",
@@ -259,6 +268,10 @@ export default {
         closeButton: "Close",
         updateButton: "Update",
       },
+    },
+    ratingPage: {
+      leaderboardText: "Leaderboard",
+      pointsText: "Points",
     },
   },
   "ru-RU": ruRU,

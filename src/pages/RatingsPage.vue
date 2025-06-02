@@ -3,7 +3,7 @@
     <q-table
       flat
       bordered
-      title="Leaderboard"
+      :title="t('ratingPage.leaderboardText')"
       :rows="rows"
       :columns="columns"
       row-key="name"
@@ -51,7 +51,7 @@ const columns = computed(() => [
   {
     name: "points",
     required: true,
-    label: "Points",
+    label: t("ratingPage.pointsText"),
     align: "center",
     field: "points",
     format: (val) => `${val}`,

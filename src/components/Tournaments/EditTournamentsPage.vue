@@ -25,7 +25,10 @@
                     >
                       <q-date v-model="startDate" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
-                          <BaseCloseButton v-close-popup label="Close" />
+                          <BaseCloseButton
+                            v-close-popup
+                            :label="t('closeButton')"
+                          />
                         </div>
                       </q-date>
                     </q-popup-proxy>
@@ -49,7 +52,10 @@
                     >
                       <q-date v-model="endDate" mask="YYYY-MM-DD">
                         <div class="row items-center justify-end">
-                          <BaseCloseButton v-close-popup label="Close" />
+                          <BaseCloseButton
+                            v-close-popup
+                            :label="t('closeButton')"
+                          />
                         </div>
                       </q-date>
                     </q-popup-proxy>
@@ -72,7 +78,10 @@
                     >
                       <q-time v-model="startTime" mask="HH:mm" format24h>
                         <div class="row items-center justify-end">
-                          <BaseCloseButton v-close-popup label="Close" />
+                          <BaseCloseButton
+                            v-close-popup
+                            :label="t('closeButton')"
+                          />
                         </div>
                       </q-time>
                     </q-popup-proxy>

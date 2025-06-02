@@ -1,6 +1,7 @@
 export default {
   // navbar
   mainPageText: "Главная страница",
+  videoText: "Видео",
   tournamentsText: "Турниры",
   regulationsText: "Правила",
   coachesText: "Тренеры",
@@ -223,12 +224,19 @@ export default {
       searchPartner: "Найти партнёра",
       levelDoesNotMatch:
         "Ваш уровень не соответствует требуемому уровню для участия в турнире",
+      generateBracket: "Турнир кестесін жасау",
+      calculateThePoints: "Рассчитать очки",
+      participantName: "Имя участника",
     },
     searchPartnerPage: {
       searchUser: "Поиск пользователя",
       usersText: "Пользователь(-и)",
       closeButton: "Закрыть",
       inviteButton: "Пригласить",
+    },
+
+    bracketPage: {
+      finalText: "Финал",
     },
 
     internationalTournamentsText: "Международные турниры",
@@ -254,5 +262,10 @@ export default {
       closeButton: "Закрыть",
       updateButton: "Обновить",
     },
+  },
+
+  ratingPage: {
+    leaderboardText: "Таблица лидеров",
+    pointsText: "Очки",
   },
 };

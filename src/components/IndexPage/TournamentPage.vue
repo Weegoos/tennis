@@ -18,7 +18,7 @@
         narrow-indicator
       >
         <q-tab name="all" :label="t('indexPage.tournamentPage.allNews')" />
-        <q-tab name="video" label="Video" />
+        <q-tab name="video" :label="t('videoText')" />
       </q-tabs>
 
       <q-separator />

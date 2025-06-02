@@ -1,6 +1,7 @@
 export default {
   // navbar
   mainPageText: "Басты бет",
+  videoText: "Видео",
   tournamentsText: "Турнирлер",
   regulationsText: "Ережелер",
   coachesText: "Жаттықтырушылар",
@@ -221,12 +222,19 @@ export default {
       registerToTheTournament: "Турнирге тіркелу",
       searchPartner: "Серіктес іздеу",
       levelDoesNotMatch: "Сіздің деңгейіңіз турнир талаптарына сәйкес келмейді",
+      generateBracket: "Турнир кестесін жасау",
+      calculateThePoints: "Ұпайларды есептеу",
+      participantName: "Қатысушының аты",
     },
     searchPartnerPage: {
       searchUser: "Пайдаланушыны іздеу",
       usersText: "Пайдаланушы(-лар)",
       closeButton: "Жабу",
       inviteButton: "Шақыру",
+    },
+
+    bracketPage: {
+      finalText: "Финал",
     },
 
     internationalTournamentsText: "Халықаралық турнирлер",
@@ -252,5 +260,10 @@ export default {
       closeButton: "Жабу",
       updateButton: "Жаңарту",
     },
+  },
+
+  ratingPage: {
+    leaderboardText: "Көшбасшылар тақтасы",
+    pointsText: "Ұпайлар",
   },
 };

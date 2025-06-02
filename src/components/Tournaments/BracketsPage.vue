@@ -5,7 +5,11 @@
         <q-tab name="eight" label="1/8" />
         <q-tab name="four" label="1/4" />
         <q-tab name="semi-final" label="1/2" />
-        <q-tab name="final" label="Final" no-caps />
+        <q-tab
+          name="final"
+          :label="t('tournamentPage.bracketPage.finalText')"
+          no-caps
+        />
       </q-tabs>
       <q-tab-panels
         v-model="tab"
@@ -272,6 +276,7 @@ import { getMethod } from "src/composables/apiMethod/get";
 import { getCurrentInstance, onMounted, reactive, ref, watch } from "vue";
 import TournamentResult from "./TournamentResult.vue";
 import { useApiStore } from "src/stores/api-store";
+import { useI18n } from "vue-i18n";
 
 // global variables
 const $q = useQuasar();
@@ -280,6 +285,7 @@ const serverURL = proxy.$serverURL;
 const completedMatchStatus = proxy.$completedMatchStatus;
 const humanResources = proxy.$humanResources;
 const apiStore = useApiStore();
+const { t } = useI18n();
 const props = defineProps({
   tournamentID: {
     type: String,

@@ -1,42 +1,42 @@
 <template>
-  <div
-    data-testid="parallaxTestID"
-    v-for="(item, index) in textForParallax"
-    :key="index"
-  >
-    <q-parallax data-testid="parallaxContainer">
-      <template v-slot:media>
-        <img :src="item.img" />
-      </template>
-
+  <div data-testid="parallaxTestID">
+    <q-parallax
+      v-for="(item, index) in textForParallax"
+      :key="index"
+      :height="400"
+    >
+      :src="item.img" >
       <template v-slot:content="scope">
         <div
-          class="absolute column items-center text-center"
+          class="absolute full-width column items-center justify-center text-center"
           :style="{
-            opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
+            opacity: Math.min(
+              1,
+              Math.max(0, 0.45 + (1 - scope.percentScrolled) * 0.55)
+            ),
             transform: `translateY(${scope.percentScrolled * 60}%)`,
-            left: 0,
-            right: 0,
             transition: 'transform 0.3s ease, opacity 0.3s ease',
+            willChange: 'transform, opacity',
+            padding: '1rem',
           }"
         >
-          <section
-            class="q-pa-md"
-            style="max-width: 95vw; word-break: break-word"
+          <q-icon :name="item.icon" color="white" size="60px" />
+          <div class="text-h4 text-white text-bold q-mt-sm">
+            {{ item.text }}
+          </div>
+          <div
+            v-if="item.caption"
+            class="text-body1 text-white q-mt-sm"
+            style="max-width: 90vw; word-break: break-word"
           >
-            <q-icon :name="item.icon" color="white" size="60px" />
-            <div class="text-h3 text-white text-bold text-center q-mt-sm">
-              {{ item.text }}
-            </div>
-            <div class="text-body1 text-white text-center q-mt-sm">
-              {{ item.caption }}
-            </div>
-          </section>
+            {{ item.caption }}
+          </div>
         </div>
       </template>
     </q-parallax>
   </div>
 </template>
+
 <script setup>
 import { Cookies } from "quasar";
 import { computed, ref } from "vue";

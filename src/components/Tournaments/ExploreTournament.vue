@@ -58,13 +58,13 @@
 
       <BasePostButton
         v-if="userRole === humanResources"
-        label="Generate bracket"
+        :label="t('tournamentPage.exploreTournament.generateBracket')"
         @click="generateBracket"
       />
 
       <BasePostButton
         v-if="userRole === humanResources"
-        label="Calculate the points"
+        :label="t('tournamentPage.exploreTournament.calculateThePoints')"
         @click="calculatePoints"
       />
 
@@ -296,7 +296,7 @@ const participantsColumns = computed(() => [
   },
   {
     name: "participantName",
-    label: "Participant Name",
+    label: t("tournamentPage.exploreTournament.participantName"),
     align: "left",
     field: (user) => user.participantName,
     sortable: true,
