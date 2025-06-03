@@ -7,7 +7,7 @@ export default ({ app }) => {
   // https://kaz-tennis.netlify.app/#/
   // http://localhost:9000/#/
   // https://localhost/index.html#/
-  const clientURL = "https://localhost/index.html#/";
+  const clientURL = "https://kaz-tennis.netlify.app/#/";
   const humanResources = "ORGANIZATOR";
   const adminRole = "ADMIN";
   const maxNumberOfRequestPerPage = 9;
