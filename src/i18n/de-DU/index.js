@@ -318,4 +318,43 @@ export default {
         "Der vollständige Turnierzeitplan wird online verfügbar sein und bei Bedarf aktualisiert.",
     },
   },
+  aboutUsPageText: {
+    title: `Entwicklung eines Systems zur Organisation von Tennisturnieren mit Teilnehmerregistrierung und Unterstützung verschiedener Wettbewerbsformate`,
+    projectTeamText: "Projektteam",
+    founders: `Akzhan Omir (Backend-Entwickler), Arystanbek Abiyev (Backend-Entwickler), Ashim Batyr (Frontend-Entwickler)`,
+    aim: `Dieses Abschlussprojekt zielt auf die Entwicklung eines modernen Systems zur Organisation von Tennisturnieren ab.
+        Es unterstützt verschiedene Wettbewerbsformate, Spielerregistrierung, Partnersuche, Trainersuche sowie Turnierverwaltung.`,
+    systemOverview: "Systemübersicht",
+    platformDescription:
+      "Umfassende Plattform zur Verwaltung von Tennisturnieren",
+    functionalities: `Das System verfügt über drei Benutzerrollen: regulärer Benutzer, Turnierorganisator und Administrator.
+        Reguläre Benutzer können sich für Turniere anmelden, Partner oder Trainer finden, sich als Trainer bewerben und Tennisnachrichten lesen.
+        Organisatoren können Turniere erstellen und verwalten, Ergebnisse verfolgen, Nachrichten veröffentlichen und Bewerbungen genehmigen oder ablehnen.
+        Administratoren haben vollständige Kontrolle über Benutzer und die Moderation von Inhalten.`,
+    stackText: "Verwendete Technologien",
+    stacks: "Quasar, Vue.js, Tailwind, Spring Boot, Docker, PostgreSQL",
+    frontendText: `Das Frontend wurde mit Vue 3 und dem Quasar Framework entwickelt und verwendet Tailwind CSS für das Styling.
+        Das Backend basiert auf Java Spring Boot.
+        Das System wird mit Docker bereitgestellt und über Netlify und Cloudflare R2 gehostet.
+        Die App unterstützt auch mobile Geräte durch Cordova und wurde mit Vitest getestet.`,
+    userRoleAndFutures: "Benutzerrollen und Funktionen",
+    functionalityBreakdown: "Funktionsübersicht",
+    regularUser: {
+      title: "Regulärer Benutzer",
+      features: `Anmeldung zu Turnieren, Partnersuche/Trainersuche, Bewerbung als Trainer, Lesen von Tennisnachrichten.`,
+    },
+    organizer: {
+      title: "Organisatoren",
+      features: `Turniere erstellen und verwalten, Turnierbaum setzen, Ergebnisse eingeben, Turniere beenden, Punkte zuweisen, Nachrichten verwalten, Bewerbungen genehmigen/ablehnen.`,
+    },
+    admin: {
+      title: "Administrator",
+      features: `Benutzerinhalte moderieren, Bewerbungen prüfen und genehmigen, Benutzer und Datenintegrität verwalten.`,
+    },
+    rankingSystem: "Ranglistensystem",
+    playerPerformanceTracking: "Spielerleistungsverfolgung",
+    systemFeature: `Alle Turnierteilnehmer werden automatisch in das Ranglistensystem aufgenommen.
+        Punkte werden basierend auf der Leistung vergeben.
+        Die Rangliste wird nach jedem Turnier aktualisiert.`,
+  },
 };
