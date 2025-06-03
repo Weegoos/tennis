@@ -12,6 +12,7 @@ export default {
   adminUsersPageText: "Benutzer",
   adminStatsPageText: "Statistiken",
   informationAboutParticipant: "Informationen über den Teilnehmer",
+  tierText: "Stufe",
 
   welcome: "Willkommen",
   registrationText: "Registrierung",

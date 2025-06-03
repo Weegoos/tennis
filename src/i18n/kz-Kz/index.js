@@ -12,6 +12,7 @@ export default {
   adminUsersPageText: "Пайдаланушылар",
   adminStatsPageText: "Статистика",
   informationAboutParticipant: "Қатысушы туралы ақпарат",
+  tierText: "Деңгей",
 
   welcome: "Қош келдіңіз",
   registrationText: "Тіркелу",

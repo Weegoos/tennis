@@ -18,6 +18,7 @@ export default {
     adminUsersPageText: "Users",
     adminStatsPageText: "Stats",
     informationAboutParticipant: "Information about participant",
+    tierText: "Tier",
 
     welcome: "Welcome",
     registrationText: "Registration",

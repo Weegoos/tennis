@@ -12,6 +12,7 @@ export default {
   adminUsersPageText: "Пользователи",
   adminStatsPageText: "Статистика",
   informationAboutParticipant: "Информация об участнике",
+  tierText: "Уровень",
 
   welcome: "Добро пожаловать",
   registrationText: "Регистрация",
@@ -225,7 +226,7 @@ export default {
       searchPartner: "Найти партнёра",
       levelDoesNotMatch:
         "Ваш уровень не соответствует требуемому уровню для участия в турнире",
-      generateBracket: "Турнир кестесін жасау",
+      generateBracket: "Сформировать сетку",
       calculateThePoints: "Рассчитать очки",
       participantName: "Имя участника",
     },

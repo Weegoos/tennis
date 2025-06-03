@@ -63,7 +63,10 @@
                   >
                     <q-date v-model="startDate" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
-                        <BaseCloseButton label="Close" v-close-popup />
+                        <BaseCloseButton
+                          :label="t('closeButton')"
+                          v-close-popup
+                        />
                       </div>
                     </q-date>
                   </q-popup-proxy>
@@ -87,7 +90,10 @@
                   >
                     <q-date v-model="endDate" mask="YYYY-MM-DD">
                       <div class="row items-center justify-end">
-                        <BaseCloseButton label="Close" v-close-popup />
+                        <BaseCloseButton
+                          :label="t('closeButton')"
+                          v-close-popup
+                        />
                       </div>
                     </q-date>
                   </q-popup-proxy>
@@ -110,7 +116,10 @@
                   >
                     <q-time v-model="time" mask="HH:mm" format24h>
                       <div class="row items-center justify-end">
-                        <BaseCloseButton label="Close" v-close-popup />
+                        <BaseCloseButton
+                          :label="t('closeButton')"
+                          v-close-popup
+                        />
                       </div>
                     </q-time>
                   </q-popup-proxy>
@@ -128,7 +137,11 @@
             />
           </div>
           <div class="col">
-            <q-select v-model="tier" :options="tierOptions" label="Tier" />
+            <q-select
+              v-model="tier"
+              :options="tierOptions"
+              :label="t('tierText')"
+            />
           </div>
           <div class="col">
             <q-select
@@ -168,7 +181,7 @@
             />
           </div>
           <div class="col">
-            <q-input v-model="cost" type="number" label="Cost" />
+            <q-input v-model="cost" type="number" :label="t('costText')" />
           </div>
         </div>
         <div class="row q-gutter-sm q-mt-sm">

@@ -16,102 +16,69 @@
         </template>
 
         <div>
-          This project focuses on developing a system to organize and manage
-          tennis tournaments. The system will allow for participant
-          registration, support multiple competition formats, and provide an
-          intuitive user interface.
+          This diploma project focuses on creating a modern system for
+          organizing tennis tournaments, supporting multiple competition
+          formats, player registration, partner and coach search, and tournament
+          management functionalities.
         </div>
       </q-timeline-entry>
 
       <q-timeline-entry>
         <template v-slot:title> System Overview </template>
         <template v-slot:subtitle>
-          Aims to streamline tennis tournament organization
+          Comprehensive platform for managing tennis tournaments
         </template>
 
         <div>
-          The system provides functionality for registering participants,
-          creating and managing tournament brackets, and supporting various
-          competition formats. It ensures efficient operations from registration
-          to the conclusion of the tournament, offering ease of use for both
-          participants and organizers.
+          The system includes three user roles: regular user, tournament
+          organizer, and admin. Regular users can register for tournaments, find
+          partners or coaches, apply to become coaches, and read news.
+          Organizers can create, update, and manage tournaments, track results,
+          publish news, and approve or decline partner/coach applications.
+          Admins have full control over users and application moderation.
         </div>
       </q-timeline-entry>
 
       <q-timeline-entry heading> 2025 </q-timeline-entry>
 
-      <q-timeline-entry :avatar="Akzhan">
-        <template v-slot:title> Event Title </template>
-        <template v-slot:subtitle> Akzhan Omir SE - 2215 </template>
+      <q-timeline-entry>
+        <template v-slot:title> Technologies Used </template>
+        <template v-slot:subtitle>
+          Quasar, Vue.js, Tailwind, Spring Boot, Docker, PostgreSQL
+        </template>
 
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          The frontend is developed using Vue 3 and Quasar Framework with
+          Tailwind CSS for styling. Backend is powered by Java Spring Boot. The
+          system is deployed using Docker and hosted via Netlify and Cloudflare
+          R2. The app also includes mobile support using Cordova and testing via
+          Vitest.
         </div>
       </q-timeline-entry>
 
       <q-timeline-entry>
-        <template v-slot:title> Event Title </template>
-        <template v-slot:subtitle> February 22, 1986 </template>
+        <template v-slot:title> User Roles and Features </template>
+        <template v-slot:subtitle> Functionality Breakdown </template>
 
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <strong>Regular Users:</strong> Register for tournaments, search for
+          partners/coaches, apply to teach, read tennis-related news.<br />
+          <strong>Organizers:</strong> Create and manage tournaments, set
+          brackets, enter results, end tournaments, assign points, manage news,
+          approve/decline applications.<br />
+          <strong>Admins:</strong> Moderate user content, review and approve
+          applications, manage users and data integrity.
         </div>
       </q-timeline-entry>
 
-      <q-timeline-entry color="orange" icon="done_all">
-        <template v-slot:title> Event Title </template>
-        <template v-slot:subtitle> February 22, 1986 </template>
+      <q-timeline-entry color="orange" icon="star">
+        <template v-slot:title> Ranking System </template>
+        <template v-slot:subtitle> Player Performance Tracking </template>
 
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </q-timeline-entry>
-
-      <q-timeline-entry>
-        <template v-slot:title> Event Title </template>
-        <template v-slot:subtitle> February 22, 1986 </template>
-
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </q-timeline-entry>
-
-      <q-timeline-entry>
-        <template v-slot:title> Event Title </template>
-        <template v-slot:subtitle> February 22, 1986 </template>
-
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          All participants of tournaments are automatically added to the ranking
+          system. Points are awarded based on performance. Rankings are updated
+          after each tournament concludes.
         </div>
       </q-timeline-entry>
     </q-timeline>
