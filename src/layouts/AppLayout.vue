@@ -201,7 +201,7 @@ const headerButtonsArrayForUser = computed(() => [
     link: "/news",
   },
   {
-    name: t("aboutUsPageText"),
+    name: t("aboutUsPage"),
     link: "/about",
   },
   {

@@ -2,11 +2,12 @@
 export default ({ app }) => {
   // Объявляем глобальные переменные
   const mobileWidth = 1050;
-  const serverURL = "http://localhost:8000/api/v1/";
-  const adminURL = "http://localhost:8000/api/admin/";
+  const serverURL = "https://tennis-p30s.onrender.com/api/v1/";
+  const adminURL = "https://tennis-p30s.onrender.com/api/admin/";
   // https://kaz-tennis.netlify.app/#/
   // http://localhost:9000/#/
-  const clientURL = "http://localhost:9000/#/";
+  // https://localhost/index.html#/
+  const clientURL = "https://localhost/index.html#/";
   const humanResources = "ORGANIZATOR";
   const adminRole = "ADMIN";
   const maxNumberOfRequestPerPage = 9;

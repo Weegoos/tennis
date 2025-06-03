@@ -8,7 +8,7 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-navigation href="https://tennis-p30s.onrender.com/api/v1/*" />
-    <access origin="https://tennis-p30s.onrender.com/api/v1/" />
+    <allow-navigation href="https://tennis-p30s.onrender.com/*" />
     <allow-navigation href="about:*" />
+    <access origin="https://tennis-p30s.onrender.com" subdomains="true" />
 </widget>

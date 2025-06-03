@@ -6,7 +6,7 @@ export default {
   regulationsText: "Правила",
   coachesText: "Тренеры",
   newsPageText: "Новости",
-  aboutUsPageText: "О нас",
+  aboutUsPage: "О нас",
   findPartnerPageText: "Найти партнёра",
   profileText: "Профиль",
   adminUsersPageText: "Пользователи",

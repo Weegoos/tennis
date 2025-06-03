@@ -12,7 +12,7 @@ export default {
     regulationsText: "Regulations",
     coachesText: "Coaches",
     newsPageText: "News",
-    aboutUsPageText: "About us",
+    aboutUsPage: "About us",
     findPartnerPageText: "Find a partner",
     profileText: "Profile",
     adminUsersPageText: "Users",
